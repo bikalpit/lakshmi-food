@@ -1,0 +1,68 @@
+<!-- <ion-header>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="main-title">Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-toolbar>
+ 
+  <ion-buttons slot="start" class="menu_btn">
+    <ion-menu-button autoHide="false"></ion-menu-button>
+  </ion-buttons>
+  <ion-buttons slot="end">
+    <ion-button>
+  
+    </ion-button>
+  </ion-buttons>
+  <ion-title class="main-title">Dashboard</ion-title>
+</ion-toolbar>
+
+<ion-content class="main-content">
+
+  <ion-card class="card">
+    <ion-card-content class="main-card-content">
+      Welcome Joe!
+    </ion-card-content>
+  </ion-card>
+  <ion-row class="row-marginn">
+    <!-- <ion-card class="Shop-now">
+     
+      <img src="../../assets/imgs/cart (3).png" style="margin: 12px 28% 0;">
+      <ion-card-content class="main-card-Shop-now">
+        <b>Shop Now</b>
+      </ion-card-content>
+    </ion-card> -->
+    <ion-col size="6">
+    <ion-card class="Shop-now">
+     
+      <img src="../../assets/imgs/order (1).png" style="margin: 25% 28% 0;">
+      <ion-card-content class="main-card-Shop-now">
+        <b>My Orders</b>
+      </ion-card-content>
+    </ion-card>
+    </ion-col>
+  <!-- </ion-row>
+  <ion-row class="row-marginn"> -->
+    <!-- <ion-card class="Shop-now">
+    
+      <img src="../../assets/imgs/bill (1).png" style="margin: 12px 28% 0;">
+      <ion-card-content class="main-card-Shop-now">
+        <b>Invoice</b>
+      </ion-card-content>
+
+    </ion-card> -->
+    <ion-col size="6">
+      <ion-card class="Shop-now">
+        <img src="../../assets/imgs/user (2).png" style="margin: 25% 32% 0;">
+        <ion-card-content class="main-card-Shop-now" (click)="fnProfile()">
+          <b>Profile</b>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  
+  </ion-row>
+
+  <button ion-button class="View_btn" (click)="fnViewProducts()">Shop Now</button>
+</ion-content>

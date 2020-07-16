@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="menu_btn">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="main-title">Edit Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="avtar">
+    <img src="../../assets/imgs/1945870586Image.png" class="img">
+    <p class="profile-txt"><b>Change Profile Photo</b></p>
+
+    <div class="order-no-bg">
+      <ion-input placeholder="Full Name" class="order_no_txt"></ion-input>
+    </div>
+
+    <div class="order-no-bg">
+      <ion-input placeholder="Email Id" class="order_no_txt"></ion-input>
+    </div>
+    
+    <div class="order-no-bg">
+      <ion-input placeholder="Username" class="order_no_txt"></ion-input>
+    </div>
+
+    <div class="order-no-bg">
+      <ion-input placeholder="Password" class="order_no_txt"></ion-input>
+    </div>
+
+    <ion-row class="cancel_save_btn">
+      <ion-col>
+        <button ion-button class="cancelOrder_btn" (click)="fnCancelOrder()">Cancel</button>
+      
+      </ion-col>
+  
+      <ion-col>
+        <button ion-button class="download_btn" (click)="fnDownload()">Save</button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

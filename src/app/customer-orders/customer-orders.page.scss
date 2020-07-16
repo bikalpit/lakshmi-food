@@ -1,0 +1,68 @@
+.menu_btn{
+    color: #E4322E;
+ }
+.main-title{
+    text-align: center;
+    color: #E4322E;
+}
+.order-status{
+    color: black;
+    font-size: 18px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+.main-card{
+    box-shadow: 5px 7px 10px 5px #e8e8e8;
+    background-color: #fff;  
+}
+.date{
+
+    color: black;
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 0px;
+}
+.d-date{
+    color: #000;
+    font-size: 18px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+.status{
+    color: #E4322E;
+    font-size: 18px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+.main-content{
+    background-color:#E4322E ;
+    .order-ids{
+        color: #fff;
+        font-size:22px ;
+        margin: 0;
+        padding: 5px;
+    }
+}
+.select-text {
+    min-width: 16px;
+    font-size: inherit;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1 1 0%;
+    overflow: hidden;
+}
+.select-icon {
+    width: 19px;
+    height: 19px;
+    margin-left: 18px;
+}
+.select-icon {
+    position: relative;
+    opacity: 0.33;
+}
+ion-select{
+    max-width: 117px;
+    border: 1px solid #E4322E;
+    border-radius: 9px;
+    padding: 9px;
+}

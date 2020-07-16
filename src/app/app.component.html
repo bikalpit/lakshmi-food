@@ -1,0 +1,18 @@
+<ion-app>
+  <ion-menu side="start" menuId="first" contentId="content1">
+    <ion-header>
+      <ion-toolbar class="main-toolbar">
+        <ion-title></ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+     
+        <ion-item class="main-title" (click)="fnMyAccount()"><img src="../assets/imgs/user (3).png" class="img">My Account</ion-item>     
+        <ion-item class="main-title" (click)="fnEditProfile()"><img src="../assets/imgs/person.png" class="img">Edit Profile</ion-item>     
+        <ion-item class="main-title" (click)="fnChangePassword()"><img src="../assets/imgs/gear.png" class="img">Change Password</ion-item>     
+        <ion-item class="main-title" (click)="fnLogout()"><img src="../assets/imgs/logout.png" class="img">Logout</ion-item>  
+        
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="content1"></ion-router-outlet>
+</ion-app>

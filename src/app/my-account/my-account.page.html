@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="menu_btn">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <img src="../../assets/imgs/logout.png" (click)=fnLogout()>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="main-title">My Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="header-content">
+    <p class="p-label">Wel Come</p>
+  </ion-grid>
+  <ion-card class="card-content" (click)="fnOrderDetails()">
+    <ion-row style="margin-top: 15px;">
+      <p class="p-order"><b>Order # 00023</b></p>
+      <ion-col>
+        <button ion-button class="Pending_btn" (click)="fnPending()">Pending</button>
+      </ion-col>
+    </ion-row>
+    <p class="p-date"><b>Date</b> 12/05/2020</p>
+
+  </ion-card>
+  <ion-card class="card-content-address">
+    <h5 class="add-txt"><img src="../../assets/imgs/location.png" class="img">354,Noida Delhi,New Delhi,India</h5>
+  </ion-card>
+ 
+  <ion-card class="card-content">
+    <ion-row style="margin-top: 15px;">
+      <p class="p-order"><b>Order # 00023</b></p>
+      <ion-col>
+        <button ion-button class="Pending_btn" (click)="fnCompleted()">Completed</button>
+      </ion-col>
+    </ion-row>
+    <p class="p-date"><b>Date</b> 12/05/2020</p>
+
+  </ion-card>
+  <ion-card class="card-content-address">
+    <h5 class="add-txt"><img src="../../assets/imgs/location.png" class="img">354,Noida Delhi,New Delhi,India</h5>
+  </ion-card>
+</ion-content>

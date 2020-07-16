@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="menu_btn">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="main-title">Order Summary</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="main-card">
+    <ion-grid >
+      <ion-row>
+        <ion-col size="4">
+          <h4 class="p-label2">Total</h4>
+        </ion-col>
+
+        <ion-col>
+          <h6 class="p-label">Order Date</h6>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <h4 class="p-price">₹210</h4>
+        </ion-col>
+
+        <ion-col>
+          <h6 class="p-date">12/05/2020</h6>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card class="main-card-item">
+
+    <h5 class="p-label3"><b>Items</b></h5>
+    <h6 class="p-qty">Atta 5Kg</h6>
+
+    <ion-row>
+      <ion-col>
+        <h6 class="p-qty">Qty 2 * ₹100</h6>
+      </ion-col>
+
+      <h6 class="p-label4">₹200.00</h6>
+    </ion-row>
+
+    
+    <h6 class="p-qty1">Atta 5Kg</h6>
+    <ion-row>
+      <ion-col>
+        <h6 class="p-qty">Qty 1 * ₹220</h6>
+      </ion-col>
+   
+    <h6 class="p-label4">₹220.00</h6>
+    </ion-row>
+  </ion-card>
+
+  <ion-card class="main-card-total">
+    <ion-grid style="margin-top: 20px;">
+      <ion-row>
+        <ion-col size="4">
+          <h4 class="Subtotal">Subtotal</h4>
+        </ion-col>
+
+        <ion-col>
+          <h6 class="p-label4">₹420.00</h6>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <h4 class="Subtotal">Shipping</h4>
+        </ion-col>
+
+        <ion-col>
+          <h6 class="p-label4">₹10.00</h6>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-row style="margin-top: 14%;">
+    <ion-col>
+      <button ion-button class="cancelOrder_btn" (click)="fnCancelOrder()">Cancel Order</button>
+    
+    </ion-col>
+
+    <ion-col>
+      <button ion-button class="download_btn" (click)="fnDownload()">Download</button>
+    </ion-col>
+  </ion-row>
+</ion-content>

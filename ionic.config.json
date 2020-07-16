@@ -1,0 +1,7 @@
+{
+  "name": "laxmi_atta",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

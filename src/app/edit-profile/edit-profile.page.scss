@@ -1,0 +1,61 @@
+.menu_btn{
+  color: #E4322E;
+}
+.main-title{
+   text-align: center;
+   color: #E4322E;
+ }
+ .avtar{
+   text-align: center;
+ }
+ .img{
+   width: 50%;
+   margin-top: 15px;  
+ }
+ .profile-txt{
+   color: #E4322E;
+
+ }
+ .order-no-bg{
+   background-color: #f5f0f0;
+   width: 90%;
+   height: 45px;
+   margin-left: 20px;
+   border-radius: 7px;
+   margin-top: 15px;
+}
+.order_no_txt{
+   text-align: start;
+   color: #010944;
+   margin-left: 10px;
+}
+.cancel_save_btn{
+  margin-top: 8%;
+  margin-bottom: 8px;
+    .cancelOrder_btn{
+      background-color:transparent;
+      color: #E4322E;
+      font-size: 20px;
+      height: 45px;
+      width: 85%;
+      border-radius: 10px;
+      display: block;
+      margin: auto;
+      border: 1px solid #E4322E;
+      margin-left: 16px;
+      margin-top: 3px;
+    }
+    .download_btn{
+      background-color: #E4322E;
+      color: #fff;
+      font-size: 20px;
+      height: 45px;
+      width: 85%;
+      border-radius: 10px;
+      display: block;
+      margin: auto;
+      border: 1px solid #fff;
+      margin-left: 12px;
+      margin-top: 3px;
+    }
+}

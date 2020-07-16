@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="menu_btn">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="main-title">Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <p class="order-status"><b>Order Status</b></p>
+    <ion-col>
+      <ion-item style="float: right;">   
+        <ion-select class="custom-options">
+          <ion-select-option value="inprocees">Inprocees</ion-select-option>
+          <ion-select-option value="completed">Completed</ion-select-option> 
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  
+  </ion-row>
+ 
+  <ion-card class="main-card" (click)="fnOrderSummary()">
+    <ion-grid class="main-content">
+      <p class="order-ids">Order Id: 023459060</p>
+    </ion-grid>
+    <ion-row>
+      <ion-col>
+        <p class="d-date">Delivery Date</p>
+        <p class="date"><b>2020-03-05</b></p>
+      </ion-col>
+
+      <ion-col>
+        <p class="status"><b>Inprocees</b></p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card class="main-card">
+    <ion-grid class="main-content">
+      <p class="order-ids">Order Id: 023459430</p>
+    </ion-grid>
+    <ion-row>
+      <ion-col>
+        <p class="d-date">Delivery Date</p>
+        <p class="date"><b>2020-03-05</b></p>
+      </ion-col>
+
+      <ion-col>
+        <p class="status"><b>Inprocees</b></p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card class="main-card">
+    <ion-grid class="main-content">
+      <p class="order-ids">Order Id: 023449060</p>
+    </ion-grid>
+    <ion-row>
+      <ion-col>
+        <p class="d-date">Delivery Date</p>
+        <p class="date"><b>2020-03-05</b></p>
+      </ion-col>
+
+      <ion-col>
+        <p class="status"><b>Inprocees</b></p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card class="main-card">
+    <ion-grid class="main-content">
+      <p class="order-ids">Order Id: 023459060</p>
+    </ion-grid>
+    <ion-row>
+      <ion-col>
+        <p class="d-date">Delivery Date</p>
+        <p class="date"><b>2020-03-05</b></p>
+      </ion-col>
+
+      <ion-col>
+        <p class="status"><b>Inprocees</b></p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>

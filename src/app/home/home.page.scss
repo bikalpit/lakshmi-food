@@ -1,0 +1,74 @@
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+.background-image {
+  /* In this example we are using a background-image. But the header element could be anything. */
+  --background: url('../../assets/imgs/LoginScreen_1.jpg') 0 0/100% 100% no-repeat;
+  // --background-repeat: no-repeat;
+  // --background-size: cover;  
+}
+.main-class{
+  width: 100%;
+  margin: 25% 12% 0;
+}
+.sign-label{
+  color: #ffffff;
+  font-size:28px;
+  font-family: open sans;
+}
+.login_text {
+  background-color: #fff;
+  width: 77%;
+  margin-top: 16px;
+  color:#000;
+  padding-left: 2px;
+  font-family: open sans;
+}
+.forgot-label{
+  float: right;
+  margin-right: 22%;
+  margin-top: 8%;
+  font-family: open sans;
+  color: #fff;
+}
+.login_btn {
+  background-color: #fff;
+  width: 77%;
+  border-radius: 8px;
+  display: block;
+  margin-top: 6rem;
+  border: 1px solid #fff;
+  color: #E4322E;
+  font-size: 20px;
+  height: 35px;
+}
+.signup-label{
+  margin-top: 37%;
+  color: #E4322E;
+  font-family: open sans;
+}

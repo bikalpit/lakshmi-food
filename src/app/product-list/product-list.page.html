@@ -1,0 +1,89 @@
+<!-- <ion-header>
+  <ion-toolbar>
+  <ion-navbar>
+    <button ion-button menuToggle >
+      <ion-icon name="menu" class="img1"></ion-icon>
+    </button>
+    <ion-title class="main-title">Which <b>Product</b> Do You Need?
+     
+      <img src="../../assets/imgs/buy (2).png" class="img"></ion-title>
+  </ion-navbar>
+</ion-toolbar>
+  <!-- <ion-toolbar>
+    <!-- <img src="../../assets/imgs/open-menu (1).png" style="float: left;margin-left: 10px;position: absolute;"> -->
+    <!-- <ion-title class="main-title">Which <b>Product</b> Do You Need?
+      <img src="../../assets/imgs/buy (2).png" class="img">
+    </ion-title>
+
+  </ion-toolbar> 
+</ion-header> -->
+
+<ion-toolbar>
+  <ion-buttons slot="start"  class="main-title">
+    <ion-menu-button auto-hide="false"></ion-menu-button>
+  </ion-buttons>
+  
+
+  <ion-buttons slot="end">
+    <ion-button>
+      <img src="../../assets/imgs/buy (3).png" class="img" (click)="fnAddToCart()">
+    </ion-button>
+  </ion-buttons>
+
+  <ion-title class="main-title">Which <b>Product</b> Do You Need?</ion-title>
+</ion-toolbar>
+<ion-content>
+  
+  <ion-card class="card" (click)="showModal()">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <img src="../../assets/imgs/images.jpg" style="width:100%;">
+        </ion-col>
+        <ion-col>
+          <h5 class="p-label1"><b>Atta 5Kg</b></h5>
+          <h6 class="p-label">₹100.00</h6>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card class="card" (click)="showModal()">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <img src="../../assets/imgs/images.jpg" style="width:100%;">
+        </ion-col>
+        <ion-col>
+          <h5 class="p-label1"><b>Atta 5Kg</b></h5>
+          <h6 class="p-label">₹220.00</h6>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card class="card" (click)="showModal()">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <img src="../../assets/imgs/images.jpg" style="width:100%;">
+        </ion-col>
+        <ion-col>
+          <h5 class="p-label1"><b>Atta 5Kg</b></h5>
+          <h6 class="p-label">₹500.00</h6>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card class="card" (click)="showModal()">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <img src="../../assets/imgs/images.jpg" style="width:100%;">
+        </ion-col>
+        <ion-col>
+          <h5 class="p-label1"><b>Atta 5Kg</b></h5>
+          <h6 class="p-label">₹100.00</h6>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

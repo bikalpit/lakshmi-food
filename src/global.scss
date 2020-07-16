@@ -1,0 +1,181 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+
+.myModal{
+    margin-top: 50% !important;
+    --width: 400px !important;
+    --height: 450px !important;
+   
+}
+
+.swiper-container-horizontal>.swiper-pagination-bullets{
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    top: 105px !important;
+
+}
+// .md swiper-slide{
+//     width: 283px !important;
+//     height: 125px !important;
+// }
+
+// .ios .swiper-slide{
+//     width: 337px !important;
+//     height: 125px !important;
+// }
+.ios .swiper-slide-active{
+
+    width: 336px !important;
+    height: 125px !important;
+}
+.ios .swiper-slide-prev{
+
+
+    width: 283px !important;
+    height: 125px !important;
+}
+.ios .swiper-slide-next{
+    width: 321px !important;
+    height: 125px !important;
+}
+.swiper-slide{
+    width: 323px !important;
+    height: 125px !important;
+    color: #E4322E !important;
+}
+
+.ios .swiper-slide{
+    width: 375px !important;
+    height: 125px !important;
+    color: #E4322E !important;
+}
+.md .swiper-slide{
+    width: 317px !important;
+    height: 125px !important;
+    color: #E4322E !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #E4322E !important;
+}
+
+// .sc-ion-modal-md{
+
+//     margin-top: 57% !important;
+//     --width: 412px !important;
+//     --height: 768px !important;
+// }
+.sc-ion-input-md-h {
+    --padding-top: 25px !important;
+    --padding-end: 0 !important;
+    --padding-bottom: 10px !important;
+    --padding-start: 18px !important;
+    font-size: inherit;
+}
+.native-input.sc-ion-input-md{
+
+    padding: 14px 10px !important;
+}
+.item-inner{
+    background-color: #fff !important;
+}
+.my-custom-menu {
+    --width: 500px;
+  }
+.select-icon {
+    width: 25px !important;
+    height: 19px;
+    margin-left: 18px !important;
+}
+.alert-radio-label.sc-ion-alert-md{
+
+    color: #E4322E;
+}
+[aria-checked=true].sc-ion-alert-md .alert-radio-icon.sc-ion-alert-md{
+   --ion-color-primary: #E4322E;
+}
+.alert-button-inner.sc-ion-alert-md{
+    color: #E4322E;
+
+}
+[aria-checked=true].sc-ion-alert-md .alert-radio-label.sc-ion-alert-md{
+     --ion-color-step-850: #E4322E;
+
+}
+.sc-ion-buttons-ios-h {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 99;
+    color: #E4322E;
+}
+// .swiper-wrapper{
+
+//     transform: translate3d(-330px, 0px, 0px) !important;
+//     transition-duration: 0ms !important;
+// }
+.sc-ion-modal-ios-h{
+    margin-top: 57% !important;
+    --width: 400px !important;
+    --height: 597px !important;
+}
+.sc-ion-modal-ios-s{
+
+    margin-top: 36% !important;
+    --width: 400px !important;
+    --height: 481px !important;
+}
+.sc-ion-modal-ios{
+    margin-top: 55% !important;
+    --width: 411px !important;
+    --height: 609px !important;
+}
+.sc-ion-modal-md{
+    margin-top: 72% !important;
+    --width: 411px !important;
+    --height: 505px !important;
+}
+.sc-ion-modal-md-h{
+
+    margin-top: 60% !important;
+    --width: 410px !important;
+    --height: 535px !important;
+}
+.sc-ion-modal-md-s{
+    margin-top: 0 !important;
+    --width: 400px !important;
+    --height: 481px !important;
+}
+
+.radio-icon{
+    background-color: #E4322E !important;
+}

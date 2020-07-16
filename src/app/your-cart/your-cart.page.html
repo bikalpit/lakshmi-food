@@ -1,0 +1,123 @@
+<ion-toolbar>
+  <ion-buttons slot="start" class="menu_btn">
+    <ion-menu-button auto-hide="false"></ion-menu-button>
+  </ion-buttons>
+  <ion-buttons slot="end">
+    <ion-button>
+
+    </ion-button>
+  </ion-buttons>
+  <ion-title class="main-title">Your Cart</ion-title>
+</ion-toolbar>
+
+<ion-content>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4">
+        <ion-card class="card-first">
+          <img src="../../assets/imgs/images.jpg" class="img" >
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card class="card">
+          <h5 class="p-label1"><b>Atta 5Kg</b></h5>
+          <h6 class="p-qty">Qty:2</h6>
+          <h6 class="p-label2">₹200.00</h6>
+        </ion-card>
+      </ion-col>
+
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4">
+        <ion-card class="card-first">
+          <img src="../../assets/imgs/images.jpg">
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card class="card">
+          <h5 class="p-label1"><b>Atta 10Kg</b></h5>
+          <h6 class="p-qty">Qty:1</h6>
+          <h6 class="p-label2">₹220.00</h6>
+        </ion-card>
+      </ion-col>
+
+
+    </ion-row>
+  </ion-grid>
+ 
+
+<!-- <ion-fab vertical="center" horizontal="center" slot="fixed"  edge>
+  
+    <img src="../../assets/imgs/checkmark.png" style="width: 40px;" >
+  
+</ion-fab> -->
+  <ion-card class="sub_total_card">
+   
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <h4 class="p-label2">Sub Total</h4>
+        </ion-col>
+
+        <ion-col>
+          <h6 class="p-label2">₹420.00</h6>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <h4 class="p-label2">Shipping</h4>
+        </ion-col>
+
+        <ion-col>
+          <h6 class="p-label2">₹10.00</h6>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <h4 class="p-label2">Discount</h4>
+        </ion-col>
+
+        <ion-col>
+          <h6 class="p-label2">₹0.00</h6>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+   
+    <ion-grid class="total_price">
+      <ion-row>
+        <ion-col>
+          <h4 class="p-total">TOTAL</h4>
+        </ion-col>
+
+        <ion-col>
+          <h6 class="p-price">₹430.00</h6>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-row style="margin-top: 13%;">
+    
+    <ion-card class="back_arrow" (click)="fnBackToProductList()">
+      <ion-icon name="chevron-back-outline" class="backarrow"></ion-icon>
+    </ion-card>
+ 
+    <ion-col>
+      <button ion-button class="ProceedToCheckout_btn" (click)="fnProceedToCheckout()">Proceed To Checkout</button>
+    </ion-col>
+  </ion-row>
+</ion-content>

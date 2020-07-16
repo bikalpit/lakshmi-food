@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="menu_btn">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="main-title">Cancel Order</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h4 class="cancel-label"><b>Cancel Order</b></h4>
+
+  <div class="order-no-bg">
+    <ion-input placeholder="Order No" class="order_no_txt"></ion-input>
+  </div>
+
+  <div class="order-Cancel-bg">
+    <ion-input placeholder="Reason For Cancel Order" class="order_Cancel_txt"></ion-input>
+  </div>
+
+  <button ion-button class="CancelOrder_btn" (click)="fnCancelOrder()"><b>Cancel Order</b></button>
+</ion-content>

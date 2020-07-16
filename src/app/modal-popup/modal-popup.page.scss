@@ -1,0 +1,100 @@
+.close_btn{
+    float: right;
+    color: #000;
+    font-size: 24px;
+    margin-top: 14px;
+    margin-right: 5px;
+}
+.slide-text{
+    font-family: open sans;
+    color: #E4322E;
+    font-size: 20px; 
+    text-align: center;
+    margin-top:10px;
+}
+.slide-price{
+    font-family: open sans;
+    color: #E4322E;
+    font-size: 20px; 
+    float: left;
+    margin-top:3px;
+    margin-bottom: 0px;
+}
+.slide-count{
+    color: #010944;
+    font-size: 20px; 
+    float: right;
+    margin-top:3px;
+    margin-bottom: 0px;
+    font-family: open sans;
+}
+.product{
+    margin-top:5px;
+    margin-bottom: 0px;
+    color: #010944;
+    font-size: 14px; 
+    font-family: open sans;
+}
+.Description{
+    margin-top: 10px;
+    color: #E4322E;
+    font-size: 18px; 
+    font-family: open sans; 
+}
+.AddToCart_btn{
+    background-color: #E4322E;
+    color: #fff;
+    font-size: 20px;
+    height: 40px;
+    width: 90%;
+    border-radius: 8px;
+    display: block;
+    margin: auto;
+    border: 1px solid #fff;
+    margin-top: 12px;
+    font-family: open sans;
+}
+.img_slide{
+    width:60%;
+    height: 88px;
+}
+ion-note {
+    color: #E4322E;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2e2e2e;
+    margin-top: 0px;
+    width: 80px;
+    margin-right: 0;
+    text-align: center;
+    margin-left: 0;
+    display: flex;
+    float: right;
+    align-items: center;
+    &.price {
+        width: 50px;
+    }
+    ion-icon {
+        font-size: 2.5rem;
+        color: #E4322E;
+    }
+    span {
+        font-size: 1.2rem;
+        text-align: center;
+        width: 35px;
+        font-weight: 600;
+    }
+}
+
+.ion-page{
+    left: 0 !important;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    /* display: flex; */
+    position: absolute;
+    flex-direction: column;
+    contain: layout size style;
+    overflow: hidden;
+    z-index: 0;
+}

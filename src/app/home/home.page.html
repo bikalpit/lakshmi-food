@@ -1,0 +1,16 @@
+<ion-content class="background-image">
+  <div class="main-class">
+    <div style="margin-bottom: 15%;">
+      <ion-label class="sign-label">Login</ion-label>
+    </div>
+    <div >
+    <ion-input type="email" name="email" class="login_text" placeholder="Username"></ion-input>
+  </div>
+    <ion-input type="password" name="password" class="login_text" placeholder="Password"></ion-input>
+    <ion-label class="forgot-label" (click)="fnForgotPassword()"> Forgot Password?</ion-label>
+
+    <button ion-button class="login_btn" (click)="fnLogin()"><b>Log In</b></button>
+
+    <!-- <p class="signup-label" (click)="fnSignUp()"><b>Don't have an account? Sign up</b></p> -->
+  </div>
+</ion-content>

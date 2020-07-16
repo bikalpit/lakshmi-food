@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="menu_btn">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="main-title">Select Address</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="add_card_shadow" >
+    <ion-row style="margin-top: 5px;">
+      <ion-checkbox color="danger" class="p-check-icon"></ion-checkbox>
+      <ion-col>
+        <p class="p-name">Marten Alex</p>
+        <p class="p-address">97 Winding Way Court Riverview,</p>
+        <p class="p-address">FL 33569</p>
+        <p class="p-address">682-399-3948</p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card class="add_card_shadow">
+    <ion-row style="margin-top: 5px;">
+      <!--<ion-checkbox color="danger" class="p-check-icon"></ion-checkbox>-->
+      <p class="p-check-icon-d"></p>
+      <ion-col>
+
+        <p class="p-name">Jeon Deo</p>
+        <p class="p-address">98 Dunbar Ave.Cartersville,</p>
+        <p class="p-address">GA 30120</p>
+        <p class="p-address">643-781-7244</p>
+
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card class="add_card_shadow" (click)="fnAddNewAddress()">
+    <ion-row style="margin-top: 5px;">
+
+      <ion-icon name="add-circle" class="p-icon"></ion-icon>
+
+      <ion-col>
+        <p class="p-add">Add New Address</p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card class="payable_amt">
+    <ion-row>
+        <h4 class="p-total">Payable Amount</h4>
+      <ion-col>
+        <h6 class="p-price">₹210.00</h6>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-row style="margin-top: 4%;">
+    <ion-card class="place_order" (click)="fnBackToYourCart()">
+      <ion-icon name="chevron-back-outline" class="backarrow"></ion-icon>
+    </ion-card>
+    <ion-col>
+      <button ion-button class="ProceedToCheckout_btn" (click)="fnProceedToCheckout()">Place Order</button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
