@@ -14,8 +14,9 @@ import { AuthService } from './auth.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule, AuthService,
-    CommonService],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule, 
+ 
+  ],
   providers: [
     StatusBar,
     SplashScreen,

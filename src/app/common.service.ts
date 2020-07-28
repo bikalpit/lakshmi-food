@@ -9,10 +9,10 @@ const API_URL = 'http://laxmifoods.bi-team.in/api/';
 
 @Injectable()
 export class CommonService {
-    
-  
+
+
     file_url = 'http://laxmifoods.bi-team.in/api/';
-   
+
     constructor(private http: HttpClient,) {}
 
     postWithoutToken(url,data): Observable<any> {
@@ -49,7 +49,7 @@ export class CommonService {
         );
         return this.http.post(API_URL+url,data, { headers: header });
     }
-    
+
     postwithFormData(url,data):Observable<any> {
         const header = new HttpHeaders(
             {
@@ -68,7 +68,7 @@ export class CommonService {
         );
 		return this.http.put(API_URL+url,data, { headers: header });
     }
-    
+
     delete(url): Observable<any> {
         const header = new HttpHeaders(
             {

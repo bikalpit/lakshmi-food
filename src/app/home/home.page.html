@@ -6,8 +6,9 @@
     <div >
     <ion-input type="email" name="email" class="login_text" [(ngModel)]="login.username" placeholder="Username"></ion-input>
   </div>
+
     <ion-input type="password" name="password" [(ngModel)]="login.password" class="login_text" placeholder="Password"></ion-input>
-    
+
     <ion-label class="forgot-label" (click)="fnForgotPassword()"> Forgot Password?</ion-label>
 
     <button ion-button class="login_btn" (click)="fnLogin()"><b>Log In</b></button>
