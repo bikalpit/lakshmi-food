@@ -3,16 +3,48 @@
     <div style="margin-bottom: 8%;">
       <ion-label class="sign-label">Register</ion-label>
     </div>
-    <ion-input type="text" name="name" class="login_text"  placeholder="Username"></ion-input>
+    <form [formGroup]="ionicForm" (ngSubmit)="fnLogin()" novalidate>
 
-    <ion-input type="email" name="email" class="login_text" placeholder="Email Id"></ion-input>
+      <ion-input type="text" name="name" formControlName="name" [(ngModel)]="register.username" class="login_text"
+        placeholder="Username"></ion-input>
+      <small class="error-wrap" *ngIf="isSubmitted && errorControl.name.errors?.required">
+        Name is required.
+      </small>
+      <small class="error-wrap" *ngIf="isSubmitted && errorControl.name.errors?.minlength">
+        Name should be min 2 chars long.
+      </small>
 
-    <ion-input type="password" name="password" class="login_text"  placeholder="Password"></ion-input>
+      <ion-input type="email" name="email" formControlName="email" [(ngModel)]="register.email" class="login_text"
+        placeholder="Email Id"></ion-input>
+      <small class="error-wrap" *ngIf="isSubmitted && errorControl.email.errors?.required">
+        Email is required.
+      </small>
+      <small class="error-wrap" *ngIf="isSubmitted && errorControl.email.errors?.minlength">
+        Please provide valid email id.
+      </small>
 
-    <ion-input type="password" name="confirm_password" class="login_text"  placeholder="Confirm Password"></ion-input>
+      <ion-input type="password" name="password" formControlName="password" [(ngModel)]="register.password"
+        class="login_text" placeholder="Password"></ion-input>
+      <small class="error-wrap" *ngIf="isSubmitted && errorControl.password.errors?.required">
+        Password is required.
+      </small>
+      <small class="error-wrap" *ngIf="isSubmitted && errorControl.password.errors?.minlength">
+        Password should be min 6 chars long.
+      </small>
 
-    <button ion-button class="login_btn" (click)="fnLogin()">Sign Up</button>
+      <ion-input type="password" name="confirm_password" formControlName="confirm_password"
+        [(ngModel)]="register.password" class="login_text" placeholder="Confirm Password"></ion-input>
+      <small class="error-wrap" *ngIf="isSubmitted && errorControl.confirm_password.errors?.required">
+        Password is required.
+      </small>
+      <small class="error-wrap" *ngIf="isSubmitted && errorControl.confirm_password.errors?.minlength">
+        Password should be min 6 chars long.
+      </small>
+      <!-- <button ion-button class="login_btn" (click)="fnLogin()">Sign Up</button> -->
+      <button ion-button class="login_btn">Sign Up</button>
 
-    <p class="signup-label" (click)="fnSignIn()"><b>Already have an account? Sign In</b></p>
+    </form>
   </div>
+  <!-- <p class="signup-label" (click)="fnSignIn()"><b>Already have an account? Sign In</b></p> -->
+
 </ion-content>

@@ -11,10 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonService } from './common.service';
 import { AuthService } from './auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule, 
+  imports: [BrowserModule, FormsModule,
+    ReactiveFormsModule,IonicModule.forRoot(), AppRoutingModule,HttpClientModule, 
  
   ],
   providers: [

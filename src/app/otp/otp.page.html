@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="main-title">Enter OTP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background-image">
+<div class="main-tag">
+
+</div>
+  <p class="txt-1">Let us know One time password (OTP)</p>
+  <p class="txt-1">we'll send you OTP on your registered </p>
+  <p class="txt-1">email address.</p>
+
+  <div class="order-no-bg">
+    <ion-input class="order_no_txt" [(ngModel)]="verifyOtp" type="number" placeholder="Enter One Time Password" text-center>
+    </ion-input>
+  </div>
+
+  <div style="margin-top: 12%;">
+    <button ion-button block class="send_btn" (click)="verificationOtp()">Submit</button>
+  </div>
+</ion-content>

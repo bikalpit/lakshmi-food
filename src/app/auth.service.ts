@@ -15,5 +15,22 @@ export class AuthService {
     return this.commonService.postWithoutToken('users/login', data);
   }
 
+  signup(data): Observable<any>{
+    return this.commonService.postWithoutToken('users/signup', data);
+  }
+
+  changePassword(data): Observable<any>{
+    return this.commonService.postWithoutToken('users/change_password', data);
+  }
+ 
+  forgotPassword(data): Observable<any>{
+    return this.commonService.postWithoutToken('users/forgot_password', data);
+  }
+
+  checkOtp(data): Observable<any>{
+    return this.commonService.postWithoutToken('users/check-otp', data);
+  }
+  
+
 
 }
