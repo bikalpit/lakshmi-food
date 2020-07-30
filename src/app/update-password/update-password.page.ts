@@ -1,49 +1,53 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
 import { NavController, ToastController } from '@ionic/angular';
-
+import { MenuController } from '@ionic/angular';
+import { AuthService } from '../auth.service';
 @Component({
-  selector: 'app-otp',
-  templateUrl: './otp.page.html',
-  styleUrls: ['./otp.page.scss'],
+  selector: 'app-update-password',
+  templateUrl: './update-password.page.html',
+  styleUrls: ['./update-password.page.scss'],
 })
-export class OtpPage implements OnInit {
-  email: any;
+export class UpdatePasswordPage implements OnInit {
   requestObject: any;
-  public verifyOtp: string;
+  user_id: any;
+  newPass: any;
+  confirmPass: any;
   public myToast: any;
+  email: any;
   dataResponse: any;
 
-  constructor(public navCtrl: NavController, private auth: AuthService, public toast: ToastController) { }
+  constructor(public navCtrl: NavController, public menu: MenuController, private auth: AuthService, public toast: ToastController) { }
 
   ngOnInit() {
-    // this.email = localStorage.getItem("email");
+    this.user_id = localStorage.getItem("id");
+    console.log(this.user_id);
 
-    this.verifyOtp = "";
     this.email = localStorage.getItem('email');
     console.log(this.email);
+
   }
-  verificationOtp() {
-    if (this.verifyOtp != '') {
+  fnSubmit() {
+
+    if (this.email != '' && this.newPass != '' && this.confirmPass != '') {
+      // alert();
       this.requestObject = {
         "email": this.email,
-        "otp": this.verifyOtp,
+        "password": this.confirmPass
       };
       console.log(this.requestObject);
-      //this.navCtrl.navigateForward('/update-password');
-
-      this.auth.checkOtp(this.requestObject).subscribe((data: any) => {
+      this.auth.updatePassword(this.requestObject).subscribe((data: any) => {
         console.log(data);
         this.dataResponse = data;
-       
+
         if (this.dataResponse.status == true) {
-         
-          this.navCtrl.navigateForward('/update-password');
 
+          this.navCtrl.navigateForward('/home');
+          
         } else {
-          this.showToast1();
-        }
 
+          this.showToast1();
+
+        }
       }, (err) => {
         console.log("Error=>", err);
         //this.auth.showError(err.error.message);
@@ -52,11 +56,10 @@ export class OtpPage implements OnInit {
     } else {
       this.showToast();
     }
-
   }
   showToast() {
     this.myToast = this.toast.create({
-      message: 'Enter OTP',
+      message: 'Please Enter New Password & Confirm Password',
       duration: 2000
     }).then((toastData) => {
       console.log(toastData);
@@ -65,11 +68,12 @@ export class OtpPage implements OnInit {
   }
   showToast1() {
     this.myToast = this.toast.create({
-      message: 'invalid otp',
+      message: 'Something went wrong.Please try again later',
       duration: 2000
     }).then((toastData) => {
       console.log(toastData);
       toastData.present();
     });
   }
+
 }

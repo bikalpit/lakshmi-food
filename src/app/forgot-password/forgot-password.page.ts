@@ -10,25 +10,37 @@ import { AuthService } from '../auth.service';
 export class ForgotPasswordPage implements OnInit {
   requestObject: any;
   email: any;
-  private myToast: any;
+  public myToast: any;
+  dataResponse: any;
   constructor(public navCtrl: NavController, private auth: AuthService, public toast: ToastController,
-  ) { }
-
-  ngOnInit() {
+  ) {
+    
     this.email = localStorage.getItem("email");
     console.log(this.email);
   }
 
+  ngOnInit() {
+     this.email='';
+  }
+
   fnSend() {
+
     if (this.email != '') {
       this.requestObject = {
         "email": this.email
       };
       console.log(this.requestObject);
+      //this.navCtrl.navigateForward('/otp');
       this.auth.forgotPassword(this.requestObject).subscribe((data: any) => {
         console.log(data);
-        this.navCtrl.navigateForward('/otp');
+        this.dataResponse = data;
+        if (this.dataResponse.status == true) {
 
+          this.navCtrl.navigateForward('/otp');
+        } else {
+          this.showToast1();
+
+        }
       }, (err) => {
         console.log("Error=>", err);
         //this.auth.showError(err.error.message);
@@ -40,7 +52,16 @@ export class ForgotPasswordPage implements OnInit {
   }
   showToast() {
     this.myToast = this.toast.create({
-      message: 'Enter email',
+      message: 'Enter Email',
+      duration: 2000
+    }).then((toastData) => {
+      console.log(toastData);
+      toastData.present();
+    });
+  }
+  showToast1() {
+    this.myToast = this.toast.create({
+      message: 'Something went wrong.Please try again later',
       duration: 2000
     }).then((toastData) => {
       console.log(toastData);

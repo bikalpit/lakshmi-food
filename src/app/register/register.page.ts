@@ -49,17 +49,20 @@ export class RegisterPage implements OnInit {
     } else {
       this.showToast();
     }
-    // fnSignIn(){
-    //   this.navCtrl.navigateForward('/home');
-    // }
+    
   }
   showToast() {
     this.myToast = this.toast.create({
-      message: 'Please Full Fill All Field',
+      message: 'Please fillup all fields',
       duration: 2000
     }).then((toastData) => {
       console.log(toastData);
       toastData.present();
     });
   }
+
+  fnSignIn(){
+    this.navCtrl.navigateForward('home');
+  }
+
 }

@@ -79,6 +79,10 @@ const routes: Routes = [
     path: 'otp',
     loadChildren: () => import('./otp/otp.module').then( m => m.OtpPageModule)
   },
+  {
+    path: 'update-password',
+    loadChildren: () => import('./update-password/update-password.module').then( m => m.UpdatePasswordPageModule)
+  },
 ];
 
 @NgModule({

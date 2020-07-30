@@ -30,6 +30,14 @@ export class AuthService {
   checkOtp(data): Observable<any>{
     return this.commonService.postWithoutToken('users/check-otp', data);
   }
+
+  updatePassword(data): Observable<any>{
+    return this.commonService.postWithoutToken('users/update-password', data);
+  }
+
+  getProductDetails(data): Observable<any>{
+    return this.commonService.postWithoutToken('products/get_product_list', data);
+  }
   
 
 
