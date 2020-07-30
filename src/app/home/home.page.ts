@@ -63,7 +63,7 @@ export class HomePage {
   }
   showToast1() {
     this.myToast = this.toast.create({
-      message: 'Please enter valid username or password',
+      message: 'Please fill all required information',
       duration: 2000
     }).then((toastData) => {
       console.log(toastData);

@@ -16,14 +16,19 @@ export class UpdatePasswordPage implements OnInit {
   email: any;
   dataResponse: any;
 
-  constructor(public navCtrl: NavController, public menu: MenuController, private auth: AuthService, public toast: ToastController) { }
+  constructor(public navCtrl: NavController,
+     public menu: MenuController, 
+     private auth: AuthService, 
+     public toast: ToastController) {
+      // this.user_id = localStorage.getItem("id");
+      // console.log(this.user_id);
+  
+      // this.email = localStorage.getItem('email');
+      // console.log(this.email);
+      }
 
   ngOnInit() {
-    this.user_id = localStorage.getItem("id");
-    console.log(this.user_id);
-
-    this.email = localStorage.getItem('email');
-    console.log(this.email);
+   
 
   }
   fnSubmit() {
@@ -31,7 +36,7 @@ export class UpdatePasswordPage implements OnInit {
     if (this.email != '' && this.newPass != '' && this.confirmPass != '') {
       // alert();
       this.requestObject = {
-        "email": this.email,
+        "email": localStorage.getItem('email'),
         "password": this.confirmPass
       };
       console.log(this.requestObject);

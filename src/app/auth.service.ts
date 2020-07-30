@@ -38,7 +38,20 @@ export class AuthService {
   getProductDetails(data): Observable<any>{
     return this.commonService.postWithoutToken('products/get_product_list', data);
   }
-  
 
+  getUsersDetails(data): Observable<any>{
+    return this.commonService.postWithoutToken('users/get_user_detail', data);
+  }
+  
+  editProfile(data): Observable<any>{
+    return this.commonService.postWithoutToken('users/edit-profile', data);
+  }
+
+  addAddress(data): Observable<any>{
+    return this.commonService.postWithoutToken('users/add_address', data);
+  }
+
+  
+  
 
 }

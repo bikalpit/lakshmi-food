@@ -26,6 +26,7 @@ export class ForgotPasswordPage implements OnInit {
   fnSend() {
 
     if (this.email != '') {
+      localStorage.setItem('email', this.email);
       this.requestObject = {
         "email": this.email
       };

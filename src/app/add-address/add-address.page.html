@@ -1,12 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start" class="menu_btn">
-      <ion-menu-button auto-hide="false"></ion-menu-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button>
-
-      </ion-button>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title class="main-title">Add Address</ion-title>
   </ion-toolbar>
@@ -26,80 +21,74 @@
     <h4 class="txt-location"><b>Choose Your Address Type</b></h4>
 
     <ion-row class="main-img ios">
-     
-      <div class="office-img">
-        <p class="p-office">Office</p>      
-       
-          <ion-radio-group style="margin-top: 5px;" allow-empty-selection="true" name="radio-group" (ionChange)="radioGroupChange($event)" #radioGroup>
-            <ion-item  *ngFor="let item of radio_list"  (ionSelect)="radioSelect($event)"
-               style="margin-top: 10px;">
-              <!-- <ion-label>{{item.text}}</ion-label> -->
-              <ion-radio  disabled="{{item.disabled}}" checked="{{item.checked}}" name="{{item.name}}"value="{{item.value}}" color="{{item.color}}" class="p-check-icon-d"></ion-radio>         
-            </ion-item>
-          </ion-radio-group>
-    
-      </div>
+      <ion-radio-group (ionChange)="onChangeHandler($event)" style="margin-top: 5px;display: flex;">
+        <div class="office-img">
+          <p class="p-office">Office</p>
 
-      <div class="home-img">
-        <p class="p-office">Home</p>
-        <ion-radio-group allow-empty-selection="true" name="radio-group" (ionChange)="radioGroupChange($event)" #radioGroup>
-          <ion-item   *ngFor="let item of radio_list1"  (ionSelect)="radioSelect($event)"
-           style="margin-top: 10px;">
-            <!-- <ion-label>{{item.text}}</ion-label> -->
-            <ion-radio name="{{item.name}}"value="{{item.value}}" color="{{item.color}}" class="p-check-icon-d"></ion-radio>
-          </ion-item>
-    
-        </ion-radio-group>
-      </div>
+          <ion-radio style="margin-left: 35px;margin-top: 17px;" value="Office" [checked]="this.data === 'Office'">
+          </ion-radio>
 
-      <div class="other-img">
-        <p class="p-office">Other</p>
-        <ion-radio-group allow-empty-selection="true" name="radio-group" (ionChange)="radioGroupChange($event)" #radioGroup>
-          <ion-item   *ngFor="let item of radio_list2"  (ionSelect)="radioSelect($event)"
-             style="margin-top: 10px;">
-            <!-- <ion-label>{{item.text}}</ion-label> -->
-            <ion-radio  name="{{item.name}}"value="{{item.value}}" color="{{item.color}}" class="p-check-icon-d"></ion-radio>
-          </ion-item>
-    
-        </ion-radio-group>
-      </div>
-  
+        </div>
+
+        <div class="home-img">
+          <p class="p-office">Home</p>
+
+          <ion-radio style="margin-left: 35px;margin-top: 17px;" value="Home" [checked]="this.data === 'Home'">
+          </ion-radio>
+
+        </div>
+
+        <div class="other-img">
+          <p class="p-office">Other</p>
+
+          <ion-radio style="margin-left: 35px;margin-top: 17px;" value="Other" [checked]="this.data === 'Other'">
+          </ion-radio>
+
+        </div>
+
+      </ion-radio-group>
     </ion-row>
 
     <div class="order-no-bg" style="margin-top: 15%;">
-      <ion-input placeholder="House No" class="order_no_txt"></ion-input>
+      <ion-input placeholder="House No" type="text" name="house_no" [(ngModel)]="house_no" class="order_no_txt">
+      </ion-input>
     </div>
 
     <div class="order-no-bg">
-      <ion-input placeholder="Road Name, Area, Colony" class="order_no_txt"></ion-input>
+      <ion-input placeholder="Road Name, Area, Colony" type="text" name="area" [(ngModel)]="area" class="order_no_txt">
+      </ion-input>
     </div>
+
     <ion-row>
       <ion-col>
         <div class="order-no-bgt">
-          <ion-input placeholder="State" class="order_no_txt"></ion-input>
+          <ion-input placeholder="State" type="text" name="state" [(ngModel)]="state" class="order_no_txt"></ion-input>
         </div>
       </ion-col>
 
       <ion-col>
         <div class="order-no-bgs">
-          <ion-input placeholder="City" class="order_no_txt"></ion-input>
+          <ion-input placeholder="City" type="text" name="city" [(ngModel)]="city" class="order_no_txt"></ion-input>
         </div>
       </ion-col>
     </ion-row>
 
 
     <div class="order-no-bg">
-      <ion-input placeholder="Landmark (Optional)" class="order_no_txt"></ion-input>
+      <ion-input placeholder="Landmark (Optional)" type="text" name="landmark" [(ngModel)]="landmark"
+        class="order_no_txt"></ion-input>
     </div>
 
     <div class="order-no-bg">
-      <ion-input placeholder="Name" class="order_no_txt"></ion-input>
+      <ion-input placeholder="Name" type="text" name="name" [(ngModel)]="name" class="order_no_txt"></ion-input>
     </div>
 
     <div class="order-no-bg">
-      <ion-input placeholder="10-digit Mobile Number" class="order_no_txt"></ion-input>
+      <ion-input placeholder="10-digit Mobile Number" type="text" name="mobile_no" [(ngModel)]=mobile_no
+        class="order_no_txt"></ion-input>
     </div>
 
     <button ion-button class="SaveAddress_btn" (click)="fnSaveAddress()"><b>Save Address</b></button>
+    
   </ion-card>
 </ion-content>

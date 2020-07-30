@@ -16,31 +16,35 @@
   <div class="avtar">
     <img src="../../assets/imgs/1945870586Image.png" class="img">
     <p class="profile-txt"><b>Change Profile Photo</b></p>
+    <div *ngIf="AllUserArray">
+      <div class="order-no-bg">
+        <ion-input placeholder="Full Name" type="text" name="name" [(ngModel)]="AllUserArray.name" class="order_no_txt">
+        </ion-input>
+      </div>
 
-    <div class="order-no-bg">
-      <ion-input placeholder="Full Name" class="order_no_txt"></ion-input>
-    </div>
+      <div class="order-no-bg">
+        <ion-input placeholder="Email Id" type="text" name="email" [(ngModel)]="AllUserArray.email"
+          class="order_no_txt"></ion-input>
+      </div>
 
-    <div class="order-no-bg">
-      <ion-input placeholder="Email Id" class="order_no_txt"></ion-input>
-    </div>
-    
-    <div class="order-no-bg">
-      <ion-input placeholder="Username" class="order_no_txt"></ion-input>
-    </div>
+      <div class="order-no-bg">
+        <ion-input placeholder="Username" type="text" name="username" [(ngModel)]="AllUserArray.username"
+          class="order_no_txt"></ion-input>
+      </div>
 
-    <div class="order-no-bg">
-      <ion-input placeholder="Password" class="order_no_txt"></ion-input>
+      <div class="order-no-bg">
+        <ion-input placeholder="Password" type="text" name="password" [(ngModel)]="AllUserArray.password"
+          class="order_no_txt"></ion-input>
+      </div>
     </div>
-
     <ion-row class="cancel_save_btn">
       <ion-col>
         <button ion-button class="cancelOrder_btn" (click)="fnCancelOrder()">Cancel</button>
-      
+
       </ion-col>
-  
+
       <ion-col>
-        <button ion-button class="download_btn" (click)="fnDownload()">Save</button>
+        <button ion-button class="download_btn" (click)="fnSave()">Save</button>
       </ion-col>
     </ion-row>
   </div>
