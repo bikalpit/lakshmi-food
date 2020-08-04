@@ -13,22 +13,22 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="add_card_shadow" >
-    <ion-row style="margin-top: 5px;">
+  <ion-card class="add_card_shadow">
+    <ion-row style="margin-top: 5px;" *ngFor="let item of addressList;">
       <ion-checkbox color="danger" class="p-check-icon"></ion-checkbox>
       <ion-col>
-        <p class="p-name">Marten Alex</p>
-        <p class="p-address">97 Winding Way Court Riverview,</p>
-        <p class="p-address">FL 33569</p>
-        <p class="p-address">682-399-3948</p>
+        <p class="p-name">{{item.name}}</p>
+        <p class="p-address">{{item.address_house_no}} {{item.address_landmark}},</p>
+        <p class="p-address">{{item.address_city}},{{item.address_state}},{{item.address_zipcode}}</p>
+        <p class="p-address">{{item.address_mobile_no}}</p>
       </ion-col>
     </ion-row>
   </ion-card>
-
+<!-- 
   <ion-card class="add_card_shadow">
-    <ion-row style="margin-top: 5px;">
+    <ion-row style="margin-top: 5px;"> -->
       <!--<ion-checkbox color="danger" class="p-check-icon"></ion-checkbox>-->
-      <p class="p-check-icon-d"></p>
+      <!-- <p class="p-check-icon-d"></p>
       <ion-col>
 
         <p class="p-name">Jeon Deo</p>
@@ -38,7 +38,7 @@
 
       </ion-col>
     </ion-row>
-  </ion-card>
+  </ion-card> -->
 
   <ion-card class="add_card_shadow" (click)="fnAddNewAddress()">
     <ion-row style="margin-top: 5px;">

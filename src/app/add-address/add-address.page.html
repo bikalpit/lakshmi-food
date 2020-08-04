@@ -1,7 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+    <ion-buttons slot="start" class="main-title">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+      
+      </ion-button>
     </ion-buttons>
     <ion-title class="main-title">Add Address</ion-title>
   </ion-toolbar>
@@ -89,6 +94,6 @@
     </div>
 
     <button ion-button class="SaveAddress_btn" (click)="fnSaveAddress()"><b>Save Address</b></button>
-    
+
   </ion-card>
 </ion-content>

@@ -63,16 +63,16 @@ export class EditProfilePage implements OnInit {
       this.AllUserArray = data;
       if (this.AllUserArray.status == true) {
         //this.navCtrl.navigateForward('/home');
-        this.showToast();
+        this.auth.showToast('Profile update successfully');
       } else {
-        this.showToast1();
+        this.auth.showToast('Profile Not update ');
       }
     }, (err) => {
       console.log("Error=>", err);
       //this.auth.showError(err.error.message);
     });
   }else{
-
+    this.auth.showToast('Please fillup all fields');
   }
   }
 
@@ -80,23 +80,5 @@ export class EditProfilePage implements OnInit {
     this.navCtrl.navigateForward('my-account');
   }
 
-  showToast() {
-    this.myToast = this.toast.create({
-      message: 'Profile update successfully',
-      duration: 2000
-    }).then((toastData) => {
-      console.log(toastData);
-      toastData.present();
-    });
-  }
-
-  showToast1() {
-    this.myToast = this.toast.create({
-      message: 'Profile update successfully',
-      duration: 2000
-    }).then((toastData) => {
-      console.log(toastData);
-      toastData.present();
-    });
-  }
+  
 }

@@ -47,7 +47,7 @@ export class ChangePasswordPage implements OnInit {
           this.navCtrl.navigateForward('/home');
         }
         else {
-          this.showToast1();
+          this.auth.showToast('Old password not match ');
         }
       }, (err) => {
         console.log("Error=>", err);
@@ -55,28 +55,9 @@ export class ChangePasswordPage implements OnInit {
       });
 
     } else {
-      this.showToast();
+      this.auth.showToast('Please Enter New Password & Old Password');
     }
   }
 
-  showToast() {
-    this.myToast = this.toast.create({
-      message: 'Please Enter New Password & Old Password',
-      duration: 2000
-    }).then((toastData) => {
-      console.log(toastData);
-      toastData.present();
-    });
-  }
-
-  showToast1() {
-    this.myToast = this.toast.create({
-      message: 'Old password not match ',
-      duration: 2000
-    }).then((toastData) => {
-      console.log(toastData);
-      toastData.present();
-    });
-  }
 
 }

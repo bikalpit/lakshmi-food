@@ -11,7 +11,7 @@
 </ion-toolbar>
   <!-- <ion-toolbar>
     <!-- <img src="../../assets/imgs/open-menu (1).png" style="float: left;margin-left: 10px;position: absolute;"> -->
-    <!-- <ion-title class="main-title">Which <b>Product</b> Do You Need?
+<!-- <ion-title class="main-title">Which <b>Product</b> Do You Need?
       <img src="../../assets/imgs/buy (2).png" class="img">
     </ion-title>
 
@@ -19,10 +19,10 @@
 </ion-header> -->
 
 <ion-toolbar>
-  <ion-buttons slot="start"  class="main-title">
+  <ion-buttons slot="start" class="main-title">
     <ion-menu-button auto-hide="false"></ion-menu-button>
   </ion-buttons>
-  
+
 
   <ion-buttons slot="end">
     <ion-button>
@@ -33,21 +33,26 @@
   <ion-title class="main-title">Which <b>Product</b> Do You Need?</ion-title>
 </ion-toolbar>
 <ion-content>
-  
-  <ion-card  class="card" (click)="showModal()">
+
+  <!-- <ion-refresher (ionRefresh)="doRefresh($event)" style="color:green">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> -->
+<div *ngFor="let item of allProducts;">
+  <ion-card class="card" (click)="showModal(item)">
     <ion-grid>
       <ion-row>
         <ion-col size="4">
           <img src="../../assets/imgs/images.jpg" style="width:100%;">
         </ion-col>
         <ion-col>
-          <h5 class="p-label1"><b>Atta 5Kg</b></h5>
-          <h6 class="p-label">₹100.00</h6>
+          <h5 class="p-label1"><b>{{item.product_name}} {{item.product_weight}}Kg</b></h5>
+          <h6 class="p-label">₹{{item.product_price}}</h6>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
-  <ion-card class="card" (click)="showModal()">
+</div>
+  <!-- <ion-card class="card" (click)="showModal()">
     <ion-grid>
       <ion-row>
         <ion-col size="4">
@@ -85,5 +90,11 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-card>
+  </ion-card> -->
+
+  <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="!isloadmore">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+
 </ion-content>

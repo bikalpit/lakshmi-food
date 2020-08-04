@@ -48,51 +48,27 @@ export class AddAddressPage implements OnInit {
         "zipcode": "395006",
         "mobile_no": this.mobile_no,
         "user_id": this.user_id,
-        "address_type": this.data
+        "address_type": "house"
 
       };
 
       console.log(this.requestObject);
       this.auth.addAddress(this.requestObject).subscribe((data: any) => {
         console.log(data);
-        this.dataResponse = data;
-        if (this.dataResponse.status == true) {
-
-          this.navCtrl.navigateForward('/select-address');
-
-        }
-        else {
-          this.showToast();
-        }
+       
+        console.log("add successfully");
+        
+        this.auth.showToast('Save address successfully');
+     
       }, (err) => {
         console.log("Error=>", err);
         //this.auth.showError(err.error.message);
       });
 
     } else {
-      this.showToast1();
+      this.auth.showToast('Please fillup all fields');
     }
 
   }
-
-  showToast() {
-    this.myToast = this.toast.create({
-      message: 'Save address successfully',
-      duration: 2000
-    }).then((toastData) => {
-      console.log(toastData);
-      toastData.present();
-    });
-  }
-  showToast1() {
-    this.myToast = this.toast.create({
-      message: 'Please fillup all fields',
-      duration: 2000
-    }).then((toastData) => {
-      console.log(toastData);
-      toastData.present();
-    });
-  }
-
 
 }

@@ -41,7 +41,8 @@ export class HomePage {
             this.navCtrl.navigateForward('/dashboard');
           
         } else {
-          this.showToast1();
+          //this.showToast1();
+          this.auth.showToast('Please enter valid username or password');
         }
       }, (err) => {
         console.log("Error=>", err);
@@ -49,28 +50,10 @@ export class HomePage {
       });
 
     } else {
-      this.showToast();
+      this.auth.showToast('Enter Email and Password');
     }
   }
-  showToast() {
-    this.myToast = this.toast.create({
-      message: 'Enter Email and Password',
-      duration: 2000
-    }).then((toastData) => {
-      console.log(toastData);
-      toastData.present();
-    });
-  }
-  showToast1() {
-    this.myToast = this.toast.create({
-      message: 'Please fill all required information',
-      duration: 2000
-    }).then((toastData) => {
-      console.log(toastData);
-      toastData.present();
-    });
-  }
-
+  
   fnSignUp() {
     this.navCtrl.navigateForward('/register');
   }

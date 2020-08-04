@@ -51,7 +51,18 @@ export class AuthService {
     return this.commonService.postWithoutToken('users/add_address', data);
   }
 
-  
-  
+  getAddressList(data): Observable<any>{
+    return this.commonService.postWithoutToken('users/get_address_list', data);
+  }
+
+  showToast(msg) {
+    return this.toastCtrl.create({
+      message: msg,
+      duration: 2000
+    }).then((toastData) => {
+      console.log(toastData);
+      toastData.present();
+    });
+  }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit ,Input,ViewChild} from '@angular/core';
 import { NavParams,ModalController ,IonSlides,NavController} from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-modal-popup',
@@ -13,10 +14,15 @@ export class ModalPopupPage implements OnInit {
     speed: 400
   };
   @ViewChild('slideWithNav', { static: false }) slideWithNav: IonSlides;
+  name1:any;
+  weight:any;
+  price:any;
+  qty:any;
+
   sliderOne: any;
   sliderTwo: any;
   sliderThree: any;
-  public item_qty: any;
+  public item_qty=0;
   slideOptsOne = {
     initialSlide: 0,
     slidesPerView: 1,
@@ -35,7 +41,7 @@ export class ModalPopupPage implements OnInit {
   };
 
   constructor(public navParams: NavParams, public modalCtrl: ModalController,public navCtrl: NavController) { 
-    console.log(navParams.get('name'));
+    //console.log(navParams.get('name'));
     this.item_qty = 1;
     this.sliderOne =
     {
@@ -131,11 +137,16 @@ export class ModalPopupPage implements OnInit {
     });
   }
 
-  fnAddToCart(){
+  fnAddToCart(data,qty){
+   console.log(data,qty);
     this.modalCtrl.dismiss({
       'dismissed': true
     });
-    this.navCtrl.navigateForward('your-cart');
+    const params = {
+      data,
+      qty
+   };
+    this.navCtrl.navigateForward('your-cart',{ state : params });
   }
 
   fnremove() {

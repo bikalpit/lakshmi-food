@@ -30,7 +30,7 @@
           <!-- </ion-slide>
 
         </ion-slides> -->
-        <p class="slide-text">Atta 5Kg </p>
+        <p class="slide-text">{{name.product_name}} {{name.product_weight}}Kg </p>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -38,7 +38,7 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <span class="slide-price">₹100.00</span>
+        <span class="slide-price">₹{{name.product_price}}</span>
       </ion-col>
 
       <ion-col >
@@ -53,10 +53,9 @@
       <ion-label class="Description"><b>Product Description</b></ion-label>
     </ion-row>
     <ion-row>
-      <p class="product">Lorem ipsum dolor, sit amet consectetur adipisicing elit. eum sit excepturi dicta doloremque
-        totam, deserunt nulla necessitatibus beatae!</p>
+      <p class="product">{{name.product_description}}</p>
     </ion-row>
   </ion-grid>
 
-  <button ion-button class="AddToCart_btn" (click)="fnAddToCart()">Add To Cart</button>
+  <button ion-button class="AddToCart_btn" (click)="fnAddToCart(name,item_qty)">Add To Cart</button>
 </ion-content>

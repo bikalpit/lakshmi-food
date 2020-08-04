@@ -13,11 +13,15 @@ export class ProductListPage implements OnInit {
 
   requestObject: any;
   allProducts = [];
-  dataResponse:any;
+  dataResponse: any;
+  page = 0;
+  isloadmore: boolean = false;
+  htmlData: any;
+  userAllArray: any;
   constructor(public modalController: ModalController, public navCtrl: NavController, private auth: AuthService) { }
 
   ngOnInit() {
-   
+    this.getProductList();
   }
   //   openModal(){ 
 
@@ -25,12 +29,12 @@ export class ProductListPage implements OnInit {
   //   var modalPage = this.modalController.create('ModalPage',data);
   //   modalPage.present();
   // }
-  async showModal() {
+  async showModal(data) {
     const modal = await this.modalController.create({
       component: ModalPopupPage,
       cssClass: 'myModal',
       componentProps: {
-        'name': 'Hello User'
+        'name': data
       }
     });
     return await modal.present();
@@ -38,4 +42,31 @@ export class ProductListPage implements OnInit {
   fnAddToCart() {
     this.navCtrl.navigateForward('your-cart');
   }
+
+  getProductList() {
+
+    this.requestObject = {
+
+      "page_no": "1",
+      "offset": "25"
+
+    }
+    console.log(this.requestObject);
+    this.auth.getProductDetails(this.requestObject).subscribe((data: any) => {
+      console.log("api response", data);
+
+      // this.dataResponse = data;
+      // console.log("list-->",this.dataResponse);
+      // this.allProducts = this.dataResponse.data;
+      this.dataResponse = data.data.product_data;
+      this.allProducts = this.dataResponse;
+      console.log("product data-->", this.allProducts);
+
+
+    }, (err) => {
+      console.log("Error=>", err);
+      //this.auth.showError(err.error.message);
+    });
+  }
+
 }
