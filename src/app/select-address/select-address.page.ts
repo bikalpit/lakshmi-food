@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AbstractType } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 
@@ -12,9 +12,16 @@ export class SelectAddressPage implements OnInit {
   requestObject: any;
   dataResponse: any;
   addressList = [];
+  mainSubTotal: any;
+  cartData: any;
   constructor(public navCtrl: NavController, private auth: AuthService) {
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
+
+    this.cartData = JSON.parse(localStorage.getItem("cartData"));
+
+    this.mainSubTotal = localStorage.getItem("mainsubtotal");
+  
   }
 
   ngOnInit() {
@@ -24,16 +31,14 @@ export class SelectAddressPage implements OnInit {
   fnAddNewAddress() {
     this.navCtrl.navigateForward('add-address');
   }
-  fnProceedToCheckout() {
-    this.navCtrl.navigateForward('success-order');
-  }
+
   fnBackToYourCart() {
     this.navCtrl.navigateForward('your-cart');
   }
 
   fngetAddressDetails() {
     this.requestObject = {
-      "user_id": "12"
+      "user_id": this.user_id
     }
     console.log(this.requestObject);
     this.auth.getAddressList(this.requestObject).subscribe((data: any) => {
@@ -53,4 +58,24 @@ export class SelectAddressPage implements OnInit {
     // this.navCtrl.navigateForward('edit-address',{ id : id });
 
   }
+
+  fnProceedToCheckout() {
+    this.requestObject = {
+      "user_id": this.user_id,
+      "totalAmount": this.mainSubTotal,
+      "addressId": this.user_id,
+      "cartData":JSON.parse(localStorage.getItem("cartData"))
+    }
+
+    console.log(this.requestObject);
+    this.auth.orderPlace(this.requestObject).subscribe((data: any) => {
+      console.log(data);
+    
+    }, (err) => {
+      console.log("Error=>", err);
+      //this.auth.showError(err.error.message);
+    });
+    //this.navCtrl.navigateForward('success-order');
+  }
+
 }

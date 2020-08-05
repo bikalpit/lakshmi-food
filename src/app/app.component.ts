@@ -69,7 +69,7 @@ export class AppComponent {
     this.menu.enable(true);
     this.navCtrl.navigateForward('home');
     this.menu.enable(false);
-  
+    localStorage.clear();
   }
 
 }

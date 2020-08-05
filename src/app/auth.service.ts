@@ -59,6 +59,10 @@ export class AuthService {
     return this.commonService.postWithoutToken('users/edit_address', data);
   }
 
+  orderPlace(data): Observable<any>{
+    return this.commonService.postWithoutToken('orders/order-place', data);
+  }
+
   showToast(msg) {
     return this.toastCtrl.create({
       message: msg,

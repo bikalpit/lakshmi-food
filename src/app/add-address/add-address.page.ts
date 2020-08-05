@@ -19,12 +19,12 @@ export class AddAddressPage implements OnInit {
   mobile_no: any;
   name: any;
   area: any;
-  zipcode:any;
+  zipcode: any;
   public data: any;
   dataResponse: any;
   public myToast: any;
 
-  constructor(private location: Location,public navCtrl: NavController, private auth: AuthService, public toast: ToastController) {
+  constructor(private location: Location, public navCtrl: NavController, private auth: AuthService, public toast: ToastController) {
 
     this.user_id = localStorage.getItem("id");
 
@@ -37,12 +37,12 @@ export class AddAddressPage implements OnInit {
 
     this.data = event.target.value;
   }
-  
+
   goBack() {
     this.location.back();
   }
   fnSaveAddress() {
-    
+
     if (this.house_no != '' && this.city != '' && this.state != '' && this.landmark != '' && this.mobile_no != '' && this.area != '' && this.name != '' && this.zipcode != '') {
       this.requestObject = {
 
@@ -60,8 +60,10 @@ export class AddAddressPage implements OnInit {
       this.auth.addAddress(this.requestObject).subscribe((data: any) => {
         this.dataResponse = data;
         console.log(this.dataResponse);
-        if(this.dataResponse.status == true){
+        if (this.dataResponse.status == true) {
           this.auth.showToast('Save address successfully');
+          this.navCtrl.navigateForward('select-address');
+
         }
 
       }, (err) => {
