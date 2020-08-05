@@ -14,8 +14,8 @@
 
 <ion-content>
   <ion-card class="add_card_shadow">
-    <ion-row style="margin-top: 5px;" *ngFor="let item of addressList;">
-      <ion-checkbox color="danger" class="p-check-icon"></ion-checkbox>
+    <ion-row style="margin-top: 5px;" *ngFor="let item of addressList;let i = index">
+      <ion-checkbox color="danger" class="p-check-icon" [checked]="item.is_check" (ionChange)="fncheckbox($event,i);"></ion-checkbox>
      
       <ion-col>
         <p class="p-name">{{item.name}}</p>
