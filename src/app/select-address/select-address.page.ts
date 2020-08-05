@@ -59,7 +59,10 @@ export class SelectAddressPage implements OnInit {
     this.navCtrl.navigateForward('edit-address', { state: data });
     // this.navCtrl.navigateForward('edit-address',{ id : id });
   }
-
+  // checkEvent(id) {
+  //   this.add_id = id;
+  //   console.log(this.add_id);
+  // }
   fnProceedToCheckout() {
    
     if(this.address_id=='' || this.address_id==undefined){
