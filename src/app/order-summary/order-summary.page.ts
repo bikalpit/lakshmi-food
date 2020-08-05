@@ -8,7 +8,11 @@ import { NavController } from '@ionic/angular';
 })
 export class OrderSummaryPage implements OnInit {
 
-  constructor(public navCtrl: NavController) { }
+ 
+  constructor(public navCtrl: NavController) { 
+
+    
+  }
 
   ngOnInit() {
   }
@@ -16,4 +20,5 @@ export class OrderSummaryPage implements OnInit {
     this.navCtrl.navigateForward('cancel-order');
 
   }
+  
 }

@@ -14,6 +14,8 @@ export class SelectAddressPage implements OnInit {
   addressList = [];
   mainSubTotal: any;
   cartData: any;
+  add_id: any;
+
   constructor(public navCtrl: NavController, private auth: AuthService) {
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
@@ -21,7 +23,7 @@ export class SelectAddressPage implements OnInit {
     this.cartData = JSON.parse(localStorage.getItem("cartData"));
 
     this.mainSubTotal = localStorage.getItem("mainsubtotal");
-  
+
   }
 
   ngOnInit() {
@@ -58,24 +60,27 @@ export class SelectAddressPage implements OnInit {
     // this.navCtrl.navigateForward('edit-address',{ id : id });
 
   }
-
+  checkEvent(id) {
+    this.add_id = id;
+    console.log(this.add_id);
+  }
   fnProceedToCheckout() {
     this.requestObject = {
       "user_id": this.user_id,
       "totalAmount": this.mainSubTotal,
-      "addressId": this.user_id,
-      "cartData":JSON.parse(localStorage.getItem("cartData"))
+      "addressId": this.add_id,
+      "cartData": localStorage.getItem("cartData")
     }
 
     console.log(this.requestObject);
     this.auth.orderPlace(this.requestObject).subscribe((data: any) => {
       console.log(data);
-    
+
     }, (err) => {
       console.log("Error=>", err);
       //this.auth.showError(err.error.message);
     });
-    //this.navCtrl.navigateForward('success-order');
+    this.navCtrl.navigateForward('success-order');
   }
 
 }

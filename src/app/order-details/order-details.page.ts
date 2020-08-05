@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.page.html',
@@ -8,12 +9,18 @@ import { NavController } from '@ionic/angular';
 })
 export class OrderDetailsPage implements OnInit {
 
-  constructor(public navCtrl: NavController) { }
+ 
+
+  constructor(public navCtrl: NavController) {
+   }
 
   ngOnInit() {
   }
-  fnCancelOrder(){
+  fnCancelOrder() {
+
     this.navCtrl.navigateForward('my-account');
 
   }
+
+  
 }
