@@ -27,7 +27,6 @@ export class AddAddressPage implements OnInit {
   constructor(private location: Location,public navCtrl: NavController, private auth: AuthService, public toast: ToastController) {
 
     this.user_id = localStorage.getItem("id");
-    console.log(this.user_id);
 
   }
 
@@ -35,9 +34,10 @@ export class AddAddressPage implements OnInit {
   }
 
   onChangeHandler(event) {
-    console.log(event);
+
     this.data = event.target.value;
   }
+  
   goBack() {
     this.location.back();
   }
@@ -57,15 +57,13 @@ export class AddAddressPage implements OnInit {
 
       };
 
-      console.log(this.requestObject);
       this.auth.addAddress(this.requestObject).subscribe((data: any) => {
-        console.log(data);
-       this.dataResponse = data;
+        this.dataResponse = data;
+        console.log(this.dataResponse);
         if(this.dataResponse.status == true){
-        console.log("add successfully");
-        
-        this.auth.showToast('Save address successfully');
+          this.auth.showToast('Save address successfully');
         }
+
       }, (err) => {
         console.log("Error=>", err);
         //this.auth.showError(err.error.message);
