@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController ,ModalController} from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -10,20 +10,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class YourCartPage implements OnInit {
   data:any;
   qty:any;
-  constructor(public navCtrl: NavController,private route: ActivatedRoute, private router: Router) { 
+  id:any;
+  name:any;
+  weight:any;
+  price:any;
 
-    const state = this.router.getCurrentNavigation().extras.state
-    if (state) {
-        this.data = state.data;
-        this.qty = state.qty;
-        console.log("cart data-->",this.data);
-        console.log("qty-->",this.qty);
-    }
+  cartData=[];
+
+  constructor(public navCtrl: NavController,private route: ActivatedRoute, private router: Router, public modalCtrl: ModalController) { 
+    this.modalCtrl.dismiss({
+      'dismissed': true
+    });
+    this.cartData = JSON.parse(localStorage.getItem("cartData"));
+    console.log("cart data-->",this.cartData);
   }
-
+ 
   ngOnInit() {
-   
+    
   }
+
   fnProceedToCheckout(){
     this.navCtrl.navigateForward('select-address');
 

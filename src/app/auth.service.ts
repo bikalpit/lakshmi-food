@@ -48,11 +48,15 @@ export class AuthService {
   }
 
   addAddress(data): Observable<any>{
-    return this.commonService.postWithoutToken('users/add_address', data);
+    return this.commonService.post('users/add-address', data);
   }
 
   getAddressList(data): Observable<any>{
     return this.commonService.postWithoutToken('users/get_address_list', data);
+  }
+
+  editAddress(data): Observable<any>{
+    return this.commonService.postWithoutToken('users/edit_address', data);
   }
 
   showToast(msg) {

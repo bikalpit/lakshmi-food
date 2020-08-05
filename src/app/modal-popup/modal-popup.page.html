@@ -2,7 +2,8 @@
   
 </ion-header>
 
-<ion-content >
+<ion-content ion-fixed>
+
   <ion-buttons class="close_btn">
     <ion-icon name="close-outline" (click)="closeModal()"></ion-icon>
     <!-- <ion-button ion-button>Close</ion-button> -->
@@ -57,5 +58,5 @@
     </ion-row>
   </ion-grid>
 
-  <button ion-button class="AddToCart_btn" (click)="fnAddToCart(name,item_qty)">Add To Cart</button>
+  <button ion-button class="AddToCart_btn" (click)="fnAddToCart(name.id,name.product_name,name.product_weight,name.product_price,item_qty)">Add To Cart</button>
 </ion-content>

@@ -16,13 +16,17 @@
   <ion-card class="add_card_shadow">
     <ion-row style="margin-top: 5px;" *ngFor="let item of addressList;">
       <ion-checkbox color="danger" class="p-check-icon"></ion-checkbox>
+     
       <ion-col>
         <p class="p-name">{{item.name}}</p>
         <p class="p-address">{{item.address_house_no}} {{item.address_landmark}},</p>
         <p class="p-address">{{item.address_city}},{{item.address_state}},{{item.address_zipcode}}</p>
         <p class="p-address">{{item.address_mobile_no}}</p>
       </ion-col>
+      <ion-icon name="create-outline" color="danger" class="p-check-icons" (click)="updateAddress(item)"></ion-icon>
+     
     </ion-row>
+ 
   </ion-card>
 <!-- 
   <ion-card class="add_card_shadow">

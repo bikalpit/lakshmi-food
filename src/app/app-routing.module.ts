@@ -83,6 +83,10 @@ const routes: Routes = [
     path: 'update-password',
     loadChildren: () => import('./update-password/update-password.module').then( m => m.UpdatePasswordPageModule)
   },
+  {
+    path: 'edit-address',
+    loadChildren: () => import('./edit-address/edit-address.module').then( m => m.EditAddressPageModule)
+  },
 ];
 
 @NgModule({

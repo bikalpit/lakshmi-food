@@ -98,3 +98,7 @@ ion-note {
     overflow: hidden;
     z-index: 0;
 }
+
+[ion-fixed] {
+    min-height: calc(100% - 98px); // adjust to your footer height!
+}

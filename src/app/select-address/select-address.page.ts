@@ -29,7 +29,6 @@ export class SelectAddressPage implements OnInit {
   }
   fnBackToYourCart() {
     this.navCtrl.navigateForward('your-cart');
-
   }
 
   fngetAddressDetails() {
@@ -46,5 +45,12 @@ export class SelectAddressPage implements OnInit {
       console.log("Error=>", err);
       //this.auth.showError(err.error.message);
     });
+  }
+
+  updateAddress(data) {
+    console.log(data);
+    this.navCtrl.navigateForward('edit-address', { state: data });
+    // this.navCtrl.navigateForward('edit-address',{ id : id });
+
   }
 }

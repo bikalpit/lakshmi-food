@@ -61,6 +61,7 @@ export class ProductListPage implements OnInit {
       this.dataResponse = data.data.product_data;
       this.allProducts = this.dataResponse;
       console.log("product data-->", this.allProducts);
+     
 
 
     }, (err) => {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-address',
@@ -18,11 +19,12 @@ export class AddAddressPage implements OnInit {
   mobile_no: any;
   name: any;
   area: any;
+  zipcode:any;
   public data: any;
   dataResponse: any;
   public myToast: any;
 
-  constructor(public navCtrl: NavController, private auth: AuthService, public toast: ToastController) {
+  constructor(private location: Location,public navCtrl: NavController, private auth: AuthService, public toast: ToastController) {
 
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
@@ -36,30 +38,34 @@ export class AddAddressPage implements OnInit {
     console.log(event);
     this.data = event.target.value;
   }
-
+  goBack() {
+    this.location.back();
+  }
   fnSaveAddress() {
-    if (this.house_no != '' && this.city != '' && this.state != '' && this.landmark != '' && this.mobile_no != '' && this.area != '' && this.name != '') {
+    
+    if (this.house_no != '' && this.city != '' && this.state != '' && this.landmark != '' && this.mobile_no != '' && this.area != '' && this.name != '' && this.zipcode != '') {
       this.requestObject = {
 
         "house_no": this.house_no,
         "city": this.city,
         "state": this.state,
         "landmark": this.landmark,
-        "zipcode": "395006",
+        "zipcode": this.zipcode,
         "mobile_no": this.mobile_no,
         "user_id": this.user_id,
-        "address_type": "house"
+        "address_type": this.data
 
       };
 
       console.log(this.requestObject);
       this.auth.addAddress(this.requestObject).subscribe((data: any) => {
         console.log(data);
-       
+       this.dataResponse = data;
+        if(this.dataResponse.status == true){
         console.log("add successfully");
         
         this.auth.showToast('Save address successfully');
-     
+        }
       }, (err) => {
         console.log("Error=>", err);
         //this.auth.showError(err.error.message);

@@ -16,7 +16,7 @@ export class EditProfilePage implements OnInit {
   dataResponse: any;
   AllUserArray: any;
   public myToast: any;
-  user_id1:any;
+  user_id1: any;
 
   constructor(public navCtrl: NavController, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
     this.menu.enable(true);
@@ -42,7 +42,7 @@ export class EditProfilePage implements OnInit {
       console.log(data);
       this.AllUserArray = data.data;
       console.log("data--->", this.AllUserArray);
-      
+
     }, (err) => {
       console.log("Error=>", err);
       //this.auth.showError(err.error.message);
@@ -50,35 +50,35 @@ export class EditProfilePage implements OnInit {
   }
 
   fnSave() {
-    if(this.AllUserArray.name != '' && this.AllUserArray.email != '' && this.AllUserArray.username != '' && this.AllUserArray.password != ''){
-    this.requestObject = {
-      "user_id": this.user_id,
-      "name": this.AllUserArray.name,
-      "email": this.AllUserArray.email,
-      "username": this.AllUserArray.username
-    };
-    console.log(this.requestObject);
-    this.auth.editProfile(this.requestObject).subscribe((data: any) => {
-      console.log(data);
-      this.AllUserArray = data;
-      if (this.AllUserArray.status == true) {
-        //this.navCtrl.navigateForward('/home');
-        this.auth.showToast('Profile update successfully');
-      } else {
-        this.auth.showToast('Profile Not update ');
-      }
-    }, (err) => {
-      console.log("Error=>", err);
-      //this.auth.showError(err.error.message);
-    });
-  }else{
-    this.auth.showToast('Please fillup all fields');
-  }
+    if (this.AllUserArray.name != '' && this.AllUserArray.email != '' && this.AllUserArray.username != '' && this.AllUserArray.password != '') {
+      this.requestObject = {
+        "user_id": this.user_id,
+        "name": this.AllUserArray.name,
+        "email": this.AllUserArray.email,
+        "username": this.AllUserArray.username
+      };
+      console.log(this.requestObject);
+      this.auth.editProfile(this.requestObject).subscribe((data: any) => {
+        console.log(data);
+        this.AllUserArray = data;
+        if (this.AllUserArray.status == true) {
+          //this.navCtrl.navigateForward('/home');
+          this.auth.showToast('Profile update successfully');
+        } else {
+          this.auth.showToast('Profile Not update ');
+        }
+      }, (err) => {
+        console.log("Error=>", err);
+        //this.auth.showError(err.error.message);
+      });
+    } else {
+      this.auth.showToast('Please fillup all fields');
+    }
   }
 
   fnCancelOrder() {
     this.navCtrl.navigateForward('my-account');
   }
 
-  
+
 }

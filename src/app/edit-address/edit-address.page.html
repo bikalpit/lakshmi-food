@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()" color="danger"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="AllAddressArray">
+  <div class="order-no-bg" style="margin-top: 20%;">
+    <ion-input placeholder="House No" type="text" name="house_no" [(ngModel)]="AllAddressArray.address_house_no" class="order_no_txt">
+    </ion-input>
+  </div>
+
+  <!-- <div class="order-no-bg">
+    <ion-input placeholder="Road Name, Area, Colony" type="text" name="area" [(ngModel)]="area" class="order_no_txt">
+    </ion-input>
+  </div> -->
+
+  <ion-row>
+    <ion-col>
+      <div class="order-no-bgt">
+        <ion-input placeholder="State" type="text" name="state" [(ngModel)]="AllAddressArray.address_state" class="order_no_txt"></ion-input>
+      </div>
+    </ion-col>
+
+    <ion-col>
+      <div class="order-no-bgs">
+        <ion-input placeholder="City" type="text" name="city" [(ngModel)]="AllAddressArray.address_city" class="order_no_txt"></ion-input>
+      </div>
+    </ion-col>
+  </ion-row>
+
+
+  <div class="order-no-bg">
+    <ion-input placeholder="Landmark (Optional)" type="text" name="landmark" [(ngModel)]="AllAddressArray.address_landmark"
+      class="order_no_txt"></ion-input>
+  </div>
+
+  <div class="order-no-bg">
+    <ion-input placeholder="Name" type="text" name="name" [(ngModel)]="AllAddressArray.name" class="order_no_txt"></ion-input>
+  </div>
+
+  <div class="order-no-bg">
+    <ion-input placeholder="10-digit Mobile Number" type="text" name="mobile_no" [(ngModel)]=AllAddressArray.address_mobile_no
+      class="order_no_txt"></ion-input>
+  </div>
+</div>
+  <button ion-button class="SaveAddress_btn" (click)="fnSaveAddress()"><b>Save Address</b></button>
+</ion-content>

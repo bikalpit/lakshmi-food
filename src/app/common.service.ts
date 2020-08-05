@@ -44,7 +44,7 @@ export class CommonService {
         const header = new HttpHeaders(
             {
                 "Content-Type": "application/json",
-                "Authorization":localStorage.getItem('token')
+                //"Authorization":localStorage.getItem('token')
             }
         );
         return this.http.post(API_URL+url,data, { headers: header });

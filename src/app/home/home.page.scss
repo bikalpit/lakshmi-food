@@ -31,10 +31,11 @@
   --background: url('../../assets/imgs/LoginScreen_1.jpg') 0 0/100% 100% no-repeat;
   // --background-repeat: no-repeat;
   // --background-size: cover;  
+  position: fixed;
 }
 .main-class{
   width: 100%;
-  margin: 25% 12% 0;
+  margin: 18% 12% 0;
 }
 .sign-label{
   color: #ffffff;
@@ -61,14 +62,14 @@
   width: 77%;
   border-radius: 8px;
   display: block;
-  margin-top: 6rem;
+  margin-top: 7rem;
   border: 1px solid #fff;
   color: #E4322E;
   font-size: 20px;
   height: 35px;
 }
 .signup-label{
-  margin-top: 37%;
+  margin-top: 70%;
   color: #E4322E;
   font-family: open sans;
 }
@@ -78,4 +79,12 @@
   border-style:solid;
   border-width :5px;
   border-color:#FF3F22;
+}
+.login_signup{
+  margin-bottom: 14%;
+  width: 100%;
+  font-size: 18px;
+  margin-top: 72%;
+  color: #FF3F22;
+  text-align: center;
 }
