@@ -20,6 +20,8 @@ export class ModalPopupPage implements OnInit {
   qty: any;
 
   cartData = [];
+  currentSelectedService:any;
+  serviceCount:any;
 
   sliderOne: any;
   sliderTwo: any;
@@ -140,7 +142,7 @@ export class ModalPopupPage implements OnInit {
   }
 
   fnAddToCart(id,name, weight, price, qty) {
-    
+   
     this.cartData = [];
 
     if(localStorage.getItem("cartData")){
@@ -175,7 +177,7 @@ export class ModalPopupPage implements OnInit {
         price: price,
         qty: qty
       });
-
+      
       localStorage.setItem("cartData",JSON.stringify(this.cartData));
     }
 

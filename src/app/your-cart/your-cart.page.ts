@@ -17,6 +17,10 @@ export class YourCartPage implements OnInit {
 
   cartData=[];
 
+  subTotal:any;
+  totQty:any;
+  sumProduct:any;
+  serviceCount:any;
   constructor(public navCtrl: NavController,private route: ActivatedRoute, private router: Router, public modalCtrl: ModalController) { 
     this.modalCtrl.dismiss({
       'dismissed': true
