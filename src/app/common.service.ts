@@ -4,14 +4,12 @@ import { Observable} from 'rxjs';
 
 
 const API_URL = 'http://laxmifoods.bi-team.in/api/';
-
-
-
+const file_url = 'http://laxmifoods.bi-team.in/';
 @Injectable()
 export class CommonService {
 
 
-    file_url = 'http://laxmifoods.bi-team.in/api/';
+    
 
     constructor(private http: HttpClient,) {}
 
@@ -77,5 +75,12 @@ export class CommonService {
             }
         );
 		return this.http.delete(API_URL+url, { headers: header });
-	}
+    }
+    
+    url(){
+        return {
+            'API_URL' : API_URL,
+            'file_url' : file_url
+        };
+    }
 }
