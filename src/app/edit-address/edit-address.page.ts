@@ -37,21 +37,21 @@ export class EditAddressPage implements OnInit {
   }
   fnSaveAddress() {
 
-    if (this.AllAddressArray.address_house_no != '' && this.AllAddressArray.address_city != ''
+    if (this.AllAddressArray.address_house_no != '' && this.AllAddressArray.area !='' && this.AllAddressArray.address_city != ''
       && this.AllAddressArray.address_state != '' && this.AllAddressArray.address_landmark != ''
-      && this.AllAddressArray.address_zipcode != '' && this.AllAddressArray.address_type != ''
-      && this.AllAddressArray.name != '') {
+      && this.AllAddressArray.address_zipcode != '' && this.AllAddressArray.address_type != '') {
 
       this.requestObject = {
         "address_user_id": this.AllAddressArray.address_user_id,
         "house_no": this.AllAddressArray.address_house_no,
+        "area" : this.AllAddressArray.area,
         "city": this.AllAddressArray.address_city,
         "state": this.AllAddressArray.address_state,
         "landmark": this.AllAddressArray.address_landmark,
         "zipcode": this.AllAddressArray.address_zipcode,
         "mobile_no": this.AllAddressArray.address_mobile_no,
-        "address_type": this.AllAddressArray.address_type,
-        "name": this.AllAddressArray.name,
+        "address_type": this.AllAddressArray.address_type
+      
       };
 
       console.log(this.requestObject);

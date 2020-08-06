@@ -53,70 +53,57 @@
 
       </ion-radio-group>
     </ion-row>
-    <form [formGroup]="ionicForm" (ngSubmit)="fnSaveAddress()" novalidate>
-
-      <div class="order-no-bg" style="margin-top: 15%;">
-        <ion-input placeholder="House No" formControlName="house_no" type="text" name="house_no" [(ngModel)]="house_no"
-          class="order_no_txt">
-        </ion-input>
-        <small class="error-wrap" *ngIf="isSubmitted && errorControl.house_no.errors?.required">
-          House No is required.
-        </small>
-      </div>
-
-      <div class="order-no-bg">
-        <ion-input placeholder="Road Name, Area, Colony" formControlName="area" type="text" name="area"
-          [(ngModel)]="area" class="order_no_txt">
-        </ion-input>
-        <small class="error-wrap" *ngIf="isSubmitted && errorControl.area.errors?.required">
-          Road Name, Area, Colony is required.
-        </small>
-      </div>
-
-      <ion-row>
-        <ion-col>
-          <div class="order-no-bgt">
-            <ion-input placeholder="State" formControlName="state" type="text" name="state" [(ngModel)]="state"
-              class="order_no_txt">
-            </ion-input>
-            <small class="error-wrap" *ngIf="isSubmitted && errorControl.state.errors?.required">
-              State is required.
-            </small>
-          </div>
-        </ion-col>
-
-        <ion-col>
-          <div class="order-no-bgs">
-            <ion-input placeholder="City" formControlName="city" type="text" name="city" [(ngModel)]="city"
-              class="order_no_txt"></ion-input>
-            <small class="error-wrap" *ngIf="isSubmitted && errorControl.city.errors?.required">
-              City is required.
-            </small>
-          </div>
-        </ion-col>
-      </ion-row>
 
 
-      <div class="order-no-bg">
-        <ion-input placeholder="Landmark (Optional)" formControlName="landmark" type="text" name="landmark"
-          [(ngModel)]="landmark" class="order_no_txt"></ion-input>
-      </div>
+    <div class="order-no-bg" style="margin-top: 15%;">
+      <ion-input placeholder="House No" type="text" name="house_no" [(ngModel)]="house_no" class="order_no_txt">
+      </ion-input>
+
+    </div>
+
+    <div class="order-no-bg">
+      <ion-input placeholder="Road Name, Area, Colony" type="text" name="area" [(ngModel)]="area" class="order_no_txt">
+      </ion-input>
+
+    </div>
+
+    <ion-row>
+      <ion-col>
+        <div class="order-no-bgt">
+          <ion-input placeholder="State" type="text" name="state" [(ngModel)]="state" class="order_no_txt">
+          </ion-input>
+
+        </div>
+      </ion-col>
+
+      <ion-col>
+        <div class="order-no-bgs">
+          <ion-input placeholder="City" type="text" name="city" [(ngModel)]="city" class="order_no_txt"></ion-input>
+
+        </div>
+      </ion-col>
+    </ion-row>
 
 
-      <div class="order-no-bg">
-        <ion-input placeholder="10-digit Mobile Number" formControlName="mobile_no" type="text" name="mobile_no"
-          [(ngModel)]=mobile_no class="order_no_txt"></ion-input>
-      </div>
-
-      <div class="order-no-bg">
-        <ion-input placeholder="Zipcode" formControlName="zipcode" type="text" name="zipcode" [(ngModel)]=zipcode
-          class="order_no_txt">
-        </ion-input>
-      </div>
+    <div class="order-no-bg">
+      <ion-input placeholder="Landmark (Optional)" type="text" name="landmark" [(ngModel)]="landmark"
+        class="order_no_txt"></ion-input>
+    </div>
 
 
-      <button ion-button class="SaveAddress_btn" ><b>Save Address</b></button>
-      <!-- <button ion-button class="SaveAddress_btn" (click)="fnSaveAddress()"><b>Save Address</b></button> -->
-    </form>
+    <div class="order-no-bg">
+      <ion-input placeholder="10-digit Mobile Number" type="text" name="mobile_no" [(ngModel)]=mobile_no
+        class="order_no_txt"></ion-input>
+    </div>
+
+    <div class="order-no-bg">
+      <ion-input placeholder="Zipcode" type="text" name="zipcode" [(ngModel)]=zipcode class="order_no_txt">
+      </ion-input>
+    </div>
+
+
+    <!-- <button ion-button class="SaveAddress_btn" ><b>Save Address</b></button> -->
+    <button ion-button class="SaveAddress_btn" (click)="fnSaveAddress()"><b>Save Address</b></button>
+   
   </ion-card>
 </ion-content>

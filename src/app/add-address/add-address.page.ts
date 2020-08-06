@@ -63,10 +63,11 @@ export class AddAddressPage implements OnInit {
   }
   fnSaveAddress() {
 
-    if (this.house_no != '' && this.city != '' && this.state != '' && this.landmark != '' && this.mobile_no != '' && this.area != '' && this.name != '' && this.zipcode != '') {
+    if (this.house_no != '' && this.area != '' && this.city != '' && this.state != '' && this.landmark != '' && this.mobile_no != '' && this.area != ''  && this.zipcode != '') {
       this.requestObject = {
 
         "house_no": this.house_no,
+        "area" : this.area,
         "city": this.city,
         "state": this.state,
         "landmark": this.landmark,
