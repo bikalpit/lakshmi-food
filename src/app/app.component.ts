@@ -72,4 +72,10 @@ export class AppComponent {
     localStorage.clear();
   }
 
+  fnDashboard(){
+    this.menu.enable(true);
+    this.navCtrl.navigateForward('dashboard');
+    this.menu.enable(false);
+  }
+
 }
