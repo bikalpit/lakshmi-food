@@ -36,8 +36,6 @@ export class AddAddressPage implements OnInit {
 
     this.user_id = localStorage.getItem("id");
 
-   
-
   }
 
   ngOnInit() {

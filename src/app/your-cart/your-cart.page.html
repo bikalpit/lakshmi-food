@@ -20,9 +20,10 @@
           <img src="../../assets/imgs/images.jpg" class="img" >
         </ion-card>
       </ion-col>
-
+      
       <ion-col>
         <ion-card class="card">
+          <ion-icon style="float:right;color: #E4322E;font-size: 24px;" (click)="cancelData(item.id)" name="close-outline"></ion-icon>
           <h5 class="p-label1"><b>{{item.name}} {{item.weight}}Kg</b></h5>
           <h6 class="p-qty">Qty:{{item.qty}}</h6>
           <h6 class="p-label2">₹{{item.price}}</h6>

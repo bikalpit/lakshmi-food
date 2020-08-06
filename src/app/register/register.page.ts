@@ -18,15 +18,18 @@ export class RegisterPage implements OnInit {
   isSubmitted = false;
   public myToast: any;
 
-  constructor(public navCtrl: NavController, private auth: AuthService, public formbulider: FormBuilder, public toast: ToastController) { }
-
-  ngOnInit() {
+  constructor(public navCtrl: NavController, private auth: AuthService, public formbulider: FormBuilder, public toast: ToastController) { 
     this.ionicForm = this.formbulider.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirm_password: ['', [Validators.required, Validators.minLength(2)]]
+      confirm_password: ['', [Validators.required, Validators.minLength(6)]]
     });
+
+  }
+
+  ngOnInit() {
+   
   }
 
   fnLogin() {

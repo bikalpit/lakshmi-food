@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-forgot-password',
@@ -12,7 +13,7 @@ export class ForgotPasswordPage implements OnInit {
   email: any;
   public myToast: any;
   dataResponse: any;
-  constructor(public navCtrl: NavController, private auth: AuthService, public toast: ToastController,
+  constructor(private location: Location,public navCtrl: NavController, private auth: AuthService, public toast: ToastController,
   ) {
     
     this.email = localStorage.getItem("email");
@@ -22,7 +23,9 @@ export class ForgotPasswordPage implements OnInit {
   ngOnInit() {
      this.email='';
   }
-
+  goBack() {
+    this.location.back();
+  }
   fnSend() {
 
     if (this.email != '') {

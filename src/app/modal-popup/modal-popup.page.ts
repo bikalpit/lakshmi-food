@@ -152,7 +152,7 @@ export class ModalPopupPage implements OnInit {
 
       this.cartData.forEach(element => {
         if(element.id==id){
-          element.qty = element.qty+qty;
+          element.qty = element.qty;
           product_exits =true;
         }
       });

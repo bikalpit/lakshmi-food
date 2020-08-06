@@ -16,7 +16,11 @@ export class EditAddressPage implements OnInit {
   id: any;
   sub: any;
 
-  constructor(private location: Location, public navCtrl: NavController, private route: ActivatedRoute, private auth: AuthService, private router: Router) {
+  constructor(private location: Location, 
+    public navCtrl: NavController, 
+    private route: ActivatedRoute, 
+    private auth: AuthService, 
+    private router: Router) {
     //     this.sub = this.route.params.subscribe(params => {
     //       this.id = params['id']; 
     //       console.log(this.id);

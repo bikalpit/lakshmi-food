@@ -9,8 +9,6 @@ const file_url = 'http://laxmifoods.bi-team.in/';
 export class CommonService {
 
 
-    
-
     constructor(private http: HttpClient,) {}
 
     postWithoutToken(url,data): Observable<any> {

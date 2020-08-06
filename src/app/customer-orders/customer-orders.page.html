@@ -17,32 +17,38 @@
     <p class="order-status"><b>Order Status</b></p>
     <ion-col>
       <ion-item style="float: right;">   
-        <ion-select class="custom-options" (ionChange)="OnChange($event.value)">
-          <ion-select-option value="inprocees">Inprocees</ion-select-option>
-          <ion-select-option value="completed">Completed</ion-select-option> 
+        <ion-select  #item class="custom-options" (ionChange)="OnChange(item.value)">
+          <ion-select-option value="New">Inprocees</ion-select-option>
+          <ion-select-option value="Delivered">Completed</ion-select-option> 
           <ion-select-option value="cancel">Cancel</ion-select-option> 
         </ion-select>
       </ion-item>
     </ion-col>
   
   </ion-row>
- 
-  <ion-card class="main-card" (click)="fnOrderSummary()">
+  
+ <div *ngFor="let item of ordersList;">
+  <ion-card class="main-card" (click)="fnOrderSummary(item.id)">
     <ion-grid class="main-content">
-      <p class="order-ids">Order Id: 023459060</p>
+      <p class="order-ids">Order Id: {{item.id}}</p>
     </ion-grid>
     <ion-row>
       <ion-col>
         <p class="d-date">Delivery Date</p>
-        <p class="date"><b>2020-03-05</b></p>
+        <p class="date"><b>{{item.create_at}}</b></p>
       </ion-col>
 
       <ion-col>
-        <p class="status"><b>Inprocees</b></p>
+        <p class="status" *ngIf="item.status == 'New' "><b>Inprocees</b></p>
+        <p class="status" *ngIf="item.status == 'Delivered' "><b>Completed</b></p>
+        <p class="status" *ngIf="item.status == 'cancel' "><b>Cancel</b></p>
       </ion-col>
     </ion-row>
   </ion-card>
-
+</div>
+<div *ngIf="!ordersList?.length > 0">
+  <p class="norecord-label">No Records Found</p>
+</div>
   <!-- <ion-card class="main-card">
     <ion-grid class="main-content">
       <p class="order-ids">Order Id: 023459430</p>
