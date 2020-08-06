@@ -26,14 +26,15 @@ export class CustomerOrdersPage implements OnInit {
     this.navCtrl.navigateForward('order-summary');
 
   }
+  OnChange(evnt){
+    alert(evnt);
+  }
   fngetOrderList() {
 
     this.requestObject = {
 
-      "page_no": "1",
-      "offset": "10",
-      "order_status": "Approve",
-      "user_id": "12"
+      "order_status" : "New",
+      "user_id" : "12"
     }
     console.log(this.requestObject);
     this.auth.getOrderList(this.requestObject).subscribe((data: any) => {

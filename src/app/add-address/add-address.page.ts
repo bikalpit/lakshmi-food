@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { Location } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-address',
@@ -9,6 +10,8 @@ import { Location } from '@angular/common';
   styleUrls: ['./add-address.page.scss'],
 })
 export class AddAddressPage implements OnInit {
+
+  ionicForm: FormGroup;
   requestObject: any;
   house_no: any;
   city: any;
@@ -23,14 +26,31 @@ export class AddAddressPage implements OnInit {
   public data: any;
   dataResponse: any;
   public myToast: any;
+  onlynumeric = /^-?(0|[1-9]\d*)?$/
 
-  constructor(private location: Location, public navCtrl: NavController, private auth: AuthService, public toast: ToastController) {
+  constructor(public formbulider: FormBuilder,
+    private location: Location,
+    public navCtrl: NavController,
+    private auth: AuthService,
+    public toast: ToastController) {
 
     this.user_id = localStorage.getItem("id");
+
+   
 
   }
 
   ngOnInit() {
+    this.ionicForm = this.formbulider.group({
+      house_no: ['', [Validators.required]],
+      area: ['', [Validators.required]],
+      state: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+      city: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+      landmark: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+      name: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+      mobile_no: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      zipcode: ['', [Validators.required, Validators.minLength(6),Validators.maxLength(6),Validators.pattern(this.onlynumeric)]]
+    });
   }
 
   onChangeHandler(event) {

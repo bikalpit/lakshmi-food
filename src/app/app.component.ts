@@ -78,4 +78,10 @@ export class AppComponent {
     this.menu.enable(false);
   }
 
+  fnMyOrders(){
+    this.menu.enable(true);
+    this.navCtrl.navigateForward('customer-orders');
+    this.menu.enable(false);
+  }
+
 }

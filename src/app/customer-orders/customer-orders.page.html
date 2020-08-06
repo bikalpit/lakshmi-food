@@ -17,9 +17,10 @@
     <p class="order-status"><b>Order Status</b></p>
     <ion-col>
       <ion-item style="float: right;">   
-        <ion-select class="custom-options">
+        <ion-select class="custom-options" (ionChange)="OnChange($event.value)">
           <ion-select-option value="inprocees">Inprocees</ion-select-option>
           <ion-select-option value="completed">Completed</ion-select-option> 
+          <ion-select-option value="cancel">Cancel</ion-select-option> 
         </ion-select>
       </ion-item>
     </ion-col>
@@ -42,7 +43,7 @@
     </ion-row>
   </ion-card>
 
-  <ion-card class="main-card">
+  <!-- <ion-card class="main-card">
     <ion-grid class="main-content">
       <p class="order-ids">Order Id: 023459430</p>
     </ion-grid>
@@ -88,5 +89,5 @@
         <p class="status"><b>Inprocees</b></p>
       </ion-col>
     </ion-row>
-  </ion-card>
+  </ion-card> -->
 </ion-content>
