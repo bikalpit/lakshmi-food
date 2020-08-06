@@ -91,6 +91,7 @@ export class SelectAddressPage implements OnInit {
     this.auth.orderPlace(this.requestObject).subscribe((data: any) => {
       if(data.status==true){
         localStorage.removeItem('cartData');
+        localStorage.setItem('OrderNumber',data.data.order_id);
         this.navCtrl.navigateForward('success-order');
       }else{
         this.auth.showToast(data.message);
