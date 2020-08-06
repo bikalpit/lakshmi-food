@@ -8,12 +8,15 @@ import { NavController } from '@ionic/angular';
 })
 export class SuccessOrderPage implements OnInit {
 
+  OrderNumber:any;
   constructor(public navCtrl: NavController) { }
 
   ngOnInit() {
+    this.OrderNumber = localStorage.getItem('OrderNumber');
+
   }
   fnViewProduct(){
-    this.navCtrl.navigateForward('customer-orders');
+    this.navCtrl.navigateForward('product-list');
 
   }
 
