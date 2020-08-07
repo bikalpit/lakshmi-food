@@ -22,12 +22,18 @@ export class OrderSummaryPage implements OnInit {
   id: any;
   orderDate:any;
   date:any;
+  cartData:any;
+  mainSubTotal:any;
+
   constructor(private datePipe: DatePipe,private location: Location, private router: Router, private route: ActivatedRoute, public navCtrl: NavController, private auth: AuthService) {
     const state = this.router.getCurrentNavigation().extras.state
     if (state) {
       this.id = state;
       console.log("order id-->", this.id);
     }
+
+    this.cartData = JSON.parse(localStorage.getItem("cartData"));
+    this.mainSubTotal = localStorage.getItem("mainsubtotal");
     
   }
 

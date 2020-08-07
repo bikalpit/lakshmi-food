@@ -1,6 +1,5 @@
 #container {
   text-align: center;
-
   position: absolute;
   left: 0;
   right: 0;
@@ -16,9 +15,7 @@
 #container p {
   font-size: 16px;
   line-height: 22px;
-
   color: #8c8c8c;
-
   margin: 0;
 }
 
@@ -33,15 +30,18 @@
   // --background-size: cover;  
   position: fixed;
 }
+
 .main-class{
   width: 100%;
   margin: 18% 12% 0;
 }
+
 .sign-label{
   color: #ffffff;
   font-size:28px;
   font-family: open sans;
 }
+
 .login_text {
   background-color: #fff;
   width: 77%;
@@ -50,6 +50,7 @@
   padding-left: 2px;
   font-family: open sans;
 }
+
 .forgot-label{
   float: right;
   margin-right: 22%;
@@ -57,6 +58,7 @@
   font-family: open sans;
   color: #fff;
 }
+
 .login_btn {
   background-color: #fff;
   width: 77%;
@@ -68,11 +70,13 @@
   font-size: 20px;
   height: 35px;
 }
+
 .signup-label{
   margin-top: 70%;
   color: #E4322E;
   font-family: open sans;
 }
+
 .my-custom-class{
   background: #FFDB22;
   color:#FF3F22;
@@ -80,11 +84,12 @@
   border-width :5px;
   border-color:#FF3F22;
 }
+
 .login_signup{
-  margin-bottom: 14%;
+  position: fixed;
+  bottom: 0;
   width: 100%;
   font-size: 18px;
-  margin-top: 72%;
   color: #FF3F22;
   text-align: center;
 }

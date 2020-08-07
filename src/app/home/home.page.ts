@@ -36,6 +36,8 @@ export class HomePage {
             console.log(this.dataResponse.data.id);
 
             localStorage.setItem("email", this.dataResponse.data.email);
+            localStorage.setItem("username", this.dataResponse.data.username);
+            localStorage.setItem("role", this.dataResponse.data.role);
             console.log(this.dataResponse.data.email);
 
             this.navCtrl.navigateForward('/dashboard');

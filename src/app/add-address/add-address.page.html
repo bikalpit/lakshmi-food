@@ -1,8 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start" class="main-title">
+    <!-- <ion-buttons slot="start" class="main-title">
       <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()" color="danger"></ion-back-button>
     </ion-buttons>
+    
     <ion-buttons slot="end">
       <ion-button>
 
@@ -14,12 +18,12 @@
 
 <ion-content>
   <ion-card class="current-location">
-    <!-- <ion-row>
+    <ion-row>
       <img src="../../assets/imgs/gps-fixed-indicator.png" class="img">
       <ion-col>
         <h4 class="txt-location"><b>Use My Current Location</b></h4>
       </ion-col>
-    </ion-row> -->
+    </ion-row>
 
   </ion-card>
   <ion-card class="main-address ios">

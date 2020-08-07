@@ -31,7 +31,8 @@ export class CustomerOrdersPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.fngetOrderList();
+    
+    
   }
 
   fnOrderSummary(id) {
@@ -42,7 +43,7 @@ export class CustomerOrdersPage implements OnInit {
   }
 
   OnChange(value) {
-    this.ordersList = [];
+    //this.ordersList = [];
     //alert(value);
     this.status = value;
     console.log(this.status);

@@ -152,7 +152,7 @@ export class ModalPopupPage implements OnInit {
 
       this.cartData.forEach(element => {
         if(element.id==id){
-          element.qty = element.qty;
+          element.qty = element.qty+qty;
           product_exits =true;
         }
       });
@@ -209,6 +209,7 @@ export class ModalPopupPage implements OnInit {
     }
     console.log("hello");
   }
+  
   fnadd() {
     this.item_qty += 1;
     console.log(this.item_qty + 1);
