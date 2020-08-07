@@ -4,6 +4,7 @@ import { ModalPopupPage } from '../modal-popup/modal-popup.page';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { CommonService } from '../common.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
@@ -22,7 +23,7 @@ export class ProductListPage implements OnInit {
   userAllArray: any;
   url:any;
   
-  constructor(public modalController: ModalController, public navCtrl: NavController, private auth: AuthService,private commonService: CommonService) { }
+  constructor(private location: Location,public modalController: ModalController, public navCtrl: NavController, private auth: AuthService,private commonService: CommonService) { }
 
   ngOnInit() {
     this.getProductList();
@@ -40,6 +41,11 @@ export class ProductListPage implements OnInit {
     });
     return await modal.present();
   }
+  
+  goBack() {
+    this.location.back();
+  }
+
   fnAddToCart() {
     this.navCtrl.navigateForward('your-cart');
   }

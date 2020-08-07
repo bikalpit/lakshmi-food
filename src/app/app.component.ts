@@ -12,6 +12,11 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  user_id: any;
+  username: any = localStorage.getItem('username');
+  email: any = localStorage.getItem('email');
+  role: any = localStorage.getItem("role");
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -19,7 +24,7 @@ export class AppComponent {
     public menu: MenuController,
     public navCtrl: NavController
   ) {
-    
+
     this.initializeApp();
   }
 
@@ -27,58 +32,79 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.user_id = localStorage.getItem("id");
+      console.log(this.user_id);
+
+      this.username = localStorage.getItem("username");
+      console.log(this.username);
+
+      this.email = localStorage.getItem("email");
+      console.log(this.email);
+
+      this.role = localStorage.getItem("role");
+      console.log(this.role);
+
+      if (localStorage.getItem('username')) {
+
+        if (localStorage.getItem('role') == 'Customer') {
+
+          this.navCtrl.navigateForward('dashboard');
+
+        } else if (localStorage.getItem('role') == 'DeliveryBoy') {
+
+          this.navCtrl.navigateForward('my-account');
+        }
+      }
+      else {
+        this.navCtrl.navigateForward('home');
+      }
+
     });
   }
-  // openFirst() {
-  //   this.menu.enable(true, 'first');
-  //   this.menu.open('first');
-  // }
-  
-  // openEnd() {
-  //   this.menu.open('end');
-  // }
+
 
   openCustom() {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');
   }
- 
-  
-  fnMyAccount(){
+
+
+  fnMyAccount() {
     this.menu.enable(true);
     this.navCtrl.navigateForward('my-account');
     this.menu.enable(false);
-    
+
   }
 
-  fnEditProfile(){
+  fnEditProfile() {
     this.menu.enable(true);
     this.navCtrl.navigateForward('edit-profile');
     this.menu.enable(false);
 
   }
 
-  fnChangePassword(){
+  fnChangePassword() {
     this.menu.enable(true);
     this.navCtrl.navigateForward('change-password');
     this.menu.enable(false);
 
   }
 
-  fnLogout(){
+  fnLogout() {
     this.menu.enable(true);
     this.navCtrl.navigateForward('home');
     this.menu.enable(false);
     localStorage.clear();
   }
 
-  fnDashboard(){
+  fnDashboard() {
     this.menu.enable(true);
     this.navCtrl.navigateForward('dashboard');
     this.menu.enable(false);
   }
 
-  fnMyOrders(){
+  fnMyOrders() {
     this.menu.enable(true);
     this.navCtrl.navigateForward('customer-orders');
     this.menu.enable(false);

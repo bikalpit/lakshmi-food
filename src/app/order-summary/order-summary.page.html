@@ -69,7 +69,7 @@
     </ion-row> -->
   </ion-card>
 </div>
-
+<div *ngIf="ordersDetails">
   <ion-card class="main-card-total">
     <ion-grid style="margin-top: 20px;">
       <ion-row>
@@ -78,7 +78,7 @@
         </ion-col>
 
         <ion-col>
-          <h6 class="p-label4">₹420.00</h6>
+          <h6 class="p-label4">₹{{ordersDetails.order_total}}</h6>
         </ion-col>
 
       </ion-row>
@@ -91,12 +91,12 @@
         </ion-col>
 
         <ion-col>
-          <h6 class="p-label4">₹10.00</h6>
+          <h6 class="p-label4">₹0</h6>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
-
+</div>
   <ion-row style="margin-top: 14%;">
     <ion-col>
       <button ion-button class="cancelOrder_btn" (click)="fnCancelOrder()">Cancel Order</button>

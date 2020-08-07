@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -11,11 +12,16 @@ export class OrderDetailsPage implements OnInit {
 
  
 
-  constructor(public navCtrl: NavController) {
+  constructor(private location: Location,public navCtrl: NavController) {
    }
 
   ngOnInit() {
   }
+
+  goBack() {
+    this.location.back();
+  }
+  
   fnCancelOrder() {
 
     this.navCtrl.navigateForward('my-account');
