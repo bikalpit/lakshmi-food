@@ -24,6 +24,8 @@ export class OrderDetailsPage implements OnInit {
   date:any;
   cartData:any;
   mainSubTotal:any;
+  user_id:any;
+  ordersList = [];
 
   constructor( private router: Router,private datePipe: DatePipe,private auth: AuthService,private location: Location,public navCtrl: NavController) {
     
@@ -32,11 +34,16 @@ export class OrderDetailsPage implements OnInit {
       this.id = state;
       console.log("order id-->", this.id);
     }
+
+    this.user_id = localStorage.getItem("id");
+    console.log(this.user_id);
+
   
   }
 
   ngOnInit() {
     this.getOrderDetails();
+    //this.fnGetCustomerDetails();
   }
 
   goBack() {
@@ -69,13 +76,37 @@ export class OrderDetailsPage implements OnInit {
       console.log("order data-->",this.ordersDetails);
 
       this.orderItem = this.dataResponse.order_item;
-      console.log("order list data-->", this.orderDate);
+      console.log("order item data-->", this.orderDate);
 
     }, (err) => {
       console.log("Error=>", err);
       //this.auth.showError(err.error.message);
     });
   }
+
+  // fnGetCustomerDetails(){
+
+  //   this.requestObject = {
+  //     "delivery_boy_id": this.user_id
+  //   }
+  //   console.log(this.requestObject);
+  //   this.auth.getOrderList(this.requestObject).subscribe((data: any) => {
+  //     console.log(data);
+  //     this.dataResponse = data.data;
+  //     this.ordersList = this.dataResponse;
+
+  //     this.ordersList.forEach((element) => {
+  //       element.create_at = this.datePipe.transform(new Date(element.create_at), "dd-MM-yyyy");
+  //     });
+
+  //     console.log("Customer list-->", this.ordersList);
+
+
+  //   }, (err) => {
+  //     console.log("Error=>", err);
+  //     //this.auth.showError(err.error.message);
+  //   });
+  // }
 
   
 }
