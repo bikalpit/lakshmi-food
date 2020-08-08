@@ -60,11 +60,10 @@ export class YourCartPage implements OnInit {
 
   }
 
-
+ 
   cancelData(id) {
     console.log(id);
 
-   
 
   /*  let index = this.cartData.indexOf(id);
     this.cartData.splice(index, 1);*/

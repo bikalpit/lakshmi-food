@@ -17,25 +17,40 @@
     <img src="../../assets/imgs/1945870586Image.png" class="img">
     <p class="profile-txt"><b>Change Profile Photo</b></p>
     <div *ngIf="AllUserArray">
-      <div class="order-no-bg">
-        <ion-input placeholder="Full Name" type="text" name="name" [(ngModel)]="AllUserArray.name" class="order_no_txt">
-        </ion-input>
-      </div>
-
-      <div class="order-no-bg">
-        <ion-input placeholder="Email Id" type="text" name="email" [(ngModel)]="AllUserArray.email"
-          class="order_no_txt"></ion-input>
-      </div>
-
-      <div class="order-no-bg">
-        <ion-input placeholder="Username" type="text" name="username" [(ngModel)]="AllUserArray.username"
-          class="order_no_txt"></ion-input>
-      </div>
-
-      <div class="order-no-bg">
-        <ion-input placeholder="Password" type="text" name="password" [(ngModel)]="AllUserArray.password"
-          class="order_no_txt"></ion-input>
-      </div>
+      <form [formGroup]="ionicForm">
+        <div class="order-no-bg">
+          <ion-input placeholder="Full Name" formControlName="Name" type="text" name="name" [(ngModel)]="AllUserArray.name" class="order_no_txt">
+          </ion-input>
+          <span class="error-wrap" *ngIf="ionicForm.get('Name').touched || ionicForm.get('Name').dirty">
+            <small *ngIf="ionicForm.get('Name').hasError('required')" class="error">Name is required.</small>
+          </span>
+        </div>
+  
+        <div class="order-no-bg">
+          <ion-input placeholder="Email Id" formControlName="Email" type="text" name="email" [(ngModel)]="AllUserArray.email"
+            class="order_no_txt"></ion-input>
+            <span class="error-wrap" *ngIf="ionicForm.get('Email').touched || ionicForm.get('Email').dirty">
+              <small *ngIf="ionicForm.get('Email').hasError('required')" class="error">Email is required.</small>
+              <small *ngIf="ionicForm.get('Email').hasError('pattern')" class="error">Enter valid email.</small>
+            </span>
+        </div>
+  
+        <div class="order-no-bg">
+          <ion-input placeholder="Username" formControlName="UserName" type="text" name="username" [(ngModel)]="AllUserArray.username"
+            class="order_no_txt"></ion-input>
+            <span class="error-wrap" *ngIf="ionicForm.get('UserName').touched || ionicForm.get('UserName').dirty">
+              <small *ngIf="ionicForm.get('UserName').hasError('required')" class="error">Username is required.</small>
+            </span>
+        </div>
+  
+        <div class="order-no-bg">
+          <ion-input placeholder="Password" formControlName="Password" type="text" name="password" [(ngModel)]="AllUserArray.password"
+            class="order_no_txt"></ion-input>
+            <span class="error-wrap" *ngIf="ionicForm.get('Password').touched || ionicForm.get('Password').dirty">
+              <small *ngIf="ionicForm.get('Password').hasError('required')" class="error">Password is required.</small>
+            </span>
+        </div>
+        </form>
     </div>
     <ion-row class="cancel_save_btn">
       <ion-col>

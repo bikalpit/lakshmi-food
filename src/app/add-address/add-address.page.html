@@ -59,55 +59,82 @@
     </ion-row>
 
 
-    <div class="order-no-bg" style="margin-top: 15%;">
-      <ion-input placeholder="House No" type="text" name="house_no" [(ngModel)]="house_no" class="order_no_txt">
-      </ion-input>
+    <form [formGroup]="ionicForm">
 
-    </div>
+      <div class="order-no-bg" style="margin-top: 15%;">
+        <ion-input placeholder="House No" formControlName="houseNo" type="text" name="house_no" [(ngModel)]="house_no"
+          class="order_no_txt">
+        </ion-input>
+        <span class="error-wrap" *ngIf="ionicForm.get('houseNo').touched || ionicForm.get('houseNo').dirty">
+          <small *ngIf="ionicForm.get('houseNo').hasError('required')" class="error">House No is required.</small>
+        </span>
+      </div>
 
-    <div class="order-no-bg">
-      <ion-input placeholder="Road Name, Area, Colony" type="text" name="area" [(ngModel)]="area" class="order_no_txt">
-      </ion-input>
+      <div class="order-no-bg">
+        <ion-input placeholder="Road Name, Area, Colony" formControlName="AreaColony" type="text" name="area"
+          [(ngModel)]="area" class="order_no_txt">
+        </ion-input>
+        <span class="error-wrap" *ngIf="ionicForm.get('AreaColony').touched || ionicForm.get('AreaColony').dirty">
+          <small *ngIf="ionicForm.get('AreaColony').hasError('required')" class="error">Road Name, Area, Colony is
+            required.</small>
+        </span>
+      </div>
 
-    </div>
+      <ion-row>
+        <ion-col>
+          <div class="order-no-bgt">
+            <ion-input placeholder="State" type="text" formControlName="State" name="state" [(ngModel)]="state" class="order_no_txt">
+            </ion-input>
+           <span class="error-wrap" *ngIf="ionicForm.get('State').touched || ionicForm.get('State').dirty">
+          <small *ngIf="ionicForm.get('State').hasError('required')" class="error">State is required.</small>
+       </span>
+          </div>
+        </ion-col>
 
-    <ion-row>
-      <ion-col>
-        <div class="order-no-bgt">
-          <ion-input placeholder="State" type="text" name="state" [(ngModel)]="state" class="order_no_txt">
-          </ion-input>
-
-        </div>
-      </ion-col>
-
-      <ion-col>
-        <div class="order-no-bgs">
-          <ion-input placeholder="City" type="text" name="city" [(ngModel)]="city" class="order_no_txt"></ion-input>
-
-        </div>
-      </ion-col>
-    </ion-row>
-
-
-    <div class="order-no-bg">
-      <ion-input placeholder="Landmark (Optional)" type="text" name="landmark" [(ngModel)]="landmark"
-        class="order_no_txt"></ion-input>
-    </div>
-
-
-    <div class="order-no-bg">
-      <ion-input placeholder="10-digit Mobile Number" type="text" name="mobile_no" [(ngModel)]=mobile_no
-        class="order_no_txt"></ion-input>
-    </div>
-
-    <div class="order-no-bg">
-      <ion-input placeholder="Zipcode" type="text" name="zipcode" [(ngModel)]=zipcode class="order_no_txt">
-      </ion-input>
-    </div>
+        <ion-col>
+          <div class="order-no-bgs">
+            <ion-input placeholder="City" type="text" formControlName="City" name="city" [(ngModel)]="city" class="order_no_txt"></ion-input>
+             <span class="error-wrap" *ngIf="ionicForm.get('City').touched || ionicForm.get('City').dirty">
+          <small *ngIf="ionicForm.get('City').hasError('required')" class="error">City is required.</small>
+       </span>
+          </div>
+        </ion-col>
+      </ion-row>
 
 
-    <!-- <button ion-button class="SaveAddress_btn" ><b>Save Address</b></button> -->
-    <button ion-button class="SaveAddress_btn" (click)="fnSaveAddress()"><b>Save Address</b></button>
-   
+      <div class="order-no-bg">
+        <ion-input placeholder="Landmark (Optional)" formControlName="Landmark" type="text" name="landmark" [(ngModel)]="landmark"
+          class="order_no_txt"></ion-input>
+      
+      <span class="error-wrap" *ngIf="ionicForm.get('Landmark').touched || ionicForm.get('Landmark').dirty">
+          <small *ngIf="ionicForm.get('Landmark').hasError('required')" class="error">Landmark is required.</small>
+       </span>
+      </div>
+
+      <div class="order-no-bg">
+        <ion-input maxlength="10" placeholder="10-digit Mobile Number" formControlName="MobileNo" type="text" name="mobile_no" [(ngModel)]=mobile_no
+          class="order_no_txt"></ion-input>
+          <span class="error-wrap" *ngIf="ionicForm.get('MobileNo').touched || ionicForm.get('MobileNo').dirty">
+          <small *ngIf="ionicForm.get('MobileNo').hasError('required')" class="error">Mobile No is required.</small>
+          <small *ngIf="ionicForm.get('MobileNo').hasError('pattern')" class="error">Enter valid Mobile No.</small>
+          <small *ngIf="ionicForm.get('MobileNo').hasError('minlength') || ionicForm.get('MobileNo').hasError('maxlength')" class="error">Phone number should be 10 digits long.</small>
+        </span>
+      </div>
+
+      <div class="order-no-bg">
+        <ion-input placeholder="Zipcode" type="text" formControlName="Zipcode" name="zipcode" [(ngModel)]=zipcode class="order_no_txt">
+        </ion-input>
+        <span class="error-wrap" *ngIf="ionicForm.get('Zipcode').touched || ionicForm.get('Zipcode').dirty">
+          <small *ngIf="ionicForm.get('Zipcode').hasError('required')" class="error">Zipcode is required.</small>
+          <small *ngIf="ionicForm.get('Zipcode').hasError('pattern')" class="error">Enter valid Zipcode.</small>
+          <small *ngIf="ionicForm.get('Zipcode').hasError('minlength') || ionicForm.get('Zipcode').hasError('maxlength')" class="error">Zipcode should be 6 digits long.</small>
+        
+        </span>
+      </div>
+
+
+      <!-- <button ion-button class="SaveAddress_btn" ><b>Save Address</b></button> -->
+      <button ion-button class="SaveAddress_btn" (click)="fnSaveAddress()"><b>Save Address</b></button>
+    </form>
   </ion-card>
 </ion-content>

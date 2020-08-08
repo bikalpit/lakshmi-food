@@ -35,20 +35,19 @@ export class AddAddressPage implements OnInit {
     public toast: ToastController) {
 
     this.user_id = localStorage.getItem("id");
-
+    this.ionicForm = this.formbulider.group({
+      houseNo: ['', [Validators.required]],
+      AreaColony: ['', [Validators.required]],
+      State: ['', [Validators.required]],
+      City: ['', [Validators.required]],
+      Landmark: ['', [Validators.required]],
+      MobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.onlynumeric)]],
+      Zipcode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(this.onlynumeric)]]
+    });
   }
 
   ngOnInit() {
-    this.ionicForm = this.formbulider.group({
-      house_no: ['', [Validators.required]],
-      area: ['', [Validators.required]],
-      state: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
-      city: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
-      landmark: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
-      name: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
-      mobile_no: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      zipcode: ['', [Validators.required, Validators.minLength(6),Validators.maxLength(6),Validators.pattern(this.onlynumeric)]]
-    });
+   
   }
 
   onChangeHandler(event) {

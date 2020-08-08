@@ -45,6 +45,10 @@ export class ProductListPage implements OnInit {
   goBack() {
     this.location.back();
   }
+  
+  fnBackToDashboard(){
+    this.navCtrl.navigateForward('dashboard');
+  }
 
   fnAddToCart() {
     this.navCtrl.navigateForward('your-cart');

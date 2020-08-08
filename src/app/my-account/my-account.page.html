@@ -8,7 +8,7 @@
         <img src="../../assets/imgs/logout.png" (click)=fnLogout()>
       </ion-button>
     </ion-buttons>
-    <ion-title class="main-title">My Account</ion-title>
+    <ion-title class="main-title">My Orders</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,21 +16,38 @@
   <ion-grid class="header-content">
     <p class="p-label">Wel Come</p>
   </ion-grid>
-  <ion-card class="card-content" (click)="fnOrderDetails()">
+
+  <ion-row style="margin-top: 12px;">
+    <p class="order-status"><b>Order Status</b></p>
+    
+    <ion-col>
+      <ion-item style="float: right;">   
+        <ion-select class="custom-options">
+          <ion-select-option value="Inprocees">Inprocees</ion-select-option>
+          <ion-select-option value="Completed">Completed</ion-select-option> 
+          <ion-select-option value="Cancel">Cancel</ion-select-option> 
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <div *ngFor="let item of ordersList;">
+  <ion-card class="card-content" (click)="fnOrderDetails(item.id)">
     <ion-row style="margin-top: 15px;">
       <p class="p-order"><b>Order # 00023</b></p>
       <ion-col>
-        <button ion-button class="Pending_btn" (click)="fnPending()">Pending</button>
+        <button ion-button class="Pending_btn">{{item.status}}</button>
       </ion-col>
     </ion-row>
-    <p class="p-date"><b>Date</b> 12/05/2020</p>
+    <p class="p-date"><b>Date </b>{{item.shipping_date}}</p>
 
   </ion-card>
   <ion-card class="card-content-address">
-    <h5 class="add-txt"><img src="../../assets/imgs/location.png" class="img">354,Noida Delhi,New Delhi,India</h5>
+    <h5 class="add-txt"><img src="../../assets/imgs/location.png" class="img">
+      {{item.address_house_no}},{{item.address_city}},{{item.address_state}}</h5>
   </ion-card>
+  </div>
  
-  <ion-card class="card-content">
+  <!-- <ion-card class="card-content">
     <ion-row style="margin-top: 15px;">
       <p class="p-order"><b>Order # 00023</b></p>
       <ion-col>
@@ -42,5 +59,5 @@
   </ion-card>
   <ion-card class="card-content-address">
     <h5 class="add-txt"><img src="../../assets/imgs/location.png" class="img">354,Noida Delhi,New Delhi,India</h5>
-  </ion-card>
+  </ion-card> -->
 </ion-content>

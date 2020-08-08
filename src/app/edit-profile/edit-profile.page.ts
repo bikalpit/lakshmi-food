@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,7 +10,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
-
+  
+  ionicForm: FormGroup;
   profileData: any;
   user_id: any;
   requestObject: any;
@@ -18,13 +20,20 @@ export class EditProfilePage implements OnInit {
   public myToast: any;
   user_id1: any;
 
-  constructor(public navCtrl: NavController, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
+  constructor(public formbulider: FormBuilder,public navCtrl: NavController, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
 
     this.user_id1 = localStorage.getItem("user_id");
     console.log(this.user_id1);
+
+    this.ionicForm = this.formbulider.group({
+      Name: ['', [Validators.required]],
+      Email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      UserName: ['', [Validators.required]],
+      Password: ['', [Validators.required]]
+    });
   }
 
   ngOnInit() {

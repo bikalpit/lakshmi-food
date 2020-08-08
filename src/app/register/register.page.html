@@ -3,45 +3,37 @@
     <div style="margin-bottom: 8%;">
       <ion-label class="sign-label">Register</ion-label>
     </div>
-    <form [formGroup]="ionicForm" (ngSubmit)="fnLogin()" novalidate>
+    <form [formGroup]="ionicForm">
 
       <ion-input type="text" name="name" formControlName="name" [(ngModel)]="register.username" class="login_text"
         placeholder="Username"></ion-input>
-      <small class="error-wrap" *ngIf="isSubmitted && errorControl.name.errors?.required">
-        Name is required.
-      </small>
-      <small class="error-wrap" *ngIf="isSubmitted && errorControl.name.errors?.minlength">
-        Name should be min 2 chars long.
-      </small>
+      <span class="error-wrap" *ngIf="ionicForm.get('name').touched || ionicForm.get('name').dirty">
+        <small *ngIf="ionicForm.get('name').hasError('required')" class="error">Name is required.</small>
+      </span>
 
       <ion-input type="email" name="email" formControlName="email" [(ngModel)]="register.email" class="login_text"
         placeholder="Email Id"></ion-input>
-      <small class="error-wrap" *ngIf="isSubmitted && errorControl.email.errors?.required">
-        Email is required.
-      </small>
-      <small class="error-wrap" *ngIf="isSubmitted && errorControl.email.errors?.minlength">
-        Please provide valid email id.
-      </small>
+      <span class="error-wrap" *ngIf="ionicForm.get('email').touched || ionicForm.get('email').dirty">
+        <small *ngIf="ionicForm.get('email').hasError('required')" class="error">Email is required.</small>
+        <small *ngIf="ionicForm.get('email').hasError('pattern')" class="error">Enter valid email.</small>
+      </span>
 
       <ion-input type="password" name="password" formControlName="password" [(ngModel)]="register.password"
         class="login_text" placeholder="Password"></ion-input>
-      <small class="error-wrap" *ngIf="isSubmitted && errorControl.password.errors?.required">
-        Password is required.
-      </small>
-      <small class="error-wrap" *ngIf="isSubmitted && errorControl.password.errors?.minlength">
-        Password should be min 6 chars long.
-      </small>
+      <span class="error-wrap" *ngIf="ionicForm.get('password').touched || ionicForm.get('password').dirty">
+        <small *ngIf="ionicForm.get('password').hasError('required')" class="error">Password is required.</small>
+      </span>
 
       <ion-input type="password" name="confirm_password" formControlName="confirm_password"
         [(ngModel)]="register.password" class="login_text" placeholder="Confirm Password"></ion-input>
-      <small class="error-wrap" *ngIf="isSubmitted && errorControl.confirm_password.errors?.required">
-        Password is required.
-      </small>
-      <small class="error-wrap" *ngIf="isSubmitted && errorControl.confirm_password.errors?.minlength">
-        Password should be min 6 chars long.
-      </small>
-      <!-- <button ion-button class="login_btn" (click)="fnLogin()">Sign Up</button> -->
-      <button ion-button class="login_btn">Sign Up</button>
+      <span class="error-wrap"
+        *ngIf="ionicForm.get('confirm_password').touched || ionicForm.get('confirm_password').dirty">
+        <small *ngIf="ionicForm.get('confirm_password').hasError('required')" class="error">Confirm Password is
+          required.</small>
+      </span>
+
+      <button ion-button class="login_btn" (click)="fnLogin()">Sign Up</button>
+      <!-- <button ion-button class="login_btn">Sign Up</button> -->
 
     </form>
   </div>

@@ -18,8 +18,9 @@
     color: #E4322E;
     text-align: center;
 }
-.error-wrap {
-    color: red;    
+.error-wrap{
+    color: red; 
+    font-size: 16px;   
 }
 .img{
     
@@ -78,10 +79,11 @@
     height: 45px;
     margin-left: 20px;
     border-radius: 7px;
-    margin-top: 15px;
+    margin-top: 22px;
 }
 .order_no_txt{
     color: #010944;
+    margin-bottom: 5px;
 }
 .SaveAddress_btn{
     background-color: #E4322E;

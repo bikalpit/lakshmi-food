@@ -30,7 +30,8 @@
  <div *ngFor="let item of ordersList;">
   <ion-card class="main-card" (click)="fnOrderSummary(item.id)">
     <ion-grid class="main-content">
-      <p class="order-ids">Order Id: {{item.id}}</p>
+      <p class="order-ids">Order Id: {{item.order_number}}</p>
+      <!-- <p class="order-ids">Order Id: {{item.id}}</p> -->
     </ion-grid>
     <ion-row>
       <ion-col>

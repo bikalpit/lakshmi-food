@@ -36,7 +36,7 @@ export class CustomerOrdersPage implements OnInit {
   }
 
   fnOrderSummary(id) {
-    alert(id);
+    //alert(id);
 
     this.navCtrl.navigateForward('order-summary', { state: id });
 

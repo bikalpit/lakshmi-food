@@ -14,17 +14,20 @@
       </ion-buttons>
     </ion-row>
     <ion-row>
-      <ion-col col-12>
+      <ion-col col-12 *ngIf="name.images">
         <ion-slides pager="true" [options]="slideOpts">
           <ion-slide>
-             <img src="../../assets/imgs/images.jpg" class="img_slide">
+            <img *ngIf="name.images.length > 0"
+              src="{{url.file_url}}assets/uploads/products/thumbs/{{name.images[0].product_image}}"
+              class="img_slide">
+            <img *ngIf="name.images.length == 0" src="../../assets/imgs/not_found.png" class="img_slide">
           </ion-slide>
-          <ion-slide>
+          <!-- <ion-slide>
             <img src="../../assets/imgs/images.jpg" class="img_slide">
           </ion-slide>
           <ion-slide>
             <img src="../../assets/imgs/images.jpg" class="img_slide">
-          </ion-slide>
+          </ion-slide> -->
         </ion-slides>
         <p class="slide-text">{{name.product_name}} {{name.product_weight}}Kg </p>
       </ion-col>

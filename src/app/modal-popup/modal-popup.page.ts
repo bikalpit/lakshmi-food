@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { NavParams, ModalController, IonSlides, NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-modal-popup',
@@ -18,7 +19,7 @@ export class ModalPopupPage implements OnInit {
   weight: any;
   price: any;
   qty: any;
-
+  url:any;
   cartData = [];
   subTotal: any;
 
@@ -44,7 +45,7 @@ export class ModalPopupPage implements OnInit {
     slidesPerView: 3
   };
 
-  constructor(public navParams: NavParams, public modalCtrl: ModalController, public navCtrl: NavController) {
+  constructor(private commonService: CommonService,public navParams: NavParams, public modalCtrl: ModalController, public navCtrl: NavController) {
     //console.log("data-->", navParams.get('name'));
     this.item_qty = 1;
     this.sliderOne =
@@ -100,6 +101,7 @@ export class ModalPopupPage implements OnInit {
   }
 
   ngOnInit() {
+    this.url = this.commonService.url();
   }
   slideNext(object, slideView) {
     slideView.slideNext(500).then(() => {
