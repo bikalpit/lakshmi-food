@@ -33,13 +33,10 @@ export class CustomerOrdersPage implements OnInit {
   ionViewDidEnter(){
     this.fngetOrderList(this.selecTextStatus.select);
   }
-
   ngOnInit() { }
-
   fnOrderSummary(id) {
     this.navCtrl.navigateForward('order-summary', { state: id });
   }
-
   OnChange(value) {
     this.status = value;
     console.log(this.status);
@@ -71,7 +68,6 @@ export class CustomerOrdersPage implements OnInit {
     }, (err) => {
       console.log("Error=>", err);
       this.auth.hideLoader();
-      //this.auth.showError(err.error.message);
     });
 
   }
