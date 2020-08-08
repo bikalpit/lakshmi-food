@@ -4,14 +4,17 @@
 
 <ion-content ion-fixed>
 <div class="back-trans">
-  <ion-buttons class="close_btn">
-    <ion-icon name="close-outline" (click)="closeModal()"></ion-icon>
-    <!-- <ion-button ion-button>Close</ion-button> -->
-  </ion-buttons>
+ 
   <!-- <img src="../../assets/imgs/images.jpg" style="width:50%;height: 50px;"> -->
   <ion-grid>
+    <ion-row class="btnCloseContainer">
+      <ion-buttons class="close_btn">
+        <ion-icon name="close-outline" (click)="closeModal()"></ion-icon>
+        <!-- <ion-button ion-button>Close</ion-button> -->
+      </ion-buttons>
+    </ion-row>
     <ion-row>
-      <ion-col size="12">
+      <ion-col col-12>
         <ion-slides pager="true" [options]="slideOpts">
           <ion-slide>
              <img src="../../assets/imgs/images.jpg" class="img_slide">
@@ -23,14 +26,6 @@
             <img src="../../assets/imgs/images.jpg" class="img_slide">
           </ion-slide>
         </ion-slides>
-        <!-- <ion-slides pager="true" [options]="slideOptsOne" #slideWithNav
-          (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)">
-          <ion-slide *ngFor="let s of sliderOne.slidesItems">
-            <img src="../../assets/imgs/images.jpg" style="width:60%;height: 88px;"> -->
-            <!-- <img src="../../assets/imgs/images.jpg" style="width:60%;height: 88px;margin-left: 53px;"> -->
-          <!-- </ion-slide>
-
-        </ion-slides> -->
         <p class="slide-text">{{name.product_name}} {{name.product_weight}}Kg </p>
       </ion-col>
     </ion-row>
@@ -39,9 +34,8 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <span class="slide-price">₹{{name.product_price}}</span>
+        <span class="slide-price">₹{{name.product_price * item_qty}}</span>
       </ion-col>
-
       <ion-col >
         <ion-note end>
           <ion-icon name="remove-circle" (click)="fnremove()" class="add-remove-circle"></ion-icon>

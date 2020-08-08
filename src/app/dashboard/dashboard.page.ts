@@ -9,19 +9,18 @@ import { MenuController } from '@ionic/angular';
 })
 export class DashboardPage implements OnInit {
 
-    
-    constructor(public menu: MenuController,public navCtrl: NavController,) {
+  constructor(public menu: MenuController, public navCtrl: NavController,) {
     this.menu.enable(true);
-
-     }
+    localStorage.setItem("cartData", '');
+  }
 
   ngOnInit() {
   }
-  fnViewProducts(){
+  fnViewProducts() {
 
     this.navCtrl.navigateForward('product-list');
   }
-  fnProfile(){
+  fnProfile() {
     this.navCtrl.navigateForward('edit-profile');
   }
 }

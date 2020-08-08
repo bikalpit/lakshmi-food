@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController,LoadingController } from '@ionic/angular';
 import { ModalPopupPage } from '../modal-popup/modal-popup.page';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
@@ -23,11 +23,11 @@ export class ProductListPage implements OnInit {
   userAllArray: any;
   url:any;
   
-  constructor(private location: Location,public modalController: ModalController, public navCtrl: NavController, private auth: AuthService,private commonService: CommonService) { }
+  constructor( public loadingCtrl:LoadingController,private location: Location,public modalController: ModalController, public navCtrl: NavController, private auth: AuthService,private commonService: CommonService) { }
 
   ngOnInit() {
     this.getProductList();
-    this.url = this.commonService.url();
+    this.url = this.commonService.url(); 
 
   }
  
@@ -51,19 +51,33 @@ export class ProductListPage implements OnInit {
   }
 
   getProductList() {
-
+    this.showLoader();
     this.requestObject = {
       "page_no": "1",
       "offset": "25"
     };
-
     this.auth.getProductDetails(this.requestObject).subscribe((data: any) => {
+      this.hideLoader();
       this.dataResponse = data.data.product_data;
       this.allProducts = this.dataResponse;
     }, (err) => {
+      this.hideLoader();
       console.log("Error=>", err);
       //this.auth.showError(err.error.message);
     });
   }
-
+  showLoader() {
+    this.loadingCtrl.create({
+      message: 'Please wait...'
+    }).then((res) => {
+      res.present();
+    });
+  }
+  hideLoader() {
+    this.loadingCtrl.dismiss().then((res) => {
+      console.log('Loading dismissed!', res);
+    }).catch((error) => {
+      console.log('error', error);
+    });
+  }
 }

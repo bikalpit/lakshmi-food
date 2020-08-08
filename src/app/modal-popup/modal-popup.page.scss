@@ -2,8 +2,11 @@
     float: right;
     color: #000;
     font-size: 24px;
-    margin-top: 14px;
+    margin-top: 5px;
     margin-right: 5px;
+}
+.btnCloseContainer{
+    justify-content: flex-end !important;
 }
 .slide-text{
     font-family: open sans;
@@ -11,6 +14,7 @@
     font-size: 20px; 
     text-align: center;
     margin-top:10px;
+    
 }
 .slide-price{
     font-family: open sans;
@@ -105,4 +109,9 @@ ion-note {
 
 .back-trans{
     background-color: white;
+}
+.md .swiper-slide {
+    width: 340px !important;
+    height: 125px !important;
+    color: #E4322E !important;
 }

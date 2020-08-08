@@ -1,4 +1,4 @@
-import { Component, OnInit, AbstractType,ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, AbstractType, ChangeDetectorRef } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 
@@ -14,7 +14,7 @@ export class SelectAddressPage implements OnInit {
   addressList = [];
   mainSubTotal: any;
   cartData: any;
-  address_id:any;
+  address_id: any;
 
   constructor(public navCtrl: NavController, private auth: AuthService, private change: ChangeDetectorRef) {
     this.user_id = localStorage.getItem("id");
@@ -22,11 +22,11 @@ export class SelectAddressPage implements OnInit {
     this.mainSubTotal = localStorage.getItem("mainsubtotal");
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+  ionViewDidEnter() {
     this.fngetAddressDetails();
-
   }
-  
+
   fnAddNewAddress() {
     this.navCtrl.navigateForward('add-address');
   }
@@ -39,18 +39,20 @@ export class SelectAddressPage implements OnInit {
     this.requestObject = {
       "user_id": this.user_id
     }
-
+    this.auth.showLoader();
     this.auth.getAddressList(this.requestObject).subscribe((data: any) => {
+      this.auth.hideLoader();
       this.dataResponse = data.data;
       this.addressList = this.dataResponse;
 
       this.addressList.forEach(element => {
-        element.is_check=false;
+        element.is_check = false;
       });
 
     }, (err) => {
       console.log("Error=>", err);
       //this.auth.showError(err.error.message);
+      this.auth.hideLoader();
     });
   }
 
@@ -64,8 +66,8 @@ export class SelectAddressPage implements OnInit {
   //   console.log(this.add_id);
   // }
   fnProceedToCheckout() {
-   
-    if(this.address_id=='' || this.address_id==undefined){
+
+    if (this.address_id == '' || this.address_id == undefined) {
       this.auth.showToast('Please select address');
       return;
     }
@@ -74,10 +76,10 @@ export class SelectAddressPage implements OnInit {
 
     this.cartData.forEach(element => {
       sendcartDate.push({
-        'productId' : element.id,
+        'productId': element.id,
         'product_price': element.price,
         'product_qty': element.qty,
-        'totalPrice' : parseInt(element.price)*parseInt(element.qty)
+        'totalPrice': parseInt(element.price) * parseInt(element.qty)
       });
     });
 
@@ -85,41 +87,40 @@ export class SelectAddressPage implements OnInit {
       "userId": this.user_id,
       "totalAmount": this.mainSubTotal,
       "addressId": this.address_id,
-      "cartData":sendcartDate
+      "cartData": sendcartDate
     }
-  
+
     this.auth.orderPlace(this.requestObject).subscribe((data: any) => {
-      if(data.status==true){
+      if (data.status == true) {
         localStorage.removeItem('cartData');
-        localStorage.setItem('OrderNumber',data.data.order_id);
+        localStorage.setItem('OrderNumber', data.data.order_id);
         this.navCtrl.navigateForward('success-order');
-      }else{
+      } else {
         this.auth.showToast(data.message);
       }
 
-    },(err) => {
+    }, (err) => {
       console.log("Error=>", err);
       //this.auth.showToast(err.error.message);
     });
 
   }
 
-  fncheckbox(event,index){
-    
-    this.address_id ='';
-
-    var i=0;
+  fncheckbox(event, index) {
+  
+    this.address_id = '';
+    var i = 0;
     this.addressList.forEach(element => {
-      element.is_check=false;
-      if(event.detail.checked==true && index==i){
-         this.addressList[index].is_check = event.detail.checked;
-         this.address_id=this.addressList[index].id;
+      element.is_check = false;
+      if (event.detail.checked == true && index == i) {
+        this.addressList[index].is_check = event.detail.checked;
+        this.address_id = this.addressList[index].id;
       }
       i++;
     });
-
+    console.log(this.addressList);
+    console.log(this.address_id);
     this.change.detectChanges();
-
   }
 
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController } from '@ionic/angular';
+import { NavController, ModalController, LoadingController, ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-your-cart',
@@ -26,6 +27,8 @@ export class YourCartPage implements OnInit {
   mainSubTotal: any;
   current_array: any;
   constructor(private location: Location,
+    public loadingCtrl: LoadingController,
+    private auth: AuthService, public toast: ToastController,
     public navCtrl: NavController,
     private route: ActivatedRoute,
     private router: Router,
@@ -57,13 +60,21 @@ export class YourCartPage implements OnInit {
 
   }
 
- 
+
   cancelData(id) {
     console.log(id);
 
+   
 
-    let index = this.cartData.indexOf(id);
-    this.cartData.splice(index, 1);
+  /*  let index = this.cartData.indexOf(id);
+    this.cartData.splice(index, 1);*/
+
+     let index = this.cartData.indexOf(id);
+
+    if(index > -1){
+      this.cartData.splice(index, 1);
+    }
+     
     console.log("new array", this.cartData);
 
     localStorage.setItem("cartData", JSON.stringify(this.cartData));
@@ -83,10 +94,9 @@ export class YourCartPage implements OnInit {
       localStorage.setItem("mainsubtotal", this.mainSubTotal);
       console.log(this.mainSubTotal);
 
-    });
+    }); 
 
   }
-
   ngOnInit() {
 
   }
@@ -95,11 +105,17 @@ export class YourCartPage implements OnInit {
   }
 
   fnProceedToCheckout() {
-    this.navCtrl.navigateForward('select-address');
+    if (this.mainSubTotal !== 0) {
+      this.navCtrl.navigateForward('select-address');
+    } else {
+      this.auth.showToast('Please select atleast one Item!');
+    }
+
 
   }
   fnBackToProductList() {
     this.navCtrl.navigateForward('product-list');
 
   }
+
 }

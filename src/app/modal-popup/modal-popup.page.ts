@@ -20,8 +20,8 @@ export class ModalPopupPage implements OnInit {
   qty: any;
 
   cartData = [];
-  subTotal:any;
-  
+  subTotal: any;
+
 
   sliderOne: any;
   sliderTwo: any;
@@ -141,60 +141,49 @@ export class ModalPopupPage implements OnInit {
     });
   }
 
-  fnAddToCart(id,name, weight, price, qty) {
-   
+  fnAddToCart(id, name, weight, price, qty) {
+
     this.cartData = [];
 
-    if(localStorage.getItem("cartData")){
-      
+    if (localStorage.getItem("cartData")) {
+
       this.cartData = JSON.parse(localStorage.getItem("cartData"));
       var product_exits = false;
 
       this.cartData.forEach(element => {
-        if(element.id==id){
-          element.qty = element.qty+qty;
-          product_exits =true;
+        if (element.id == id) {
+          element.qty = element.qty + qty;
+          product_exits = true;
         }
       });
 
-      if(product_exits == false){
+      if (product_exits == false) {
         this.cartData.push({
-          id : id,
+          id: id,
           name: name,
           weight: weight,
           price: price,
           qty: qty
         });
-        
-      }
-      localStorage.setItem("cartData",JSON.stringify(this.cartData));
 
-    }else{
+      }
+      localStorage.setItem("cartData", JSON.stringify(this.cartData));
+
+    } else {
 
       this.cartData.push({
-        id : id,
+        id: id,
         name: name,
         weight: weight,
         price: price,
         qty: qty
       });
-      
-      localStorage.setItem("cartData",JSON.stringify(this.cartData));
+
+      localStorage.setItem("cartData", JSON.stringify(this.cartData));
     }
 
     console.log(this.cartData);
     this.navCtrl.navigateForward('your-cart');
-
-   
-    //console.log("new items",this.cartData);
-    //   this.modalCtrl.dismiss({
-    //     'dismissed': true
-    //   });
-    //   const params = {
-    //     data,
-    //     qty
-    //  };
-    //   this.navCtrl.navigateForward('your-cart',{ state : params });
 
   }
 
@@ -209,7 +198,7 @@ export class ModalPopupPage implements OnInit {
     }
     console.log("hello");
   }
-  
+
   fnadd() {
     this.item_qty += 1;
     console.log(this.item_qty + 1);
