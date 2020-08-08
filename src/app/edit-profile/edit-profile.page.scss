@@ -8,6 +8,12 @@
  .avtar{
    text-align: center;
  }
+ .error-wrap{
+  color: red;
+    font-size: 16px;
+    float: left;
+    margin-top: 3px;  
+}
  .img{
    width: 50%;
    margin-top: 15px;  
@@ -22,7 +28,7 @@
    height: 45px;
    margin-left: 20px;
    border-radius: 7px;
-   margin-top: 15px;
+   margin-top: 20px;
 }
 .order_no_txt{
    text-align: start;

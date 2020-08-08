@@ -17,11 +17,13 @@ export class MyAccountPage implements OnInit {
   ordersList = [];
   dataResponse: any;
   requestObject: any;
+  id:any;
 
   constructor(private datePipe: DatePipe,private auth: AuthService,public navCtrl: NavController,public menu: MenuController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
+
    }
 
   ngOnInit() {
@@ -35,7 +37,7 @@ export class MyAccountPage implements OnInit {
       this.ordersList = this.dataResponse;
 
       this.ordersList.forEach((element) => {
-        element.shipping_date = this.datePipe.transform(new Date(element.shipping_date), "dd-MM-yyyy");
+        element.create_at = this.datePipe.transform(new Date(element.create_at), "dd-MM-yyyy");
       });
 
       console.log("order list-->", this.ordersList);
@@ -46,9 +48,10 @@ export class MyAccountPage implements OnInit {
       //this.auth.showError(err.error.message);
     });
   }
+  
   fnOrderDetails(id){
     alert(id);
-    this.navCtrl.navigateForward('order-details');
+    this.navCtrl.navigateForward('order-details', { state: id });
   }
 
   fnLogout(){
