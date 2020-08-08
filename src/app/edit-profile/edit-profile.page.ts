@@ -46,13 +46,15 @@ export class EditProfilePage implements OnInit {
       "user_id": this.user_id,
     }
     console.log(this.requestObject);
-
+    this.auth.showLoader();
     this.auth.getUsersDetails(this.requestObject).subscribe((data: any) => {
+      this.auth.hideLoader();
       console.log(data);
       this.AllUserArray = data.data;
       console.log("data--->", this.AllUserArray);
 
     }, (err) => {
+      this.auth.hideLoader();
       console.log("Error=>", err);
       //this.auth.showError(err.error.message);
     });
@@ -66,8 +68,10 @@ export class EditProfilePage implements OnInit {
         "email": this.AllUserArray.email,
         "username": this.AllUserArray.username
       };
+      this.auth.showLoader();
       console.log(this.requestObject);
       this.auth.editProfile(this.requestObject).subscribe((data: any) => {
+        this.auth.hideLoader();
         console.log(data);
         this.AllUserArray = data;
         if (this.AllUserArray.status == true) {
@@ -77,6 +81,7 @@ export class EditProfilePage implements OnInit {
           this.auth.showToast('Profile Not update ');
         }
       }, (err) => {
+        this.auth.hideLoader();
         console.log("Error=>", err);
         //this.auth.showError(err.error.message);
       });
@@ -86,8 +91,10 @@ export class EditProfilePage implements OnInit {
   }
 
   fnCancelOrder() {
-    this.navCtrl.navigateForward('my-account');
+    this.navCtrl.navigateForward('dashboard');
   }
-
-
+  fnBackToYourCart() {
+    this.navCtrl.navigateForward('dashboard');
+  }
+ 
 }

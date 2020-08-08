@@ -72,5 +72,7 @@ export class CustomerOrdersPage implements OnInit {
     });
 
   }
-
+  fnBackToYourCart() {
+    this.navCtrl.navigateForward('dashboard');
+  }
 }
