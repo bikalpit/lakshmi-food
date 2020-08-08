@@ -10,20 +10,24 @@ import { MenuController } from '@ionic/angular';
 export class DashboardPage implements OnInit {
 
   constructor(public menu: MenuController, public navCtrl: NavController,) {
-    this.menu.enable(true);
+    // this.menu.enable(true);
     localStorage.setItem("cartData", '');
   }
- 
+  ionViewDidEnter() {
+    this.menu.enable(true);
+  }
+  ionViewWillEnter() {
+    this.menu.enable(true);
+  }
   ngOnInit() {
   }
   fnViewProducts() {
-
     this.navCtrl.navigateForward('product-list');
   }
   fnProfile() {
     this.navCtrl.navigateForward('edit-profile');
   }
-  myOrder(){
+  myOrder() {
     this.navCtrl.navigateForward('customer-orders');
   }
 }
