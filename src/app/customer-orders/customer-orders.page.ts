@@ -17,34 +17,30 @@ export class CustomerOrdersPage implements OnInit {
   ordersList = [];
   dataResponse: any;
   status: any;
+  selecTextStatus = {
+    select: null
+  };
 
   constructor(private datePipe: DatePipe,
     public menu: MenuController,
     public navCtrl: NavController,
     private auth: AuthService) {
-      
+    this.selecTextStatus.select = "New";
     this.menu.enable(true);
-
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
-
+  }
+  ionViewDidEnter(){
+    this.fngetOrderList(this.selecTextStatus.select);
   }
 
-  ngOnInit() {
-    
-    
-  }
+  ngOnInit() { }
 
   fnOrderSummary(id) {
-    alert(id);
-
     this.navCtrl.navigateForward('order-summary', { state: id });
-
   }
 
   OnChange(value) {
-    //this.ordersList = [];
-    //alert(value);
     this.status = value;
     console.log(this.status);
     this.fngetOrderList(value);
@@ -57,9 +53,11 @@ export class CustomerOrdersPage implements OnInit {
       "order_status": value,
       "user_id": this.user_id
     }
+    this.auth.showLoader();
     console.log(this.requestObject);
     this.auth.getOrderList(this.requestObject).subscribe((data: any) => {
       console.log(data);
+      this.auth.hideLoader();
       this.dataResponse = data.data;
       this.ordersList = this.dataResponse;
 
@@ -72,6 +70,7 @@ export class CustomerOrdersPage implements OnInit {
 
     }, (err) => {
       console.log("Error=>", err);
+      this.auth.hideLoader();
       //this.auth.showError(err.error.message);
     });
 

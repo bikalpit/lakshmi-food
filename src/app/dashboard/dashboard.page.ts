@@ -13,7 +13,7 @@ export class DashboardPage implements OnInit {
     this.menu.enable(true);
     localStorage.setItem("cartData", '');
   }
-
+ 
   ngOnInit() {
   }
   fnViewProducts() {
@@ -22,5 +22,8 @@ export class DashboardPage implements OnInit {
   }
   fnProfile() {
     this.navCtrl.navigateForward('edit-profile');
+  }
+  myOrder(){
+    this.navCtrl.navigateForward('customer-orders');
   }
 }
