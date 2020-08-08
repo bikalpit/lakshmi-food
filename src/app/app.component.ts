@@ -100,9 +100,10 @@ export class AppComponent {
   }
 
   fnDashboard() {
-    this.menu.enable(true);
+    /* this.menu.enable(true);
     this.navCtrl.navigateForward('dashboard');
-    this.menu.enable(false);
+    this.menu.enable(false); */
+    this.menu.toggle();
   }
 
   fnMyOrders() {
