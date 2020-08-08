@@ -67,6 +67,7 @@ export class AppComponent {
   openCustom() {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');
+    
   }
 
 

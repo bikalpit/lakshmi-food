@@ -16,6 +16,8 @@
 </ion-header>
 
 <ion-content>
+  <div *ngIf="ordersDetails">
+
   <ion-card class="main-card">
     <ion-grid>
       <ion-row>
@@ -32,16 +34,18 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <h4 class="p-price">Pending</h4>
+          <!-- <h4 class="p-price">{{ordersDetails.status}}</h4> -->
+          <h4 class="p-price" *ngIf="ordersDetails.status == 'New'">Pending</h4>
         </ion-col>
 
         <ion-col>
-          <h6 class="p-date">12/05/2020</h6>
+          <h6 class="p-date">{{orderDate}}</h6>
         </ion-col>
 
       </ion-row>
     </ion-grid>
   </ion-card>
+  </div>
   <ion-card class="cust-profile">
     <p class="profile-txt"><b>Customer Profile</b></p>
     <ion-row>
