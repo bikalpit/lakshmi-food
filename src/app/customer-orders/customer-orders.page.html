@@ -17,7 +17,7 @@
     <p class="order-status"><b>Order Status</b></p>
     <ion-col>
       <ion-item style="float: right;">   
-        <ion-select  #item class="custom-options" (ionChange)="OnChange(item.value)">
+        <ion-select  #item class="custom-options" [(ngModel)]="selecTextStatus.select" (ionChange)="OnChange(item.value)">
           <ion-select-option value="New">Inprocees</ion-select-option>
           <ion-select-option value="Delivered">Completed</ion-select-option> 
           <ion-select-option value="cancel">Cancel</ion-select-option> 
