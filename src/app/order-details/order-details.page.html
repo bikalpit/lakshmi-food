@@ -22,7 +22,7 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <h4 class="p-label2">Order # 00023</h4>
+          <h4 class="p-label2">Order # {{ordersDetails.order_number}}</h4>
         </ion-col>
 
         <ion-col>
@@ -85,29 +85,30 @@
 
 
   </ion-card>
+  <div *ngFor="let item of orderItem;">
   <ion-card class="main-card-item">
 
     <h5 class="p-label3"><b>Items</b></h5>
-    <h6 class="p-qty">Atta 5Kg</h6>
+    <h6 class="p-qty">{{item.product_name}} 5Kg</h6>
 
     <ion-row>
       <ion-col>
-        <h6 class="p-qty">Qty 2 * ₹100</h6>
+        <h6 class="p-qty">Qty {{item.qty}} * ₹{{item.product_price}}</h6>
       </ion-col>
 
-      <h6 class="p-label4">₹200.00</h6>
+      <h6 class="p-label4">₹{{item.price}}</h6>
     </ion-row>
-
     
-    <h6 class="p-qty1">Atta 5Kg</h6>
+    <!-- <h6 class="p-qty1">Atta 5Kg</h6>
     <ion-row>
       <ion-col>
         <h6 class="p-qty">Qty 1 * ₹220</h6>
       </ion-col>
    
     <h6 class="p-label4">₹220.00</h6>
-    </ion-row>
+    </ion-row> -->
   </ion-card>
+  </div>
   <ion-row class="cancel_completed_btn">
     <ion-col>
       <button ion-button class="cancelOrder_btn" (click)="fnCancelOrder()">Cancel</button>  
