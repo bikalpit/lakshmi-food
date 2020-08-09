@@ -1,66 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { Location } from '@angular/common';
+import {  Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
-
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-order-details',
-  templateUrl: './order-details.page.html',
-  styleUrls: ['./order-details.page.scss'],
+  selector: 'app-summary',
+  templateUrl: './summary.page.html',
+  styleUrls: ['./summary.page.scss'],
   providers: [DatePipe]
 
 })
-export class OrderDetailsPage implements OnInit {
+export class SummaryPage implements OnInit {
 
-  requestObject: any;
-  ordersDetails = [];
-  orderItem = [];
-  dataResponse: any;
-  id: any;
-  orderDate: any;
-  date: any;
-  cartData: any;
-  mainSubTotal: any;
-  user_id: any;
-  ordersList = [];
+id:any;
+requestObject: any;
+ordersDetails = [];
+orderItem = [];
+dataResponse: any;
+orderDate: any;
+date: any;
 
-  constructor(private router: Router, private datePipe: DatePipe, private auth: AuthService, private location: Location, public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, private location: Location,private datePipe: DatePipe,private auth: AuthService, private router: Router) { 
     const state = this.router.getCurrentNavigation().extras.state
     if (state) {
       this.id = state;
       console.log("order id-->", this.id);
     }
-
-    this.user_id = localStorage.getItem("id");
-    console.log(this.user_id);
-
-
+    
   }
 
   ngOnInit() {
     this.getOrderDetails();
-    //this.fnGetCustomerDetails();
   }
 
   goBack() {
     this.location.back();
-  }
-
-  fnCancelOrder(id,orderNo) {
-    //alert(id);
-    let params = {
-      id,
-      orderNo
-    }
-    console.log(params);
-    this.navCtrl.navigateForward('cancel-order',{state : params});
 
   }
-
   getOrderDetails() {
 
     this.requestObject = {
@@ -81,7 +59,7 @@ export class OrderDetailsPage implements OnInit {
       console.log("order data-->", this.ordersDetails);
 
       this.orderItem = this.dataResponse.order_item;
-      console.log("order item data-->", this.orderDate);
+      console.log("order list data-->", this.orderDate);
 
     }, (err) => {
       console.log("Error=>", err);
@@ -89,7 +67,17 @@ export class OrderDetailsPage implements OnInit {
     });
   }
 
+  fnCancelOrder(id,orderNo){
+    //alert(orderNo);
 
+    let params = {
+      id,
+      orderNo
+    }
+    console.log(params);
+    this.navCtrl.navigateForward('cancel-order',{state : params});
+
+  }
 
 
 }

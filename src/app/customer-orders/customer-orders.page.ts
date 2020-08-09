@@ -28,7 +28,7 @@ export class CustomerOrdersPage implements OnInit {
     this.selecTextStatus.select = "New";
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
-    console.log(this.user_id);
+    console.log("id-->",this.user_id);
   }
   ionViewDidEnter(){
     this.fngetOrderList(this.selecTextStatus.select);
@@ -36,8 +36,9 @@ export class CustomerOrdersPage implements OnInit {
   ngOnInit() { }
   
   fnOrderSummary(id) {
-    this.navCtrl.navigateForward('order-summary', { state: id });
+    this.navCtrl.navigateForward('summary',{state:id});
   }
+
   OnChange(value) {
     this.status = value;
     console.log(this.status);

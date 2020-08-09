@@ -86,7 +86,11 @@ const routes: Routes = [
   {
     path: 'edit-address',
     loadChildren: () => import('./edit-address/edit-address.module').then( m => m.EditAddressPageModule)
+  },  {
+    path: 'summary',
+    loadChildren: () => import('./summary/summary.module').then( m => m.SummaryPageModule)
   },
+
 ];
 
 @NgModule({

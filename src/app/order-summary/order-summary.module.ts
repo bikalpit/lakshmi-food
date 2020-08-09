@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { OrderSummaryPageRoutingModule } from './order-summary-routing.module';
 
 import { OrderSummaryPage } from './order-summary.page';
+import { Downloader } from '@ionic-native/downloader/ngx';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    Downloader,
     OrderSummaryPageRoutingModule
   ],
   declarations: [OrderSummaryPage]

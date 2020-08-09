@@ -13,18 +13,19 @@ import { DatePipe } from '@angular/common';
 })
 export class MyAccountPage implements OnInit {
 
-  user_id:any;
+  user_id: any;
   ordersList = [];
   dataResponse: any;
   requestObject: any;
-  id:any;
+  id: any;
+  value: any;
 
-  constructor(private datePipe: DatePipe,private auth: AuthService,public navCtrl: NavController,public menu: MenuController) {
+  constructor(private datePipe: DatePipe, private auth: AuthService, public navCtrl: NavController, public menu: MenuController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
 
-   }
+  }
 
   ngOnInit() {
     this.requestObject = {
@@ -48,13 +49,19 @@ export class MyAccountPage implements OnInit {
       //this.auth.showError(err.error.message);
     });
   }
-  
-  fnOrderDetails(id){
-    alert(id);
+
+  OnChange(value) {
+    this.value = value;
+    console.log(this.value);
+  }
+
+  fnOrderDetails(id) {
+
+   
     this.navCtrl.navigateForward('order-details', { state: id });
   }
 
-  fnLogout(){
+  fnLogout() {
     this.navCtrl.navigateForward('home');
   }
 }

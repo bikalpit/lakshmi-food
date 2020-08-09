@@ -17,11 +17,13 @@ export class RegisterPage implements OnInit {
   onlynumeric = /^-?(0|[1-9]\d*)?$/
   isSubmitted = false;
   public myToast: any;
+  dataResponse:any;
+  emailFormat = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/
 
   constructor(public navCtrl: NavController, private auth: AuthService, public formbulider: FormBuilder, public toast: ToastController) { 
     this.ionicForm = this.formbulider.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      email: ['', [Validators.required, Validators.pattern(this.emailFormat)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirm_password: ['', [Validators.required, Validators.minLength(6)]]
     });
@@ -34,6 +36,7 @@ export class RegisterPage implements OnInit {
 
   fnLogin() {
     if (this.register.username != '' && this.register.email != '' && this.register.password) {
+     
       this.requestObject = {
         "username": this.register.username,
         "email": this.register.email,
@@ -42,9 +45,12 @@ export class RegisterPage implements OnInit {
 
       this.auth.signup(this.requestObject).subscribe((data: any) => {
         console.log(data);
-
+        this.dataResponse = data;
+        if (this.dataResponse.status == true) {
         this.navCtrl.navigateForward('/home');
-
+        }else{
+            this.auth.showToast('Please enter valid Data');
+        }
       }, (err) => {
         console.log("Error=>", err);
         //this.auth.showError(err.error.message);
