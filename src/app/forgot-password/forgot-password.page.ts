@@ -33,10 +33,12 @@ export class ForgotPasswordPage implements OnInit {
       this.requestObject = {
         "email": this.email
       };
+      this.auth.showLoader();
       console.log(this.requestObject);
       //this.navCtrl.navigateForward('/otp');
       this.auth.forgotPassword(this.requestObject).subscribe((data: any) => {
         console.log(data);
+        this.auth.hideLoader();
         this.dataResponse = data;
         if (this.dataResponse.status == true) {
 
@@ -46,6 +48,7 @@ export class ForgotPasswordPage implements OnInit {
 
         }
       }, (err) => {
+        this.auth.hideLoader();
         console.log("Error=>", err);
         //this.auth.showError(err.error.message);
       });

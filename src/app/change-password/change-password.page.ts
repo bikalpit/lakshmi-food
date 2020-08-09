@@ -38,18 +38,21 @@ export class ChangePasswordPage implements OnInit {
         "old_password": this.oldPass,
         "password": this.newPass
       };
+      this.auth.showLoader();
       console.log(this.requestObject);
       this.auth.changePassword(this.requestObject).subscribe((data: any) => {
+        this.auth.hideLoader();
         console.log(data);
         this.dataResponse = data;
         if (this.dataResponse.status == true) {
 
-          this.navCtrl.navigateForward('/home');
+          this.navCtrl.navigateForward('/dashboard');
         }
         else {
           this.auth.showToast('Old password not match ');
         }
       }, (err) => {
+        this.auth.hideLoader();
         console.log("Error=>", err);
         //this.auth.showError(err.error.message);
       });
@@ -59,5 +62,7 @@ export class ChangePasswordPage implements OnInit {
     }
   }
 
-
+  fnBackToYourCart() {
+    this.navCtrl.navigateForward('dashboard');
+  }
 }

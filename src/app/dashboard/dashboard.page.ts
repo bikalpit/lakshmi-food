@@ -13,12 +13,7 @@ export class DashboardPage implements OnInit {
     // this.menu.enable(true);
     localStorage.setItem("cartData", '');
   }
-  ionViewDidEnter() {
-    this.menu.enable(true);
-  }
-  ionViewWillEnter() {
-    this.menu.enable(true);
-  }
+ 
   ngOnInit() {
   }
   fnViewProducts() {
