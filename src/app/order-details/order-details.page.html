@@ -36,6 +36,9 @@
         <ion-col>
           <!-- <h4 class="p-price">{{ordersDetails.status}}</h4> -->
           <h4 class="p-price" *ngIf="ordersDetails.status == 'New'">Pending</h4>
+          <h4 class="p-price" *ngIf="ordersDetails.status == 'Shipped'">Shipped</h4>
+          <h4 class="p-price" *ngIf="ordersDetails.status == 'Approve'">Approve</h4>
+          <h4 class="p-price" *ngIf="ordersDetails.status == 'cancel'">Cancel</h4>
         </ion-col>
 
         <ion-col>
@@ -45,7 +48,7 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-  </div>
+  
   <ion-card class="cust-profile">
     <p class="profile-txt"><b>Customer Profile</b></p>
     <ion-row>
@@ -54,7 +57,7 @@
       </ion-col>
 
       <ion-col>
-        <h6 class="p-label-nm">Mr. Mayur Sharma</h6>
+        <h6 class="p-label-nm">{{ordersDetails.name}}</h6>
       </ion-col>
 
     </ion-row>
@@ -64,7 +67,7 @@
       </ion-col>
 
       <ion-col>
-        <h6 class="p-label-nm">mayursharma@gmail.com</h6>
+        <h6 class="p-label-nm">{{ordersDetails.email}}</h6>
       </ion-col>
 
     </ion-row>
@@ -74,17 +77,17 @@
       </ion-col>
 
       <ion-col>
-        <h6 class="p-label-nm">4444333634</h6>
+        <h6 class="p-label-nm">{{ordersDetails.address_mobile_no}}</h6>
       </ion-col>
 
     </ion-row>
   </ion-card>
   <ion-card class="main-card-item">
     <p class="profile-txt"><b>Address</b></p>
-    <h6 class="add-txt"><img src="../../assets/imgs/location.png" class="img">354,Noida Delhi,New Delhi,India</h6>
-
-
+    <h6 class="add-txt"><img src="../../assets/imgs/location.png" class="img">{{ordersDetails.address_house_no}},{{ordersDetails.address_city}}{{ordersDetails.address_state}}</h6>
   </ion-card>
+  
+
   <div *ngFor="let item of orderItem;">
   <ion-card class="main-card-item">
 
@@ -109,14 +112,17 @@
     </ion-row> -->
   </ion-card>
   </div>
+  
   <ion-row class="cancel_completed_btn">
-    <ion-col>
-      <button ion-button class="cancelOrder_btn" (click)="fnCancelOrder()">Cancel</button>  
+    <ion-col *ngIf="ordersDetails.status != 'cancel'">
+      <button ion-button class="cancelOrder_btn" (click)="fnCancelOrder(ordersDetails.id,ordersDetails.order_number)">Cancel</button>  
     </ion-col>
 
     <ion-col>
-      <button ion-button class="completed_btn" (click)="fnCompleted()">Completed</button>
+      <button ion-button *ngIf="ordersDetails.status == 'Shipped'" class="completed_btn" (click)="fnCompleted()">Accept</button>
+      <button ion-button *ngIf="ordersDetails.status == 'Pickup'" class="completed_btn" (click)="fnCompleted()">Completed</button>
+      <button ion-button *ngIf="ordersDetails.status == 'Delivered'" class="completed_btn" (click)="fnCompleted()">Delivered</button>
     </ion-col>
   </ion-row>
-
+</div>
 </ion-content>

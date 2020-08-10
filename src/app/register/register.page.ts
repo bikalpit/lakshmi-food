@@ -17,6 +17,8 @@ export class RegisterPage implements OnInit {
   onlynumeric = /^-?(0|[1-9]\d*)?$/
   isSubmitted = false;
   public myToast: any;
+  dataResponse:any;
+  emailFormat = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/
 
   constructor(public navCtrl: NavController, private auth: AuthService, public formbulider: FormBuilder, public toast: ToastController) { 
     this.ionicForm = this.formbulider.group({

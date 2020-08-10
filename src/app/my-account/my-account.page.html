@@ -22,16 +22,17 @@
     
     <ion-col>
       <ion-item style="float: right;">   
-        <ion-select class="custom-options">
-          <ion-select-option value="Inprocees">Inprocees</ion-select-option>
-          <ion-select-option value="Completed">Completed</ion-select-option> 
+        <ion-select  #item class="custom-options" (ionChange)="OnChange(item.value)">
+          <ion-select-option value="New">Pending</ion-select-option>
+          <ion-select-option value="Shipped">Shipped</ion-select-option> 
+          <ion-select-option value="Approve">Approve</ion-select-option> 
           <ion-select-option value="Cancel">Cancel</ion-select-option> 
         </ion-select>
       </ion-item>
     </ion-col>
   </ion-row>
   <div *ngFor="let item of ordersList;">
-  <ion-card class="card-content" (click)="fnOrderDetails(item.id)">
+  <ion-card class="card-content" (click)="fnOrderDetails(item.id,item.status)">
     <ion-row style="margin-top: 15px;">
       <p class="p-order"><b>Order # {{item.order_number}}</b></p>
       <ion-col>
@@ -39,7 +40,7 @@
         <button ion-button *ngIf="item.status == 'New'" class="Pending_btn">Pending</button>
         <button ion-button *ngIf="item.status == 'Shipped'" class="Pending_btn">Shipped</button>
         <button ion-button *ngIf="item.status == 'Approve'" class="Pending_btn">Approve</button>
-        <button ion-button *ngIf="item.status == 'Reject'" class="Pending_btn">Cancel</button>
+        <button ion-button *ngIf="item.status == 'cancel'" class="Pending_btn">Cancel</button>
       </ion-col>
     </ion-row>
     <p class="p-date"><b>Date </b>{{item.create_at}}</p>
