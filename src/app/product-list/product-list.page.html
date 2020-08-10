@@ -17,7 +17,7 @@
   <!-- <ion-refresher (ionRefresh)="doRefresh($event)" style="color:green">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher> -->
-<div *ngFor="let item of allProducts;">
+<div *ngFor="let item of lazyListProduct;">
   <ion-card class="card" (click)="showModal(item)">
     <ion-grid>
       <ion-row >
@@ -78,5 +78,8 @@
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll> -->
-
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="!isloadmore">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+</ion-infinite-scroll>
 </ion-content>

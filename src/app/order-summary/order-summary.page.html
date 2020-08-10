@@ -14,7 +14,7 @@
     <ion-title class="main-title">Order Summary</ion-title>
   </ion-toolbar>
 </ion-header>
-
+ 
 <ion-content>
 <div *ngIf="ordersDetails">
   <ion-card class="main-card">
@@ -27,7 +27,7 @@
         <ion-col>
           <h6 class="p-label">Order Date</h6>
         </ion-col>
-
+ 
       </ion-row>
     </ion-grid>
     <ion-grid>
@@ -97,7 +97,7 @@
     </ion-grid>
   </ion-card>
 </div>
-  <ion-row style="margin-top: 14%;">
+  <ion-row style="margin-top: 14%;" *ngIf="ordersDetails.status==='New'">
     <ion-col>
       <button ion-button class="cancelOrder_btn" (click)="fnCancelOrder()">Cancel Order</button>
     

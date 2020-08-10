@@ -25,7 +25,7 @@ export class CustomerOrdersPage implements OnInit {
     public menu: MenuController,
     public navCtrl: NavController,
     private auth: AuthService) {
-    this.selecTextStatus.select = "New";
+    this.selecTextStatus.select = "New"; 
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
@@ -35,8 +35,8 @@ export class CustomerOrdersPage implements OnInit {
   }
   ngOnInit() { }
   
-  fnOrderSummary(id) {
-    this.navCtrl.navigateForward('order-summary', { state: id });
+  fnOrderSummary(id,order_number) {
+    this.navCtrl.navigateForward('order-summary', { state: {id:id,order_number:order_number} });
   }
   OnChange(value) {
     this.status = value;
@@ -47,7 +47,6 @@ export class CustomerOrdersPage implements OnInit {
   fngetOrderList = value => {
 
     this.requestObject = {
-
       "order_status": value,
       "user_id": this.user_id
     }
@@ -64,8 +63,6 @@ export class CustomerOrdersPage implements OnInit {
       });
 
       console.log("order list-->", this.ordersList);
-
-
     }, (err) => {
       console.log("Error=>", err);
       this.auth.hideLoader();
