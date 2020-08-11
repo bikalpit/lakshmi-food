@@ -17,7 +17,5 @@ export class SuccessOrderPage implements OnInit {
   }
   fnViewProduct(){
     this.navCtrl.navigateForward('customer-orders');
-
   }
-
 }

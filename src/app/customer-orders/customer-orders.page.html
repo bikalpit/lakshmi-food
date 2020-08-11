@@ -24,11 +24,11 @@
         </ion-select>
       </ion-item>
     </ion-col>
-  
+   
   </ion-row>
   
  <div *ngFor="let item of ordersList;">
-  <ion-card class="main-card" (click)="fnOrderSummary(item.id)">
+  <ion-card class="main-card" (click)="fnOrderSummary(item.id,item.order_number)">
     <ion-grid class="main-content">
       <p class="order-ids">Order Id: {{item.order_number}}</p>
       <!-- <p class="order-ids">Order Id: {{item.id}}</p> -->
@@ -50,51 +50,4 @@
 <div *ngIf="!ordersList?.length > 0">
   <p class="norecord-label">No Records Found</p>
 </div>
-  <!-- <ion-card class="main-card">
-    <ion-grid class="main-content">
-      <p class="order-ids">Order Id: 023459430</p>
-    </ion-grid>
-    <ion-row>
-      <ion-col>
-        <p class="d-date">Delivery Date</p>
-        <p class="date"><b>2020-03-05</b></p>
-      </ion-col>
-
-      <ion-col>
-        <p class="status"><b>Inprocees</b></p>
-      </ion-col>
-    </ion-row>
-  </ion-card>
-
-  <ion-card class="main-card">
-    <ion-grid class="main-content">
-      <p class="order-ids">Order Id: 023449060</p>
-    </ion-grid>
-    <ion-row>
-      <ion-col>
-        <p class="d-date">Delivery Date</p>
-        <p class="date"><b>2020-03-05</b></p>
-      </ion-col>
-
-      <ion-col>
-        <p class="status"><b>Inprocees</b></p>
-      </ion-col>
-    </ion-row>
-  </ion-card>
-
-  <ion-card class="main-card">
-    <ion-grid class="main-content">
-      <p class="order-ids">Order Id: 023459060</p>
-    </ion-grid>
-    <ion-row>
-      <ion-col>
-        <p class="d-date">Delivery Date</p>
-        <p class="date"><b>2020-03-05</b></p>
-      </ion-col>
-
-      <ion-col>
-        <p class="status"><b>Inprocees</b></p>
-      </ion-col>
-    </ion-row>
-  </ion-card> -->
 </ion-content>

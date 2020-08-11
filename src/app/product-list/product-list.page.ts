@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController,LoadingController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { ModalPopupPage } from '../modal-popup/modal-popup.page';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
@@ -13,24 +13,25 @@ import { Location } from '@angular/common';
 })
 export class ProductListPage implements OnInit {
 
-  
+
   requestObject: any;
   allProducts = [];
+  lazyListProduct = [];
   dataResponse: any;
-  page = 0;
+  page = 1;
   isloadmore: boolean = false;
   htmlData: any;
   userAllArray: any;
-  url:any;
-  
-  constructor( public loadingCtrl:LoadingController,private location: Location,public modalController: ModalController, public navCtrl: NavController, private auth: AuthService,private commonService: CommonService) { }
+  url: any;
 
-  ngOnInit() {
-    this.getProductList();
-    this.url = this.commonService.url(); 
-
+  constructor(public loadingCtrl: LoadingController, private location: Location, public modalController: ModalController, public navCtrl: NavController, private auth: AuthService, private commonService: CommonService) {
+    // this.getProductList(this.page);
+    this.url = this.commonService.url();
   }
- 
+  ngOnInit() {
+    this.getProductList(false,"");
+  }
+
   async showModal(data) {
     const modal = await this.modalController.create({
       component: ModalPopupPage,
@@ -41,12 +42,12 @@ export class ProductListPage implements OnInit {
     });
     return await modal.present();
   }
-  
+
   goBack() {
     this.location.back();
   }
-  
-  fnBackToDashboard(){
+
+  fnBackToDashboard() {
     this.navCtrl.navigateForward('dashboard');
   }
 
@@ -54,16 +55,23 @@ export class ProductListPage implements OnInit {
     this.navCtrl.navigateForward('your-cart');
   }
 
-  getProductList() {
-    this.showLoader();
+  getProductList(isFirstLoad,event) {
+    if(isFirstLoad===false)
+        this.showLoader();
     this.requestObject = {
-      "page_no": "1",
-      "offset": "25"
+      "page_no": this.page,
+      "offset": "10"
     };
     this.auth.getProductDetails(this.requestObject).subscribe((data: any) => {
       this.hideLoader();
       this.dataResponse = data.data.product_data;
-      this.allProducts = this.dataResponse;
+      for (let i = 0; i < this.dataResponse.length; i++) {
+        this.lazyListProduct.push(this.dataResponse[i]);
+      }
+      if (isFirstLoad)
+          event.target.complete();
+
+        this.page++;
     }, (err) => {
       this.hideLoader();
       console.log("Error=>", err);
@@ -83,5 +91,9 @@ export class ProductListPage implements OnInit {
     }).catch((error) => {
       console.log('error', error);
     });
+  }
+
+  doInfinite(event) {
+    this.getProductList(true, event);
   }
 }

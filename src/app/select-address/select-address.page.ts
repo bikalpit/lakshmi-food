@@ -16,6 +16,8 @@ export class SelectAddressPage implements OnInit {
   cartData: any;
   address_id: any;
   allUpdatedAddress=[];
+  address_index:any;
+  mycheck = false;
 
   constructor(public navCtrl: NavController, private auth: AuthService, private change: ChangeDetectorRef) {
     this.user_id = localStorage.getItem("id");
@@ -65,7 +67,7 @@ export class SelectAddressPage implements OnInit {
           address_created: obj.address_created,
           address_updated: obj.address_updated,
           name: obj.name,
-          is_check: false
+          value: false
         });
       }
       console.log('allUpdatedAddress - > ',this.allUpdatedAddress);
@@ -81,19 +83,19 @@ export class SelectAddressPage implements OnInit {
     this.navCtrl.navigateForward('edit-address', { state: data });
     // this.navCtrl.navigateForward('edit-address',{ id : id });
   }
-  // checkEvent(id) {
-  //   this.add_id = id;
-  //   console.log(this.add_id);
-  // }
+
+
+
   fnProceedToCheckout() {
 
-    if (this.address_id == '' || this.address_id == undefined) {
+    if (this.mycheck  == false) {
       this.auth.showToast('Please select address');
       return;
     }
 
-    var sendcartDate = [];
+    this.address_id = this.allUpdatedAddress[this.address_index].id;
 
+    var sendcartDate = [];
     this.cartData.forEach(element => {
       sendcartDate.push({
         'productId': element.id,
@@ -126,38 +128,94 @@ export class SelectAddressPage implements OnInit {
 
   }
 
-  fncheckbox(event,ind ,index) {
-  
-    this.address_id = '';
-    var i = 0;
-    this.allUpdatedAddress.forEach(element => {
-      // element.is_check = false;
-     /*  if (event.detail.checked == true && index == i) {
-        this.addressList[index].is_check = event.detail.checked;
-        this.address_id = this.addressList[index].id;
+  selection(id,index) {
+    this.address_index = index;
+    this.mycheck =! this.mycheck;
+    this.allUpdatedAddress.forEach(x => {
+      if (x.id !== id) { 
+        x.value = !x.value
       }
-      i++; */
-     /*  this.addressList[index].is_check =true;
-      console.log('before element -- > ',element.is_check); */
+    })
+  }
+
+  // async fncheckbox(event,index,Address_id) {
+
+  // this.is_disabled = true;
+
+  // console.log(event.detail.checked);
+  // console.log(this.alredy_check_address_index);  
+  
+  // var myyyis_check = event.detail.checked;
+
+  // if(myyyis_check==true){
+
+  //   if(this.alredy_check_address_index == null){
+  //     console.log('111')
+  //     this.alredy_check_address_index = index;
+  //     this.allUpdatedAddress[index].is_check = true;
+  //     this.is_disabled = false;
+
+  //     return  await this.alredy_check_address_index;
+  //     //console.log(this.alredy_check_address_index); 
+  //   }else{
+
+  //     console.log('222');
+  //     this.allUpdatedAddress[this.alredy_check_address_index].is_check = false;
+  //     this.allUpdatedAddress[index].is_check = true;
+  //     this.alredy_check_address_index = index;
+
+  //     this.is_disabled = false;
+  //     return  await this.alredy_check_address_index;
+  //   }
+
+  // }else if(myyyis_check==false){
+
+  //   console.log('3333');
+
+  //   this.alredy_check_address_index = null;
+  //   this.addressList.forEach(element => {
+  //     element.is_check = false;
+  //   });
+
+  //   this.is_disabled = false;
+  //   return  await this.alredy_check_address_index;
+  // }
+
+ 
+ 
+
+  // //alredy_check_address_index
+
+  // //   this.address_id = '';
+  // //   var i = 0;
+  // //   this.allUpdatedAddress.forEach(element => {
+  // //     // element.is_check = false;
+  // //    /*  if (event.detail.checked == true && index == i) {
+  // //       this.addressList[index].is_check = event.detail.checked;
+  // //       this.address_id = this.addressList[index].id;
+  // //     }
+  // //     i++; */
+  // //    /*  this.addressList[index].is_check =true;
+  // //     console.log('before element -- > ',element.is_check); */
      
-      element.is_check =false;
-    });
-   /*  this.addressList[index].is_check = event.detail.checked;
-    console.log('Index -- > ',index);
-    console.log('Index -- > ',index); */
+  // //     element.is_check =false;
+  // //   });
+  // //  /*  this.addressList[index].is_check = event.detail.checked;
+  // //   console.log('Index -- > ',index);
+  // //   console.log('Index -- > ',index); */
    
-    this.allUpdatedAddress.find(v => v.id == index).is_check =true;
-    this.change.detectChanges();
-   /*  if(this.allUpdatedAddress.find(v => v.id == index).is_check ==true){
-      this.allUpdatedAddress.find(v => v.id == index).is_check =false;
-    }else{
-      this.allUpdatedAddress.find(v => v.id == index).is_check =true;
-    } */
-    this.address_id = index;
-    console.log(this.allUpdatedAddress);
-    console.log(index);
+  // //   this.allUpdatedAddress.find(v => v.id == index).is_check =true;
+  // //   this.change.detectChanges();
+  // //  /*  if(this.allUpdatedAddress.find(v => v.id == index).is_check ==true){
+  // //     this.allUpdatedAddress.find(v => v.id == index).is_check =false;
+  // //   }else{
+  // //     this.allUpdatedAddress.find(v => v.id == index).is_check =true;
+  // //   } */
+  // //   this.address_id = index;
+  // //   console.log(this.allUpdatedAddress);
+  // //   console.log(index);
 
     
-  }
+  // }
 
 }

@@ -21,14 +21,16 @@ orderItem = [];
 dataResponse: any;
 orderDate: any;
 date: any;
+orderNum:any;
 
   constructor(public navCtrl: NavController, private location: Location,private datePipe: DatePipe,private auth: AuthService, private router: Router) { 
     const state = this.router.getCurrentNavigation().extras.state
     if (state) {
-      this.id = state;
-      console.log("order id-->", this.id);
+      this.id = state.id;
+      this.orderNum=state.order_number;
+      console.log("order id-->", this.id); 
+     
     }
-    
   }
 
   ngOnInit() {
@@ -45,10 +47,10 @@ date: any;
       "order_id": this.id
     }
     console.log(this.requestObject);
-
+    this.auth.showLoader();
     this.auth.getOrderDetails(this.requestObject).subscribe((data: any) => {
       console.log(data);
-
+      this.auth.hideLoader();
       this.dataResponse = data.data;
       this.ordersDetails = this.dataResponse;
       this.date = this.dataResponse.create_at;
@@ -62,20 +64,15 @@ date: any;
       console.log("order list data-->", this.orderDate);
 
     }, (err) => {
+      this.auth.hideLoader();
       console.log("Error=>", err);
       //this.auth.showError(err.error.message);
     });
   }
 
   fnCancelOrder(id,orderNo){
-    //alert(orderNo);
 
-    let params = {
-      id,
-      orderNo
-    }
-    console.log(params);
-    this.navCtrl.navigateForward('cancel-order',{state : params});
+    this.navCtrl.navigateForward('cancel-order', { state: {id:this.id,order_number:this.orderNum} });
 
   }
 

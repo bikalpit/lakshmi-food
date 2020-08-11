@@ -40,7 +40,7 @@ export class HomePage {
             console.log(this.dataResponse.data.email);
 
             this.navCtrl.navigateForward('/dashboard');
-
+            window.location.reload();
           } else {
             //this.showToast1();
             this.hideLoader();
