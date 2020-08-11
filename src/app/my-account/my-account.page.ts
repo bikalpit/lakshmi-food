@@ -56,8 +56,6 @@ export class MyAccountPage implements OnInit {
   }
 
   fnOrderDetails(id) {
-
-   
     this.navCtrl.navigateForward('order-details', { state: id });
   }
 
