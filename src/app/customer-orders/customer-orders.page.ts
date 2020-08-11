@@ -36,7 +36,7 @@ export class CustomerOrdersPage implements OnInit {
   ngOnInit() { }
   
   fnOrderSummary(id,order_number) {
-    this.navCtrl.navigateForward('order-summary', { state: {id:id,order_number:order_number} });
+    this.navCtrl.navigateForward('summary', { state: {id:id,order_number:order_number} });
   }
 
   OnChange(value) {
