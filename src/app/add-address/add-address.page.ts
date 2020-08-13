@@ -27,6 +27,7 @@ export class AddAddressPage implements OnInit {
   dataResponse: any;
   public myToast: any;
   onlynumeric = /^-?(0|[1-9]\d*)?$/
+  home:any;
 
   constructor(public formbulider: FormBuilder,
     private location: Location,
@@ -47,11 +48,20 @@ export class AddAddressPage implements OnInit {
   }
 
   ngOnInit() {
-   
+
   }
 
   onChangeHandler(event) {
-
+    alert(event.target.value)
+    if (event.target.value == 'Home') {
+      console.log('address->', event.target.value);
+     
+    }
+    else if (event.target.value == 'Office') {
+      console.log('address->', event.target.value);
+    } else {
+      console.log('address->', event.target.value);
+    }
     this.data = event.target.value;
   }
 
@@ -60,11 +70,11 @@ export class AddAddressPage implements OnInit {
   }
   fnSaveAddress() {
 
-    if (this.house_no != '' && this.area != '' && this.city != '' && this.state != '' && this.landmark != '' && this.mobile_no != '' && this.area != ''  && this.zipcode != '') {
+    if (this.house_no != '' && this.area != '' && this.city != '' && this.state != '' && this.landmark != '' && this.mobile_no != '' && this.area != '' && this.zipcode != '') {
       this.requestObject = {
 
         "house_no": this.house_no,
-        "area" : this.area,
+        "area": this.area,
         "city": this.city,
         "state": this.state,
         "landmark": this.landmark,

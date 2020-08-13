@@ -74,9 +74,15 @@ export class AuthService {
   getDeliveryBoyOrders(data): Observable<any>{
     return this.commonService.postWithoutToken('orders/get_delivery_boy_orders', data);
   }
+
   cancelOrder(data): Observable<any>{
     return this.commonService.postWithoutToken('orders/cancel_order', data);
   }
+
+  updateOrderStatus(data): Observable<any>{
+    return this.commonService.postWithoutToken('orders/update_order_status', data);
+  }
+
   showToast(msg) {
     return this.toastCtrl.create({
       message: msg,

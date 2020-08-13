@@ -19,41 +19,51 @@ export class MyAccountPage implements OnInit {
   requestObject: any;
   id: any;
   value: any;
-
+  status: any;
+  selecTextStatus = {
+    select: null
+  };
   constructor(private datePipe: DatePipe, private auth: AuthService, public navCtrl: NavController, public menu: MenuController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
+    this.selecTextStatus.select = "Shipped";
 
   }
-
+  ionViewDidEnter(){
+    this.fngetDeliveryBoyOrders(this.selecTextStatus.select);
+  }
   ngOnInit() {
-    this.requestObject = {
-      "delivery_boy_id": this.user_id
+   
+  }
+
+ 
+    OnChange(value) {
+      this.status = value;
+      console.log(this.status);
+      this.fngetDeliveryBoyOrders(value);
     }
-    console.log(this.requestObject);
-    this.auth.getOrderList(this.requestObject).subscribe((data: any) => {
-      console.log(data);
-      this.dataResponse = data.data;
-      this.ordersList = this.dataResponse;
-
-      this.ordersList.forEach((element) => {
-        element.create_at = this.datePipe.transform(new Date(element.create_at), "dd-MM-yyyy");
+  
+    fngetDeliveryBoyOrders = value => {
+  
+      this.requestObject = {
+        "order_status": value,
+        "delivery_boy_id": this.user_id
+      }
+     
+      console.log(this.requestObject);
+      this.auth.getDeliveryBoyOrders(this.requestObject).subscribe((data: any) => {
+        console.log(data);
+        this.dataResponse = data.data;
+        this.ordersList = this.dataResponse;
+        console.log("order list",this.ordersList);
+        
+      }, (err) => {
+        console.log("Error=>", err);
+     
       });
-
-      console.log("order list-->", this.ordersList);
-
-
-    }, (err) => {
-      console.log("Error=>", err);
-      //this.auth.showError(err.error.message);
-    });
-  }
-
-  OnChange(value) {
-    this.value = value;
-    console.log(this.value);
-  }
+  
+    }
 
   fnOrderDetails(id) {
     this.navCtrl.navigateForward('order-details', { state: id });

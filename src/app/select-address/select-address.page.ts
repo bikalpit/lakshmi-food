@@ -87,7 +87,7 @@ export class SelectAddressPage implements OnInit {
 
 
   fnProceedToCheckout() {
-
+   
     if (this.mycheck  == false) {
       this.auth.showToast('Please select address');
       return;
@@ -116,6 +116,7 @@ export class SelectAddressPage implements OnInit {
       if (data.status == true) {
         localStorage.removeItem('cartData');
         localStorage.setItem('OrderNumber', data.data.order_id);
+        this.auth.showToast('Orders Place successfully');
         this.navCtrl.navigateForward('success-order');
       } else {
         this.auth.showToast(data.message);

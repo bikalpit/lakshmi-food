@@ -76,7 +76,7 @@ export class OrderDetailsPage implements OnInit {
       this.date = this.dataResponse.create_at;
 
 
-      this.orderDate = this.datePipe.transform(new Date(this.date), "dd-MM-yyyy");
+      this.orderDate = this.datePipe.transform(new Date(this.date), "dd/MM/yyyy");
 
       console.log("order data-->", this.ordersDetails);
 
@@ -89,7 +89,22 @@ export class OrderDetailsPage implements OnInit {
     });
   }
 
+  fnCompleted(status){
+    console.log(status);
+    this.requestObject = {
+      "order_id" : this.id,
+      "order_status" : status
+    }
+    console.log(this.requestObject);
+    this.auth.updateOrderStatus(this.requestObject).subscribe((data: any) => {
+      console.log(data);
+      this.auth.showToast('Order status updated succesfully');
 
+    }, (err) => {
+      console.log("Error=>", err);
+      //this.auth.showError(err.error.message);
+    });
+  }
 
 
 }

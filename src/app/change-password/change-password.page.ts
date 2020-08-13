@@ -46,6 +46,7 @@ export class ChangePasswordPage implements OnInit {
         this.dataResponse = data;
         if (this.dataResponse.status == true) {
 
+          this.auth.showToast('Password Successfully Updated ');
           this.navCtrl.navigateForward('/dashboard');
         }
         else {
@@ -58,7 +59,7 @@ export class ChangePasswordPage implements OnInit {
       });
 
     } else {
-      this.auth.showToast('Please Enter New Password & Old Password');
+      this.auth.showToast('Please Enter Old Password & New Password');
     }
   }
 

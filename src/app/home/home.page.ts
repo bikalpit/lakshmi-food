@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController,LoadingController } from '@ionic/angular';
+import { NavController, ToastController, LoadingController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -12,10 +12,10 @@ export class HomePage {
   requestObject: any;
   dataResponse: any;
   public myToast: any;
-  loading:any;
+  loading: any;
   constructor(public navCtrl: NavController,
     private auth: AuthService, public toast: ToastController,
-    public loadingCtrl:LoadingController,
+    public loadingCtrl: LoadingController,
   ) { }
   fnLogin() {
     if (this.login.username != '') {
@@ -38,9 +38,13 @@ export class HomePage {
             localStorage.setItem("username", this.dataResponse.data.username);
             localStorage.setItem("role", this.dataResponse.data.role);
             console.log(this.dataResponse.data.email);
+            if (this.dataResponse.data.role == 'DeliveryBoy') {
+              this.navCtrl.navigateForward('my-account');
+            } else {
+              this.navCtrl.navigateForward('/dashboard');
+            }
 
-            this.navCtrl.navigateForward('/dashboard');
-            window.location.reload();
+            //window.location.reload();
           } else {
             //this.showToast1();
             this.hideLoader();

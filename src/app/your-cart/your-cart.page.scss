@@ -21,23 +21,28 @@
     height: 105px;
 }
 .p-qty{
+    font-family: open sans;
     color: #010944;
     margin: 0;
     margin-left: 10px;
 }
 .p-label1{
+    font-family: open sans;
     margin-bottom: 0px;
     margin-left: 10px;
     color: #E4322E;
 }
 .p-label2{
+    font-family: open sans;
     margin-top: 0px;
     margin-bottom: 0px;
-    margin-right: 10px;
+    margin-right: 13px;
     color: #010944;
     float: right;
+    font-size: 18px;
 }
 .p-total{
+    font-family: open sans;
     margin-top: 0px;
     margin-bottom: 0px;
     background-color: #E4322E;
@@ -45,6 +50,7 @@
     font-size: 24px;
 }
 .p-price{
+    font-family: open sans;
     margin-top: 0px;
     margin-bottom: 0px;
     background-color: #E4322E;
@@ -71,11 +77,13 @@
     margin-top: 8px;
 }
 .sub_total_card{
+  
     background-color: #fff;
-    margin-top: 25px;
+    margin-top: 50px;
     box-shadow: 5px 7px 10px 5px #e8e8e8;
 }
 .total_price{
+    font-family: open sans;
     background-color: #E4322E; 
     margin-top: 0px;
     height: 45px;

@@ -3,6 +3,7 @@ import { NavController, ModalController, LoadingController, ToastController } fr
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthService } from '../auth.service';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-your-cart',
@@ -19,26 +20,30 @@ export class YourCartPage implements OnInit {
 
   cartData = [];
   cancelOrder: any;
-
+  url: any;
   subTotal: any;
   totQty: any;
   sumProduct: any;
   serviceCount: any;
   mainSubTotal: any;
   current_array: any;
-  constructor(private location: Location,
+
+  constructor(private commonService: CommonService,private location: Location,
     public loadingCtrl: LoadingController,
     private auth: AuthService, public toast: ToastController,
     public navCtrl: NavController,
     private route: ActivatedRoute,
     private router: Router,
     public modalCtrl: ModalController) {
+    
+    this.url = this.commonService.url();
+    
     this.modalCtrl.dismiss({
       'dismissed': true
     });
     this.cartData = JSON.parse(localStorage.getItem("cartData"));
     console.log("cart data-->", this.cartData);
-
+    
 
     var total_price = 0;
     this.mainSubTotal = 0;

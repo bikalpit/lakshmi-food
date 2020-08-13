@@ -12,7 +12,7 @@ import { AuthService } from '../auth.service';
 export class RegisterPage implements OnInit {
 
   ionicForm: FormGroup;
-  register = { username: "", email: "", password: "", confirm_password: "" }
+  register = {fullname :"", username: "", email: "", phone:"", password: "", confirm_password: "" }
   requestObject: any;
   onlynumeric = /^-?(0|[1-9]\d*)?$/
   isSubmitted = false;
@@ -22,10 +22,12 @@ export class RegisterPage implements OnInit {
 
   constructor(public navCtrl: NavController, private auth: AuthService, public formbulider: FormBuilder, public toast: ToastController) { 
     this.ionicForm = this.formbulider.group({
-      username: ['', [Validators.required, Validators.minLength(2)]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      fullname: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirm_password: ['', [Validators.required, Validators.minLength(6)]]
+      confirm_password: ['', [Validators.required, Validators.minLength(6)]],
+      phone : ['',[Validators.required, Validators.minLength(10)]]
     });
 
   }
@@ -33,15 +35,17 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
    
   }
-
+ 
   fnLogin() {
-    if (this.register.username != '' && this.register.email != '' && this.register.password  != '' && this.register.confirm_password !=='') {
-      if(this.register.username.length >=2){
+    if (this.register.fullname != '' && this.register.username != '' && this.register.email != '' && this.register.password  != '' && this.register.confirm_password !=='') {
+      if(this.register.username.length >=3){
         if(this.register.password === this.register.confirm_password){
           if(this.register.password.length >=6){
             if (this.ionicForm.invalid) {
               console.log('invalid');
+              this.ionicForm.get('fullname').markAllAsTouched();
               this.ionicForm.get('email').markAsTouched();
+              this.ionicForm.get('phone').markAsTouched();
               this.ionicForm.get('username').markAsTouched();
               this.ionicForm.get('password').markAsTouched();
               this.ionicForm.get('confirm_password').markAsTouched();
@@ -49,17 +53,24 @@ export class RegisterPage implements OnInit {
             } 
             console.log('ok');
             this.requestObject = {
+              "fullname":this.register.fullname,
               "username": this.register.username,
               "email": this.register.email,
+              "phone":this.register.phone,
               "password": this.register.password
             }
             this.auth.showLoader();
             this.auth.signup(this.requestObject).subscribe((data: any) => {
               this.auth.hideLoader();
               console.log(data);
-      
+              this.dataResponse = data;
+              if(this.dataResponse.status == true){
+              this.auth.showToast('Signup Successfulluy');
               this.navCtrl.navigateForward('/home');
-      
+              }else{
+
+                this.auth.showToast('Username and Email must be uniq');
+              }
             }, (err) => {
               this.auth.hideLoader();
               console.log("Error=>", err);

@@ -13,24 +13,23 @@
 </ion-header>
 
 <ion-content>
-  <ion-row>
+  <ion-row style="margin-top: 12px;">
     <p class="order-status"><b>Order Status</b></p>
     <ion-col>
       <ion-item style="float: right;">   
-        <ion-select  #item class="custom-options" [(ngModel)]="selecTextStatus.select" (ionChange)="OnChange(item.value)">
-          <ion-select-option value="New">Inprocees</ion-select-option>
+        <ion-select  #item class="custom-options customer-filter" [(ngModel)]="selecTextStatus.select" (ionChange)="OnChange(item.value)">
+          <ion-select-option value="New">Inprocess</ion-select-option>
           <ion-select-option value="Delivered">Completed</ion-select-option> 
           <ion-select-option value="cancel">Cancel</ion-select-option> 
         </ion-select>
       </ion-item>
-    </ion-col>
-   
+    </ion-col> 
   </ion-row>
   
  <div *ngFor="let item of ordersList;">
   <ion-card class="main-card" (click)="fnOrderSummary(item.id,item.order_number)">
     <ion-grid class="main-content">
-      <p class="order-ids">Order Id: {{item.order_number}}</p>
+      <p class="order-ids">Order ID: {{item.order_number}}</p>
       <!-- <p class="order-ids">Order Id: {{item.id}}</p> -->
     </ion-grid>
     <ion-row>

@@ -21,8 +21,11 @@
     <ion-input disabled placeholder="Order No" [(ngModel)]="orderNum" class="order_no_txt"></ion-input>
   </div>
 
-  <div class="order-Cancel-bg">
-    <ion-input placeholder="Reason For Cancel Order"  [(ngModel)]="reason" class="order_Cancel_txt"></ion-input>
+  <!-- <div class="order-Cancel-bg">
+    <textarea placeholder="Reason For Cancel Order"  [(ngModel)]="reason" class="order_Cancel_txt"></textarea>
+  </div> -->
+  <div class="txt_bg_area">
+    <ion-textarea placeholder="Reason For Cancel Order" class="area-txt"></ion-textarea>
   </div>
 
   <button ion-button class="CancelOrder_btn" (click)="fnCancelOrder()"><b>Cancel Order</b></button>

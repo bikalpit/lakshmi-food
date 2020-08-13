@@ -68,3 +68,47 @@ ion-select{
     border-radius: 9px;
     padding: 9px;
 }
+.customer-filter{
+    padding: 0;
+    .select-icon{
+        width: 30px !important;
+        height: 30px !important;
+        background-color: red !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+}
+.customer-filter{
+    width: 160px;
+    max-width: 160px;
+    height: 45px;
+}
+.customer-filter::part(text){
+    padding: 0 10px;
+    font-size: 17px;
+    font-family: open sans;
+}
+.customer-filter::part(icon) {
+        width: 45px !important;
+        height: 45px !important;
+        background-color: #E4322E !important;
+        display: flex !important;
+        justify-content: center !important;
+        opacity: 1;
+        align-items: center;
+        *{
+            display: none;
+        }
+    &::after{
+        content: "";
+        background-image: url('/../../assets/imgs/down-arrow.png');
+        width: 35px;
+        height: 18px;
+        background-position: center;
+        background-color: #e4322e;
+        z-index: 1;
+        background-size: 70%;
+        background-repeat: no-repeat;
+    }
+}
+

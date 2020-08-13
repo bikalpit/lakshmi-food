@@ -143,8 +143,8 @@ export class ModalPopupPage implements OnInit {
     });
   }
 
-  fnAddToCart(id, name, weight, price, qty) {
-
+  fnAddToCart(id, name, weight, price, qty,images) {
+console.log(images)
     this.cartData = [];
 
     if (localStorage.getItem("cartData")) {
@@ -165,7 +165,8 @@ export class ModalPopupPage implements OnInit {
           name: name,
           weight: weight,
           price: price,
-          qty: qty
+          qty: qty,
+          images : images
         });
 
       }
@@ -178,7 +179,8 @@ export class ModalPopupPage implements OnInit {
         name: name,
         weight: weight,
         price: price,
-        qty: qty
+        qty: qty,
+        images : images
       });
 
       localStorage.setItem("cartData", JSON.stringify(this.cartData));

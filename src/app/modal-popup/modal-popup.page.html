@@ -22,12 +22,20 @@
               class="img_slide">
             <img *ngIf="name.images.length == 0" src="../../assets/imgs/not_found.png" class="img_slide">
           </ion-slide>
-          <!-- <ion-slide>
-            <img src="../../assets/imgs/images.jpg" class="img_slide">
-          </ion-slide>
+          
           <ion-slide>
-            <img src="../../assets/imgs/images.jpg" class="img_slide">
-          </ion-slide> -->
+            <img *ngIf="name.images.length > 0"
+            src="{{url.file_url}}assets/uploads/products/thumbs/{{name.images[0].product_image}}"
+            class="img_slide">
+          <img *ngIf="name.images.length == 0" src="../../assets/imgs/not_found.png" class="img_slide">
+          </ion-slide>
+
+          <ion-slide>
+            <img *ngIf="name.images.length > 0"
+              src="{{url.file_url}}assets/uploads/products/thumbs/{{name.images[0].product_image}}"
+              class="img_slide">
+            <img *ngIf="name.images.length == 0" src="../../assets/imgs/not_found.png" class="img_slide">
+          </ion-slide>
         </ion-slides>
         <p class="slide-text">{{name.product_name}} {{name.product_weight}}Kg </p>
       </ion-col>
@@ -55,6 +63,6 @@
     </ion-row>
   </ion-grid>
 
-  <button ion-button class="AddToCart_btn" (click)="fnAddToCart(name.id,name.product_name,name.product_weight,name.product_price,item_qty)">Add To Cart</button>
+  <button ion-button class="AddToCart_btn" (click)="fnAddToCart(name.id,name.product_name,name.product_weight,name.product_price,item_qty,name.images)">Add To Cart</button>
 </div>
 </ion-content>

@@ -4,31 +4,35 @@
 .main-title{
     text-align: center;
     color: #E4322E;
+    font-family: open sans;
 }
 .order-status{
     color: black;
     font-size: 18px;
     margin-left: 10px;
     margin-bottom: 5px;
+    font-family: open sans;
 }
 .main-card{
     box-shadow: 5px 7px 10px 5px #e8e8e8;
     background-color: #fff;  
 }
 .date{
-
+    font-family: open sans;
     color: black;
     font-size: 16px;
     margin-left: 10px;
     margin-top: 0px;
 }
 .d-date{
+    font-family: open sans;
     color: #000;
     font-size: 18px;
     margin-left: 10px;
     margin-bottom: 5px;
 }
 .status{
+    font-family: open sans;
     color: #E4322E;
     font-size: 18px;
     margin-left: 10px;
@@ -37,13 +41,15 @@
 .main-content{
     background-color:#E4322E ;
     .order-ids{
+        font-family: open sans;
         color: #fff;
-        font-size:22px ;
+        font-size:20px ;
         margin: 0;
         padding: 5px;
     }
 }
 .select-text {
+    font-family: open sans;
     min-width: 16px;
     font-size: inherit;
     text-overflow: ellipsis;
@@ -67,7 +73,47 @@ ion-select{
     padding: 9px;
 }
 .norecord-label{
+    font-family: open sans;
     color:#E4322E;
     font-size: 18px;
     text-align: center;
-} 
+}
+.custom-options{
+    font-family: open sans;
+}
+
+.customer-filter{
+    width: 160px;
+    max-width: 160px;
+    height: 45px;
+    padding: 0;
+}
+.customer-filter::part(text){
+    padding: 0 10px;
+    font-size: 17px;
+    font-family: open sans;
+}
+.customer-filter::part(icon) {
+        width: 45px !important;
+        height: 45px !important;
+        background-color: #E4322E !important;
+        display: flex !important;
+        justify-content: center !important;
+        opacity: 1;
+        align-items: center;
+        *{
+            display: none;
+        }
+    &::after{
+        content: "";
+        background-image: url('/../../assets/imgs/down-arrow.png');
+        width: 35px;
+        height: 18px;
+        background-position: center;
+        background-color: #e4322e;
+        z-index: 1;
+        background-size: 70%;
+        background-repeat: no-repeat;
+    }
+}
+

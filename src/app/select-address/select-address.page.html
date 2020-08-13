@@ -18,9 +18,13 @@
 
     <ion-row style="margin-top: 5px;" *ngFor="let item of allUpdatedAddress;let i = index">
       <ion-checkbox color="danger" class="p-check-icon" [disabled]="item.value" (click)="selection(item.id,i);"></ion-checkbox>
+      <ion-icon *ngIf="item.address_type == 'Home'" name="home-outline" style="font-size: 22px;color: red;margin-top: 12px;margin-left: 10px;"></ion-icon> 
+      <ion-icon *ngIf="item.address_type == 'Office'" name="business-outline" style="font-size: 22px;color: red;margin-top: 12px;margin-left: 10px;"></ion-icon>
+      <ion-icon *ngIf="item.address_type == 'Other'" name="location-outline" style="font-size: 22px;color: red;margin-top: 12px;margin-left: 10px;"></ion-icon>
       <ion-col>
+       
         <p class="p-name">{{item.name}}</p>
-        <p class="p-address">{{item.address_house_no}},{{item.area}},{{item.address_landmark}},</p>
+        <p class="p-address">{{item.address_house_no}},{{item.address_area}},{{item.address_landmark}},</p>
         <p class="p-address">{{item.address_city}},{{item.address_state}},{{item.address_zipcode}}</p>
         <p class="p-address">{{item.address_mobile_no}}</p>
       </ion-col>

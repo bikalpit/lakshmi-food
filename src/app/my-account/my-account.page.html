@@ -22,15 +22,16 @@
     
     <ion-col>
       <ion-item style="float: right;">   
-        <ion-select  #item class="custom-options" (ionChange)="OnChange(item.value)">
-          <ion-select-option value="New">Pending</ion-select-option>
+        <ion-select  #item class="custom-options customer-filter" [(ngModel)]="selecTextStatus.select" (ionChange)="OnChange(item.value)">
+        
           <ion-select-option value="Shipped">Shipped</ion-select-option> 
-          <ion-select-option value="Approve">Approve</ion-select-option> 
-          <ion-select-option value="Cancel">Cancel</ion-select-option> 
+          <ion-select-option value="Delivered">Delivered</ion-select-option> 
+          <ion-select-option value="cancel">Cancel</ion-select-option> 
         </ion-select>
       </ion-item>
     </ion-col>
   </ion-row>
+
   <div *ngFor="let item of ordersList;">
   <ion-card class="card-content" (click)="fnOrderDetails(item.id,item.status)">
     <ion-row style="margin-top: 15px;">
@@ -51,18 +52,5 @@
       {{item.address_house_no}},{{item.address_city}},{{item.address_state}}</h5>
   </ion-card>
   </div>
- 
-  <!-- <ion-card class="card-content">
-    <ion-row style="margin-top: 15px;">
-      <p class="p-order"><b>Order # 00023</b></p>
-      <ion-col>
-        <button ion-button class="Pending_btn" (click)="fnCompleted()">Completed</button>
-      </ion-col>
-    </ion-row>
-    <p class="p-date"><b>Date</b> 12/05/2020</p>
 
-  </ion-card>
-  <ion-card class="card-content-address">
-    <h5 class="add-txt"><img src="../../assets/imgs/location.png" class="img">354,Noida Delhi,New Delhi,India</h5>
-  </ion-card> -->
 </ion-content>

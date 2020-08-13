@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { NavController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
+import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
+import { noUndefined } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-root',
@@ -45,14 +47,14 @@ export class AppComponent {
       this.role = localStorage.getItem("role");
       console.log(this.role);
 
-      if (localStorage.getItem('username')) {
+      if(localStorage.getItem('username')) {
 
-        if (localStorage.getItem('role') == 'Customer') {
+        if(localStorage.getItem('role') == 'Customer') {
 
           this.navCtrl.navigateForward('dashboard');
 
-        } else if (localStorage.getItem('role') == 'DeliveryBoy') {
-
+        }else if(localStorage.getItem('role') == 'DeliveryBoy') {
+         
           this.navCtrl.navigateForward('my-account');
         }
       }
@@ -67,29 +69,24 @@ export class AppComponent {
   openCustom() {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');
-    
   }
-
 
   fnMyAccount() {
     this.menu.enable(true);
     this.navCtrl.navigateForward('my-account');
     this.menu.enable(false);
-
   }
 
   fnEditProfile() {
     this.menu.enable(true);
     this.navCtrl.navigateForward('edit-profile');
     this.menu.enable(false);
-
   }
 
   fnChangePassword() {
     this.menu.enable(true);
     this.navCtrl.navigateForward('change-password');
     this.menu.enable(false);
-
   }
 
   fnLogout() {
