@@ -8,10 +8,13 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+  name:any;
 
   constructor(public menu: MenuController, public navCtrl: NavController,) {
     // this.menu.enable(true);
     localStorage.setItem("cartData", '');
+    this.name = localStorage.getItem('username');
+    console.log(this.name);
   }
  
   ngOnInit() {

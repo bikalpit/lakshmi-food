@@ -25,8 +25,11 @@
         <ion-select  #item class="custom-options customer-filter" [(ngModel)]="selecTextStatus.select" (ionChange)="OnChange(item.value)">
         
           <ion-select-option value="Shipped">Shipped</ion-select-option> 
+          <ion-select-option value="Pickup">Pickup</ion-select-option> 
+          <!-- <ion-select-option value="Completed">Completed</ion-select-option>  -->
           <ion-select-option value="Delivered">Delivered</ion-select-option> 
           <ion-select-option value="cancel">Cancel</ion-select-option> 
+          
         </ion-select>
       </ion-item>
     </ion-col>
@@ -42,6 +45,9 @@
         <button ion-button *ngIf="item.status == 'Shipped'" class="Pending_btn">Shipped</button>
         <button ion-button *ngIf="item.status == 'Approve'" class="Pending_btn">Approve</button>
         <button ion-button *ngIf="item.status == 'cancel'" class="Pending_btn">Cancel</button>
+        <button ion-button *ngIf="item.status == 'Pickup'" class="Pending_btn">Pickup</button>
+        <button ion-button *ngIf="item.status == 'Delivered'" class="Pending_btn">Delivered</button>
+        <button ion-button *ngIf="item.status == 'Completed'" class="Pending_btn">Completed</button>
       </ion-col>
     </ion-row>
     <p class="p-date"><b>Date </b>{{item.create_at}}</p>
@@ -51,6 +57,9 @@
     <h5 class="add-txt"><img src="../../assets/imgs/location.png" class="img">
       {{item.address_house_no}},{{item.address_city}},{{item.address_state}}</h5>
   </ion-card>
+  </div>
+  <div *ngIf="!ordersList?.length > 0">
+    <p class="norecord-label">No Records Found</p>
   </div>
 
 </ion-content>

@@ -3,6 +3,8 @@ import { NavController, ToastController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { Location } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-update-password',
   templateUrl: './update-password.page.html',
@@ -16,13 +18,20 @@ export class UpdatePasswordPage implements OnInit {
   public myToast: any;
   email: any;
   dataResponse: any;
+  ionicForm: FormGroup;
 
-  constructor(public navCtrl: NavController,
+  constructor(public formbulider: FormBuilder,
+    public navCtrl: NavController,
     public menu: MenuController,
     private location: Location,
     private auth: AuthService,
     public toast: ToastController) {
      this.email= localStorage.getItem('email');
+
+     this.ionicForm = this.formbulider.group({
+      newPass: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
+      confirmPass: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]]
+    });
   }
 
   ngOnInit() {
@@ -31,6 +40,7 @@ export class UpdatePasswordPage implements OnInit {
     if (this.email != undefined && this.newPass != undefined && this.confirmPass != undefined) {
 
      if (this.email != '' && this.newPass != '' && this.confirmPass != '') {
+       if(this.newPass == this.confirmPass){
        console.log(this.email);
        console.log(this.newPass);
        console.log(this.confirmPass);
@@ -55,7 +65,9 @@ export class UpdatePasswordPage implements OnInit {
          console.log("Error=>", err);
          //this.auth.showError(err.error.message);
        });
-       
+      } else {
+        this.auth.showToast("Password does not match! ");
+      }
      } else {
        this.showToast();
      } 

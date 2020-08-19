@@ -23,6 +23,9 @@ export class MyAccountPage implements OnInit {
   selecTextStatus = {
     select: null
   };
+  date:any;
+  orderDate:any;
+
   constructor(private datePipe: DatePipe, private auth: AuthService, public navCtrl: NavController, public menu: MenuController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
@@ -56,7 +59,14 @@ export class MyAccountPage implements OnInit {
         console.log(data);
         this.dataResponse = data.data;
         this.ordersList = this.dataResponse;
+
+        this.ordersList.forEach((element) => {
+          element.create_at = this.datePipe.transform(new Date(element.create_at), "dd-MM-yyyy");
+        });
+        
         console.log("order list",this.ordersList);
+
+       
         
       }, (err) => {
         console.log("Error=>", err);

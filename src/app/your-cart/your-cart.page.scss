@@ -10,7 +10,7 @@
     margin: 0;
     background-color: #fff;
     width: 95%;
-    height: 105px;
+    height: 113px;
 }
  
  .card{
@@ -18,28 +18,37 @@
     margin: 0;
     background-color: #fff;
     width: 97%;
-    height: 105px;
+    height: 113px;
 }
 .p-qty{
     font-family: open sans;
     color: #010944;
     margin: 0;
     margin-left: 10px;
+    font-size: 15px;
 }
 .p-label1{
     font-family: open sans;
     margin-bottom: 0px;
     margin-left: 10px;
     color: #E4322E;
+    font-size: 16px;
+}
+.img-checkmark{  
+    width: 32px;
+    position: relative;
+    top: 65px;
+    z-index: 59;
+    left: calc(50% - 16px);
 }
 .p-label2{
     font-family: open sans;
     margin-top: 0px;
     margin-bottom: 0px;
-    margin-right: 13px;
+    margin-right: 8px;
     color: #010944;
     float: right;
-    font-size: 18px;
+    font-size: 16px;
 }
 .p-total{
     font-family: open sans;
@@ -47,7 +56,7 @@
     margin-bottom: 0px;
     background-color: #E4322E;
     color: #fff;
-    font-size: 24px;
+    font-size: 23px;
 }
 .p-price{
     font-family: open sans;
@@ -61,7 +70,7 @@
 .ProceedToCheckout_btn{
     background-color: #E4322E;
     color: #fff;
-    font-size: 20px;
+    font-size: 18px;
     height: 50px;
     width: 92%;
     border-radius: 8px;

@@ -28,22 +28,22 @@
         <ion-card class="card">
           <ion-icon style="float:right;color: #E4322E;font-size: 24px;" (click)="cancelData(item)" name="close-outline">
           </ion-icon>
-          <h5 class="p-label1"><b>{{item.name}} {{item.weight}}Kg</b></h5>
-          <h6 class="p-qty">Qty:{{item.qty}}</h6>
-          <h6 class="p-label2">₹{{item.price*item.qty}}</h6>
+          <p class="p-label1"><b>{{item.name}} {{item.weight}}Kg</b></p>
+          <p class="p-qty">Qty:{{item.qty}}</p>
+          <p class="p-label2">₹{{item.price*item.qty}}</p>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <!-- <img src="../../assets/imgs/checkmark.png"> -->
+  <img class="img-checkmark" src="../../assets/imgs/checkmark.png">
   <ion-card class="sub_total_card">
-    <div style="text-align: center;">
+    <!-- <div style="text-align: center;">
       <img src="../../assets/imgs/checkmark.png">
-    </div>
+    </div> -->
     <ion-grid>
       <ion-row>
-        <ion-col size="4">
+        <ion-col size="3">
           <h4 class="p-label2">Subtotal</h4>
         </ion-col>
 
@@ -56,7 +56,7 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col size="4">
+        <ion-col size="3">
           <h4 class="p-label2">Shipping</h4>
         </ion-col>
 
@@ -68,7 +68,7 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col size="4">
+        <ion-col size="3">
           <h4 class="p-label2">Discount</h4>
         </ion-col>
 
@@ -82,11 +82,11 @@
     <ion-grid class="total_price">
       <ion-row>
         <ion-col>
-          <h4 class="p-total">TOTAL</h4>
+          <h5 class="p-total">TOTAL</h5>
         </ion-col>
 
         <ion-col>
-          <h6 class="p-price">₹{{mainSubTotal}}</h6>
+          <h5 class="p-price">₹{{mainSubTotal}}</h5>
         </ion-col>
       </ion-row>
     </ion-grid>

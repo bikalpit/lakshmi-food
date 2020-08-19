@@ -24,9 +24,16 @@
   <!-- <div class="order-Cancel-bg">
     <textarea placeholder="Reason For Cancel Order"  [(ngModel)]="reason" class="order_Cancel_txt"></textarea>
   </div> -->
+  <form [formGroup]="ionicForm">
   <div class="txt_bg_area">
-    <ion-textarea placeholder="Reason For Cancel Order" class="area-txt"></ion-textarea>
-  </div>
 
+    <ion-textarea formControlName="reason" placeholder="Reason For Cancel Order" class="area-txt"></ion-textarea>
+    <span class="error-wrap"
+    *ngIf="ionicForm.get('reason').touched || ionicForm.get('reason').dirty || formSubmitclicked">
+    <small *ngIf="ionicForm.get('reason').hasError('required')" class="error">Reason is required.</small>
+   
+  </span>
+  </div>
+</form>
   <button ion-button class="CancelOrder_btn" (click)="fnCancelOrder()"><b>Cancel Order</b></button>
 </ion-content>

@@ -29,8 +29,11 @@
   // --background-repeat: no-repeat;
   // --background-size: cover;  
   position: fixed;
+  display: inline-block;
 }
-
+.scroll-content{
+  padding-bottom: 0px !important;
+}
 .main-class{
   width: 100%;
   margin: 18% 11% 0;
@@ -70,6 +73,7 @@
   color: #E4322E;
   font-size: 20px;
   height: 35px;
+  position: fixed;
 }
 
 .signup-label{
@@ -92,5 +96,5 @@
   width: 100%;
   font-size: 18px;
   color: #FF3F22;
-  text-align: center;
+  //text-align: center;
 }

@@ -39,8 +39,8 @@ export class AddAddressPage implements OnInit {
     this.ionicForm = this.formbulider.group({
       houseNo: ['', [Validators.required]],
       AreaColony: ['', [Validators.required]],
-      State: ['', [Validators.required]],
-      City: ['', [Validators.required]],
+      State: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
+      City: ['', [Validators.required,Validators.pattern('[a-zA-Z ]*')]],
       Landmark: ['', [Validators.required]],
       MobileNo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(this.onlynumeric)]],
       Zipcode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(this.onlynumeric)]]
@@ -52,7 +52,7 @@ export class AddAddressPage implements OnInit {
   }
 
   onChangeHandler(event) {
-    alert(event.target.value)
+    //alert(event.target.value)
     if (event.target.value == 'Home') {
       console.log('address->', event.target.value);
      

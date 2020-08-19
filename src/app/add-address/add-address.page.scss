@@ -20,8 +20,18 @@
 }
 .error-wrap{
     color: red; 
-    font-size: 16px;   
+    font-size: 15px;   
 }
+.input-wrap{
+    position: relative;
+    .login_text{
+      margin-bottom: 15px;
+    }
+    .error-wrap{
+      position: absolute;
+      bottom: -15px;
+    }
+  }
 .img{
     
     margin-left: 22px;

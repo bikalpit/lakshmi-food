@@ -144,7 +144,7 @@ export class ModalPopupPage implements OnInit {
   }
 
   fnAddToCart(id, name, weight, price, qty,images) {
-console.log(images)
+  console.log(images)
     this.cartData = [];
 
     if (localStorage.getItem("cartData")) {

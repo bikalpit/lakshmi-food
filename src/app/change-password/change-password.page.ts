@@ -17,9 +17,13 @@ export class ChangePasswordPage implements OnInit {
   oldPass: any;
   public myToast: any;
   dataResponse: any;
+  role:any;
 
   constructor(public navCtrl: NavController, public formbulider: FormBuilder, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
     this.menu.enable(true);
+
+    this.role = localStorage.getItem("role");
+    console.log(this.role);
   }
 
   ngOnInit() {
@@ -27,12 +31,14 @@ export class ChangePasswordPage implements OnInit {
     console.log(this.user_id);
 
     this.ionicForm = this.formbulider.group({
-      oldPass: ['', [Validators.required, Validators.minLength(6)]],
-      newPass: ['', [Validators.required, Validators.minLength(6)]]
+      oldPass: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
+      newPass: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]]
     });
   }
   fnChangePassword() {
+  
     if (this.oldPass != '' && this.newPass != '') {
+      if (this.newPass.length >= 6 && this.oldPass.length >=6) {
       this.requestObject = {
         "user_id": this.user_id,
         "old_password": this.oldPass,
@@ -45,9 +51,19 @@ export class ChangePasswordPage implements OnInit {
         console.log(data);
         this.dataResponse = data;
         if (this.dataResponse.status == true) {
+          if (this.role == 'Customer') {
+            this.navCtrl.navigateForward('dashboard');
+            this.auth.showToast('Password Successfully Updated ');
 
-          this.auth.showToast('Password Successfully Updated ');
-          this.navCtrl.navigateForward('/dashboard');
+          } else if(this.role == 'DeliveryBoy'){
+            this.navCtrl.navigateForward('my-account');
+            this.auth.showToast('Password Successfully Updated ');
+          }
+          else{
+            this.auth.showToast('Password Not update ');
+          }
+          //this.auth.showToast('Password Successfully Updated ');
+          //this.navCtrl.navigateForward('/dashboard');
         }
         else {
           this.auth.showToast('Old password not match ');
@@ -59,11 +75,18 @@ export class ChangePasswordPage implements OnInit {
       });
 
     } else {
-      this.auth.showToast('Please Enter Old Password & New Password');
+      this.auth.showToast('Please Enter Old Password & New Password should be 6 digits');
     }
+  }else{
+    this.auth.showToast('Please Enter Old Password & New Password');
+  }
   }
 
   fnBackToYourCart() {
-    this.navCtrl.navigateForward('dashboard');
+    if (this.role == 'Customer') {
+      this.navCtrl.navigateForward('dashboard');
+      }else {
+        this.navCtrl.navigateForward('my-account');
+      }
   }
 }

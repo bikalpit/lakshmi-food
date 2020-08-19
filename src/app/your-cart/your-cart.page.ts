@@ -27,7 +27,8 @@ export class YourCartPage implements OnInit {
   serviceCount: any;
   mainSubTotal: any;
   current_array: any;
-
+  public item_qty = 0;
+  
   constructor(private commonService: CommonService,private location: Location,
     public loadingCtrl: LoadingController,
     private auth: AuthService, public toast: ToastController,
@@ -120,6 +121,23 @@ export class YourCartPage implements OnInit {
   fnBackToProductList() {
     this.navCtrl.navigateForward('product-list');
 
+  }
+  fnremove() {
+    if (this.item_qty - 1 < 1) {
+      this.item_qty = 1;
+      console.log('item_1->' + this.item_qty)
+    }
+    else {
+      this.item_qty -= 1;
+      console.log('item_2->' + this.item_qty);
+    }
+    console.log("hello");
+  }
+
+  fnadd() {
+    this.item_qty += 1;
+    console.log(this.item_qty + 1);
+    console.log("hello add function");
   }
 
 }

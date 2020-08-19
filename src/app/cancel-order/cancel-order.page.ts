@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cancel-order',
@@ -10,17 +11,23 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./cancel-order.page.scss'],
 })
 export class CancelOrderPage implements OnInit {
+
+  ionicForm: FormGroup;
   id: any;
   orderNum: any;
   reason: any;
-  constructor(private router: Router, private location: Location, public navCtrl: NavController, private auth: AuthService) {
+  constructor( public formbulider: FormBuilder,private router: Router, private location: Location, public navCtrl: NavController, private auth: AuthService) {
     const state = this.router.getCurrentNavigation().extras.state
     if (state) {
       this.id = state.id;
-      this.orderNum = ' Order Number : ' + state.order_number;
+      this.orderNum = ' Order Number : ' + state.orderNo;
       console.log("order id-->", this.id);
       console.log("order Number-->", this.orderNum);
     }
+    this.ionicForm = this.formbulider.group({
+      reason: ['', [Validators.required]],
+     
+    });
   }
 
   ngOnInit() {

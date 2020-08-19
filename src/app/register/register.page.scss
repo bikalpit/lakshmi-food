@@ -16,6 +16,16 @@
   font-size:28px;
   font-family: opensans;
 }
+.input-wrap{
+  position: relative;
+  .login_text{
+    margin-bottom: 15px;
+  }
+  .error-wrap{
+    position: absolute;
+    bottom: -15px;
+  }
+}
 
 .login_text {
   background-color: #fff;
@@ -34,13 +44,12 @@
 
 
 .login_btn {
-  background-color: transparent;
   width: 77%;
   border-radius: 8px;
   display: block;
-  margin-top: 2.5rem;
+  margin-top: 8%;
   border: 1px solid #fff;
-  color: #fff;
+  color: #FF3F22;
   font-size: 20px;
   height: 35px;
 }

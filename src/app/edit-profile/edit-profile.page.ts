@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
-  
+
   ionicForm: FormGroup;
   profileData: any;
   user_id: any;
@@ -19,14 +19,18 @@ export class EditProfilePage implements OnInit {
   AllUserArray: any;
   public myToast: any;
   user_id1: any;
+  role: any
 
-  constructor(public formbulider: FormBuilder,public navCtrl: NavController, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
+  constructor(public formbulider: FormBuilder, public navCtrl: NavController, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
 
     this.user_id1 = localStorage.getItem("user_id");
     console.log(this.user_id1);
+
+    this.role = localStorage.getItem("role");
+    console.log(this.role);
 
     this.ionicForm = this.formbulider.group({
       Name: ['', [Validators.required]],
@@ -75,8 +79,18 @@ export class EditProfilePage implements OnInit {
         console.log(data);
         this.AllUserArray = data;
         if (this.AllUserArray.status == true) {
-          //this.navCtrl.navigateForward('/home');
-          this.auth.showToast('Profile update successfully');
+          if (this.role == 'Customer') {
+            this.navCtrl.navigateForward('dashboard');
+            this.auth.showToast('Profile update successfully');
+
+          } else if(this.role == 'DeliveryBoy'){
+            this.navCtrl.navigateForward('my-account');
+            this.auth.showToast('Profile update successfully');
+          }
+          else{
+            this.auth.showToast('Profile Not update ');
+          }
+          //this.auth.showToast('Profile update successfully');
         } else {
           this.auth.showToast('Profile Not update ');
         }
@@ -91,10 +105,20 @@ export class EditProfilePage implements OnInit {
   }
 
   fnCancelOrder() {
-    this.navCtrl.navigateForward('dashboard');
+    if (this.role == 'Customer') {
+      this.navCtrl.navigateForward('dashboard');
+    } else {
+      this.navCtrl.navigateForward('my-account');
+    }
+
   }
   fnBackToYourCart() {
+    if (this.role == 'Customer') {
     this.navCtrl.navigateForward('dashboard');
+    }else {
+      this.navCtrl.navigateForward('my-account');
+    }
+
   }
- 
+
 }

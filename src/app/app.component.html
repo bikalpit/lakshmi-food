@@ -6,16 +6,21 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-item class="main-title" (click)="fnDashboard()"><img src="../assets/imgs/home-run.png" class="img">Home
+      <ion-item  class="main-title" (click)="fnDashboard()"><img src="../assets/imgs/home-run.png" class="img">Home
       </ion-item>
+
       <ion-item class="main-title" (click)="fnEditProfile()"><img src="../assets/imgs/person.png" class="img">Edit
         Profile</ion-item>
+
       <ion-item class="main-title" (click)="fnChangePassword()"><img src="../assets/imgs/gear.png" class="img">Change
         Password</ion-item>
-      <ion-item class="main-title" (click)="fnMyOrders()"><img src="../assets/imgs/order (3).png" class="img">My
-        Orders</ion-item>
+
+      <!-- <ion-item *ngIf="role == 'Customer'" class="main-title" (click)="fnMyOrders()"><img src="../assets/imgs/order (3).png" class="img">My
+        Orders</ion-item> -->
+
       <ion-item class="main-title" (click)="fnLogout()"><img src="../assets/imgs/logout.png" class="img">Logout
       </ion-item>
+      
       <!-- <div *ngIf="role == 'Customer'">
         <ion-item class="main-title" (click)="fnDashboard()"><img src="../assets/imgs/home-run.png" class="img">Home
         </ion-item>
@@ -39,6 +44,23 @@
         <ion-item class="main-title" (click)="fnLogout()"><img src="../assets/imgs/logout.png" class="img">Logout
         </ion-item>
       </div> -->
+
+      <!-- <ion-list *ngIf="role == 'Customer'">
+        <ion-menu-toggle auto-hide="false" *ngFor="let page of pages">
+          <ion-item class="main-title" [routerLink]="page.path" routerDirection="root" [class.active-menu]="activePath === page.path">
+            {{page.name}}
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+      <ion-list *ngIf="role == 'DeliveryBoy'">
+        <ion-menu-toggle auto-hide="false" *ngFor="let page of pagess">
+          <ion-item class="main-title" [routerLink]="page.path" routerDirection="root" [class.active-menu]="activePath === page.path">
+            {{page.name}}
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list> -->
+
     </ion-content>
   </ion-menu>
   <ion-router-outlet id="content1"></ion-router-outlet>

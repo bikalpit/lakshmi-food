@@ -52,7 +52,7 @@ export class ProductListPage implements OnInit {
   }
 
   fnAddToCart() {
-    this.navCtrl.navigateForward('your-cart');
+      this.navCtrl.navigateForward('your-cart');  
   }
 
   getProductList(isFirstLoad,event) {

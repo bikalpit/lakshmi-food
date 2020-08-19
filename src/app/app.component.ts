@@ -7,6 +7,7 @@ import { NavController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 import { noUndefined } from '@angular/compiler/src/util';
+import { Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,14 +20,65 @@ export class AppComponent {
   username: any = localStorage.getItem('username');
   email: any = localStorage.getItem('email');
   role: any = localStorage.getItem("role");
-  constructor(
+
+  // activePath = '';
+
+  // pages = [
+  //   {
+  //     name: 'Home',
+  //     path: ' /home',
+  //     icon: 'home-outline'
+  //   },
+  //   {
+  //     name: 'Edit Profile',
+  //     path: '/edit-profile',
+  //     icon : 'person'
+  //   },
+  //   {
+  //     name: 'Change Password',
+  //     path: '/change-password'
+  //   },
+  //   {
+  //     name: 'My Orders',
+  //     path: '/customer-orders'
+  //   },
+  //   {
+  //     name: 'Logout',
+  //     path: '/home'
+  //   }
+  // ]
+
+  // pagess = [
+  //   {
+  //     name: 'Home',
+  //     path: ' /home',
+  //     icon: 'home-outline'
+  //   },
+  //   {
+  //     name: 'Edit Profile',
+  //     path: '/edit-profile',
+  //     icon : 'person'
+  //   },
+  //   {
+  //     name: 'Change Password',
+  //     path: '/change-password'
+  //   },
+  //   {
+  //     name: 'Logout',
+  //     path: '/home'
+  //   }
+  // ]
+
+  constructor(private router: Router,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public menu: MenuController,
     public navCtrl: NavController
   ) {
-
+  // this.router.events.subscribe((event: RouterEvent) => {
+  //     //this.activePath = event.url
+  //   })
     this.initializeApp();
   }
 

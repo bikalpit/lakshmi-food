@@ -51,7 +51,7 @@ export class OrderDetailsPage implements OnInit {
   }
 
   fnCancelOrder(id,orderNo) {
-    //alert(id);
+    //alert(orderNo);
     let params = {
       id,
       orderNo
@@ -99,6 +99,7 @@ export class OrderDetailsPage implements OnInit {
     this.auth.updateOrderStatus(this.requestObject).subscribe((data: any) => {
       console.log(data);
       this.auth.showToast('Order status updated succesfully');
+      this.navCtrl.navigateForward('my-account');
 
     }, (err) => {
       console.log("Error=>", err);
