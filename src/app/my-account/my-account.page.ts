@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController ,AlertController,MenuController} from '@ionic/angular';
+import { NavController, AlertController, MenuController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { DatePipe } from '@angular/common';
 
@@ -22,57 +22,52 @@ export class MyAccountPage implements OnInit {
   selecTextStatus = {
     select: null
   };
-  date:any;
-  orderDate:any;
+  date: any;
+  orderDate: any;
 
-  constructor( public alertCtrl: AlertController,private datePipe: DatePipe, private auth: AuthService, public navCtrl: NavController, public menu: MenuController) {
+  constructor(public alertCtrl: AlertController, private datePipe: DatePipe, private auth: AuthService, public navCtrl: NavController, public menu: MenuController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
     this.selecTextStatus.select = "Shipped";
 
   }
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.fngetDeliveryBoyOrders(this.selecTextStatus.select);
   }
   ngOnInit() {
-   
+
+  }
+  OnChange(value) {
+    this.status = value;
+    console.log(this.status);
+    this.fngetDeliveryBoyOrders(value);
   }
 
- 
-    OnChange(value) {
-      this.status = value;
-      console.log(this.status);
-      this.fngetDeliveryBoyOrders(value);
+  fngetDeliveryBoyOrders = value => {
+    this.ordersList=[];
+    this.requestObject = {
+      "order_status": value,
+      "delivery_boy_id": this.user_id
     }
-  
-    fngetDeliveryBoyOrders = value => {
-  
-      this.requestObject = {
-        "order_status": value,
-        "delivery_boy_id": this.user_id
-      }
-     
-      console.log(this.requestObject);
-      this.auth.getDeliveryBoyOrders(this.requestObject).subscribe((data: any) => {
-        console.log(data);
-        this.dataResponse = data.data;
-        this.ordersList = this.dataResponse;
-
-        this.ordersList.forEach((element) => {
-          element.create_at = this.datePipe.transform(new Date(element.create_at), "dd-MM-yyyy");
-        });
-        
-        console.log("order list",this.ordersList);
-
-       
-        
-      }, (err) => {
-        console.log("Error=>", err);
-     
+    this.auth.showLoader();
+   console.log(this.requestObject);
+    this.auth.getDeliveryBoyOrders(this.requestObject).subscribe((data: any) => {
+      console.log(data);
+      this.auth.hideLoader();
+      this.dataResponse = data.data;
+      this.ordersList = this.dataResponse;
+      this.ordersList.forEach((element) => {
+        element.create_at = this.datePipe.transform(new Date(element.create_at), "dd-MM-yyyy");
       });
-  
-    }
+      console.log("order list", this.ordersList);
+    }, (err) => {
+      this.auth.hideLoader();
+      console.log("Error=>", err);
+
+    });
+
+  }
 
   fnOrderDetails(id) {
     this.navCtrl.navigateForward('order-details', { state: id });
@@ -80,7 +75,8 @@ export class MyAccountPage implements OnInit {
   async presentAlertConfirm() {
     const alert = await this.alertCtrl.create({
       // header: 'Confirm!',
-      message: "Please enable Your Location",
+      // message: "Please enable Your Location",
+      message: "Are you sure want to logout?",
       buttons: [
         {
           text: 'Cancel',

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ToastController, LoadingController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
+
 declare var document:any;
 
 @Component({
@@ -15,13 +16,16 @@ export class HomePage {
   dataResponse: any;
   public myToast: any;
   loading: any;
+  isKeyboardHide=true;
   constructor(public navCtrl: NavController,
     private auth: AuthService, public toast: ToastController,
     public loadingCtrl: LoadingController,
     private keyboard: Keyboard
-  ) {
+  ) 
+  {
     window.addEventListener('keyboardDidShow', () => {
       console.log("Keyboard is Shown");
+      this.isKeyboardHide=false;
       // document.body.classList.add('hide-on-keyboard-open');
       this.keyboard.onKeyboardShow().subscribe( (value)=>{
         document.body.classList.add('hide-on-keyboard-open');
@@ -29,7 +33,7 @@ export class HomePage {
     });
     window.addEventListener('keyboardDidHide', () => {
       // document.body.classList.remove('hide-on-keyboard-open');
-      console.log("Keyboard is Hidden");
+      this.isKeyboardHide=true;
       this.keyboard.onKeyboardHide().subscribe( (value)=>{
         document.body.classList.remove('hide-on-keyboard-open');
         } )
