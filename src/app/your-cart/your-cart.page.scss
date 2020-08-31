@@ -6,7 +6,7 @@
     color: #E4322E;
  }
  .card-first{
-    box-shadow: 5px 7px 10px 5px #e8e8e8;
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
     margin: 0;
     background-color: #fff;
     width: 95%;
@@ -14,7 +14,7 @@
 }
  
  .card{
-    box-shadow: 5px 7px 10px 5px #e8e8e8;
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
     margin: 0;
     background-color: #fff;
     width: 97%;
@@ -25,19 +25,20 @@
     color: #010944;
     margin: 0;
     margin-left: 10px;
-    font-size: 15px;
+    font-size: 16px;
+    margin-top: 2rem;
 }
 .p-label1{
     font-family: open sans;
-    margin-bottom: 0px;
     margin-left: 10px;
     color: #E4322E;
-    font-size: 16px;
+    font-size: 18px;
+    text-transform: capitalize;
 }
 .img-checkmark{  
     width: 32px;
     position: relative;
-    top: 65px;
+    top: 70px;
     z-index: 59;
     left: calc(50% - 16px);
 }
@@ -48,7 +49,7 @@
     margin-right: 8px;
     color: #010944;
     float: right;
-    font-size: 16px;
+    font-size: 18px;
 }
 .p-total{
     font-family: open sans;
@@ -56,7 +57,6 @@
     margin-bottom: 0px;
     background-color: #E4322E;
     color: #fff;
-    font-size: 23px;
 }
 .p-price{
     font-family: open sans;
@@ -64,14 +64,13 @@
     margin-bottom: 0px;
     background-color: #E4322E;
     color: #fff;
-    font-size: 24px;
     float: right;
 }
 .ProceedToCheckout_btn{
     background-color: #E4322E;
     color: #fff;
     font-size: 18px;
-    height: 50px;
+    height: 40px;
     width: 92%;
     border-radius: 8px;
     display: block;
@@ -80,29 +79,30 @@
     margin-right: 8px;
 }
 .backarrow{
-    margin-left: 25px;
+    // margin-left: 25px;
     color: #E4322E;
     font-size: 28px;
-    margin-top: 8px;
+    // margin-top: 8px;
 }
 .sub_total_card{
   
     background-color: #fff;
     margin-top: 50px;
-    box-shadow: 5px 7px 10px 5px #e8e8e8;
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
 }
 .total_price{
     font-family: open sans;
     background-color: #E4322E; 
     margin-top: 0px;
-    height: 45px;
+    height: 40px;
 }
 .back_arrow{
-    height: 48px;
+    height: 40px;
     width: 24%;
     background-color: #fff;
-    margin: 7px;
-    box-shadow: 5px 7px 10px 5px #e8e8e8;
+    margin: 5px;
+    margin-left: 10px !important;
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
 }
 .img{
     width:100%

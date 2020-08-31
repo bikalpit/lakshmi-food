@@ -9,7 +9,7 @@
     color: #E4322E;
     margin: 0;
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 5px;
     font-family: open sans;
 }
@@ -24,18 +24,19 @@
 .p-icon{
     font-size: 32px;
     color: #E4322E;
-    margin: 0;
-    margin-left: 16%;
-    margin-bottom: 5px;
-    margin-top: 2px;
+    float: right;
+}
+.p-icon-text{
+    font-size: 20px;
+    color: #E4322E;
+    float: left;
 }
 .p-add{
     color: #E4322E;
-    margin: 0;
-    margin-left: 10px;
-    font-size: 20px;
-    margin-bottom: 5px;
+    font-size: 18px;
     font-family: open sans;
+    display: flex;
+    align-items: center;
 }
 .p-add-name{
     font-size: 32px;
@@ -67,36 +68,30 @@
 .ProceedToCheckout_btn{
     background-color: #E4322E;
     color: #fff;
-    font-size: 20px;
-    height: 55px;
+    font-size: 18px;
+    height: 40px;
     width: 90%;
     border-radius: 8px;
     display: block;
     margin: auto;
     border: 1px solid #fff;
-    margin-right: 12px;
-    margin-left: 12px;
-    margin-top: 3px;
 }
 .backarrow{
-    margin-left: 25px;
+    // margin-left: 25px;
     color: #E4322E;
     font-size: 28px;
-    margin-top: 12px;
+    // margin-top: 12px;
 }
 .p-total{
-    margin-top: 8px;
-    margin-bottom: 0px;
     color: #E4322E;
-    font-size: 24px;
-    margin-left: 15px;
+    font-size: 1.2rem;
+    padding: 10px !important;
 }
 .p-price{
-    margin-top: 8px;
-    margin-bottom: 0px;
     color: #E4322E;
-    font-size: 24px;
-    float: right;
+    font-size: 1.2rem;
+    padding: 10px !important;
+    text-align: end;
 }
 .p-check-icon-d{
     font-size: 32px;
@@ -108,20 +103,19 @@
 }
 .add_card_shadow{
     background-color: #fff;
-    margin-top: 25px;
-    box-shadow: 5px 7px 10px 5px #e8e8e8;
+    // margin-top: 25px;
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
 }
 .payable_amt{
     background-color: #fff;
      margin-top:30%;
-     height: 52px;
-     box-shadow: 5px 7px 10px 5px #e8e8e8;
+    //  box-shadow: 5px 7px 10px 5px #e8e8e8;
 }
 .place_order{
-    height: 50px;
+    height: 38px;
     width: 24%;
     background-color: #fff;
-    box-shadow: 5px 7px 10px 5px #e8e8e8;
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
 }
 
 .backarrow1{
@@ -129,3 +123,8 @@
     color: #E4322E;
     font-size: 26px;
 }
+.center1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

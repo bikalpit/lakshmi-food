@@ -36,7 +36,6 @@ export class EditProfilePage implements OnInit {
       Name: ['', [Validators.required]],
       Email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       UserName: ['', [Validators.required]],
-      Password: ['', [Validators.required]]
     });
   }
 
@@ -56,52 +55,59 @@ export class EditProfilePage implements OnInit {
       console.log(data);
       this.AllUserArray = data.data;
       console.log("data--->", this.AllUserArray);
+      this.ionicForm.controls.Name.setValue(this.AllUserArray.name);
+      this.ionicForm.controls.Email.setValue(this.AllUserArray.email);
+      this.ionicForm.controls.UserName.setValue(this.AllUserArray.username);
 
     }, (err) => {
       this.auth.hideLoader();
       console.log("Error=>", err);
-      //this.auth.showError(err.error.message);
     });
   }
 
   fnSave() {
-    if (this.AllUserArray.name != '' && this.AllUserArray.email != '' && this.AllUserArray.username != '' && this.AllUserArray.password != '') {
-      this.requestObject = {
-        "user_id": this.user_id,
-        "name": this.AllUserArray.name,
-        "email": this.AllUserArray.email,
-        "username": this.AllUserArray.username
-      };
-      this.auth.showLoader();
-      console.log(this.requestObject);
-      this.auth.editProfile(this.requestObject).subscribe((data: any) => {
-        this.auth.hideLoader();
-        console.log(data);
-        this.AllUserArray = data;
-        if (this.AllUserArray.status == true) {
-          if (this.role == 'Customer') {
-            this.navCtrl.navigateForward('dashboard');
-            this.auth.showToast('Profile update successfully');
 
-          } else if(this.role == 'DeliveryBoy'){
-            this.navCtrl.navigateForward('my-account');
-            this.auth.showToast('Profile update successfully');
-          }
-          else{
-            this.auth.showToast('Profile Not update ');
-          }
-          //this.auth.showToast('Profile update successfully');
-        } else {
+    if (this.ionicForm.invalid) {
+      console.log('invalid');
+      this.ionicForm.get('Name').markAllAsTouched();
+      this.ionicForm.get('Email').markAsTouched();
+      this.ionicForm.get('UserName').markAsTouched();
+      return false;
+    }
+    console.log('ok');
+    this.requestObject = {
+      "user_id": this.user_id,
+      "name":  this.ionicForm.get('Name').value,
+      "email": this.ionicForm.get('Email').value,
+      "username":this.ionicForm.get('UserName').value,
+    };
+    console.log(this.requestObject);
+    this.auth.showLoader();
+    console.log(this.requestObject);
+    this.auth.editProfile(this.requestObject).subscribe((data: any) => {
+      this.auth.hideLoader();
+      console.log(data);
+      this.AllUserArray = data;
+      if (this.AllUserArray.status == true) {
+        if (this.role == 'Customer') {
+          this.navCtrl.navigateForward('dashboard');
+          this.auth.showToast('Profile update successfully');
+
+        } else if (this.role == 'DeliveryBoy') {
+          this.navCtrl.navigateForward('my-account');
+          this.auth.showToast('Profile update successfully');
+        }
+        else {
           this.auth.showToast('Profile Not update ');
         }
-      }, (err) => {
-        this.auth.hideLoader();
-        console.log("Error=>", err);
-        //this.auth.showError(err.error.message);
-      });
-    } else {
-      this.auth.showToast('Please fillup all fields');
-    }
+      } else {
+        this.auth.showToast('Profile Not update ');
+      }
+    }, (err) => {
+      this.auth.hideLoader();
+      console.log("Error=>", err);
+    });
+
   }
 
   fnCancelOrder() {
@@ -114,11 +120,9 @@ export class EditProfilePage implements OnInit {
   }
   fnBackToYourCart() {
     if (this.role == 'Customer') {
-    this.navCtrl.navigateForward('dashboard');
-    }else {
+      this.navCtrl.navigateForward('dashboard');
+    } else {
       this.navCtrl.navigateForward('my-account');
     }
-
   }
-
 }

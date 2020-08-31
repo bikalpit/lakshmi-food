@@ -6,7 +6,7 @@
   
     <ion-buttons slot="end">
       <ion-button>
-
+ 
       </ion-button>
     </ion-buttons>
     <ion-title class="main-title">Select Address</ion-title>
@@ -35,31 +35,33 @@
 
 
   <ion-card class="add_card_shadow" (click)="fnAddNewAddress()">
-    <ion-row style="margin-top: 5px;">
-
-      <ion-icon name="add-circle" class="p-icon"></ion-icon>
-
-      <ion-col>
-        <p class="p-add">Add New Address</p>
+    <ion-row>
+      <ion-col size="4">
+        <ion-icon name="add-circle" class="p-icon"></ion-icon>
+      </ion-col>
+      <ion-col size="6" class="p-add">
+      Add New Address
       </ion-col>
     </ion-row>
   </ion-card>
 
   <ion-card class="payable_amt">
-    <ion-row>
-        <h4 class="p-total">Payable Amount</h4>
-      <ion-col>
-        <h6 class="p-price">₹{{mainSubTotal}}</h6>
+    <ion-row class="center1">
+      <ion-col size="8" class="p-total">
+        Payable Amount
+      </ion-col>
+      <ion-col  size="4" class="p-price">
+        ₹{{mainSubTotal}}
       </ion-col>
     </ion-row>
   </ion-card>
 
-  <ion-row style="margin-top: 4%;">
-    <ion-card class="place_order" (click)="fnBackToYourCart()">
+  <ion-row class="center1">
+    <ion-card class="place_order center" (click)="fnBackToYourCart()">
       <ion-icon name="chevron-back-outline" class="backarrow"></ion-icon>
     </ion-card>
     <ion-col>
-      <button ion-button class="ProceedToCheckout_btn" (click)="fnProceedToCheckout()">Place Order</button>
+      <button float-right ion-button class="ProceedToCheckout_btn" (click)="fnProceedToCheckout()">Place Order</button>
     </ion-col>
   </ion-row>
 

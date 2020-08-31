@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { MenuController } from '@ionic/angular';
+import { NavController ,AlertController,MenuController} from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { DatePipe } from '@angular/common';
 
@@ -26,7 +25,7 @@ export class MyAccountPage implements OnInit {
   date:any;
   orderDate:any;
 
-  constructor(private datePipe: DatePipe, private auth: AuthService, public navCtrl: NavController, public menu: MenuController) {
+  constructor( public alertCtrl: AlertController,private datePipe: DatePipe, private auth: AuthService, public navCtrl: NavController, public menu: MenuController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
@@ -78,8 +77,31 @@ export class MyAccountPage implements OnInit {
   fnOrderDetails(id) {
     this.navCtrl.navigateForward('order-details', { state: id });
   }
-
+  async presentAlertConfirm() {
+    const alert = await this.alertCtrl.create({
+      // header: 'Confirm!',
+      message: "Please enable Your Location",
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Logout',
+          handler: () => {
+            this.fnLogout();
+            console.log('Logout clicked');
+          }
+        }
+      ],
+    });
+    await alert.present();
+  }
   fnLogout() {
+    localStorage.clear();
     this.navCtrl.navigateForward('home');
   }
 }

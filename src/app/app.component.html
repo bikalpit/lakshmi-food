@@ -1,12 +1,30 @@
 <ion-app>
   <ion-menu side="start" menuId="first" contentId="content1">
     <ion-header>
-      <ion-toolbar class="main-toolbar">
-        <ion-title></ion-title>
+      <ion-toolbar>
+        <ion-grid class="drwawerCard">
+          <ion-row class="center">
+            <ion-col size="4">
+              <div class="user_avatar">
+                <img src="../assets/imgs/avatar1.png">
+              </div>
+            </ion-col>
+            <ion-col size="8">
+              <h4 ion-text class="cardColor">
+                {{username}}
+              </h4>
+              <span  class="cardColor fontSizeRole" *ngIf="role == 'Customer'">Customer</span>
+              <span  class="cardColor fontSizeRole" *ngIf="role == 'staff'">Staff</span>
+              <br>
+              <span  class="cardColor fontSizeEmail">{{email}}</span>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-item  class="main-title" (click)="fnDashboard()"><img src="../assets/imgs/home-run.png" class="img">Home
+      <ion-item class="main-title" (click)="fnDashboard()"><img src="../assets/imgs/home-run.png" class="img">Home
       </ion-item>
 
       <ion-item class="main-title" (click)="fnEditProfile()"><img src="../assets/imgs/person.png" class="img">Edit
@@ -18,9 +36,10 @@
       <!-- <ion-item *ngIf="role == 'Customer'" class="main-title" (click)="fnMyOrders()"><img src="../assets/imgs/order (3).png" class="img">My
         Orders</ion-item> -->
 
-      <ion-item class="main-title" (click)="fnLogout()"><img src="../assets/imgs/logout.png" class="img">Logout
+      <ion-item class="main-title" (click)="presentAlertConfirm()"><img src="../assets/imgs/logout.png"
+          class="img">Logout
       </ion-item>
-      
+
       <!-- <div *ngIf="role == 'Customer'">
         <ion-item class="main-title" (click)="fnDashboard()"><img src="../assets/imgs/home-run.png" class="img">Home
         </ion-item>
@@ -65,4 +84,3 @@
   </ion-menu>
   <ion-router-outlet id="content1"></ion-router-outlet>
 </ion-app>
-

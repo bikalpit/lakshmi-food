@@ -4,15 +4,17 @@
       <ion-label class="sign-label">Login</ion-label>
     </div>
     
-    <ion-input type="email" name="email" class="login_text" [(ngModel)]="login.username" placeholder="Username"></ion-input>
+    <ion-input type="email" name="email" class="login_text" [(ngModel)]="login.username" placeholder="Username or Email"></ion-input>
 
     <ion-input type="password" name="password" [(ngModel)]="login.password" class="login_text" placeholder="Password"></ion-input>
 
     <ion-label class="forgot-label" (click)="fnForgotPassword()"> Forgot Password?</ion-label>
 
     <button ion-button class="login_btn" (click)="fnLogin()"><b>Log In</b></button>
-    
-    <p class="login_signup" (click)="fnSignUp()"><b>Don't have an account? Sign up</b></p>
+   
   </div>
- 
+ <div style="text-align: center;z-index: -1;">
+  <p class="login_signup" (click)="fnSignUp()"><b>Don't have an account? Sign up</b></p>
+ </div>
+
 </ion-content>

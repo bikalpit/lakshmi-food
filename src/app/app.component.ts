@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { NavController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
-import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
-import { noUndefined } from '@angular/compiler/src/util';
-import { Router, RouterEvent } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -20,104 +18,39 @@ export class AppComponent {
   username: any = localStorage.getItem('username');
   email: any = localStorage.getItem('email');
   role: any = localStorage.getItem("role");
-
-  // activePath = '';
-
-  // pages = [
-  //   {
-  //     name: 'Home',
-  //     path: ' /home',
-  //     icon: 'home-outline'
-  //   },
-  //   {
-  //     name: 'Edit Profile',
-  //     path: '/edit-profile',
-  //     icon : 'person'
-  //   },
-  //   {
-  //     name: 'Change Password',
-  //     path: '/change-password'
-  //   },
-  //   {
-  //     name: 'My Orders',
-  //     path: '/customer-orders'
-  //   },
-  //   {
-  //     name: 'Logout',
-  //     path: '/home'
-  //   }
-  // ]
-
-  // pagess = [
-  //   {
-  //     name: 'Home',
-  //     path: ' /home',
-  //     icon: 'home-outline'
-  //   },
-  //   {
-  //     name: 'Edit Profile',
-  //     path: '/edit-profile',
-  //     icon : 'person'
-  //   },
-  //   {
-  //     name: 'Change Password',
-  //     path: '/change-password'
-  //   },
-  //   {
-  //     name: 'Logout',
-  //     path: '/home'
-  //   }
-  // ]
-
   constructor(private router: Router,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public menu: MenuController,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public alertCtrl: AlertController,
   ) {
-  // this.router.events.subscribe((event: RouterEvent) => {
-  //     //this.activePath = event.url
-  //   })
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
+      this.statusBar.backgroundColorByHexString('#beccda');
       this.splashScreen.hide();
-
       this.user_id = localStorage.getItem("id");
-      console.log(this.user_id);
-
       this.username = localStorage.getItem("username");
-      console.log(this.username);
-
       this.email = localStorage.getItem("email");
-      console.log(this.email);
-
       this.role = localStorage.getItem("role");
-      console.log(this.role);
-
-      if(localStorage.getItem('username')) {
-
-        if(localStorage.getItem('role') == 'Customer') {
-
+      if (localStorage.getItem('username')) {
+        if (localStorage.getItem('role') == 'Customer') {
           this.navCtrl.navigateForward('dashboard');
-
-        }else if(localStorage.getItem('role') == 'DeliveryBoy') {
-         
+        } else if (localStorage.getItem('role') == 'DeliveryBoy') {
           this.navCtrl.navigateForward('my-account');
         }
       }
       else {
         this.navCtrl.navigateForward('home');
       }
-
     });
   }
-
-
+  
   openCustom() {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');
@@ -149,9 +82,6 @@ export class AppComponent {
   }
 
   fnDashboard() {
-    /* this.menu.enable(true);
-    this.navCtrl.navigateForward('dashboard');
-    this.menu.enable(false); */
     this.menu.toggle();
   }
 
@@ -160,5 +90,26 @@ export class AppComponent {
     this.navCtrl.navigateForward('customer-orders');
     this.menu.enable(false);
   }
-
+  async presentAlertConfirm() {
+    const alert = await this.alertCtrl.create({
+      message: "Are you sure want to logout?",
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Logout',
+          handler: () => {
+            this.fnLogout();
+            console.log('Logout clicked');
+          }
+        }
+      ],
+    });
+    await alert.present();
+  }
 }

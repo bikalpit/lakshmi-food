@@ -28,7 +28,7 @@
   --background: url('../../assets/imgs/LoginScreen_1.jpg') 0 0/100% 100% no-repeat;
   // --background-repeat: no-repeat;
   // --background-size: cover;  
-  position: fixed;
+  position: relative;
   display: inline-block;
 }
 .scroll-content{
@@ -91,10 +91,16 @@
 }
 
 .login_signup{
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
   font-size: 18px;
   color: #FF3F22;
-  //text-align: center;
+  text-align: center;
 }
+body.hide-on-keyboard-open .scroll-content{
+  margin-bottom: 0px !important;
+  }
+  body.hide-on-keyboard-open .footer{
+  display: none;
+  }

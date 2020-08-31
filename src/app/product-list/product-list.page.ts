@@ -32,7 +32,7 @@ export class ProductListPage implements OnInit {
     this.getProductList(false,"");
   }
 
-  async showModal(data) {
+   /* async showModal(data) {
     const modal = await this.modalController.create({
       component: ModalPopupPage,
       cssClass: 'myModal',
@@ -41,7 +41,7 @@ export class ProductListPage implements OnInit {
       }
     });
     return await modal.present();
-  }
+  } */
 
   goBack() {
     this.location.back();
@@ -95,5 +95,23 @@ export class ProductListPage implements OnInit {
 
   doInfinite(event) {
     this.getProductList(true, event);
+  }
+  async showModal(data){
+    const presentModel = await this.modalController.create({
+      component: ModalPopupPage,
+      componentProps: {
+        'name': data
+      },
+      showBackdrop: true,
+      mode: "ios",
+      cssClass: 'change-select-card-modal'
+    });
+
+    presentModel.onWillDismiss().then((data)=>{
+      console.log(data);
+      //custom code
+     
+    });
+    return await presentModel.present();
   }
 }

@@ -1,36 +1,30 @@
-<ion-header class="ion-page">
-  
-</ion-header>
 
 <ion-content ion-fixed>
-<div class="back-trans">
  
-  <!-- <img src="../../assets/imgs/images.jpg" style="width:50%;height: 50px;"> -->
-  <ion-grid>
+  <ion-grid >
     <ion-row class="btnCloseContainer">
       <ion-buttons class="close_btn">
         <ion-icon name="close-outline" (click)="closeModal()"></ion-icon>
-        <!-- <ion-button ion-button>Close</ion-button> -->
       </ion-buttons>
     </ion-row>
-    <ion-row>
-      <ion-col col-12 *ngIf="name.images">
+    <ion-row  class="center">
+      <ion-col *ngIf="name.images" size="12">
         <ion-slides pager="true" [options]="slideOpts">
-          <ion-slide>
+          <ion-slide >
             <img *ngIf="name.images.length > 0"
               src="{{url.file_url}}assets/uploads/products/thumbs/{{name.images[0].product_image}}"
               class="img_slide">
             <img *ngIf="name.images.length == 0" src="../../assets/imgs/not_found.png" class="img_slide">
           </ion-slide>
           
-          <ion-slide>
+          <ion-slide >
             <img *ngIf="name.images.length > 0"
             src="{{url.file_url}}assets/uploads/products/thumbs/{{name.images[0].product_image}}"
             class="img_slide">
           <img *ngIf="name.images.length == 0" src="../../assets/imgs/not_found.png" class="img_slide">
           </ion-slide>
 
-          <ion-slide>
+          <ion-slide >
             <img *ngIf="name.images.length > 0"
               src="{{url.file_url}}assets/uploads/products/thumbs/{{name.images[0].product_image}}"
               class="img_slide">
@@ -42,7 +36,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid>
+  <ion-grid class="padingLeftRight">
     <ion-row>
       <ion-col>
         <span class="slide-price">₹{{name.product_price * item_qty}}</span>
@@ -64,5 +58,4 @@
   </ion-grid>
 
   <button ion-button class="AddToCart_btn" (click)="fnAddToCart(name.id,name.product_name,name.product_weight,name.product_price,item_qty,name.images)">Add To Cart</button>
-</div>
 </ion-content>

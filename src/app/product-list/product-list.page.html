@@ -14,11 +14,8 @@
 </ion-toolbar>
 <ion-content>
 
-  <!-- <ion-refresher (ionRefresh)="doRefresh($event)" style="color:green">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher> -->
 <div *ngFor="let item of lazyListProduct;">
-  <ion-card class="card" (click)="showModal(item)">
+  <ion-card (click)="showModal(item)">
     <ion-grid>
       <ion-row >
          <ion-col size="4" *ngIf="item.images">
@@ -34,50 +31,7 @@
     </ion-grid>
   </ion-card>
 </div>
-  <!-- <ion-card class="card" (click)="showModal()">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="4">
-          <img src="../../assets/imgs/images.jpg" style="width:100%;">
-        </ion-col>
-        <ion-col>
-          <h5 class="p-label1"><b>Atta 5Kg</b></h5>
-          <h6 class="p-label">₹220.00</h6>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-  <ion-card class="card" (click)="showModal()">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="4">
-          <img src="../../assets/imgs/images.jpg" style="width:100%;">
-        </ion-col>
-        <ion-col>
-          <h5 class="p-label1"><b>Atta 5Kg</b></h5>
-          <h6 class="p-label">₹500.00</h6>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-  <ion-card class="card" (click)="showModal()">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="4">
-          <img src="../../assets/imgs/images.jpg" style="width:100%;">
-        </ion-col>
-        <ion-col>
-          <h5 class="p-label1"><b>Atta 5Kg</b></h5>
-          <h6 class="p-label">₹100.00</h6>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card> -->
 
-  <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="!isloadmore">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll> -->
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="!isloadmore">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>

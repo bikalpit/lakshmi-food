@@ -57,10 +57,11 @@ export class EditAddressPage implements OnInit {
         "address_type": this.AllAddressArray.address_type
       
       };
-
+      this.auth.showLoader();
       console.log(this.requestObject);
       this.auth.editAddress(this.requestObject).subscribe((data: any) => {
         console.log(data);
+        this.auth.hideLoader();
         this.AllAddressArray = data;
 
         this.auth.showToast('Updated address successfully');
@@ -68,7 +69,7 @@ export class EditAddressPage implements OnInit {
 
       }, (err) => {
         console.log("Error=>", err);
-
+        this.auth.hideLoader();
 
       });
     } else {

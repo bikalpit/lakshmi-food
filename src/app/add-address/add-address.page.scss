@@ -6,11 +6,9 @@
     color: #E4322E;
 }
 .current-location{
-    box-shadow: 5px 7px 10px 5px #e8e8e8;
     background-color: #fff;
 }
 .main-address{
-    box-shadow: 5px 7px 10px 5px #e8e8e8;
     background-color: #fff;
     height: 115%;
 }
@@ -40,14 +38,7 @@
     margin-top: 17px;
 
 }
-// .house-img{
-//     background: rgb(243, 158, 151);
-//     height: 60px;
-//     width: 100px;
-//     border-radius: 12px;
-//     margin-left: 10px;
-//     margin-bottom: 10px;
-// }
+
 .office-img{
 
     background-image: url('../../assets/imgs/Group 569.png');
@@ -155,3 +146,6 @@
     color:red !important;
 }
 
+.imgCard{
+    text-align: end;
+}

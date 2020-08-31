@@ -89,29 +89,3 @@ ion-note {
         font-weight: 600;
     }
 }
-
-.ion-page{
-    left: 0 !important;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    /* display: flex; */
-    position: absolute;
-    flex-direction: column;
-    contain: layout size style;
-    overflow: hidden;
-    z-index: 0;
-}
-
-[ion-fixed] {
-    min-height: calc(100% - 98px); // adjust to your footer height!
-}
-
-.back-trans{
-    background-color: white;
-}
-.md .swiper-slide {
-    width: 340px !important;
-    height: 125px !important;
-    color: #E4322E !important;
-}

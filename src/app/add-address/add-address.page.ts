@@ -13,16 +13,8 @@ export class AddAddressPage implements OnInit {
 
   ionicForm: FormGroup;
   requestObject: any;
-  house_no: any;
-  city: any;
-  state: any;
-  landmark: any;
   user_id: any;
   type: any;
-  mobile_no: any;
-  name: any;
-  area: any;
-  zipcode: any;
   public data: any;
   dataResponse: any;
   public myToast: any;
@@ -48,20 +40,9 @@ export class AddAddressPage implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   onChangeHandler(event) {
-    //alert(event.target.value)
-    if (event.target.value == 'Home') {
-      console.log('address->', event.target.value);
-     
-    }
-    else if (event.target.value == 'Office') {
-      console.log('address->', event.target.value);
-    } else {
-      console.log('address->', event.target.value);
-    }
     this.data = event.target.value;
   }
 
@@ -70,39 +51,41 @@ export class AddAddressPage implements OnInit {
   }
   fnSaveAddress() {
 
-    if (this.house_no != '' && this.area != '' && this.city != '' && this.state != '' && this.landmark != '' && this.mobile_no != '' && this.area != '' && this.zipcode != '') {
-      this.requestObject = {
-
-        "house_no": this.house_no,
-        "area": this.area,
-        "city": this.city,
-        "state": this.state,
-        "landmark": this.landmark,
-        "zipcode": this.zipcode,
-        "mobile_no": this.mobile_no,
-        "user_id": this.user_id,
-        "address_type": this.data
-
-      };
-
-      this.auth.addAddress(this.requestObject).subscribe((data: any) => {
-        this.dataResponse = data;
-        console.log(this.dataResponse);
-        if (this.dataResponse.status == true) {
-          this.auth.showToast('Save address successfully');
-          this.navCtrl.navigateForward('select-address');
-
-        }
-
-      }, (err) => {
-        console.log("Error=>", err);
-        //this.auth.showError(err.error.message);
-      });
-
-    } else {
-      this.auth.showToast('Please fillup all fields');
+    if (this.ionicForm.invalid) {
+      console.log('invalid');
+      this.ionicForm.get('houseNo').markAllAsTouched();
+      this.ionicForm.get('AreaColony').markAsTouched();
+      this.ionicForm.get('State').markAsTouched();
+      this.ionicForm.get('City').markAllAsTouched();
+      this.ionicForm.get('Landmark').markAsTouched();
+      this.ionicForm.get('MobileNo').markAsTouched();
+      this.ionicForm.get('Zipcode').markAsTouched();
+      return false;
     }
-
+    this.requestObject = {
+      "house_no":  this.ionicForm.get('houseNo').value,
+      "area":  this.ionicForm.get('AreaColony').value,
+      "city":  this.ionicForm.get('City').value,
+      "state":  this.ionicForm.get('State').value,
+      "landmark": this.ionicForm.get('Landmark').value,
+      "zipcode":  this.ionicForm.get('Zipcode').value,
+      "mobile_no": this.ionicForm.get('MobileNo').value,
+      "user_id": this.user_id,
+      "address_type": this.data
+    };
+    console.log(this.requestObject);
+    this.auth.showLoader();
+    this.auth.addAddress(this.requestObject).subscribe((data: any) => {
+      this.dataResponse = data;
+      console.log(this.dataResponse);
+      this.auth.hideLoader();
+      if (this.dataResponse.status == true) {
+        this.auth.showToast('Save address successfully');
+        this.navCtrl.navigateForward('select-address');
+      }
+    }, (err) => {
+      this.auth.hideLoader();
+      console.log("Error=>", err);
+    });
   }
-
 }

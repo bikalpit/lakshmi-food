@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, LoadingController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
+declare var document:any;
 
 @Component({
   selector: 'app-home',
@@ -16,7 +18,26 @@ export class HomePage {
   constructor(public navCtrl: NavController,
     private auth: AuthService, public toast: ToastController,
     public loadingCtrl: LoadingController,
-  ) { }
+    private keyboard: Keyboard
+  ) {
+    window.addEventListener('keyboardDidShow', () => {
+      console.log("Keyboard is Shown");
+      // document.body.classList.add('hide-on-keyboard-open');
+      this.keyboard.onKeyboardShow().subscribe( (value)=>{
+        document.body.classList.add('hide-on-keyboard-open');
+        })
+    });
+    window.addEventListener('keyboardDidHide', () => {
+      // document.body.classList.remove('hide-on-keyboard-open');
+      console.log("Keyboard is Hidden");
+      this.keyboard.onKeyboardHide().subscribe( (value)=>{
+        document.body.classList.remove('hide-on-keyboard-open');
+        } )
+    
+    });
+
+   }
+  
   fnLogin() {
     if (this.login.username != '') {
       if (this.login.password != '') {

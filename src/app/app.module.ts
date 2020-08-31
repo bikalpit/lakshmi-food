@@ -12,15 +12,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonService } from './common.service';
 import { AuthService } from './auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {ModalPopupPage} from './modal-popup/modal-popup.page'
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, ModalPopupPage],
+  entryComponents: [ModalPopupPage],
   imports: [BrowserModule, FormsModule,
     ReactiveFormsModule,IonicModule.forRoot(), AppRoutingModule,HttpClientModule, 
  
   ],
   providers: [
+    Keyboard,
     StatusBar,
     SplashScreen,
     CommonService,
