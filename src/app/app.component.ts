@@ -32,7 +32,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.statusBar.backgroundColorByHexString('#beccda');
+      this.statusBar.backgroundColorByHexString('#ffffff');
       this.splashScreen.hide();
       this.user_id = localStorage.getItem("id");
       this.username = localStorage.getItem("username");
