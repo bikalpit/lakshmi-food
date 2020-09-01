@@ -36,19 +36,22 @@ export class ChangePasswordPage implements OnInit {
     });
   }
   fnChangePassword() {
-  
-    if (this.oldPass != '' && this.newPass != '') {
-      if (this.newPass.length >= 6 && this.oldPass.length >=6) {
+    
+    if (
+      this.oldPass != null && 
+       this.newPass != null
+       ) {
+      this.auth.showLoader();
+      // if (this.newPass.length >= 6 && this.oldPass.length >=6) {
       this.requestObject = {
         "user_id": this.user_id,
         "old_password": this.oldPass,
         "password": this.newPass
       };
-      this.auth.showLoader();
-      console.log(this.requestObject);
+  // console.log(this.requestObject);
       this.auth.changePassword(this.requestObject).subscribe((data: any) => {
         this.auth.hideLoader();
-        console.log(data);
+        //  console.log(data);
         this.dataResponse = data;
         if (this.dataResponse.status == true) {
           if (this.role == 'Customer') {
@@ -74,10 +77,11 @@ export class ChangePasswordPage implements OnInit {
         //this.auth.showError(err.error.message);
       });
 
-    } else {
-      this.auth.showToast('Please Enter Old Password & New Password should be 6 digits');
-    }
+    // } else {
+    //   this.auth.showToast('Please Enter Old Password & New Password should be 6 digits');
+    // }
   }else{
+    console.log("please enter all fields")
     this.auth.showToast('Please Enter Old Password & New Password');
   }
   }

@@ -79,8 +79,8 @@
       "integrator-cordova-plugin-downloader": {}
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

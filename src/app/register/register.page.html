@@ -37,16 +37,16 @@
       </div>
 
       <div class="input-wrap">
-        <ion-input type="number" name="phone" formControlName="phone" [(ngModel)]="register.phone" class="login_text"
+        <ion-input type="text" name="phone" formControlName="phone" [(ngModel)]="register.phone" class="login_text"
           placeholder="Mobile Number"></ion-input>
         <span class="error-wrap"
           *ngIf="ionicForm.get('phone').touched || ionicForm.get('phone').dirty || formSubmitclicked">
           <small *ngIf="ionicForm.get('phone').hasError('required')" class="error">Mobile No is required.</small>
           <small *ngIf="ionicForm.get('phone').hasError('minlength')" class="error">Mobile No should be minimum 10
             digits.</small>
-          <small *ngIf="ionicForm.get('phone').hasError('maxlength')" class="error">Mobile No should be maximum 10
+           <small *ngIf="ionicForm.get('phone').hasError('maxlength')" class="error">Mobile No should be maximum 10
             digits.</small>
-        </span>
+        </span> 
       </div>
 
       <div class="input-wrap">
@@ -61,7 +61,7 @@
       </div>
 
       <div class="input-wrap">
-        <ion-input type="password" name="confirm_password" formControlName="confirm_password"
+        <ion-input type="password" name="confirm_password" formControlName="confirm_password" 
           [(ngModel)]="register.confirm_password" class="login_text" placeholder="Confirm Password"></ion-input>
         <span class="error-wrap"
           *ngIf="ionicForm.get('confirm_password').touched || ionicForm.get('confirm_password').dirty || formSubmitclicked">
@@ -69,11 +69,20 @@
             required.</small>
         </span>
       </div>
-      <button ion-button class="login_btn" (click)="fnLogin()"><b>Sign Up</b></button>
       <!-- <button ion-button class="login_btn">Sign Up</button> -->
 
     </form>
+    <div>
+      <button ion-button class="login_btn" (click)="fnLogin()"><b>Sign Up</b></button>
+ </div>
+
   </div>
-  <p class="signup-label" (click)="fnSignIn()"><b>Already have an account? Sign In</b></p>
+  <ion-footer>
+    <div style="text-align: center;z-index: -1;" class="" *ngIf="isKeyboardHide">
+      <p class="signup-label" (click)="fnSignIn()"><b>Already have an account? Sign In</b></p>
+    </div>
+     <div *ngIf="isKeyboardHide">
+     </div>
+    </ion-footer>
 
 </ion-content>
