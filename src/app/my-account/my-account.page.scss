@@ -6,16 +6,16 @@
     color: #E4322E;
  }
  .header-content{
-    box-shadow: 5px 7px 10px 5px #e8e8e8;
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
     background-color: #E4322E;
-    height: 15%;
  }
  .p-label{
      color :#fff;
      margin: 30px 0 30px 10px;
+     font-size: 1.3rem;
  }
  .card-content{
-    box-shadow: 5px 7px 10px 5px #e8e8e8;
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
     margin-top: 12%;
     background-color: #fff;
     height: 17%;
@@ -46,7 +46,7 @@
     color: #000;
 }
 .card-content-address{
-    box-shadow: 5px 7px 10px 5px #e8e8e8;
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
     margin-top: 0;
     background-color: #fff;
 }
@@ -81,7 +81,7 @@ ion-select{
 .customer-filter{
     width: 160px;
     max-width: 160px;
-    height: 45px;
+    height: 40px;
 }
 .customer-filter::part(text){
     padding: 0 10px;
@@ -90,7 +90,7 @@ ion-select{
 }
 .customer-filter::part(icon) {
         width: 45px !important;
-        height: 45px !important;
+        height: 40px !important;
         background-color: #E4322E !important;
         display: flex !important;
         justify-content: center !important;

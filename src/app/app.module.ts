@@ -14,6 +14,10 @@ import { AuthService } from './auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ModalPopupPage} from './modal-popup/modal-popup.page'
 import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
+import { File } from "@ionic-native/file/ngx";
+import { FileTransfer } from "@ionic-native/file-transfer/ngx";
+import { FileOpener } from "@ionic-native/file-opener/ngx";
 
 @NgModule({
   declarations: [AppComponent, ModalPopupPage],
@@ -28,6 +32,10 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
     SplashScreen,
     CommonService,
     AuthService,
+    DocumentViewer,
+    File,
+    FileOpener,
+    FileTransfer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

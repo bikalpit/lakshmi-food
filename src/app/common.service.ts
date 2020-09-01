@@ -6,7 +6,7 @@ import { Observable} from 'rxjs';
 const API_URL = 'http://laxmifoods.bi-team.in/api/';
 const file_url = 'http://laxmifoods.bi-team.in/';
 @Injectable()
-export class CommonService {
+export class CommonService { 
 
 
     constructor(private http: HttpClient,) {}

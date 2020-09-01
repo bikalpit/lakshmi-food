@@ -14,14 +14,14 @@
 
 <ion-content>
   <ion-grid class="header-content">
-    <p class="p-label">Wel Come</p>
+    <p class="p-label">Wel Come {{userName}}</p>
   </ion-grid>
 
   <ion-row style="margin-top: 12px;">
     <p class="order-status"><b>Order Status</b></p>
     
     <ion-col>
-      <ion-item style="float: right;">   
+      <ion-item lines="none" style="float: right;">   
         <ion-select  #item class="custom-options customer-filter" [(ngModel)]="selecTextStatus.select" (ionChange)="OnChange(item.value)">
         
           <ion-select-option value="Shipped">Shipped</ion-select-option> 

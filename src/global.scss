@@ -64,7 +64,6 @@
     width: 100% !important;
 }
 
-
 .swiper-pagination-bullet-active {
     background: #e4322e !important;
 }
@@ -146,4 +145,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+ion-footer {
+    display: contents !important;
+}
+.float-r{
+    float: right !important;
+}
+.float-l{
+    float: left !important;
 }

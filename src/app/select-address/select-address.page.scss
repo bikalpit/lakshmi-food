@@ -17,17 +17,17 @@
     color: #010944;
     margin: 0;
     margin-left: 2px;
-    font-size: 18px;
+    font-size: 1rem;
     margin-top: 6px;
     font-family: open sans;
 }
 .p-icon{
-    font-size: 32px;
+    font-size: 1.2rem;
     color: #E4322E;
     float: right;
 }
 .p-icon-text{
-    font-size: 20px;
+    font-size: 18px;
     color: #E4322E;
     float: left;
 }
@@ -39,7 +39,7 @@
     align-items: center;
 }
 .p-add-name{
-    font-size: 32px;
+    font-size: 1.2rem;
     color: #E4322E;
     margin: 0;
     margin-left: 4%;
@@ -47,23 +47,16 @@
     margin-top: 11px;
 }
 .p-check-icon{
-    font-size: 32px;
+    font-size: 1.2rem;
     color: #E4322E;
-    margin: 0;
     //margin-left: 4%;
-    margin-bottom: 5px;
-    margin-top: 15px;
-    margin-left: 10px;
+  
+    margin-top: 0.1rem;
+    margin-left: 0.5rem;
 }
 .p-check-icons{
-    font-size: 32px;
-    float: right;
-    color: #E4322E;
-    margin: 0;
-    margin-left: 4%;
-    margin-bottom: 5px;
-    margin-top: 3px;
-    margin-right: 10px;
+    font-size: 1.2rem;
+    margin-right: 0.4rem;
 }
 .ProceedToCheckout_btn{
     background-color: #E4322E;
@@ -94,7 +87,7 @@
     text-align: end;
 }
 .p-check-icon-d{
-    font-size: 32px;
+    font-size: 1.2rem;
     color: #E4322E;
     margin: 0;
     margin-left: 9%;
@@ -128,3 +121,9 @@
     justify-content: center;
     align-items: center;
   }
+  .icon-address{
+    font-size: 1.2rem;
+    color: red;
+    margin-top: 0.1rem;
+    margin-left: 0.5rem;
+}

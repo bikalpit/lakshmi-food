@@ -3,7 +3,7 @@ import { NavController, ToastController, LoadingController } from '@ionic/angula
 import { AuthService } from '../auth.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 
-declare var document:any;
+declare var document: any;
 
 @Component({
   selector: 'app-home',
@@ -16,32 +16,31 @@ export class HomePage {
   dataResponse: any;
   public myToast: any;
   loading: any;
-  isKeyboardHide=true;
+  isKeyboardHide = true;
   constructor(public navCtrl: NavController,
     private auth: AuthService, public toast: ToastController,
     public loadingCtrl: LoadingController,
     private keyboard: Keyboard
-  ) 
-  {
+  ) {
     window.addEventListener('keyboardDidShow', () => {
       console.log("Keyboard is Shown");
-      this.isKeyboardHide=false;
+      this.isKeyboardHide = false;
       // document.body.classList.add('hide-on-keyboard-open');
-      this.keyboard.onKeyboardShow().subscribe( (value)=>{
+      this.keyboard.onKeyboardShow().subscribe((value) => {
         document.body.classList.add('hide-on-keyboard-open');
-        })
+      })
     });
     window.addEventListener('keyboardDidHide', () => {
       // document.body.classList.remove('hide-on-keyboard-open');
-      this.isKeyboardHide=true;
-      this.keyboard.onKeyboardHide().subscribe( (value)=>{
+      this.isKeyboardHide = true;
+      this.keyboard.onKeyboardHide().subscribe((value) => {
         document.body.classList.remove('hide-on-keyboard-open');
-        } )
-    
+      })
+
     });
 
-   }
-  
+  }
+
   fnLogin() {
     if (this.login.username != '') {
       if (this.login.password != '') {

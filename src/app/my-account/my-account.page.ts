@@ -24,10 +24,12 @@ export class MyAccountPage implements OnInit {
   };
   date: any;
   orderDate: any;
+  userName:any;
 
   constructor(public alertCtrl: AlertController, private datePipe: DatePipe, private auth: AuthService, public navCtrl: NavController, public menu: MenuController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
+    this.userName=localStorage.getItem("username");
     console.log(this.user_id);
     this.selecTextStatus.select = "Shipped";
 

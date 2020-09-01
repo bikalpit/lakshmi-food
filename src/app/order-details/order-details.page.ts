@@ -67,10 +67,10 @@ export class OrderDetailsPage implements OnInit {
       "order_id": this.id
     }
     console.log(this.requestObject);
-
+    this.auth.showLoader();
     this.auth.getOrderDetails(this.requestObject).subscribe((data: any) => {
       console.log(data);
-
+      this.auth.hideLoader();
       this.dataResponse = data.data;
       this.ordersDetails = this.dataResponse;
       this.date = this.dataResponse.create_at;
@@ -86,6 +86,7 @@ export class OrderDetailsPage implements OnInit {
     }, (err) => {
       console.log("Error=>", err);
       //this.auth.showError(err.error.message);
+      this.auth.hideLoader();
     });
   }
 
@@ -95,14 +96,17 @@ export class OrderDetailsPage implements OnInit {
       "order_id" : this.id,
       "order_status" : status
     }
+    this.auth.showLoader();
     console.log(this.requestObject);
     this.auth.updateOrderStatus(this.requestObject).subscribe((data: any) => {
       console.log(data);
+      this.auth.hideLoader();
       this.auth.showToast('Order status updated succesfully');
       this.navCtrl.navigateForward('my-account');
 
     }, (err) => {
       console.log("Error=>", err);
+      this.auth.hideLoader();
       //this.auth.showError(err.error.message);
     });
   }

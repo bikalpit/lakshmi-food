@@ -82,6 +82,9 @@ export class AuthService {
   updateOrderStatus(data): Observable<any>{
     return this.commonService.postWithoutToken('orders/update_order_status', data);
   }
+  openPdf(data): Observable<any>{
+    return this.commonService.getWithoutToken('orders/orderPDF/'+ data);
+  }
 
   showToast(msg) {
     return this.toastCtrl.create({

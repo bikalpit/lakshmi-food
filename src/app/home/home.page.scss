@@ -25,23 +25,24 @@
 
 .background-image {
   /* In this example we are using a background-image. But the header element could be anything. */
-  --background: url('../../assets/imgs/LoginScreen_1.jpg') 0 0/100% 100% no-repeat;
+  --background: url("../../assets/imgs/LoginScreen_1.jpg") 0 0/100% 100% no-repeat;
   // --background-repeat: no-repeat;
-  // --background-size: cover;  
+  // --background-size: cover;
   position: relative;
   display: inline-block;
+ 
 }
-.scroll-content{
+.scroll-content {
   padding-bottom: 0px !important;
 }
-.main-class{
+.main-class {
   width: 100%;
   margin: 18% 11% 0;
 }
 
-.sign-label{
+.sign-label {
   color: #ffffff;
-  font-size:28px;
+  font-size: 28px;
   font-family: open sans;
 }
 
@@ -49,13 +50,13 @@
   background-color: #fff;
   width: 77%;
   margin-top: 16px;
-  color:#000;
+  color: #000;
   padding-left: 2px;
   font-family: open sans;
   border-radius: 8px;
 }
 
-.forgot-label{
+.forgot-label {
   float: right;
   margin-right: 22%;
   margin-top: 8%;
@@ -70,37 +71,43 @@
   display: block;
   margin-top: 7rem;
   border: 1px solid #fff;
-  color: #E4322E;
+  color: #e4322e;
   font-size: 20px;
   height: 35px;
   position: fixed;
 }
 
-.signup-label{
+.signup-label {
   margin-top: 70%;
-  color: #E4322E;
+  color: #e4322e;
   font-family: open sans;
 }
 
-.my-custom-class{
-  background: #FFDB22;
-  color:#FF3F22;
-  border-style:solid;
-  border-width :5px;
-  border-color:#FF3F22;
+.my-custom-class {
+  background: #ffdb22;
+  color: #ff3f22;
+  border-style: solid;
+  border-width: 5px;
+  border-color: #ff3f22;
 }
 
-.login_signup{
+.login_signup {
   position: fixed;
   bottom: 0;
   width: 100%;
   font-size: 18px;
-  color: #FF3F22;
+  color: #ff3f22;
   text-align: center;
 }
-body.hide-on-keyboard-open .scroll-content{
+body.hide-on-keyboard-open .scroll-content {
   margin-bottom: 0px !important;
-  }
-  body.hide-on-keyboard-open .footer{
+}
+body.hide-on-keyboard-open .footer {
   display: none;
-  }
+}
+ion-footer {
+  display: contents !important;
+}
+ion-content{
+  --ion-background-color:#e4322e;
+}

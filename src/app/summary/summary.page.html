@@ -3,9 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button (click)="goBack()" color="danger"></ion-back-button>
     </ion-buttons>
-    <!-- <ion-buttons slot="start" class="menu_btn">
-      <ion-menu-button auto-hide="false"></ion-menu-button>
-    </ion-buttons> -->
+
     <ion-buttons slot="end">
       <ion-button>
 
@@ -98,7 +96,7 @@
     </ion-col>
 
     <ion-col *ngIf="ordersDetails.status != 'cancel'">
-      <button ion-button class="download_btn" (click)="fnDownload()">Download</button>
+      <button ion-button class="download_btn" (click)="fnGetPdfUrl(ordersDetails.id,ordersDetails.order_number)">Download</button>
     </ion-col>
   </ion-row>
 </ion-content>
