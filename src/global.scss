@@ -128,7 +128,7 @@
 .select-icon {
     width: 30px !important;
     height: 30px;
-    background-color: red;
+    background-color: #e4322e;
     display: flex;
     justify-content: center;
 }
@@ -149,9 +149,12 @@
 ion-footer {
     display: contents !important;
 }
-.float-r{
+.float-r {
     float: right !important;
 }
-.float-l{
+.float-l {
     float: left !important;
+}
+:host(.item-interactive.ion-valid) {
+    --highlight-background: #e4322e !important;
 }

@@ -1,5 +1,5 @@
 <ion-content class="background-image" scroll="true" overflow-scroll="false">
-  <div class="main-class">
+  <!-- <div class="main-class">
     <div style="margin-bottom: 15%;">
       <ion-label class="sign-label">Login</ion-label>
     </div>
@@ -14,6 +14,29 @@
      </div>
      <div *ngIf="isKeyboardHide">
      </div>
-    </ion-footer>
+    </ion-footer> -->
+
+    <div class="center">
+      <div style="width: 100%;margin: 20px;">
+      <img src="../../assets/imgs/logo.png" class="logo">
+      <h3 class="ion-text-center">Sign in now</h3>
+      <ion-list no-lines class="form">
+          <ion-item>
+              <ion-icon color="primary"  name="mail" item-start></ion-icon>
+              <ion-label position="floating">Username or Email</ion-label>
+              <ion-input [(ngModel)]="login.username" type="email" name="email"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-icon color="primary"  name="lock-closed" item-start></ion-icon>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input [(ngModel)]="login.password" name="password"  type="password"></ion-input>
+              <h5 item-end (click)="fnForgotPassword()">Forgot ?</h5> 
+          </ion-item>
+      </ion-list>
+      <ion-button small expand="full" (click)="tab()">Sign in</ion-button>
+      <p class="ion-text-center">Oh! Not Registered yet?</p>
+      <ion-button small expand="block" fill="outline" (click)="fnSignUp()">Register Now</ion-button>
+      </div>
+  </div>
 
 </ion-content>
