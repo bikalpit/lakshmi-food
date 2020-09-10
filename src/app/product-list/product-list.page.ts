@@ -106,7 +106,7 @@ export class ProductListPage implements OnInit {
       mode: "ios",
       cssClass: 'change-select-card-modal'
     });
-
+ 
     presentModel.onWillDismiss().then((data)=>{
       console.log(data);
       //custom code

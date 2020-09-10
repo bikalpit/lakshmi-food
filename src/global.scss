@@ -158,3 +158,29 @@ ion-footer {
 :host(.item-interactive.ion-valid) {
     --highlight-background: #e4322e !important;
 }
+    
+  #register_form{
+    .item-native[part='native']{
+        .item-highlight{
+            display: none !important;
+        }
+    }
+    .native-input.sc-ion-input-md{
+      padding: 11px 0 !important;
+    }
+  }
+.twoLinesText{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-height: 16px;
+    max-height: 32px;
+    -webkit-box-orient: vertical;
+}
+.textAllUpper{
+    text-transform: uppercase !important;
+}
+.textCap{
+    text-transform: capitalize !important;
+}

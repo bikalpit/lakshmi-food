@@ -17,8 +17,8 @@
     // box-shadow: 5px 7px 10px 5px #e8e8e8;
     margin: 0;
     background-color: #fff;
-    width: 97%;
-    height: 113px;
+    height: auto;
+    padding-bottom: 0.3rem;
 }
 .p-qty{
     font-family: open sans;
@@ -98,7 +98,7 @@
 }
 .back_arrow{
     height: 40px;
-    width: 24%;
+    width: 35%;
     background-color: #fff;
     margin: 5px;
     margin-left: 10px !important;

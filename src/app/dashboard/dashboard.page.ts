@@ -13,7 +13,8 @@ export class DashboardPage implements OnInit {
   constructor(public menu: MenuController, public navCtrl: NavController,) {
     // this.menu.enable(true);
     localStorage.setItem("cartData", '');
-    this.name = localStorage.getItem('username');
+    this.name = localStorage.getItem('name');
+    console.log('firm_name---',localStorage.getItem('firm_name'));
     console.log(this.name);
   }
  

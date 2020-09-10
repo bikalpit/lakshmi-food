@@ -9,7 +9,7 @@
     </ion-row>
     <ion-row  class="center">
       <ion-col *ngIf="name.images" size="12">
-        <ion-slides pager="true" [options]="slideOpts">
+        <ion-slides pager="true" [options]="slideOpts" #slideWithNav>
           <ion-slide >
             <img *ngIf="name.images.length > 0"
               src="{{url.file_url}}assets/uploads/products/thumbs/{{name.images[0].product_image}}"
@@ -37,16 +37,20 @@
   </ion-grid>
 
   <ion-grid class="padingLeftRight">
-    <ion-row>
-      <ion-col>
-        <span class="slide-price">₹{{name.product_price * item_qty}}</span>
+    <ion-row> 
+      <ion-col size="8">
+        <span class="slide-price">
+          <!-- {{name.product_weight}}Kg x ₹{{name.product_price * item_qty}}  -->
+          {{name.product_weight}}Kg x {{item_qty}} qty  
+          <span style="color: gray;font-size: 1.rem;margin-left: 1rem;">₹{{name.product_price * item_qty}}</span>
+        </span>
       </ion-col>
-      <ion-col >
-        <ion-note end>
+      <ion-col  size="4">
+        <div class="add-rm-btn">
           <ion-icon name="remove-circle" (click)="fnremove()" class="add-remove-circle"></ion-icon>
-          <span class="add-remove-circle">{{item_qty}}</span>
+          <div style="color: black !important;font-size: 1.7rem;">{{item_qty}}</div>
           <ion-icon name="add-circle" (click)="fnadd()" class="add-remove-circle"></ion-icon>
-        </ion-note>
+        </div>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -58,4 +62,4 @@
   </ion-grid>
 
   <button ion-button class="AddToCart_btn" (click)="fnAddToCart(name.id,name.product_name,name.product_weight,name.product_price,item_qty,name.images)">Add To Cart</button>
-</ion-content>
+</ion-content> 
