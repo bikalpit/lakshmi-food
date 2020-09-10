@@ -19,35 +19,32 @@ export class RegisterPage implements OnInit {
   isSubmitted = false;
   public myToast: any;
   dataResponse: any;
-  isKeyboardHide=true;
+  isKeyboardHide = true;
   emailFormat = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/
 
   constructor(public navCtrl: NavController, private auth: AuthService,
     private keyboard: Keyboard,
-     public formbulider: FormBuilder,
-      public toast: ToastController
-  
-    ) 
-    {
-      window.addEventListener('keyboardDidShow', () => {
-        console.log("Keyboard is Shown");
-        this.isKeyboardHide=false;
-        // document.body.classList.add('hide-on-keyboard-open');
-        this.keyboard.onKeyboardShow().subscribe( (value)=>{
-          document.body.classList.add('hide-on-keyboard-open');
-          })
-      });
-      window.addEventListener('keyboardDidHide', () => {
-        // document.body.classList.remove('hide-on-keyboard-open');
-        this.isKeyboardHide=true;
-        this.keyboard.onKeyboardHide().subscribe( (value)=>{
-          document.body.classList.remove('hide-on-keyboard-open');
-          } )
-      
-      });
-  
-    
-    
+    public formbulider: FormBuilder,
+    public toast: ToastController
+
+  ) {
+    window.addEventListener('keyboardDidShow', () => {
+      console.log("Keyboard is Shown");
+      this.isKeyboardHide = false;
+      // document.body.classList.add('hide-on-keyboard-open');
+      this.keyboard.onKeyboardShow().subscribe((value) => {
+        document.body.classList.add('hide-on-keyboard-open');
+      })
+    });
+    window.addEventListener('keyboardDidHide', () => {
+      // document.body.classList.remove('hide-on-keyboard-open');
+      this.isKeyboardHide = true;
+      this.keyboard.onKeyboardHide().subscribe((value) => {
+        document.body.classList.remove('hide-on-keyboard-open');
+      })
+
+    });
+
     this.ionicForm = this.formbulider.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       fullname: ['', [Validators.required, Validators.minLength(3)]],
@@ -59,71 +56,48 @@ export class RegisterPage implements OnInit {
 
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   fnLogin() {
-    if (
-      this.register.fullname != '' && 
-      this.register.username != '' && 
-      this.register.email != '' &&
-       this.register.password != '' && 
-       this.register.confirm_password !== '') {
-      if (this.register.username.length >= 3) {
-        if (this.register.password === this.register.confirm_password) {
-          if (this.register.password.length >= 6) {
-            if (this.register.phone.length == 10) {
-              if (this.ionicForm.invalid) {
-                console.log('invalid');
-                this.ionicForm.get('fullname').markAllAsTouched();
-                this.ionicForm.get('email').markAsTouched();
-                this.ionicForm.get('phone').markAsTouched();
-                this.ionicForm.get('username').markAsTouched();
-                this.ionicForm.get('password').markAsTouched();
-                this.ionicForm.get('confirm_password').markAsTouched();
-                return false;
-              }
-              console.log('ok');
-              this.requestObject = {
-                "fullname": this.register.fullname,
-                "username": this.register.username,
-                "email": this.register.email,
-                "phone": this.register.phone,
-                "password": this.register.password
-              }
-              this.auth.showLoader();
-              this.auth.signup(this.requestObject).subscribe((data: any) => {
-                this.auth.hideLoader();
-                console.log(data);
-                this.dataResponse = data;
-                if (this.dataResponse.status == true) {
-                  this.auth.showToast('Signup Successfulluy');
-                  this.navCtrl.navigateForward('/home');
-                } else {
-              this.auth.showToast('Username and Email must be uniq');
-                }
-              }, (err) => {
-                this.auth.hideLoader();
-                console.log("Error=>", err);
-              });
-            } else {
-              this.auth.showToast('Mobile No should be 10 digits!');
-            }
-          } else {
-            this.auth.showToast('Password should be minimum 6 digits!');
-          }
 
-        } else {
-          this.auth.showToast('Enter confirm password same as password!');
-        }
-      } else {
-        this.auth.showToast('Name should be minimum 3 digits!');
-      }
-    } else {
-      this.showToast();
+    if (this.ionicForm.invalid) {
+      console.log('invalid');
+      this.ionicForm.get('fullname').markAllAsTouched();
+      this.ionicForm.get('email').markAsTouched();
+      this.ionicForm.get('phone').markAsTouched();
+      this.ionicForm.get('username').markAsTouched();
+      this.ionicForm.get('password').markAsTouched();
+      this.ionicForm.get('confirm_password').markAsTouched();
+      return false;
     }
-
+    this.requestObject = {
+      "fullname": this.register.fullname,
+      "username": this.register.username,
+      "email": this.register.email,
+      "phone": this.register.phone,
+      "password": this.register.password
+    }
+    console.log(this.requestObject);
+    if (this.register.password === this.register.confirm_password) {
+      console.log('ok');
+      this.auth.showLoader();
+      this.auth.signup(this.requestObject).subscribe((data: any) => {
+        this.auth.hideLoader();
+        console.log(data);
+        this.dataResponse = data;
+        if (this.dataResponse.status == true) {
+          this.auth.showToast('Signup Successfulluy');
+          this.navCtrl.navigateForward('/home');
+        } else {
+          this.auth.showToast('Username and Email must be uniq');
+        }
+      }, (err) => {
+        this.auth.hideLoader();
+        console.log("Error=>", err);
+      });
+    } else {
+      this.auth.showToast('Enter confirm password same as password!');
+    }
   }
   showToast() {
     this.myToast = this.toast.create({

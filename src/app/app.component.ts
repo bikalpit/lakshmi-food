@@ -16,7 +16,8 @@ import { Router } from '@angular/router';
 export class AppComponent {
 
   user_id: any;
-  username: any = localStorage.getItem('username');
+  firm_name: any = localStorage.getItem('firm_name');
+  name: any = localStorage.getItem('name');
   email: any = localStorage.getItem('email');
   role: any = localStorage.getItem("role");
   constructor(private router: Router,
@@ -36,10 +37,12 @@ export class AppComponent {
       this.statusBar.backgroundColorByHexString('#ffffff');
       this.splashScreen.hide();
       this.user_id = localStorage.getItem("id");
-      this.username = localStorage.getItem("username");
+      this.firm_name = localStorage.getItem("firm_name");
+      this.name = localStorage.getItem("name");
       this.email = localStorage.getItem("email");
       this.role = localStorage.getItem("role");
-      if (localStorage.getItem('username')) {
+      console.log("this.role-----",this.role); 
+      if (localStorage.getItem('role')) {
         if (localStorage.getItem('role') == 'Customer') {
           this.navCtrl.navigateForward('dashboard');
         } else if (localStorage.getItem('role') == 'DeliveryBoy') {

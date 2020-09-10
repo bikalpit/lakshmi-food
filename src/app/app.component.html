@@ -10,9 +10,11 @@
               </div>
             </ion-col>
             <ion-col size="8">
-              <h4 ion-text class="cardColor">
-                {{username}}
-              </h4>
+                <h5 ion-text   class="cardColor twoLinesText textCap"> 
+                  {{name}}
+                </h5>
+              
+             
               <span  class="cardColor fontSizeRole" *ngIf="role == 'Customer'">Customer</span>
               <span  class="cardColor fontSizeRole" *ngIf="role == 'staff'">Staff</span>
               <br>

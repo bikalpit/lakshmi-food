@@ -11,7 +11,7 @@ declare var document: any;
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  login = { username: "", password: "" };
+  login = { phone: "", password: "" };
   requestObject: any;
   dataResponse: any;
   public myToast: any;
@@ -42,10 +42,10 @@ export class HomePage {
   }
 
   fnLogin() {
-    if (this.login.username != '') {
+    if (this.login.phone != '') {
       if (this.login.password != '') {
         this.requestObject = {
-          "username": this.login.username,
+          "phone": this.login.phone,
           "password": this.login.password
         }
         this.showLoader();
@@ -59,16 +59,20 @@ export class HomePage {
             localStorage.setItem("id", this.dataResponse.data.id);
             console.log(this.dataResponse.data.id);
             localStorage.setItem("email", this.dataResponse.data.email);
-            localStorage.setItem("username", this.dataResponse.data.username);
+            localStorage.setItem("firm_name", this.dataResponse.data.firm_name);
+            localStorage.setItem("name", this.dataResponse.data.name);
             localStorage.setItem("role", this.dataResponse.data.role);
-            console.log(this.dataResponse.data.email);
+            localStorage.setItem("phone", this.dataResponse.data.phone);
+
+            console.log(this.dataResponse.data);
+            console.log('role---',this.dataResponse.data.role);
+            console.log('name---',localStorage.getItem('name'));
             if (this.dataResponse.data.role == 'DeliveryBoy') {
               this.navCtrl.navigateForward('my-account');
             } else {
               this.navCtrl.navigateForward('/dashboard');
             }
-
-            //window.location.reload();
+            // window.location.reload();
           } else {
             //this.showToast1();
             this.hideLoader();

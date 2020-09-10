@@ -1,39 +1,23 @@
 <ion-content class="background-image" scroll="true" overflow-scroll="false">
-  <!-- <div class="main-class">
-    <div style="margin-bottom: 15%;">
-      <ion-label class="sign-label">Login</ion-label>
-    </div>
-    <ion-input type="email" name="email" class="login_text" [(ngModel)]="login.username" placeholder="Username or Email"></ion-input>
-    <ion-input type="password" name="password" [(ngModel)]="login.password" class="login_text" placeholder="Password" ></ion-input>
-    <ion-label class="forgot-label" (click)="fnForgotPassword()"> Forgot Password?</ion-label>
-    <button ion-button class="login_btn" (click)="fnLogin()"><b>Log In</b></button>
-  </div>
-  <ion-footer translucent="true" no-border>
-    <div class="footer-css" *ngIf="isKeyboardHide">
-      <p class="login_signup" (click)="fnSignUp()"><b>Don't have an account? Sign up</b></p>
-     </div>
-     <div *ngIf="isKeyboardHide">
-     </div>
-    </ion-footer> -->
 
     <div class="center">
       <div style="width: 100%;margin: 20px;">
       <img src="../../assets/imgs/logo.png" class="logo">
       <h3 class="ion-text-center">Sign in now</h3>
-      <ion-list no-lines class="form">
+      <ion-list no-lines class="form" id="register_form">
           <ion-item>
-              <ion-icon color="primary"  name="mail" item-start></ion-icon>
-              <ion-label position="floating">Username or Email</ion-label>
-              <ion-input [(ngModel)]="login.username" type="email" name="email"></ion-input>
+              <ion-icon color="primary"  name="call-sharp" slot="start"></ion-icon>
+              <ion-label position="floating">Phone Number</ion-label>
+              <ion-input [(ngModel)]="login.phone" type="tel" name="phone"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-icon color="primary"  name="lock-closed" item-start></ion-icon>
+              <ion-icon color="primary"  name="lock-closed" slot="start"></ion-icon>
               <ion-label position="floating">Password</ion-label>
               <ion-input [(ngModel)]="login.password" name="password"  type="password"></ion-input>
-              <h5 item-end (click)="fnForgotPassword()">Forgot ?</h5> 
+              <h6 slot="end" (click)="fnForgotPassword()">Forgot ?</h6> 
           </ion-item>
       </ion-list>
-      <ion-button small expand="full" (click)="tab()">Sign in</ion-button>
+      <ion-button small expand="full" (click)="fnLogin()">Sign in</ion-button>
       <p class="ion-text-center">Oh! Not Registered yet?</p>
       <ion-button small expand="block" fill="outline" (click)="fnSignUp()">Register Now</ion-button>
       </div>

@@ -57,7 +57,7 @@ export class EditProfilePage implements OnInit {
       console.log("data--->", this.AllUserArray);
       this.ionicForm.controls.Name.setValue(this.AllUserArray.name);
       this.ionicForm.controls.Email.setValue(this.AllUserArray.email);
-      this.ionicForm.controls.UserName.setValue(this.AllUserArray.username);
+      this.ionicForm.controls.UserName.setValue(this.AllUserArray.firm_name);
 
     }, (err) => {
       this.auth.hideLoader();
@@ -79,7 +79,7 @@ export class EditProfilePage implements OnInit {
       "user_id": this.user_id,
       "name":  this.ionicForm.get('Name').value,
       "email": this.ionicForm.get('Email').value,
-      "username":this.ionicForm.get('UserName').value,
+      "firm_name":this.ionicForm.get('UserName').value,
     };
     console.log(this.requestObject);
     this.auth.showLoader();
@@ -90,7 +90,7 @@ export class EditProfilePage implements OnInit {
       this.AllUserArray = data;
       if (this.AllUserArray.status == true) {
         if (this.role == 'Customer') {
-          this.navCtrl.navigateForward('dashboard');
+          this.navCtrl.navigateForward('/dashboard');
           this.auth.showToast('Profile update successfully');
 
         } else if (this.role == 'DeliveryBoy') {

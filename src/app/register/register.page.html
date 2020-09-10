@@ -1,12 +1,31 @@
-<ion-content class="background-image">
-  <div class="main-class">
-    <div style="margin-bottom: 8%;">
-      <ion-label class="sign-label">Register</ion-label>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()" color="danger"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="main-title">Register now</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+ 
+  <ion-col class="center-left">
+    <div class="text-center">
+      <img src="../../assets/imgs/user_1.png" width="80" height="80">
     </div>
+  </ion-col>
+  <ion-list  class="form" id="register_form">
     <form [formGroup]="ionicForm">
       <div class="input-wrap">
-        <ion-input type="text" name="fullname" formControlName="fullname" [(ngModel)]="register.fullname"
-          class="login_text" placeholder="Full Name"></ion-input>
+        <ion-item>
+          <ion-icon name="person" color="primary" slot="start"></ion-icon>
+          <ion-label position="floating">Enter Full Name</ion-label>
+          <ion-input type="text" name="fullname" formControlName="fullname" [(ngModel)]="register.fullname"></ion-input>
+        </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('fullname').touched || ionicForm.get('fullname').dirty || formSubmitclicked">
           <small *ngIf="ionicForm.get('fullname').hasError('required')" class="error">Name is required.</small>
@@ -16,29 +35,37 @@
       </div>
 
       <div class="input-wrap">
-        <ion-input type="text" name="username" formControlName="username" [(ngModel)]="register.username"
-          class="login_text" placeholder="Username"></ion-input>
+        <ion-item>
+          <ion-icon name="person" color="primary" slot="start"></ion-icon>
+          <ion-label position="floating">Enter User Name</ion-label>
+          <ion-input type="text" name="username" formControlName="username" [(ngModel)]="register.username"></ion-input>
+        </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('username').touched || ionicForm.get('username').dirty || formSubmitclicked">
-          <small *ngIf="ionicForm.get('username').hasError('required')" class="error">Name is required.</small>
-          <small *ngIf="ionicForm.get('username').hasError('minlength')" class="error">Name should be minimum 3
+          <small *ngIf="ionicForm.get('username').hasError('required')" class="error">Username is required.</small>
+          <small *ngIf="ionicForm.get('username').hasError('minlength')" class="error">Username should be minimum 3
             digits.</small>
         </span>
       </div>
 
       <div class="input-wrap">
-        <ion-input type="email" name="email" formControlName="email" [(ngModel)]="register.email" class="login_text"
-          placeholder="Email Id"></ion-input>
+        <ion-item >
+          <ion-icon name="mail" color="primary" slot="start"></ion-icon>
+          <ion-label position="floating">Enter Email</ion-label>
+          <ion-input type="email" name="email" formControlName="email" [(ngModel)]="register.email"></ion-input>
+        </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('email').touched || ionicForm.get('email').dirty || formSubmitclicked">
           <small *ngIf="ionicForm.get('email').hasError('required')" class="error">Email is required.</small>
           <small *ngIf="ionicForm.get('email').hasError('pattern')" class="error">Enter valid email.</small>
         </span>
       </div>
-
       <div class="input-wrap">
-        <ion-input type="text" name="phone" formControlName="phone" [(ngModel)]="register.phone" class="login_text"
-          placeholder="Mobile Number"></ion-input>
+        <ion-item >
+          <ion-icon name="call" color="primary" slot="start"></ion-icon>
+          <ion-label position="floating">Enter Phone Number</ion-label>
+          <ion-input type="text" name="phone" formControlName="phone" [(ngModel)]="register.phone" class="login_text"></ion-input>
+        </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('phone').touched || ionicForm.get('phone').dirty || formSubmitclicked">
           <small *ngIf="ionicForm.get('phone').hasError('required')" class="error">Mobile No is required.</small>
@@ -48,10 +75,12 @@
             digits.</small>
         </span> 
       </div>
-
       <div class="input-wrap">
-        <ion-input type="password" name="password" formControlName="password" [(ngModel)]="register.password"
-          class="login_text" placeholder="Password"></ion-input>
+        <ion-item >
+          <ion-icon name="lock-closed" color="primary" slot="start"></ion-icon>
+          <ion-label position="floating">Enter Pssword</ion-label>
+          <ion-input type="password" name="password" formControlName="password" [(ngModel)]="register.password" class="login_text"></ion-input>
+        </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('password').touched || ionicForm.get('password').dirty || formSubmitclicked">
           <small *ngIf="ionicForm.get('password').hasError('required')" class="error">Password is required.</small>
@@ -59,30 +88,22 @@
             digits.</small>
         </span>
       </div>
-
       <div class="input-wrap">
-        <ion-input type="password" name="confirm_password" formControlName="confirm_password" 
-          [(ngModel)]="register.confirm_password" class="login_text" placeholder="Confirm Password"></ion-input>
+        <ion-item >
+          <ion-icon name="lock-closed" color="primary" slot="start"></ion-icon>
+          <ion-label position="floating">Enter Confirm Password</ion-label>
+          <ion-input type="password" name="confirm_password" formControlName="confirm_password" 
+          [(ngModel)]="register.confirm_password" class="login_text"></ion-input>
+        </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('confirm_password').touched || ionicForm.get('confirm_password').dirty || formSubmitclicked">
           <small *ngIf="ionicForm.get('confirm_password').hasError('required')" class="error">Confirm Password is
             required.</small>
         </span>
       </div>
-      <!-- <button ion-button class="login_btn">Sign Up</button> -->
-
+     
     </form>
-    <div>
-      <button ion-button class="login_btn" (click)="fnLogin()"><b>Sign Up</b></button>
- </div>
+  </ion-list>
 
-  </div>
-  <ion-footer>
-    <div style="text-align: center;z-index: -1;" class="" *ngIf="isKeyboardHide">
-      <p class="signup-label" (click)="fnSignIn()"><b>Already have an account? Sign In</b></p>
-    </div>
-     <div *ngIf="isKeyboardHide">
-     </div>
-    </ion-footer>
-
+  <ion-button small expand="full" (click)="fnLogin()">Register Now</ion-button>
 </ion-content>
