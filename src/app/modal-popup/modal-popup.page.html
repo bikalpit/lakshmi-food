@@ -53,10 +53,10 @@
         </div>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="name.product_description!=''">
       <ion-label class="Description"><b>Product Description</b></ion-label>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="name.product_description!=''">
       <p class="product">{{name.product_description}}</p>
     </ion-row>
   </ion-grid>
