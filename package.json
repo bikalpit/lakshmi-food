@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~9.1.6",
     "@angular/platform-browser-dynamic": "~9.1.6",
     "@angular/router": "~9.1.6",
+    "@ionic-native/camera": "^5.28.0",
     "@ionic-native/core": "^5.0.7",
     "@ionic-native/document-viewer": "^5.28.0",
     "@ionic-native/downloader": "^5.27.0",
@@ -52,6 +53,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
@@ -85,6 +87,9 @@
       "cordova-plugin-document-viewer": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-file-opener2": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
+      "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       }
     },

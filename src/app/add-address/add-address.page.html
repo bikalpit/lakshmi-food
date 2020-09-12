@@ -27,42 +27,55 @@
           <ion-label class="txt-location"><b>Use My Current Location</b></ion-label>
         </ion-col>
       </ion-row>
-  
+
     </ion-card>
     <ion-card class="main-address ios">
       <h6 class="txt-location"><b>Choose Your Address Type</b></h6>
-  
+
       <ion-row class="main-img ios">
         <ion-radio-group (ionChange)="onChangeHandler($event)" style="margin-top: 5px;display: flex;">
           <div class="office-img">
             <p class="p-office">Office</p>
-  
+
             <ion-radio style="margin-left: 35px;margin-top: 17px;" value="Office" [checked]="this.data === 'Office'">
             </ion-radio>
-  
+
           </div>
-  
+
           <div class="home-img">
             <p class="p-office">Home</p>
-  
+
             <ion-radio style="margin-left: 35px;margin-top: 17px;" value="Home" [checked]="this.data === 'Home'">
             </ion-radio>
-  
+
           </div>
-  
+
           <div class="other-img">
             <p class="p-office">Other</p>
-  
+
             <ion-radio style="margin-left: 35px;margin-top: 17px;" value="Other" [checked]="this.data === 'Other'">
             </ion-radio>
-  
+
           </div>
-  
+
         </ion-radio-group>
       </ion-row>
-  
-  
+
+
       <form [formGroup]="ionicForm">
+
+        <!-- by arshad -->
+        <div class="input-wrap">
+          <div class="order-no-bg" style="margin-top: 15%;">
+            <ion-input placeholder="GST No" formControlName="GSTNo"  [formControl]="ionicForm.controls['GSTNo']"
+              type="text" name="GST_no" class="order_no_txt" (ionChange)="GSTFetch()">
+            </ion-input>
+            <span class="error-wrap" *ngIf="ionicForm.get('GSTNo').touched || ionicForm.get('GSTNo').dirty">
+              <small *ngIf="ionicForm.get('GSTNo').hasError('required')" class="error">GST No is required.</small>
+            </span>
+          </div>
+        </div>
+        <!-- close -->
         <div class="input-wrap">
           <div class="order-no-bg" style="margin-top: 15%;">
             <ion-input placeholder="House No" formControlName="houseNo" [formControl]="ionicForm.controls['houseNo']"
@@ -73,7 +86,7 @@
             </span>
           </div>
         </div>
-  
+
         <div class="input-wrap">
           <div class="order-no-bg">
             <ion-input placeholder="Road Name, Area, Colony" formControlName="AreaColony"
@@ -85,7 +98,7 @@
             </span>
           </div>
         </div>
-  
+
         <ion-row>
           <ion-col>
             <div class="order-no-bgt">
@@ -99,11 +112,11 @@
               </span>
             </div>
           </ion-col>
-  
+
           <ion-col>
             <div class="order-no-bgs">
-              <ion-input placeholder="City" type="text" formControlName="City" [formControl]="ionicForm.controls['City']"
-                name="city" class="order_no_txt"></ion-input>
+              <ion-input placeholder="City" type="text" formControlName="City"
+                [formControl]="ionicForm.controls['City']" name="city" class="order_no_txt"></ion-input>
               <span class="error-wrap" *ngIf="ionicForm.get('City').touched || ionicForm.get('City').dirty">
                 <small *ngIf="ionicForm.get('City').hasError('required')" class="error">City is required.</small>
                 <small *ngIf="ionicForm.get('City').hasError('pattern')" class="error">Just use alphabet
@@ -112,18 +125,19 @@
             </div>
           </ion-col>
         </ion-row>
-  
+
         <div class="input-wrap">
           <div class="order-no-bg">
             <ion-input placeholder="Landmark (Optional)" formControlName="Landmark"
-              [formControl]="ionicForm.controls['Landmark']" type="text" name="landmark" class="order_no_txt"></ion-input>
-  
+              [formControl]="ionicForm.controls['Landmark']" type="text" name="landmark" class="order_no_txt">
+            </ion-input>
+
             <span class="error-wrap" *ngIf="ionicForm.get('Landmark').touched || ionicForm.get('Landmark').dirty">
               <small *ngIf="ionicForm.get('Landmark').hasError('required')" class="error">Landmark is required.</small>
             </span>
           </div>
         </div>
-  
+
         <div class="input-wrap">
           <div class="order-no-bg">
             <ion-input maxlength="10" placeholder="10-digit Mobile Number" formControlName="MobileNo"

@@ -35,7 +35,14 @@ export class CommonService {
         );
         return this.http.get(API_URL+url, { headers: header });
     }
-
+    getAddFromGST(url): Observable<any> {
+        const header = new HttpHeaders(
+            {
+                "Content-Type": "application/json",
+            }
+        );
+        return this.http.get(API_URL+url, { headers: header });
+    }
     post(url,data): Observable<any> {
         const header = new HttpHeaders(
             {

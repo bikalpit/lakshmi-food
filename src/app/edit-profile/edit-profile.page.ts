@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController, ToastController } from '@ionic/angular';
-import { MenuController } from '@ionic/angular';
+import { Component, OnInit, } from '@angular/core';
+import { NavController, ToastController, ActionSheetController, MenuController, Platform } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-edit-profile',
@@ -19,9 +19,12 @@ export class EditProfilePage implements OnInit {
   AllUserArray: any;
   public myToast: any;
   user_id1: any;
-  role: any
+  role: any;
+  base64Image: any;
+  photos: any;
+  selectImage: Boolean = false;
 
-  constructor(public formbulider: FormBuilder, public navCtrl: NavController, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
+  constructor(private camera: Camera, private platform: Platform, public actionsheetCtrl: ActionSheetController, public formbulider: FormBuilder, public navCtrl: NavController, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
@@ -43,6 +46,8 @@ export class EditProfilePage implements OnInit {
     this.getDetails();
   }
 
+
+
   getDetails() {
 
     this.requestObject = {
@@ -55,6 +60,7 @@ export class EditProfilePage implements OnInit {
       console.log(data);
       this.AllUserArray = data.data;
       console.log("data--->", this.AllUserArray);
+      this.photos = "http://laxmifoods.bi-team.in/assets/uploads/users/" + this.AllUserArray.photo;
       this.ionicForm.controls.Name.setValue(this.AllUserArray.name);
       this.ionicForm.controls.Email.setValue(this.AllUserArray.email);
       this.ionicForm.controls.UserName.setValue(this.AllUserArray.firm_name);
@@ -77,9 +83,10 @@ export class EditProfilePage implements OnInit {
     console.log('ok');
     this.requestObject = {
       "user_id": this.user_id,
-      "name":  this.ionicForm.get('Name').value,
+      "name": this.ionicForm.get('Name').value,
       "email": this.ionicForm.get('Email').value,
-      "firm_name":this.ionicForm.get('UserName').value,
+      "firm_name": this.ionicForm.get('UserName').value,
+      "image": this.base64Image !== '' ? this.base64Image : '',
     };
     console.log(this.requestObject);
     this.auth.showLoader();
@@ -89,6 +96,12 @@ export class EditProfilePage implements OnInit {
       console.log(data);
       this.AllUserArray = data;
       if (this.AllUserArray.status == true) {
+        window.location.reload();
+        if (this.AllUserArray.data.photo) {
+          localStorage.setItem("photos", "http://laxmifoods.bi-team.in/assets/uploads/users/" + this.AllUserArray.data.photo);
+        } else {
+          localStorage.setItem("photos", '');
+        }
         if (this.role == 'Customer') {
           this.navCtrl.navigateForward('/dashboard');
           this.auth.showToast('Profile update successfully');
@@ -125,4 +138,58 @@ export class EditProfilePage implements OnInit {
       this.navCtrl.navigateForward('my-account');
     }
   }
+  async presentActionSheet() {
+    const actionSheet = await this.actionsheetCtrl.create({
+      header: 'Please Select',
+      cssClass: 'my-custom-class',
+      buttons: [
+        {
+          text: 'Take photo',
+          role: 'destructive',
+          icon: !this.platform.is('ios') ? 'camera-outline' : 'camera-outline',
+          handler: () => {
+            this.captureImage(false);
+          }
+        },
+        {
+          text: 'Choose photo from Gallery',
+          icon: !this.platform.is('ios') ? 'images-outline' : 'mages-outline',
+          handler: () => {
+            this.captureImage(true);
+          }
+        },
+        {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
+  }
+  async captureImage(useAlbum: boolean) {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      ...useAlbum ? { sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM } : {}
+    }
+
+    const imageData = await this.camera.getPicture(options);
+
+    this.base64Image = `data:image/jpeg;base64,${imageData}`;
+    console.log(this.base64Image);
+
+    this.photos = this.base64Image;
+    if (this.base64Image) {
+      this.selectImage = true;
+    } else {
+      this.selectImage = false;
+    }
+  }
+
 }

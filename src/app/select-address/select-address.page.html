@@ -55,7 +55,7 @@
     <ion-row class="center1">
       <ion-col size="8" class="p-total">
         Payable Amount
-      </ion-col>
+      </ion-col> 
       <ion-col size="4" class="p-price">
         ₹{{mainSubTotal}}
       </ion-col>
@@ -65,6 +65,7 @@
   <ion-row class="center1">
     <ion-card class="place_order center" (click)="fnBackToYourCart()">
       <ion-icon name="chevron-back-outline" class="backarrow"></ion-icon>
+      <p style="color: black;font-size: 1rem;">Add Item</p>
     </ion-card>
     <ion-col>
       <button float-right ion-button class="ProceedToCheckout_btn" (click)="fnProceedToCheckout()">Place Order</button>

@@ -82,7 +82,7 @@ export class SummaryPage implements OnInit {
   fnDownload(url,fileName){
     this.auth.showLoader();
     this.fileTransfer = this.transfer.create();
-    this.fileTransfer
+    this.fileTransfer 
       .download(url, this.file.dataDirectory +fileName + ".pdf")
       .then(entry => {
         this.auth.hideLoader();

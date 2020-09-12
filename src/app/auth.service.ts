@@ -85,6 +85,9 @@ export class AuthService {
   openPdf(data): Observable<any>{
     return this.commonService.getWithoutToken('orders/orderPDF/'+ data);
   }
+  getAddressFromGst(data): Observable<any>{
+    return this.commonService.getAddFromGST('users/getGST?gst='+ data);
+  }
 
   showToast(msg) {
     return this.toastCtrl.create({

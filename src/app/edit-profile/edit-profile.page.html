@@ -14,8 +14,9 @@
 
 <ion-content>
   <div class="avtar">
-    <img src="../../assets/imgs/1945870586Image.png" class="img">
-    <p class="profile-txt"><b>Change Profile Photo</b></p>
+    <img *ngIf="photos" [src]="photos" class="img">
+    <img *ngIf="!photos" src="../../assets/imgs/1945870586Image.png" class="img">
+    <p class="profile-txt" (click)="presentActionSheet()"><b>Change Profile Photo</b></p>
     <div *ngIf="AllUserArray">
       <form [formGroup]="ionicForm">
         <div class="order-no-bg">

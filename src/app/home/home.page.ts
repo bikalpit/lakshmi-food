@@ -63,6 +63,12 @@ export class HomePage {
             localStorage.setItem("name", this.dataResponse.data.name);
             localStorage.setItem("role", this.dataResponse.data.role);
             localStorage.setItem("phone", this.dataResponse.data.phone);
+            if(this.dataResponse.data.photo)
+            {
+              localStorage.setItem("photos", "http://laxmifoods.bi-team.in/assets/uploads/users/" +this.dataResponse.data.photo);
+            }else{
+              localStorage.setItem("photos", '');
+            }
 
             console.log(this.dataResponse.data);
             console.log('role---',this.dataResponse.data.role);
@@ -72,11 +78,11 @@ export class HomePage {
             } else {
               this.navCtrl.navigateForward('/dashboard');
             }
-            // window.location.reload();
+            window.location.reload();
           } else {
             //this.showToast1();
             this.hideLoader();
-            this.auth.showToast('Please enter valid username or password');
+            this.auth.showToast('Please enter valid Phone or password');
           }
         }, (err) => {
           console.log("Error=>", err);
@@ -89,7 +95,7 @@ export class HomePage {
       }
 
     } else {
-      this.auth.showToast('Enter Email!');
+      this.auth.showToast('Enter Phone Number!');
     }
   }
 

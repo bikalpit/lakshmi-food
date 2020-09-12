@@ -20,6 +20,8 @@ export class AppComponent {
   name: any = localStorage.getItem('name');
   email: any = localStorage.getItem('email');
   role: any = localStorage.getItem("role");
+
+  photo: any = localStorage.getItem("photos");
   constructor(private router: Router,
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -28,6 +30,13 @@ export class AppComponent {
     public navCtrl: NavController,
     public alertCtrl: AlertController,
   ) {
+    if (localStorage.getItem("photos")) {
+      this.photo = 
+      localStorage.getItem("photos");
+    } else {
+      this.photo = '';
+    }
+    console.log('this.photo  -- ',this.photo);
     this.initializeApp();
   }
 
@@ -41,20 +50,24 @@ export class AppComponent {
       this.name = localStorage.getItem("name");
       this.email = localStorage.getItem("email");
       this.role = localStorage.getItem("role");
-      console.log("this.role-----",this.role); 
+      this.photo = localStorage.getItem("photos");
+
+      console.log("this.role-----", this.role);
       if (localStorage.getItem('role')) {
         if (localStorage.getItem('role') == 'Customer') {
           this.navCtrl.navigateForward('dashboard');
+          // this.navCtrl.navigateForward('add-address');
         } else if (localStorage.getItem('role') == 'DeliveryBoy') {
           this.navCtrl.navigateForward('my-account');
         }
       }
       else {
         this.navCtrl.navigateForward('home');
+
       }
     });
   }
-  
+
   openCustom() {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');

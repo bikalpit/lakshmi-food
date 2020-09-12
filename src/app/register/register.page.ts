@@ -72,10 +72,11 @@ export class RegisterPage implements OnInit {
     }
     this.requestObject = {
       "fullname": this.register.fullname,
-      "username": this.register.username,
+      "firm_name": this.register.username,
       "email": this.register.email,
       "phone": this.register.phone,
-      "password": this.register.password
+      "password": this.register.password,
+      "role" : "Customer"
     }
     console.log(this.requestObject);
     if (this.register.password === this.register.confirm_password) {
