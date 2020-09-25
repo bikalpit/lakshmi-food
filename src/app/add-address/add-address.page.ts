@@ -103,10 +103,15 @@ export class AddAddressPage implements OnInit {
       this.fnGetGST(dd)
     }, 800);
   }
+
   fnGetGST(gst){
+    
+    if(gst.length < 14){
+      return false;
+    }
+
     this.auth.showLoader();
       this.auth.getAddressFromGst(gst).subscribe((data: any) => {
-        console.log(data);
         this.auth.hideLoader();
         if (data.error === true) {
           this.auth.showToast(data.message);
@@ -131,6 +136,7 @@ export class AddAddressPage implements OnInit {
   goBack() {
     this.location.back();
   }
+
   fnSaveAddress() {
 
     if (this.ionicForm.invalid) {

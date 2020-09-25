@@ -21,15 +21,11 @@ export class EditAddressPage implements OnInit {
     private route: ActivatedRoute, 
     private auth: AuthService, 
     private router: Router) {
-    //     this.sub = this.route.params.subscribe(params => {
-    //       this.id = params['id']; 
-    //       console.log(this.id);
-    //  });
 
     const state = this.router.getCurrentNavigation().extras.state
     if (state) {
       this.AllAddressArray = state;
-      console.log("cart data-->", this.AllAddressArray);
+      console.log("Address data-->", this.AllAddressArray);
     }
   }
 
@@ -54,23 +50,19 @@ export class EditAddressPage implements OnInit {
         "landmark": this.AllAddressArray.address_landmark,
         "zipcode": this.AllAddressArray.address_zipcode,
         "mobile_no": this.AllAddressArray.address_mobile_no,
-        "address_type": this.AllAddressArray.address_type
-      
+        "address_type": this.AllAddressArray.address_type,
+        "address_id": this.AllAddressArray.id
+
       };
       this.auth.showLoader();
-      console.log(this.requestObject);
-      this.auth.editAddress(this.requestObject).subscribe((data: any) => {
-        console.log(data);
-        this.auth.hideLoader();
-        this.AllAddressArray = data;
 
+      this.auth.editAddress(this.requestObject).subscribe((data: any) => {
+        this.auth.hideLoader();
         this.auth.showToast('Updated address successfully');
         this.navCtrl.navigateForward('/select-address');
-
       }, (err) => {
         console.log("Error=>", err);
         this.auth.hideLoader();
-
       });
     } else {
 

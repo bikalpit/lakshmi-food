@@ -107,8 +107,10 @@ export class SelectAddressPage implements OnInit {
       "addressId": this.address_id,
       "cartData": sendcartDate
     }
+    this.auth.showLoader();
 
     this.auth.orderPlace(this.requestObject).subscribe((data: any) => {
+      this.auth.hideLoader();
       if (data.status == true) {
         localStorage.removeItem('cartData');
         localStorage.setItem('OrderNumber', data.data.order_id);
@@ -121,6 +123,7 @@ export class SelectAddressPage implements OnInit {
       console.log("Error=>", err);
     });
   }
+
   selection(id,index) {
     this.address_index = index;
     this.mycheck =! this.mycheck;
@@ -130,6 +133,7 @@ export class SelectAddressPage implements OnInit {
       }
     })
   }
+  
   async presentAlertConfirm() {
     const alert = await this.alertCtrl.create({
       message: "Are you sure want to Book order?",
