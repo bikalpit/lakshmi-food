@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ToastController, LoadingController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
-
+import { environment } from '../../environments/environment'
 declare var document: any;
 
 @Component({
@@ -64,7 +64,7 @@ export class HomePage {
             localStorage.setItem("phone", this.dataResponse.data.phone);
             if(this.dataResponse.data.photo)
             {
-              localStorage.setItem("photos", "http://laxmifoods.bi-team.in/assets/uploads/users/" +this.dataResponse.data.photo);
+              localStorage.setItem("photos", environment.file_url + "assets/uploads/users/" +this.dataResponse.data.photo);
             }else{
               localStorage.setItem("photos", '');
             }
@@ -77,7 +77,6 @@ export class HomePage {
             } else {
               this.navCtrl.navigateForward('/dashboard');
             }
-            window.location.reload();
           } else {
             //this.showToast1();
             this.hideLoader();

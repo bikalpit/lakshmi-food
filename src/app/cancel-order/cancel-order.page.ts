@@ -19,27 +19,27 @@ export class CancelOrderPage implements OnInit {
   constructor( public formbulider: FormBuilder,private router: Router, private location: Location, public navCtrl: NavController, private auth: AuthService) {
     const state = this.router.getCurrentNavigation().extras.state
     if (state) {
+      console.log(state);
       this.id = state.id;
-      this.orderNum = ' Order Number : ' + state.orderNo;
-      console.log("order id-->", this.id);
-      console.log("order Number-->", this.orderNum);
+      this.orderNum = '# Order Number : ' + state.order_number;
     }
     this.ionicForm = this.formbulider.group({
       reason: ['', [Validators.required]],
-     
     });
   }
 
   ngOnInit() {
   }
+  
   fnCancelOrder() {
-    if ((this.id != null || this.id != undefined || this.id != '') && (this.reason != null || this.reason != undefined || this.reason != '')) {
+
+    if (this.ionicForm.value.reason) {
+
       let requestObject = {
         "order_id": this.id,
-        "cancel_reason": this.reason,
+        "cancel_reason": this.ionicForm.value.reason,
         "cancel_by": "CC"
       }
-      console.log(requestObject);
       this.auth.showLoader();
       this.auth.cancelOrder(requestObject).subscribe((data: any) => {
         this.auth.hideLoader();
@@ -49,14 +49,15 @@ export class CancelOrderPage implements OnInit {
       }, (err) => {
         this.auth.hideLoader();
         console.log("Error=>", err);
-        //this.auth.showError(err.error.message);
       });
+
     } else {
       this.auth.showToast('Enter reason!');
     }
 
-
   }
+
+
   goBack() {
     this.location.back();
   }

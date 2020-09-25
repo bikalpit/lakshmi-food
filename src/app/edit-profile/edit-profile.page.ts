@@ -3,6 +3,7 @@ import { NavController, ToastController, ActionSheetController, MenuController, 
 import { AuthService } from '../auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { environment } from '../../environments/environment'
 
 @Component({
   selector: 'app-edit-profile',
@@ -59,8 +60,7 @@ export class EditProfilePage implements OnInit {
       this.auth.hideLoader();
       console.log(data);
       this.AllUserArray = data.data;
-      console.log("data--->", this.AllUserArray);
-      this.photos = "http://laxmifoods.bi-team.in/assets/uploads/users/" + this.AllUserArray.photo;
+      this.photos = environment.file_url + "assets/uploads/users/" + this.AllUserArray.photo;
       this.ionicForm.controls.Name.setValue(this.AllUserArray.name);
       this.ionicForm.controls.Email.setValue(this.AllUserArray.email);
       this.ionicForm.controls.UserName.setValue(this.AllUserArray.firm_name);
@@ -98,7 +98,7 @@ export class EditProfilePage implements OnInit {
       if (this.AllUserArray.status == true) {
         window.location.reload();
         if (this.AllUserArray.data.photo) {
-          localStorage.setItem("photos", "http://laxmifoods.bi-team.in/assets/uploads/users/" + this.AllUserArray.data.photo);
+          localStorage.setItem("photos", environment.file_url + "assets/uploads/users/" + this.AllUserArray.data.photo);
         } else {
           localStorage.setItem("photos", '');
         }

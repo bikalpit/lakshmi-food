@@ -38,7 +38,7 @@
   <div *ngFor="let item of ordersList;">
   <ion-card class="card-content" (click)="fnOrderDetails(item.id,item.status)">
     <ion-row style="margin-top: 15px;">
-      <p class="p-order"><b>Order # {{item.order_number}}</b></p>
+      <p class="p-order"><b>Order #{{item.order_number}}</b></p>
       <ion-col>
         <!-- <button ion-button class="Pending_btn">{{item.status}}</button> -->
         <button ion-button *ngIf="item.status == 'New'" class="Pending_btn">Pending</button>

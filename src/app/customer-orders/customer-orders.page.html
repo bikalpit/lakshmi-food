@@ -21,6 +21,8 @@
           <ion-select-option value="New">Inprocess</ion-select-option>
           <ion-select-option value="Delivered">Completed</ion-select-option> 
           <ion-select-option value="cancel">Cancel</ion-select-option> 
+          <ion-select-option value="Reject">Rejected</ion-select-option> 
+
         </ion-select>
       </ion-item>
     </ion-col> 
@@ -29,7 +31,7 @@
  <div *ngFor="let item of ordersList;">
   <ion-card  (click)="fnOrderSummary(item.id,item.order_number)">
     <ion-grid class="main-content">
-      <p class="order-ids">Order ID: {{item.order_number}}</p>
+      <p class="order-ids">Order ID: #{{item.order_number}}</p>
     </ion-grid>
     <ion-row>
       <ion-col>
@@ -41,6 +43,8 @@
         <p class="status" *ngIf="item.status == 'New' "><b>Inprocess</b></p>
         <p class="status" *ngIf="item.status == 'Delivered' "><b>Completed</b></p>
         <p class="status" *ngIf="item.status == 'cancel' "><b>Cancel</b></p>
+        <p class="status" *ngIf="item.status == 'Reject' "><b>Rejected</b></p>
+
       </ion-col>
     </ion-row>
   </ion-card>
