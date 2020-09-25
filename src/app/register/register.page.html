@@ -64,7 +64,7 @@
         <ion-item >
           <ion-icon name="call" color="primary" slot="start"></ion-icon>
           <ion-label position="floating">Enter Phone Number</ion-label>
-          <ion-input type="text" name="phone" formControlName="phone" [(ngModel)]="register.phone" class="login_text"></ion-input>
+          <ion-input type="tel" name="phone" formControlName="phone" [(ngModel)]="register.phone" class="login_text"></ion-input>
         </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('phone').touched || ionicForm.get('phone').dirty || formSubmitclicked">

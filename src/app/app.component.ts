@@ -92,10 +92,9 @@ export class AppComponent {
   }
 
   fnLogout() {
-    this.menu.enable(true);
+    localStorage.clear();
     this.navCtrl.navigateForward('home');
     this.menu.enable(false);
-    localStorage.clear();
   }
 
   fnDashboard() {
