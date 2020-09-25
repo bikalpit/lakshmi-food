@@ -25,7 +25,6 @@ export class HomePage {
     window.addEventListener('keyboardDidShow', () => {
       console.log("Keyboard is Shown");
       this.isKeyboardHide = false;
-      // document.body.classList.add('hide-on-keyboard-open');
       this.keyboard.onKeyboardShow().subscribe((value) => {
         document.body.classList.add('hide-on-keyboard-open');
       })
