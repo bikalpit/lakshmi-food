@@ -60,24 +60,33 @@
 
         </ion-radio-group>
       </ion-row>
-
+      <div class="input-wrap">
+         <div class="order-no-bg" style="margin-top: 15%;">
+           <ion-input placeholder="GST No (Optional)" [(ngModel)]="gstText"
+             type="text" name="GST_no" class="order_no_txt" (ionChange)="GSTFetch()">
+           </ion-input>
+         </div> 
+       </div>
 
       <form [formGroup]="ionicForm">
 
         <!-- by arshad -->
         <div class="input-wrap">
-          <div class="order-no-bg" style="margin-top: 15%;">
-            <ion-input placeholder="GST No" formControlName="GSTNo"  [formControl]="ionicForm.controls['GSTNo']"
+         <!--  <div class="order-no-bg" style="margin-top: 15%;">
+            <ion-input placeholder="GST No" [(ngModel)]="gstText"
               type="text" name="GST_no" class="order_no_txt" (ionChange)="GSTFetch()">
-            </ion-input>
-            <span class="error-wrap" *ngIf="ionicForm.get('GSTNo').touched || ionicForm.get('GSTNo').dirty">
+            </ion-input> -->
+            <!-- <ion-input placeholder="GST No" formControlName="GSTNo"  [formControl]="ionicForm.controls['GSTNo']"
+              type="text" name="GST_no" class="order_no_txt" (ionChange)="GSTFetch()">
+            </ion-input> -->
+           <!--  <span class="error-wrap" *ngIf="ionicForm.get('GSTNo').touched || ionicForm.get('GSTNo').dirty">
               <small *ngIf="ionicForm.get('GSTNo').hasError('required')" class="error">GST No is required.</small>
-            </span>
-          </div>
+            </span> -->
+          <!-- </div> -->
         </div>
         <!-- close -->
         <div class="input-wrap">
-          <div class="order-no-bg" style="margin-top: 15%;">
+          <div class="order-no-bg" >
             <ion-input placeholder="House No" formControlName="houseNo" [formControl]="ionicForm.controls['houseNo']"
               type="text" name="house_no" class="order_no_txt">
             </ion-input>
@@ -98,11 +107,22 @@
             </span>
           </div>
         </div>
-
-        <ion-row>
+        <ion-row style="margin-left: 10px;
+        margin-right: 10px;">
+          <ion-col>
+            <div class="order-no-bgs">
+              <ion-input  placeholder="City" type="text" formControlName="City"
+                [formControl]="ionicForm.controls['City']" name="city" class="order_no_txt"></ion-input>
+              <span class="error-wrap" *ngIf="ionicForm.get('City').touched || ionicForm.get('City').dirty">
+                <small *ngIf="ionicForm.get('City').hasError('required')" class="error">City is required.</small>
+                <small *ngIf="ionicForm.get('City').hasError('pattern')" class="error">Just use alphabet
+                  character.</small>
+              </span>
+            </div>
+          </ion-col>
           <ion-col>
             <div class="order-no-bgt">
-              <ion-input placeholder="State" type="text" formControlName="State"
+              <ion-input  placeholder="State" type="text" formControlName="State"
                 [formControl]="ionicForm.controls['State']" name="state" class="order_no_txt">
               </ion-input>
               <span class="error-wrap" *ngIf="ionicForm.get('State').touched || ionicForm.get('State').dirty">
@@ -112,23 +132,10 @@
               </span>
             </div>
           </ion-col>
-
-          <ion-col>
-            <div class="order-no-bgs">
-              <ion-input placeholder="City" type="text" formControlName="City"
-                [formControl]="ionicForm.controls['City']" name="city" class="order_no_txt"></ion-input>
-              <span class="error-wrap" *ngIf="ionicForm.get('City').touched || ionicForm.get('City').dirty">
-                <small *ngIf="ionicForm.get('City').hasError('required')" class="error">City is required.</small>
-                <small *ngIf="ionicForm.get('City').hasError('pattern')" class="error">Just use alphabet
-                  character.</small>
-              </span>
-            </div>
-          </ion-col>
         </ion-row>
-
         <div class="input-wrap">
           <div class="order-no-bg">
-            <ion-input placeholder="Landmark (Optional)" formControlName="Landmark"
+            <ion-input placeholder="Landmark" formControlName="Landmark"
               [formControl]="ionicForm.controls['Landmark']" type="text" name="landmark" class="order_no_txt">
             </ion-input>
 

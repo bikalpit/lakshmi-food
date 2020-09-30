@@ -107,7 +107,6 @@ export class OrderDetailsPage implements OnInit {
     }, (err) => {
       console.log("Error=>", err);
       this.auth.hideLoader();
-      //this.auth.showError(err.error.message);
     });
   }
 

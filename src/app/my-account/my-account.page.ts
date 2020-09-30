@@ -29,7 +29,7 @@ export class MyAccountPage implements OnInit {
   constructor(public alertCtrl: AlertController, private datePipe: DatePipe, private auth: AuthService, public navCtrl: NavController, public menu: MenuController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
-    this.userName=localStorage.getItem("username");
+    this.userName=localStorage.getItem("name");
     console.log(this.user_id);
     this.selecTextStatus.select = "Shipped";
 

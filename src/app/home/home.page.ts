@@ -35,9 +35,7 @@ export class HomePage {
       this.keyboard.onKeyboardHide().subscribe((value) => {
         document.body.classList.remove('hide-on-keyboard-open');
       })
-
     });
-
   }
 
   fnLogin() {
@@ -54,7 +52,6 @@ export class HomePage {
           this.hideLoader();
 
           if (this.dataResponse.status == true) {
-
             localStorage.setItem("id", this.dataResponse.data.id);
             console.log(this.dataResponse.data.id);
             localStorage.setItem("email", this.dataResponse.data.email);
@@ -68,7 +65,6 @@ export class HomePage {
             }else{
               localStorage.setItem("photos", '');
             }
-
             console.log(this.dataResponse.data);
             console.log('role---',this.dataResponse.data.role);
             console.log('name---',localStorage.getItem('name'));
@@ -77,10 +73,11 @@ export class HomePage {
             } else {
               this.navCtrl.navigateForward('/dashboard');
             }
+            window.location.reload();
           } else {
             //this.showToast1();
             this.hideLoader();
-            this.auth.showToast('Please enter valid Phone or password');
+            this.auth.showToast(this.dataResponse.message);
           }
         }, (err) => {
           console.log("Error=>", err);

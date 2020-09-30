@@ -20,7 +20,7 @@
       <ion-col size="3">
         <ion-checkbox color="danger" class="p-check-icon" [disabled]="item.value" (click)="selection(item.id,i);">
         </ion-checkbox>
-        <ion-icon *ngIf="item.address_type == 'Home'" name="home-outline" class="icon-address"></ion-icon>
+        <ion-icon *ngIf="item.address_type == 'Home' || item.address_type == null" name="home-outline" class="icon-address"></ion-icon>
         <ion-icon *ngIf="item.address_type == 'Office'" name="business-outline" class="icon-address"></ion-icon>
         <ion-icon *ngIf="item.address_type == 'Other'" name="location-outline" class="icon-address"></ion-icon>
       </ion-col>

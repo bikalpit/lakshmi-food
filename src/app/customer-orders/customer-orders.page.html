@@ -28,8 +28,8 @@
     </ion-col> 
   </ion-row>
   
- <div *ngFor="let item of ordersList;">
-  <ion-card  (click)="fnOrderSummary(item.id,item.order_number)">
+ <div>
+  <ion-card *ngFor="let item of ordersList;"  (click)="fnOrderSummary(item.id,item.order_number)">
     <ion-grid class="main-content">
       <p class="order-ids">Order ID: #{{item.order_number}}</p>
     </ion-grid>
@@ -41,7 +41,7 @@
 
       <ion-col>
         <p class="status" *ngIf="item.status == 'New' "><b>Inprocess</b></p>
-        <p class="status" *ngIf="item.status == 'Delivered' "><b>Completed</b></p>
+        <p class="status" *ngIf="item.status == 'Delivered' "><b>Processed</b></p>
         <p class="status" *ngIf="item.status == 'cancel' "><b>Cancel</b></p>
         <p class="status" *ngIf="item.status == 'Reject' "><b>Rejected</b></p>
 

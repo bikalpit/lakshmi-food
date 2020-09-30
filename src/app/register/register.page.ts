@@ -5,6 +5,48 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 
+const RES_DATA = {
+  taxpayerInfo: {
+    ctjCd: 'ZD1102',
+    stj: 'Mukatsar - Ward No.5',
+    pradr: {
+      addr: {
+        city: '',
+        bno: '1915',
+        flno: '',
+        loc: 'GIDDERBAHA',
+        st: 'STREET NO. 02',
+        lg: '',
+        dst: 'Muktsar',
+        stcd: 'Punjab',
+        lt: '',
+        bnm: 'SHAHEED BHAGAT SINGH NAGAR',
+        pncd: '152101',
+      },
+      ntr: 'Export',
+    },
+    dty: 'Regular',
+    frequencyType: null,
+    errorMsg: null,
+    tradeNam: 'BROADVIEW INNOVATIONS PRIVATE LIMITED',
+    rgdt: '02/11/2018',
+    adadr: [],
+    nba: ['Export'],
+    cxdt: '',
+    ctj: 'GIDDERBAHA',
+    sts: 'Active',
+    stjCd: 'PB165',
+    ctb: 'Private Limited Company',
+    gstin: '03AAFCB3420K1Z3',
+    lgnm: 'BROADVIEW INNOVATIONS PRIAVATE LIMITED',
+    panNo: 'AAFCB3420K',
+  },
+  filing: [],
+  compliance: {
+    filingFrequency: null,
+  },
+};
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -13,7 +55,7 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
 export class RegisterPage implements OnInit {
 
   ionicForm: FormGroup;
-  register = { fullname: "", username: "", email: "", phone: "", password: "", confirm_password: "" }
+  register = { fullname: "", username: "", email: "", phone: "", password: "", confirm_password: "",houseNo: "" ,AreaColony:"",State:"",City:"",Landmark:"",Zipcode:""}
   requestObject: any;
   onlynumeric = /^-?(0|[1-9]\d*)?$/
   isSubmitted = false;
@@ -21,7 +63,8 @@ export class RegisterPage implements OnInit {
   dataResponse: any;
   isKeyboardHide = true;
   emailFormat = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/
-
+  gstText:any;
+  fetchGst: any;
   constructor(public navCtrl: NavController, private auth: AuthService,
     private keyboard: Keyboard,
     public formbulider: FormBuilder,
@@ -51,7 +94,13 @@ export class RegisterPage implements OnInit {
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirm_password: ['', [Validators.required, Validators.minLength(6)]],
-      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]]
+      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      houseNo: ['', [Validators.required]],
+      AreaColony: ['', [Validators.required]],
+      State: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      City: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      Landmark: ['', [Validators.required]],
+      Zipcode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(this.onlynumeric)]]
     });
 
   }
@@ -68,6 +117,12 @@ export class RegisterPage implements OnInit {
       this.ionicForm.get('username').markAsTouched();
       this.ionicForm.get('password').markAsTouched();
       this.ionicForm.get('confirm_password').markAsTouched();
+      this.ionicForm.get('houseNo').markAsTouched();
+      this.ionicForm.get('AreaColony').markAsTouched();
+      this.ionicForm.get('Landmark').markAsTouched();
+      this.ionicForm.get('City').markAsTouched();
+      this.ionicForm.get('State').markAsTouched();
+      this.ionicForm.get('Zipcode').markAsTouched();
       return false;
     }
     this.requestObject = {
@@ -76,6 +131,12 @@ export class RegisterPage implements OnInit {
       "email": this.register.email,
       "phone": this.register.phone,
       "password": this.register.password,
+      "address": this.register.houseNo,
+      "area": this.register.AreaColony,
+      "landmark": this.register.Landmark,
+      "city": this.register.City,
+      "state": this.register.State,
+      "zipcode": this.register.Zipcode,
       "role" : "Customer"
     }
     console.log(this.requestObject);
@@ -87,10 +148,10 @@ export class RegisterPage implements OnInit {
         console.log(data);
         this.dataResponse = data;
         if (this.dataResponse.status == true) {
-          this.auth.showToast('Signup Successfulluy');
+          this.auth.showToast('Registration Successfully');
           this.navCtrl.navigateForward('/home');
         } else {
-          this.auth.showToast('Username and Email must be uniq');
+          this.auth.showToast(this.dataResponse.message);
         }
       }, (err) => {
         this.auth.hideLoader();
@@ -113,5 +174,42 @@ export class RegisterPage implements OnInit {
   fnSignIn() {
     this.navCtrl.navigateForward('home');
   }
+  GSTFetch() {
+    // let dd = this.ionicForm.get('GSTNo').value
+    let dd = this.gstText;
+    if (this.fetchGst) clearTimeout(this.fetchGst);
+    this.fetchGst = setTimeout(() => {
+      console.log(dd);
+      // this.fnGetGST(dd)
+    }, 1000);
+  }
 
+  fnGetGST(gst) {
+
+    if (gst.length < 14) {
+      return false;
+    }
+
+    this.auth.showLoader();
+    this.auth.getAddressFromGst(gst).subscribe((data: any) => {
+      this.auth.hideLoader();
+      if (data.error === true) {
+        this.auth.showToast(data.message);
+      } else {
+        this.ionicForm.setValue({
+         /*  GSTNo: gst, */
+          houseNo: data.taxpayerInfo.pradr.addr.bnm,
+          AreaColony: data.taxpayerInfo.pradr.addr.flno,
+          Landmark: data.taxpayerInfo.pradr.addr.st,
+          Zipcode: data.taxpayerInfo.pradr.addr.pncd,
+          City: data.taxpayerInfo.pradr.addr.dst,
+          State: data.taxpayerInfo.pradr.addr.stcd,
+          phone: '',
+        });
+      }
+    }, (err) => {
+      this.auth.hideLoader();
+      console.log("Error=>", err);
+    });
+  }
 }

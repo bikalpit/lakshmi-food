@@ -26,7 +26,7 @@
           </ion-col>
 
           <ion-col>
-            <h6 class="p-label">Delivery Date</h6>
+            <h6 class="p-label">Order Date</h6>
           </ion-col>
 
         </ion-row>
@@ -54,44 +54,60 @@
     <ion-card class="cust-profile">
       <p class="profile-txt"><b>Customer Profile</b></p>
       <ion-row>
-        <ion-col size="3">
+        <ion-col size="4">
+          <h4 class="p-label2">Firm Name</h4>
+        </ion-col>
+
+        <ion-col size="8">
+          <h6 class="p-label-nm">{{ordersDetails.firm_name}}</h6>
+        </ion-col>
+
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
           <h4 class="p-label2">Name</h4>
         </ion-col>
 
-        <ion-col>
+        <ion-col size="8">
           <h6 class="p-label-nm">{{ordersDetails.name}}</h6>
         </ion-col>
 
       </ion-row>
       <ion-row>
-        <ion-col size="3" >
+        <ion-col size="4" >
           <h4 class="p-label2">Email</h4>
         </ion-col>
 
-        <ion-col >
+        <ion-col size="8">
           <h6 class="p-label-nm">{{ordersDetails.email}}</h6>
         </ion-col>
 
       </ion-row>
       <ion-row>
-        <ion-col size="3">
+        <ion-col size="4">
           <h4 class="p-label2">Contact </h4>
         </ion-col>
 
-        <ion-col>
-          <h6 class="p-label-nm">{{ordersDetails.address_mobile_no}}</h6>
+        <ion-col size="8">
+          <h6 class="p-label-nm">{{ordersDetails.phone}}</h6>
         </ion-col>
 
       </ion-row>
     </ion-card>
     <ion-card class="main-card-item">
       <p class="profile-txt"><b>Address</b></p>
-      <h6 class="add-txt"><img src="../../assets/imgs/location.png"
+     <!--  <h6 class="add-txt"><img src="../../assets/imgs/location.png"
           class="img">{{ordersDetails.address_house_no}},{{ordersDetails.address_city}}{{ordersDetails.address_state}}
-      </h6>
+      </h6> -->
+      <ion-row style="font-size: 16px; font-weight: bold;">
+        <ion-col size="1">
+          <img src="../../assets/imgs/location.png" class="img">
+        </ion-col>
+        <ion-col size="11">
+            {{ordersDetails.address_house_no}}, {{ordersDetails.address_landmark}}, {{ordersDetails.address_city}}, {{ordersDetails.address_state}}, {{ordersDetails.address_zipcode}}
+        </ion-col>
+      </ion-row>
     </ion-card>
-
-
     <!-- <div *ngFor="let item of orderItem;"> -->
     <ion-card class="main-card-item">
       <ion-card-content>

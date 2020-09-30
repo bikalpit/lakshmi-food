@@ -42,3 +42,17 @@
     color: #E4322E;
     margin-right: 43px;
 }
+.error-wrap{
+    color: red; 
+    font-size: 15px;   
+}
+.input-wrap{
+    position: relative;
+    .login_text{
+      margin-bottom: 15px;
+    }
+    .error-wrap{
+      position: absolute;
+      bottom: -15px;
+    }
+  }

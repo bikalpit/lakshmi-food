@@ -60,7 +60,11 @@ export class EditProfilePage implements OnInit {
       this.auth.hideLoader();
       console.log(data);
       this.AllUserArray = data.data;
-      this.photos = environment.file_url + "assets/uploads/users/" + this.AllUserArray.photo;
+      if(this.AllUserArray.photo===null){
+        this.photos = '';
+      }else{
+        this.photos = environment.file_url + "assets/uploads/users/" + this.AllUserArray.photo;
+      }
       this.ionicForm.controls.Name.setValue(this.AllUserArray.name);
       this.ionicForm.controls.Email.setValue(this.AllUserArray.email);
       this.ionicForm.controls.UserName.setValue(this.AllUserArray.firm_name);
@@ -96,23 +100,26 @@ export class EditProfilePage implements OnInit {
       console.log(data);
       this.AllUserArray = data;
       if (this.AllUserArray.status == true) {
-        window.location.reload();
-        if (this.AllUserArray.data.photo) {
+       
+        if (this.AllUserArray.data.photo!==null && this.AllUserArray.data.photo!=='') {
           localStorage.setItem("photos", environment.file_url + "assets/uploads/users/" + this.AllUserArray.data.photo);
         } else {
           localStorage.setItem("photos", '');
         }
+        this.auth.showToast('Profile update successfully');
         if (this.role == 'Customer') {
+         
           this.navCtrl.navigateForward('/dashboard');
-          this.auth.showToast('Profile update successfully');
+         
 
         } else if (this.role == 'DeliveryBoy') {
           this.navCtrl.navigateForward('my-account');
-          this.auth.showToast('Profile update successfully');
+         
         }
         else {
           this.auth.showToast('Profile Not update ');
         }
+        // window.location.reload();
       } else {
         this.auth.showToast('Profile Not update ');
       }

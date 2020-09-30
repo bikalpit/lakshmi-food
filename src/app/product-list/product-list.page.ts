@@ -29,19 +29,19 @@ export class ProductListPage implements OnInit {
     this.url = this.commonService.url();
   }
   ngOnInit() {
-    this.getProductList(false,"");
+    this.getProductList(false, "");
   }
 
-   /* async showModal(data) {
-    const modal = await this.modalController.create({
-      component: ModalPopupPage,
-      cssClass: 'myModal',
-      componentProps: {
-        'name': data
-      }
-    });
-    return await modal.present();
-  } */
+  /* async showModal(data) {
+   const modal = await this.modalController.create({
+     component: ModalPopupPage,
+     cssClass: 'myModal',
+     componentProps: {
+       'name': data
+     }
+   });
+   return await modal.present();
+ } */
 
   goBack() {
     this.location.back();
@@ -52,12 +52,12 @@ export class ProductListPage implements OnInit {
   }
 
   fnAddToCart() {
-      this.navCtrl.navigateForward('your-cart');  
+    this.navCtrl.navigateForward('your-cart');
   }
 
-  getProductList(isFirstLoad,event) {
-    if(isFirstLoad===false)
-        this.showLoader();
+  getProductList(isFirstLoad, event) {
+    if (isFirstLoad === false)
+      this.showLoader();
     this.requestObject = {
       "page_no": this.page,
       "offset": "10"
@@ -69,9 +69,9 @@ export class ProductListPage implements OnInit {
         this.lazyListProduct.push(this.dataResponse[i]);
       }
       if (isFirstLoad)
-          event.target.complete();
+        event.target.complete();
 
-        this.page++;
+      this.page++;
     }, (err) => {
       this.hideLoader();
       console.log("Error=>", err);
@@ -96,7 +96,7 @@ export class ProductListPage implements OnInit {
   doInfinite(event) {
     this.getProductList(true, event);
   }
-  async showModal(data){
+  async showModal(data) {
     const presentModel = await this.modalController.create({
       component: ModalPopupPage,
       componentProps: {
@@ -106,11 +106,11 @@ export class ProductListPage implements OnInit {
       mode: "ios",
       cssClass: 'change-select-card-modal'
     });
- 
-    presentModel.onWillDismiss().then((data)=>{
+
+    presentModel.onWillDismiss().then((data) => {
       console.log(data);
       //custom code
-     
+
     });
     return await presentModel.present();
   }

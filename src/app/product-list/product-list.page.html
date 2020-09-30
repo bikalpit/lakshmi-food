@@ -10,7 +10,7 @@
     </ion-button>
   </ion-buttons> -->
 
-  <ion-title class="main-title">Which <b>Product</b> Do You Need?</ion-title>
+  <ion-title class="main-title">Select Product</ion-title>
 </ion-toolbar>
 <ion-content>
 
@@ -30,7 +30,7 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-</div>
+</div> 
 
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="!isloadmore">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">

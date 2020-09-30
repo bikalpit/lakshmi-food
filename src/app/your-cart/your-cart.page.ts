@@ -39,7 +39,7 @@ export class YourCartPage implements OnInit {
     
     this.url = this.commonService.url();
     
-    this.modalCtrl.dismiss({
+    this.modalCtrl.dismiss({ 
       'dismissed': true
     });
     this.cartData = JSON.parse(localStorage.getItem("cartData"));

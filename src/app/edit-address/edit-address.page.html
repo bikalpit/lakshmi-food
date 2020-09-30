@@ -5,7 +5,7 @@
       <ion-back-button (click)="goBack()" color="danger"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
+</ion-header> 
 
 <ion-content>
   <div *ngIf="AllAddressArray">
@@ -22,13 +22,12 @@
   <ion-row>
     <ion-col>
       <div class="order-no-bgt">
-        <ion-input placeholder="State" type="text" name="state" [(ngModel)]="AllAddressArray.address_state" class="order_no_txt"></ion-input>
+        <ion-input placeholder="City"  type="text" name="city" [(ngModel)]="AllAddressArray.address_city" class="order_no_txt"></ion-input>
       </div>
     </ion-col>
-
     <ion-col>
-      <div class="order-no-bgs">
-        <ion-input placeholder="City" type="text" name="city" [(ngModel)]="AllAddressArray.address_city" class="order_no_txt"></ion-input>
+      <div  class="order-no-bgs">
+        <ion-input placeholder="State" type="text" name="state" [(ngModel)]="AllAddressArray.address_state" class="order_no_txt"></ion-input>
       </div>
     </ion-col>
   </ion-row>

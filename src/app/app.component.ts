@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { NavController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -20,9 +20,12 @@ export class AppComponent {
   name: any = localStorage.getItem('name');
   email: any = localStorage.getItem('email');
   role: any = localStorage.getItem("role");
+  rootPage:any;
 
   photo: any = localStorage.getItem("photos");
-  constructor(private router: Router,
+  constructor(
+    private _location: Location,
+    private router: Router,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
@@ -55,18 +58,78 @@ export class AppComponent {
       console.log("this.role-----", this.role);
       if (localStorage.getItem('role')) {
         if (localStorage.getItem('role') == 'Customer') {
-          this.navCtrl.navigateForward('dashboard');
+          this.rootPage="/dashboard";
+          this.navCtrl.navigateRoot('dashboard');
           // this.navCtrl.navigateForward('add-address');
         } else if (localStorage.getItem('role') == 'DeliveryBoy') {
-          this.navCtrl.navigateForward('my-account');
+          this.rootPage="/my-account";
+          this.navCtrl.navigateRoot('my-account');
+         
         }
       }
       else {
-        this.navCtrl.navigateForward('home');
-
+        this.rootPage="/home";
+        this.navCtrl.navigateRoot('home');
       }
+
+
+      this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+        console.log('Back press handler!');
+        if (this._location.isCurrentPathEqualTo(this.rootPage)) {
+  
+          // Show Exit Alert!
+          console.log('Show Exit Alert!');
+          this.showExitConfirm();
+          processNextHandler();
+        } else {
+  
+          // Navigate to back page
+          console.log('Navigate to back page');
+          this._location.back();
+  
+        }
+  
+      });
+  
+      this.platform.backButton.subscribeWithPriority(5, () => {
+        console.log('Handler called to force close!');
+        this.alertCtrl.getTop().then(r => {
+          if (r) {
+            navigator['app'].exitApp();
+          }
+        }).catch(e => {
+          console.log(e);
+        })
+      });
+  
+
     });
   }
+
+  showExitConfirm() {
+    this.alertCtrl.create({
+      header: 'App termination',
+      message: 'Do you want to close the app?',
+      backdropDismiss: false,
+      buttons: [{
+        text: 'Stay',
+        role: 'cancel',
+        handler: () => {
+          console.log('Application exit prevented!');
+        }
+      }, {
+        text: 'Exit',
+        handler: () => {
+          navigator['app'].exitApp();
+        }
+      }]
+    })
+      .then(alert => {
+        alert.present();
+      });
+
+    }
+  
 
   openCustom() {
     this.menu.enable(true, 'custom');
@@ -92,8 +155,10 @@ export class AppComponent {
   }
 
   fnLogout() {
+    this.rootPage="/home";
     localStorage.clear();
-    this.navCtrl.navigateForward('home');
+    this.menu.enable(true);
+    this.navCtrl.navigateRoot('/home');
     this.menu.enable(false);
   }
 

@@ -14,7 +14,7 @@
 
 <ion-content>
   <ion-grid class="header-content">
-    <p class="p-label">Wel Come {{userName}}</p>
+    <p class="p-label">Welcome {{userName}}</p> 
   </ion-grid>
 
   <ion-row style="margin-top: 12px;">
@@ -54,9 +54,15 @@
 
   </ion-card>
   <ion-card class="card-content-address">
-    <h5 class="add-txt"><img src="../../assets/imgs/location.png" class="img">
-      {{item.address_house_no}},{{item.address_city}},{{item.address_state}}</h5>
-  </ion-card>
+    <ion-row style="font-size: 16px; font-weight: bold;">
+      <ion-col size="1">
+        <img src="../../assets/imgs/location.png" class="img">
+      </ion-col>
+      <ion-col size="11">
+          {{item.address_house_no}}, {{item.address_landmark}}, {{item.address_city}}, {{item.address_state}}, {{item.address_zipcode}}
+      </ion-col>
+    </ion-row>
+   </ion-card>
   </div>
   <div *ngIf="!ordersList?.length > 0">
     <p class="norecord-label">No Records Found</p>
