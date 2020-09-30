@@ -76,6 +76,7 @@ export class HomePage {
             } else {
               this.navCtrl.navigateForward('/dashboard');
             }
+            window.location.reload();
           } else {
             this.hideLoader();
             this.auth.showToast(this.dataResponse.message);
