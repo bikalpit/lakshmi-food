@@ -22,6 +22,13 @@ export class HomePage {
     public loadingCtrl: LoadingController,
     private keyboard: Keyboard
   ) {
+
+
+    if(localStorage.getItem('id')){
+        this.navCtrl.navigateForward('dashboard');
+        return;
+    }
+
     window.addEventListener('keyboardDidShow', () => {
       console.log("Keyboard is Shown");
       this.isKeyboardHide = false;
@@ -29,16 +36,18 @@ export class HomePage {
         document.body.classList.add('hide-on-keyboard-open');
       })
     });
+
     window.addEventListener('keyboardDidHide', () => {
-      // document.body.classList.remove('hide-on-keyboard-open');
       this.isKeyboardHide = true;
       this.keyboard.onKeyboardHide().subscribe((value) => {
         document.body.classList.remove('hide-on-keyboard-open');
       })
     });
+
   }
 
   fnLogin() {
+
     if (this.login.phone != '') {
       if (this.login.password != '') {
         this.requestObject = {
@@ -47,13 +56,10 @@ export class HomePage {
         }
         this.showLoader();
         this.auth.login(this.requestObject).subscribe((data: any) => {
-          console.log(data);
           this.dataResponse = data;
           this.hideLoader();
-
           if (this.dataResponse.status == true) {
             localStorage.setItem("id", this.dataResponse.data.id);
-            console.log(this.dataResponse.data.id);
             localStorage.setItem("email", this.dataResponse.data.email);
             localStorage.setItem("firm_name", this.dataResponse.data.firm_name);
             localStorage.setItem("name", this.dataResponse.data.name);
@@ -65,23 +71,17 @@ export class HomePage {
             }else{
               localStorage.setItem("photos", '');
             }
-            console.log(this.dataResponse.data);
-            console.log('role---',this.dataResponse.data.role);
-            console.log('name---',localStorage.getItem('name'));
             if (this.dataResponse.data.role == 'DeliveryBoy') {
               this.navCtrl.navigateForward('my-account');
             } else {
               this.navCtrl.navigateForward('/dashboard');
             }
-            window.location.reload();
           } else {
-            //this.showToast1();
             this.hideLoader();
             this.auth.showToast(this.dataResponse.message);
           }
         }, (err) => {
           console.log("Error=>", err);
-          //this.auth.showError(err.error.message);
           this.hideLoader();
         });
 
@@ -102,6 +102,7 @@ export class HomePage {
     this.navCtrl.navigateForward('/forgot-password');
 
   }
+
   showLoader() {
     this.loadingCtrl.create({
       message: 'Please wait...'
@@ -109,6 +110,7 @@ export class HomePage {
       res.present();
     });
   }
+
   hideLoader() {
     this.loadingCtrl.dismiss().then((res) => {
       console.log('Loading dismissed!', res);
@@ -116,4 +118,5 @@ export class HomePage {
       console.log('error', error);
     });
   }
+
 }

@@ -25,31 +25,36 @@
   </ion-grid>
 
   <ion-grid class="card-width">
-    <ion-row>
+    <ion-row class="left">
       <ion-col size="8">
         <span class="slide-price">
-          <!-- {{name.product_weight}}Kg x ₹{{name.product_price * item_qty}}  -->
           {{name.product_weight}}Kg x {{item_qty}} qty
-          <span style="color: gray;font-size: 1rem;">₹{{name.product_price * item_qty}}</span>
+          <!-- <span style="color: gray;font-size: 1rem;">₹{{name.product_price * item_qty}}</span> -->
         </span>
       </ion-col>
       <ion-col size="4">
         <div class="add-rm-btn">
           <ion-icon name="remove-circle" (click)="fnremove()" class="add-remove-circle"></ion-icon>
-          <div style="color: black !important;font-size: 1.5rem;">{{item_qty}}</div>
+            <div style="padding: 0 10px;font-size: 1.5rem;">{{item_qty}}</div>
           <ion-icon name="add-circle" (click)="fnadd()" class="add-remove-circle"></ion-icon>
         </div>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="name.product_description!=''">
+
+    <ion-row class="left">
+      <ion-col size="12">
+        <span class="slide-price"><b>Total Amount ₹{{(name.product_price*item_qty).toFixed(2)}}</b></span>
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-row *ngIf="name.product_description!=''">
       <ion-label class="Description"><b>Product Description</b></ion-label>
-    </ion-row>
-    <ion-row *ngIf="name.product_description!=''">
+    </ion-row> -->
+    <!-- <ion-row *ngIf="name.product_description!=''">
       <p class="product">{{name.product_description}}</p>
-    </ion-row>
+    </ion-row> -->
   </ion-grid>
 
   <button ion-button class="AddToCart_btn"
-    (click)="fnAddToCart(name.id,name.product_name,name.product_weight,name.product_price,item_qty,name.images)">Add To
-    Cart</button>
+    (click)="fnAddToCart(name.id,name.product_name,name.product_weight,name.product_price,item_qty,name.images)">Add To Cart</button>
 </ion-content>

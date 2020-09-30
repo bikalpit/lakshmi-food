@@ -36,8 +36,6 @@ export class ModalPopupPage implements OnInit {
   };
 
   constructor(private commonService: CommonService, public navParams: NavParams, public modalCtrl: ModalController, public navCtrl: NavController) {
-    console.log(this.navParams.data.name.product_minimum_qty);
-    console.log(this.navParams);
     this.item_qty = this.navParams.data.name.product_minimum_qty;
     this.baseIncrement = parseInt(this.navParams.data.name.product_minimum_qty);
   }
@@ -54,7 +52,7 @@ export class ModalPopupPage implements OnInit {
   }
 
   fnAddToCart(id, name, weight, price, qty, images) {
-    console.log(images)
+
     this.cartData = [];
 
     if (localStorage.getItem("cartData")) {
@@ -64,7 +62,7 @@ export class ModalPopupPage implements OnInit {
 
       this.cartData.forEach(element => {
         if (element.id == id) {
-          element.qty = element.qty + qty;
+          element.qty = parseInt(element.qty) + parseInt(qty);
           product_exits = true;
         }
       });
@@ -78,8 +76,8 @@ export class ModalPopupPage implements OnInit {
           qty: qty,
           images: images
         });
-
       }
+
       localStorage.setItem("cartData", JSON.stringify(this.cartData));
 
     } else {
@@ -104,19 +102,14 @@ export class ModalPopupPage implements OnInit {
   fnremove() {
     if (this.item_qty - this.baseIncrement < this.baseIncrement) {
       this.item_qty = this.baseIncrement;
-      console.log('item_1->' + this.item_qty)
-    }
-    else {
+    }else {
       this.item_qty -= this.baseIncrement;
-      console.log('item_2->' + this.item_qty);
     }
-    console.log("hello");
   }
 
   fnadd() {
     let a=parseInt(this.item_qty.toString());
     this.item_qty=a += this.baseIncrement;
-    console.log(this.item_qty + this.baseIncrement);
   }
 
 }

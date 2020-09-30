@@ -14,8 +14,12 @@ export class DashboardPage implements OnInit {
     this.menu.enable(true);
     localStorage.setItem("cartData", '');
     this.name = localStorage.getItem('name');
-    console.log('firm_name---',localStorage.getItem('firm_name'));
-    console.log(this.name);
+
+    if(localStorage.getItem('id')==null){
+      this.navCtrl.navigateForward('home');
+      return;
+    }
+
   }
  
   ngOnInit() {
