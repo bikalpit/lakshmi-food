@@ -59,6 +59,7 @@ export class AddAddressPage implements OnInit {
   user_id: any;
   type: any;
   public data: any;
+  public dataHint: any;
   dataResponse: any;
   public myToast: any;
   onlynumeric = /^-?(0|[1-9]\d*)?$/
@@ -73,7 +74,8 @@ export class AddAddressPage implements OnInit {
     public navCtrl: NavController,
     private auth: AuthService,
     public toast: ToastController) {
-
+      this.data="Home"
+      this.dataHint='Home';
     this.user_id = localStorage.getItem("id");
     this.ionicForm = this.formbulider.group({
      /*  GSTNo: ['', [Validators.required]], */
@@ -91,7 +93,19 @@ export class AddAddressPage implements OnInit {
   }
 
   onChangeHandler(event) {
-    this.data = event.target.value;
+    this.data = event.target.value; 
+    if(this.data!=="Office"){
+      this.gstText='';
+    }
+    if(this.data==="Other"){
+      this.dataHint='Resident';
+    }
+    if(this.data==="Home"){
+      this.dataHint='Home';
+    }
+    if(this.data==="Office"){
+      this.dataHint='Office';
+    }
   }
 
   GSTFetch() {

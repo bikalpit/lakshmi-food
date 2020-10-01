@@ -32,8 +32,8 @@
     <ion-card class="main-address ios">
       <h6 class="txt-location"><b>Choose Your Address Type</b></h6>
 
-      <ion-row class="main-img ios">
-        <ion-radio-group (ionChange)="onChangeHandler($event)" style="margin-top: 5px;display: flex;">
+      <ion-row class="main-img ios" style="margin-bottom: 15%;">
+        <ion-radio-group [(ngModel)]="data" (ionChange)="onChangeHandler($event)" style="margin-top: 5px;display: flex;">
           <div class="office-img">
             <p class="p-office">Office</p>
 
@@ -45,7 +45,7 @@
           <div class="home-img">
             <p class="p-office">Home</p>
 
-            <ion-radio style="margin-left: 35px;margin-top: 17px;" value="Home" [checked]="this.data === 'Home'">
+            <ion-radio style="margin-left: 35px;margin-top: 17px;"  value="Home" [checked]="this.data === 'Home'">
             </ion-radio>
 
           </div>
@@ -53,15 +53,15 @@
           <div class="other-img">
             <p class="p-office">Other</p>
 
-            <ion-radio style="margin-left: 35px;margin-top: 17px;" value="Other" [checked]="this.data === 'Other'">
+            <ion-radio style="margin-left: 35px;margin-top: 17px; " value="Other" [checked]="this.data === 'Other'">
             </ion-radio>
 
           </div>
 
         </ion-radio-group>
       </ion-row>
-      <div class="input-wrap">
-         <div class="order-no-bg" style="margin-top: 15%;">
+      <div class="input-wrap" *ngIf="this.data === 'Office'">
+         <div class="order-no-bg">
            <ion-input placeholder="GST No (Optional)" [(ngModel)]="gstText"
              type="text" name="GST_no" class="order_no_txt" (ionChange)="GSTFetch()">
            </ion-input>
@@ -87,22 +87,22 @@
         <!-- close -->
         <div class="input-wrap">
           <div class="order-no-bg" >
-            <ion-input placeholder="House No" formControlName="houseNo" [formControl]="ionicForm.controls['houseNo']"
+            <ion-input placeholder="{{dataHint}} No" formControlName="houseNo" [formControl]="ionicForm.controls['houseNo']"
               type="text" name="house_no" class="order_no_txt">
             </ion-input>
             <span class="error-wrap" *ngIf="ionicForm.get('houseNo').touched || ionicForm.get('houseNo').dirty">
-              <small *ngIf="ionicForm.get('houseNo').hasError('required')" class="error">House No is required.</small>
+              <small *ngIf="ionicForm.get('houseNo').hasError('required')" class="error">{{dataHint}} No is required.</small>
             </span>
           </div>
         </div>
 
         <div class="input-wrap">
           <div class="order-no-bg">
-            <ion-input placeholder="Road Name, Area, Colony" formControlName="AreaColony"
+            <ion-input placeholder="Address" formControlName="AreaColony"
               [formControl]="ionicForm.controls['AreaColony']" type="text" name="area" class="order_no_txt">
             </ion-input>
             <span class="error-wrap" *ngIf="ionicForm.get('AreaColony').touched || ionicForm.get('AreaColony').dirty">
-              <small *ngIf="ionicForm.get('AreaColony').hasError('required')" class="error">Road Name, Area, Colony is
+              <small *ngIf="ionicForm.get('AreaColony').hasError('required')" class="error">Address is
                 required.</small>
             </span>
           </div>
@@ -115,8 +115,7 @@
                 [formControl]="ionicForm.controls['City']" name="city" class="order_no_txt"></ion-input>
               <span class="error-wrap" *ngIf="ionicForm.get('City').touched || ionicForm.get('City').dirty">
                 <small *ngIf="ionicForm.get('City').hasError('required')" class="error">City is required.</small>
-                <small *ngIf="ionicForm.get('City').hasError('pattern')" class="error">Just use alphabet
-                  character.</small>
+                <small *ngIf="ionicForm.get('City').hasError('pattern')" class="error">Only character allowed.</small>
               </span>
             </div>
           </ion-col>
@@ -127,8 +126,7 @@
               </ion-input>
               <span class="error-wrap" *ngIf="ionicForm.get('State').touched || ionicForm.get('State').dirty">
                 <small *ngIf="ionicForm.get('State').hasError('required')" class="error">State is required.</small>
-                <small *ngIf="ionicForm.get('State').hasError('pattern')" class="error">Just use alphabet
-                  character.</small>
+                <small *ngIf="ionicForm.get('State').hasError('pattern')" class="error">Only character allowed.</small>
               </span>
             </div>
           </ion-col>
@@ -151,11 +149,9 @@
               [formControl]="ionicForm.controls['MobileNo']" type="text" name="mobile_no" class="order_no_txt">
             </ion-input>
             <span class="error-wrap" *ngIf="ionicForm.get('MobileNo').touched || ionicForm.get('MobileNo').dirty">
-              <small *ngIf="ionicForm.get('MobileNo').hasError('required')" class="error">Mobile No is required.</small>
-              <small *ngIf="ionicForm.get('MobileNo').hasError('pattern')" class="error">Enter valid Mobile No.</small>
-              <small
-                *ngIf="ionicForm.get('MobileNo').hasError('minlength') || ionicForm.get('MobileNo').hasError('maxlength')"
-                class="error">Phone number should be 10 digits long.</small>
+              <small *ngIf="ionicForm.get('MobileNo').hasError('required')" class="error">Contact details required.</small>
+              <small *ngIf="ionicForm.get('MobileNo').hasError('minlength') || ionicForm.get('MobileNo').hasError('maxlength')" class="error">Contact details should be 10 
+                digits.</small>
             </span>
           </div>
         </div>

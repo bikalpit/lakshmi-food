@@ -9,13 +9,13 @@
                 <img *ngIf="!photo" src="../assets/imgs/avatar1.png">
                 <img *ngIf="photo" [src]="photo">
               </div>
-            </ion-col>
-            <ion-col size="8">
+            </ion-col> 
+            <ion-col size="8"> 
                 <h5 ion-text   class="cardColor twoLinesText textCap"> 
                   {{name}}
                 </h5>
               <span  class="cardColor fontSizeRole" *ngIf="role == 'Customer'">Customer</span>
-              <span  class="cardColor fontSizeRole" *ngIf="role == 'staff'">Staff</span>
+              <span  class="cardColor fontSizeRole" *ngIf="role == 'DeliveryBoy'">Staff</span>
               <br>
               <span  class="cardColor fontSizeEmail">{{email}}</span>
             </ion-col>

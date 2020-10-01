@@ -128,9 +128,9 @@
 
 
     <ion-row class="cancel_completed_btn">
-      <ion-col *ngIf="ordersDetails.status != 'cancel' && ordersDetails.status !='Delivered'">
+      <ion-col *ngIf="ordersDetails.status && ordersDetails.status != 'cancel' && ordersDetails.status !='Delivered'">
         <button ion-button class="cancelOrder_btn"
-          (click)="fnCancelOrder(ordersDetails.id,ordersDetails.order_number)">Cancel</button>
+          (click)="fnCancelOrder(ordersDetails.id,ordersDetails.order_number,'CD')">Cancel</button>
       </ion-col>
 
       <ion-col>

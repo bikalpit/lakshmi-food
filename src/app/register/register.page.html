@@ -20,13 +20,13 @@
   </ion-col>
   <ion-list  class="form" id="register_form">
 
-    <div class="input-wrap">
+    <!-- <div class="input-wrap">
       <ion-item>
         <ion-icon name="document-text" color="primary" slot="start"></ion-icon>
         <ion-label position="floating">GST No. (Optional)</ion-label>
         <ion-input type="text" name="fullname" [(ngModel)]="gstText" (ionChange)="GSTFetch()"></ion-input>
       </ion-item>
-      </div>
+      </div> -->
     <form [formGroup]="ionicForm">
       <div class="input-wrap">
         <ion-item>
@@ -37,8 +37,8 @@
         <span class="error-wrap"
           *ngIf="ionicForm.get('fullname').touched || ionicForm.get('fullname').dirty || formSubmitclicked">
           <small *ngIf="ionicForm.get('fullname').hasError('required')" class="error">Name is required.</small>
-          <small *ngIf="ionicForm.get('fullname').hasError('minlength')" class="error">Name should be minimum 3
-            digits.</small>
+          <small *ngIf="ionicForm.get('fullname').hasError('minlength')" class="error">Name should be of minimum 3 Character.</small>
+          <small *ngIf="ionicForm.get('fullname').hasError('pattern')" class="error">Only character allowed.</small>
         </span>
       </div>
 
@@ -51,8 +51,8 @@
         <span class="error-wrap"
           *ngIf="ionicForm.get('username').touched || ionicForm.get('username').dirty || formSubmitclicked">
           <small *ngIf="ionicForm.get('username').hasError('required')" class="error">Firm is required.</small>
-          <small *ngIf="ionicForm.get('username').hasError('minlength')" class="error">Firm should be minimum 3
-            digits.</small>
+          <small *ngIf="ionicForm.get('username').hasError('minlength')" class="error">Firm Name should be of minimum 3 Character.</small>
+          <small *ngIf="ionicForm.get('username').hasError('pattern')" class="error">Only character allowed.</small>
         </span>
       </div>
 
@@ -72,12 +72,12 @@
         <ion-item >
           <ion-icon name="call" color="primary" slot="start"></ion-icon>
           <ion-label position="floating">Phone Number</ion-label>
-          <ion-input type="tel" name="phone" formControlName="phone" [(ngModel)]="register.phone" ></ion-input>
+          <ion-input type="tel" maxlength="10" name="phone" formControlName="phone" [(ngModel)]="register.phone" ></ion-input>
         </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('phone').touched || ionicForm.get('phone').dirty || formSubmitclicked">
-          <small *ngIf="ionicForm.get('phone').hasError('required')" class="error">Mobile No is required.</small>
-          <small *ngIf="ionicForm.get('phone').hasError('minlength') || ionicForm.get('phone').hasError('maxlength')" class="error">Mobile No should be 10 
+          <small *ngIf="ionicForm.get('phone').hasError('required')" class="error">Contact details required.</small>
+          <small *ngIf="ionicForm.get('phone').hasError('minlength') || ionicForm.get('phone').hasError('maxlength')" class="error">Contact details should be 10 
             digits.</small>
           
         </span> 
@@ -91,8 +91,8 @@
         <span class="error-wrap"
           *ngIf="ionicForm.get('password').touched || ionicForm.get('password').dirty || formSubmitclicked">
           <small *ngIf="ionicForm.get('password').hasError('required')" class="error">Password is required.</small>
-          <small *ngIf="ionicForm.get('password').hasError('minlength')" class="error">Password should be minimum 6
-            digits.</small>
+          <small *ngIf="ionicForm.get('password').hasError('minlength')" class="error">Password should be of minimum 6
+            Character.</small>
         </span>
       </div>
       <div class="input-wrap">
@@ -111,7 +111,7 @@
 
        <!-------- Address------>
 
-       <div class="input-wrap">
+      <!--  <div class="input-wrap">
         <ion-item >
           <ion-icon name="location" color="primary" slot="start"></ion-icon>
           <ion-label position="floating">House No.</ion-label>
@@ -198,7 +198,7 @@
             *ngIf="ionicForm.get('Zipcode').hasError('minlength') || ionicForm.get('Zipcode').hasError('maxlength')"
             class="error">Zipcode should be 6 digits.</small>
         </span>
-      </div>
+      </div> -->
      
     </form>
   </ion-list>

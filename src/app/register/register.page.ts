@@ -89,18 +89,18 @@ export class RegisterPage implements OnInit {
     });
 
     this.ionicForm = this.formbulider.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      fullname: ['', [Validators.required, Validators.minLength(3)]],
+      username: ['', [Validators.required, Validators.minLength(3),Validators.pattern('[a-zA-Z ]*')]],
+      fullname: ['', [Validators.required, Validators.minLength(3),Validators.pattern('[a-zA-Z ]*')]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirm_password: ['', [Validators.required, Validators.minLength(6)]],
       phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      houseNo: ['', [Validators.required]],
+     /*   houseNo: ['', [Validators.required]],
       AreaColony: ['', [Validators.required]],
       State: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       City: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       Landmark: ['', [Validators.required]],
-      Zipcode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(this.onlynumeric)]]
+      Zipcode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(this.onlynumeric)]] */
     });
 
   }
@@ -117,12 +117,12 @@ export class RegisterPage implements OnInit {
       this.ionicForm.get('username').markAsTouched();
       this.ionicForm.get('password').markAsTouched();
       this.ionicForm.get('confirm_password').markAsTouched();
-      this.ionicForm.get('houseNo').markAsTouched();
+    /*   this.ionicForm.get('houseNo').markAsTouched();
       this.ionicForm.get('AreaColony').markAsTouched();
       this.ionicForm.get('Landmark').markAsTouched();
       this.ionicForm.get('City').markAsTouched();
       this.ionicForm.get('State').markAsTouched();
-      this.ionicForm.get('Zipcode').markAsTouched();
+      this.ionicForm.get('Zipcode').markAsTouched(); */
       return false;
     }
     this.requestObject = {
@@ -131,12 +131,12 @@ export class RegisterPage implements OnInit {
       "email": this.register.email,
       "phone": this.register.phone,
       "password": this.register.password,
-      "address": this.register.houseNo,
+    /*   "address": this.register.houseNo,
       "area": this.register.AreaColony,
       "landmark": this.register.Landmark,
       "city": this.register.City,
       "state": this.register.State,
-      "zipcode": this.register.Zipcode,
+      "zipcode": this.register.Zipcode, */
       "role" : "Customer"
     }
     console.log(this.requestObject);

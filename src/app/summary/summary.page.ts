@@ -77,7 +77,7 @@ export class SummaryPage implements OnInit {
   }
 
   fnCancelOrder(id, orderNo) {
-    this.navCtrl.navigateForward('cancel-order', { state: { id: this.id, order_number: this.orderNum } });
+    this.navCtrl.navigateForward('cancel-order', { state: { id: this.id, order_number: this.orderNum ,cancel_by: 'CC'} });
   }
   fnDownload(url,fileName){
     this.auth.showLoader();

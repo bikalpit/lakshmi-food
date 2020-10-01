@@ -25,7 +25,7 @@ export class CustomerOrdersPage implements OnInit {
     public menu: MenuController,
     public navCtrl: NavController,
     private auth: AuthService) {
-    this.selecTextStatus.select = "New"; 
+    this.selecTextStatus.select = "InProcess"; 
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
     console.log("id-->",this.user_id);

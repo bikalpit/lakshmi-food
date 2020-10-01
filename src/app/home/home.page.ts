@@ -3,6 +3,7 @@ import { NavController, ToastController, LoadingController } from '@ionic/angula
 import { AuthService } from '../auth.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { environment } from '../../environments/environment'
+import { GlobalFooServiceService } from '../global-foo-service.service';
 declare var document: any;
 
 @Component({
@@ -18,6 +19,7 @@ export class HomePage {
   loading: any;
   isKeyboardHide = true;
   constructor(public navCtrl: NavController,
+    public globalFooService:GlobalFooServiceService,
     private auth: AuthService, public toast: ToastController,
     public loadingCtrl: LoadingController,
     private keyboard: Keyboard
@@ -76,7 +78,14 @@ export class HomePage {
             } else {
               this.navCtrl.navigateForward('/dashboard');
             }
-            window.location.reload();
+            // window.location.reload();
+              this.globalFooService.publishSomeData({
+                  name: this.dataResponse.data.name,
+                  role:this.dataResponse.data.role,
+                  email:this.dataResponse.data.email,
+                  photo:this.dataResponse.data.photo?environment.file_url + "assets/uploads/users/" +this.dataResponse.data.photo:''
+              });
+
           } else {
             this.hideLoader();
             this.auth.showToast(this.dataResponse.message);

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ChangeDetectorRef} from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,7 @@ import { MenuController } from '@ionic/angular';
 export class DashboardPage implements OnInit {
   name:any;
 
-  constructor(public menu: MenuController, public navCtrl: NavController,) {
+  constructor(public changeDetectorRef:ChangeDetectorRef,public menu: MenuController, public navCtrl: NavController,) {
     this.menu.enable(true);
     localStorage.setItem("cartData", '');
     this.name = localStorage.getItem('name');
@@ -23,6 +24,7 @@ export class DashboardPage implements OnInit {
   }
  
   ngOnInit() {
+    this.changeDetectorRef.detectChanges();
   }
   fnViewProducts() {
     this.navCtrl.navigateForward('product-list');

@@ -48,13 +48,14 @@ export class OrderDetailsPage implements OnInit {
 
   goBack() {
     this.location.back();
-  }
+  } 
 
-  fnCancelOrder(id,orderNo) {
-    //alert(orderNo);
+  fnCancelOrder(id,order_number,cancel_by) {
+   // alert(cancel_by);
     let params = {
       id,
-      orderNo
+      order_number,
+      cancel_by
     }
     console.log(params);
     this.navCtrl.navigateForward('cancel-order',{state : params});

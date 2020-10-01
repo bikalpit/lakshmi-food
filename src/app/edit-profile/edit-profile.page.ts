@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { environment } from '../../environments/environment'
+import { GlobalFooServiceService } from '../global-foo-service.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -25,7 +26,7 @@ export class EditProfilePage implements OnInit {
   photos: any;
   selectImage: Boolean = false;
 
-  constructor(private camera: Camera, private platform: Platform, public actionsheetCtrl: ActionSheetController, public formbulider: FormBuilder, public navCtrl: NavController, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
+  constructor(public globalFooService:GlobalFooServiceService,private camera: Camera, private platform: Platform, public actionsheetCtrl: ActionSheetController, public formbulider: FormBuilder, public navCtrl: NavController, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
@@ -115,11 +116,17 @@ export class EditProfilePage implements OnInit {
         } else if (this.role == 'DeliveryBoy') {
           this.navCtrl.navigateForward('my-account');
          
-        }
+        } 
         else {
           this.auth.showToast('Profile Not update ');
         }
         // window.location.reload();
+        this.globalFooService.publishSomeData({
+          name: this.ionicForm.get('Name').value,
+          role:this.role,
+          email:this.ionicForm.get('Email').value,
+          photo:this.AllUserArray.data.photo!==null && this.AllUserArray.data.photo!==''?environment.file_url + "assets/uploads/users/" +this.AllUserArray.data.photo:''
+      });
       } else {
         this.auth.showToast('Profile Not update ');
       }
