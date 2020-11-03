@@ -74,9 +74,23 @@ export class AuthService {
   getDeliveryBoyOrders(data): Observable<any>{
     return this.commonService.postWithoutToken('orders/get_delivery_boy_orders', data);
   }
-
+  getSalesOrders(data): Observable<any>{
+    return this.commonService.postWithoutToken('orders/getSalesManOrder', data);
+  }
+  updateStatusOrder(data): Observable<any>{
+    return this.commonService.postWithoutToken('orders/update_order_status', data);
+  }
+  getAllDriver(data): Observable<any>{
+    return this.commonService.postWithoutToken('users/get_role_user', data);
+  }
+  assignDriver(data): Observable<any>{
+    return this.commonService.postWithoutToken('orders/assign_order_to_deliveryboy', data);
+  }
   cancelOrder(data): Observable<any>{
     return this.commonService.postWithoutToken('orders/cancel_order', data);
+  }
+  complainOrder(data): Observable<any>{
+    return this.commonService.postWithoutToken('users/Complain', data);
   }
 
   updateOrderStatus(data): Observable<any>{
@@ -88,6 +102,9 @@ export class AuthService {
   getAddressFromGst(data): Observable<any>{
     return this.commonService.getAddFromGST('users/getGST?gst='+ data);
   }
+  logout(data): Observable<any>{
+    return this.commonService.postWithoutToken('users/logout', data);
+  }
 
   showToast(msg) {
     return this.toastCtrl.create({
@@ -98,7 +115,17 @@ export class AuthService {
       toastData.present();
     });
   }
-  showLoader() {
+  showToastLong(msg) {
+    return this.toastCtrl.create({
+      message: msg,
+      duration: 8000,
+      position:"middle"
+    }).then((toastData) => {
+      console.log(toastData);
+      toastData.present();
+    });
+  }
+  showLoader() { 
     this.loadingCtrl.create({
       message: 'Please wait...'
     }).then((res) => {

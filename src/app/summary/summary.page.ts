@@ -6,7 +6,7 @@ import { DatePipe ,Location} from '@angular/common';
 import { File } from "@ionic-native/file/ngx";
 import { FileTransfer,FileTransferObject } from "@ionic-native/file-transfer/ngx";
 import { FileOpener } from "@ionic-native/file-opener/ngx";
-
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-summary',
@@ -26,7 +26,9 @@ export class SummaryPage implements OnInit {
   date: any;
   orderNum: any;
   fileTransfer: FileTransferObject;
+  url:any;
   constructor(
+    private commonService: CommonService, 
     private fileOpener: FileOpener,
     private transfer: FileTransfer,
     private file: File,
@@ -46,6 +48,7 @@ export class SummaryPage implements OnInit {
 
   ngOnInit() {
     this.getOrderDetails();
+    this.url = this.commonService.url();
   }
 
   goBack() {
@@ -67,7 +70,8 @@ export class SummaryPage implements OnInit {
       this.date = this.dataResponse.create_at;
       this.orderDate = this.datePipe.transform(new Date(this.date), "dd/MM/yyyy");
       console.log("order data-->", this.ordersDetails);
-      this.orderItem = this.dataResponse.order_item;
+      
+      this.orderItem =this.dataResponse.order_item;
       console.log("order list data-->", this.orderDate);
 
     }, (err) => {
@@ -75,7 +79,7 @@ export class SummaryPage implements OnInit {
       console.log("Error=>", err);
     });
   }
-
+  
   fnCancelOrder(id, orderNo) {
     this.navCtrl.navigateForward('cancel-order', { state: { id: this.id, order_number: this.orderNum ,cancel_by: 'CC'} });
   }

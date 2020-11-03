@@ -4,6 +4,7 @@ import { MenuController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, Subscribable } from 'rxjs';
 
 @Component({
   selector: 'app-update-password',
@@ -19,7 +20,6 @@ export class UpdatePasswordPage implements OnInit {
   email: any;
   dataResponse: any;
   ionicForm: FormGroup;
-
   constructor(public formbulider: FormBuilder,
     public navCtrl: NavController,
     public menu: MenuController,
@@ -35,6 +35,8 @@ export class UpdatePasswordPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+  ionViewDidLeave() {
   }
   fnSubmit() {
     if (this.email != undefined && this.newPass != undefined && this.confirmPass != undefined) {
@@ -55,8 +57,19 @@ export class UpdatePasswordPage implements OnInit {
          this.auth.hideLoader();
          console.log(data);
          this.dataResponse = data;
-         if (this.dataResponse.status == true) {
-           this.navCtrl.navigateForward('/home');
+         if (this.dataResponse.status == true) { 
+          this.auth.showToast("Password Updated");
+          setTimeout(() => {
+            this.navCtrl.navigateRoot('/home');
+          }, 3000);
+         /*  const observableVar = new Observable(subscriber => {
+            setTimeout(() => {
+              subscriber.complete();
+             
+            }, 3000);
+          }); */
+        
+          
          } else {
            this.showToast1();
          }

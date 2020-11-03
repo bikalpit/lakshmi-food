@@ -48,11 +48,11 @@ export class ProductListPage implements OnInit {
   }
 
   fnBackToDashboard() {
-    this.navCtrl.navigateForward('dashboard');
+    this.navCtrl.navigateRoot('dashboard');
   }
 
   fnAddToCart() {
-    this.navCtrl.navigateForward('your-cart');
+    this.navCtrl.navigateRoot('your-cart');
   }
 
   getProductList(isFirstLoad, event) {

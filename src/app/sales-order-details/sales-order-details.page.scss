@@ -1,0 +1,152 @@
+.menu_btn{
+    color: #E4322E;
+}
+.main-title{
+    color: #E4322E;
+    text-align: center;
+    font-family: open sans;
+ }
+ .main-card{
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
+    margin-top: 20px;
+    background-color: #fff;
+}
+.p-label2{
+    font-family: open sans;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    color: #000;
+    font-size: 16px;
+    //float: right;
+}
+.p-label{
+    font-family: open sans;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 10px;
+    color: #000;
+    float: right;
+    font-size: 16px;
+}
+.p-price{
+    font-size: 22px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #000; 
+    font-family: open sans;
+}
+.p-date{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 10px;
+    color: #000;
+    float: right;
+    font-size: 22px;
+    font-family: open sans;
+}
+.p-qty{
+    color: #000;
+    margin: 0;
+    margin-left: 10px;
+    font-family: open sans;
+    font-size: 16px;
+}
+.cust-profile{
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
+    background-color: #fff;
+}
+.p-label-nm{
+    font-family: open sans;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 10px;
+    color: #000;
+    // float: left;
+    font-size: 16px;
+}
+.profile-txt{
+    font-size: 18px;
+    color: #000;
+    margin-left: 10px;
+    font-family: open sans;
+}
+.add-txt{
+    margin-left: 10px;
+    font-family: open sans;
+}
+.img{
+    margin-right: 10px;
+}
+
+.p-label3{
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: #000;
+    font-family: open sans;
+    font-size: 18px;
+}
+.p-label4{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 10px;
+    color: #000;
+    float: right;
+    font-family: open sans;
+    font-size: 18px;
+}
+.p-qty1{
+    color: #000;
+    margin: 0;
+    margin-left: 10px;
+    margin-top: 14px;
+    font-family: open sans;
+    font-size: 18px;
+}
+.main-card-item{
+    margin-top: -7px;
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
+    height: 30%;
+    ion-card-content {
+        padding: 0;
+        max-height: calc(125% - #{50px});
+        position: relative;
+        overflow: hidden;
+        overflow-y: auto;
+        ::-webkit-scrollbar {
+          display: none;
+        }
+      }
+}
+.cancel_completed_btn{
+    margin-top: 12%;
+    margin-bottom: 8px;      
+    .cancelOrder_btn{
+        background-color: #E4322E;
+        color: #fff;
+        font-size: 20px;
+        height: 40px;
+        width: 90%;
+        border-radius: 8px;
+        display: block;
+        margin: auto;
+        border: 1px solid #fff;
+        font-family: open sans;
+    }
+    .completed_btn{
+        background-color: #E4322E;
+        color: #fff;
+        font-size: 20px;
+        height: 40px;
+        width: 90%;
+        border-radius: 8px;
+        display: block;
+        margin: auto;
+        border: 1px solid #fff;
+        margin-right: 12px;
+        margin-left: 12px;
+        margin-top: 3px;  
+        font-family: open sans;
+
+    }
+}

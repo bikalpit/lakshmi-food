@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "4199496317",
+    "firebase_url": "https://laxmi-atta.firebaseio.com",
+    "project_id": "laxmi-atta",
+    "storage_bucket": "laxmi-atta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4199496317:android:e6da719719ae82c8120f14",
+        "android_client_info": {
+          "package_name": "com.laxmiatta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4199496317-mjdp634l86i0c2rsr6k4kkfilgvgb30s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5UQ-EMs3uD7WPZFyuLmUT5grNzc-Eahs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4199496317-mjdp634l86i0c2rsr6k4kkfilgvgb30s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

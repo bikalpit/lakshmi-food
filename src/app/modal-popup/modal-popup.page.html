@@ -13,7 +13,7 @@
             <img *ngIf="name.images.length != 0"
               src="{{url.file_url}}assets/uploads/products/thumbs/{{item.product_image}}" class="img_slide">
 
-          </ion-slide>
+          </ion-slide> 
           <ion-slide *ngIf="name.images.length == 0">
             <img src="../../assets/imgs/not_found.png" class="img_slide">
           </ion-slide>
@@ -25,7 +25,7 @@
   </ion-grid>
 
   <ion-grid class="card-width">
-    <ion-row class="left">
+    <ion-row class="left center">
       <ion-col size="8">
         <span class="slide-price">
           {{name.product_weight}}Kg x {{item_qty}} qty
@@ -33,9 +33,9 @@
         </span>
       </ion-col>
       <ion-col size="4">
-        <div class="add-rm-btn">
+        <div class="add-rm-btn center">
           <ion-icon name="remove-circle" (click)="fnremove()" class="add-remove-circle"></ion-icon>
-            <div style="padding: 0 10px;font-size: 1.5rem;">{{item_qty}}</div>
+            <div style="padding: 0 10px;font-size: 1.4rem;">{{item_qty}}</div>
           <ion-icon name="add-circle" (click)="fnadd()" class="add-remove-circle"></ion-icon>
         </div>
       </ion-col>

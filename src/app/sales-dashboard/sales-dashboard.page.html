@@ -1,0 +1,150 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="menu_btn">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title class="main-title">Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid class="header-content">
+    <p class="p-label">Welcome {{userName}}!</p>
+  </ion-grid>
+
+  <ion-row style="margin-top: 12px;">
+    <p class="order-status"><b>Order Status</b></p>
+    <ion-col>
+      <ion-item lines="none" style="float: right;">
+        <ion-select #item class="custom-options customer-filter" [(ngModel)]="selecTextStatus.select"
+          (ionChange)="OnChange(item.value)">
+
+          <ion-select-option value="New">New</ion-select-option>
+          <ion-select-option value="Approve">Approved</ion-select-option>
+          <ion-select-option value="Assigned">Assigned</ion-select-option>
+          <ion-select-option value="Pickup">Pickup</ion-select-option>
+          <ion-select-option value="Delivered">Delivered</ion-select-option>
+          <ion-select-option value="Reject">Rejected</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+
+  <div *ngFor="let item of ordersList;">
+    <ion-card class="card-content">
+      <ion-item *ngIf='item.customer_details!==null'>
+        <ion-avatar slot="start" *ngIf="item.customer_details.photo && item.customer_details.photo!==null">
+          <img src="{{url.file_url}}assets/uploads/users/{{item.customer_details.photo}}">
+        </ion-avatar>
+        <ion-avatar slot="start" *ngIf="item.customer_details.photo === null || item.customer_details.photo ===''">
+          <img src="../../assets/imgs/avatar1.png">
+        </ion-avatar>
+        <ion-label>
+          <h3>{{item.customer_details.name}}</h3>
+          <p>{{item.customer_details.phone}}</p>
+        </ion-label>
+        <ion-label slot="end">
+
+          <div class="ion-text-end" *ngIf="item.order_details.status == 'New'">
+            <ion-icon (click)="fnSelectDriver(item.order_details.id,item.order_details.status)"
+              name="ellipsis-vertical"></ion-icon>
+          </div>
+        </ion-label>
+      </ion-item>
+      <div (click)="fnGotoDetails(item)">
+        <ion-row style="margin-top: 15px;">
+          <p class="p-order"><b>Order #{{item.order_details.order_number}}</b></p>
+          <ion-col>
+            <!-- <button ion-button class="Pending_btn">{{item.status}}</button> -->
+            <button ion-button *ngIf="item.order_details.status == 'New'" class="Pending_btn">Pending</button>
+            <button ion-button *ngIf="item.order_details.status == 'Assigned'" class="Pending_btn">Assigned</button>
+            <button ion-button *ngIf="item.order_details.status == 'Approve'" class="Pending_btn">Approve</button>
+            <button ion-button *ngIf="item.order_details.status == 'cancel'" class="Pending_btn">Cancel</button>
+            <button ion-button *ngIf="item.order_details.status == 'Pickup'" class="Pending_btn">Pickup</button>
+            <button ion-button *ngIf="item.order_details.status == 'Delivered'" class="Pending_btn">Delivered</button>
+            <button ion-button *ngIf="item.order_details.status == 'Completed'" class="Pending_btn">Completed</button>
+            <button ion-button *ngIf="item.order_details.status == 'Reject'" class="Pending_btn">Rejected</button>
+          </ion-col>
+        </ion-row>
+        <p class="p-date"><b>Date: </b>{{item.order_details.create_at | date: 'dd-MM-yyyy'}}</p>
+      </div>
+    </ion-card>
+
+    <ion-card
+      *ngIf="item.customer_details!==null && item.customer_details.address!==null && item.customer_details.address!==''"
+      class="card-content-address">
+      <ion-row style="font-size: 16px; font-weight: bold;">
+        <ion-col size="1">
+          <img src="../../assets/imgs/location.png" class="img">
+        </ion-col>
+        <ion-col size="11">
+          {{item.customer_details.address}}
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+  </div>
+
+
+
+  <!--  <ion-card *ngFor="let item of ordersList;">
+    <ion-item *ngIf='item.customer_details!==null'>
+      <ion-avatar slot="start">
+        <img src="../../assets/imgs/avatar1.png">
+      </ion-avatar>
+      <ion-label>
+        <h3>{{item.customer_details.name}}</h3>
+        <p>{{item.customer_details.phone}}</p>
+      </ion-label>
+      <ion-label slot="end" *ngIf="item.order_details!==null">
+        <h3>Status: {{item.order_details.status}}</h3>
+      </ion-label>
+    </ion-item>
+
+    <ion-card-header *ngIf="item.order_details!==null">
+      <ion-card-title>Order ID: <span>{{item.order_details.order_number}}</span></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row *ngIf="item.order_details!==null">
+        <ion-col size="6">
+          <h4 class="p-price">Amount: ₹{{item.order_details.order_total | number:'1.0-0'}}</h4>
+        </ion-col>
+
+        <ion-col class="ion-text-end">
+          <h6 class="p-date">Date: {{item.order_details.create_at | date: 'dd-MM-yyyy' }}</h6>
+        </ion-col>
+
+      </ion-row>
+
+    </ion-card-content>
+ -->
+  <!-- <ion-footer>
+      <ion-row *ngIf="item.order_details!==null">
+        <ion-col size="4" center class="ion-text-start">
+          <ion-button (click)="fnAcceptAlert(item.order_details.id,'Approve')">
+            <ion-icon name="pencil"></ion-icon>
+          </ion-button>
+
+        </ion-col>
+        <ion-col size="4" center class="ion-text-center">
+          <ion-button (click)="fnAcceptAlert(item.order_details.id,'Reject')">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="4" center class="ion-text-end">
+          <ion-button (click)="fnGotoDetails(item)">
+            <ion-icon name="eye"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-footer> -->
+  <!-- </ion-card> -->
+  <div *ngIf="!ordersList?.length > 0">
+    <p class="norecord-label">No Records Found</p>
+  </div>
+</ion-content>

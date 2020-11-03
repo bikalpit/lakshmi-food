@@ -1,28 +1,30 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start" (click)=" fnBackToYourCart()">
-      <ion-icon name="arrow-back-outline" class="backarrow1"></ion-icon>
+    <ion-buttons slot="start" >
+      <ion-icon name="arrow-back-outline" class="backarrow1" (click)=" fnBackToYourCart()"></ion-icon>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button>
 
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> 
     <ion-title class="main-title">My Orders</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-row style="margin-top: 12px;">
     <p class="order-status"><b>Order Status</b></p>
     <ion-col>
       <ion-item lines="none" style="float: right;">   
         <ion-select  #item class="custom-options customer-filter" [(ngModel)]="selecTextStatus.select" (ionChange)="OnChange(item.value)">
           <ion-select-option value="InProcess">Inprocess</ion-select-option>
-          <ion-select-option value="Delivered">Processed</ion-select-option> 
+          <ion-select-option value="Delivered">Delivered</ion-select-option> 
           <ion-select-option value="cancel">Cancel</ion-select-option> 
           <ion-select-option value="Reject">Rejected</ion-select-option> 
-
         </ion-select>
       </ion-item>
     </ion-col> 
@@ -35,16 +37,16 @@
     </ion-grid>
     <ion-row>
       <ion-col>
-        <p class="d-date">Delivery Date</p>
+        <p class="d-date">Order Date</p>
         <p class="date"><b>{{item.create_at}}</b></p>
       </ion-col>
 
       <ion-col>
         <p class="status" *ngIf="item.status == 'Approve' "><b>Approved</b></p>
-        <p class="status" *ngIf="item.status == 'Shipped' "><b>Shipped</b></p>
+        <p class="status" *ngIf="item.status == 'Assigned' "><b>Assigned</b></p>
         <p class="status" *ngIf="item.status == 'Pickup' "><b>On the way</b></p>
         <p class="status" *ngIf="item.status == 'New' "><b>Pending</b></p>
-        <p class="status" *ngIf="item.status == 'Delivered' "><b>Processed</b></p>
+        <p class="status" *ngIf="item.status == 'Delivered' "><b>Delivered</b></p>
         <p class="status" *ngIf="item.status == 'cancel' "><b>Cancel</b></p>
         <p class="status" *ngIf="item.status == 'Reject' "><b>Rejected</b></p>
 

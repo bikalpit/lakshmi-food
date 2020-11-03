@@ -4,6 +4,7 @@ import { NavController, ToastController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { Location} from '@angular/common';
 
 const RES_DATA = {
   taxpayerInfo: {
@@ -68,8 +69,8 @@ export class RegisterPage implements OnInit {
   constructor(public navCtrl: NavController, private auth: AuthService,
     private keyboard: Keyboard,
     public formbulider: FormBuilder,
-    public toast: ToastController
-
+    public toast: ToastController,
+    private location: Location,
   ) {
     window.addEventListener('keyboardDidShow', () => {
       console.log("Keyboard is Shown");
@@ -95,12 +96,12 @@ export class RegisterPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirm_password: ['', [Validators.required, Validators.minLength(6)]],
       phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-     /*   houseNo: ['', [Validators.required]],
+       houseNo: ['', [Validators.required]],
       AreaColony: ['', [Validators.required]],
       State: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       City: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       Landmark: ['', [Validators.required]],
-      Zipcode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(this.onlynumeric)]] */
+      Zipcode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6),Validators.pattern(this.onlynumeric)]]
     });
 
   }
@@ -117,26 +118,27 @@ export class RegisterPage implements OnInit {
       this.ionicForm.get('username').markAsTouched();
       this.ionicForm.get('password').markAsTouched();
       this.ionicForm.get('confirm_password').markAsTouched();
-    /*   this.ionicForm.get('houseNo').markAsTouched();
+      this.ionicForm.get('houseNo').markAsTouched();
       this.ionicForm.get('AreaColony').markAsTouched();
       this.ionicForm.get('Landmark').markAsTouched();
       this.ionicForm.get('City').markAsTouched();
       this.ionicForm.get('State').markAsTouched();
-      this.ionicForm.get('Zipcode').markAsTouched(); */
+      this.ionicForm.get('Zipcode').markAsTouched();
       return false;
     }
+    console.log('ok');
     this.requestObject = {
       "fullname": this.register.fullname,
       "firm_name": this.register.username,
       "email": this.register.email,
       "phone": this.register.phone,
       "password": this.register.password,
-    /*   "address": this.register.houseNo,
+      "address": this.register.houseNo,
       "area": this.register.AreaColony,
       "landmark": this.register.Landmark,
       "city": this.register.City,
       "state": this.register.State,
-      "zipcode": this.register.Zipcode, */
+      "zipcode": this.register.Zipcode,
       "role" : "Customer"
     }
     console.log(this.requestObject);
@@ -172,7 +174,7 @@ export class RegisterPage implements OnInit {
   }
 
   fnSignIn() {
-    this.navCtrl.navigateForward('home');
+    this.navCtrl.navigateRoot('home');
   }
   GSTFetch() {
     // let dd = this.ionicForm.get('GSTNo').value
@@ -180,7 +182,15 @@ export class RegisterPage implements OnInit {
     if (this.fetchGst) clearTimeout(this.fetchGst);
     this.fetchGst = setTimeout(() => {
       console.log(dd);
-      // this.fnGetGST(dd)
+     this.fnGetGST(dd)
+
+     /*  this.register.houseNo=RES_DATA.taxpayerInfo.pradr.addr.bnm;
+      this.register.AreaColony=RES_DATA.taxpayerInfo.pradr.addr.flno;
+      this.register.City=RES_DATA.taxpayerInfo.pradr.addr.dst;
+      this.register.fullname=RES_DATA.taxpayerInfo.lgnm;
+      this.register.username=RES_DATA.taxpayerInfo.tradeNam;
+ */
+
     }, 1000);
   }
 
@@ -196,8 +206,8 @@ export class RegisterPage implements OnInit {
       if (data.error === true) {
         this.auth.showToast(data.message);
       } else {
-        this.ionicForm.setValue({
-         /*  GSTNo: gst, */
+       /*  this.ionicForm.setValue({
+          GSTNo: gst,
           houseNo: data.taxpayerInfo.pradr.addr.bnm,
           AreaColony: data.taxpayerInfo.pradr.addr.flno,
           Landmark: data.taxpayerInfo.pradr.addr.st,
@@ -205,11 +215,22 @@ export class RegisterPage implements OnInit {
           City: data.taxpayerInfo.pradr.addr.dst,
           State: data.taxpayerInfo.pradr.addr.stcd,
           phone: '',
-        });
+        }); */
+        this.register.fullname=data.taxpayerInfo.lgnm;
+        this.register.username=data.taxpayerInfo.tradeNam;
+        this.register.houseNo=data.taxpayerInfo.pradr.addr.bnm;
+        this.register.AreaColony=data.taxpayerInfo.pradr.addr.flno;
+        this.register.City=data.taxpayerInfo.pradr.addr.dst;
+        this.register.Landmark=data.taxpayerInfo.pradr.addr.st;
+        this.register.Zipcode=data.taxpayerInfo.pradr.addr.pncd;
+        this.register.State=data.taxpayerInfo.pradr.addr.stcd;
       }
     }, (err) => {
       this.auth.hideLoader();
       console.log("Error=>", err);
     });
+  }
+  goBack() {
+    this.location.back();
   }
 }

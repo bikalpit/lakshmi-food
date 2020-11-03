@@ -1,10 +1,11 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar> 
     <ion-buttons slot="start">
-      <ion-back-button (click)="goBack()" color="danger"></ion-back-button>
+      <!-- <ion-back-button (click)="goBack()" color="danger"></ion-back-button> -->
+      <ion-icon name="arrow-back-outline" class="backarrow1" (click)="goBack()"></ion-icon>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button> 
 
       </ion-button>
     </ion-buttons>
@@ -12,38 +13,39 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
- 
+
   <ion-col class="center-left">
     <div class="text-center">
-      <img src="../../assets/imgs/user_1.png" width="80" height="80">
+      <img src="../../assets/imgs/logo.png" width="80" height="80">
     </div>
   </ion-col>
-  <ion-list  class="form" id="register_form">
+  <ion-list class="form" id="register_form">
 
-    <!-- <div class="input-wrap">
-      <ion-item>
+    <div class="input-wrap">
+      <ion-item style="align-items: flex-end;">  
         <ion-icon name="document-text" color="primary" slot="start"></ion-icon>
         <ion-label position="floating">GST No. (Optional)</ion-label>
         <ion-input type="text" name="fullname" [(ngModel)]="gstText" (ionChange)="GSTFetch()"></ion-input>
       </ion-item>
-      </div> -->
+    </div>
     <form [formGroup]="ionicForm">
       <div class="input-wrap">
-        <ion-item>
+        <ion-item style="align-items: flex-end;">  
           <ion-icon name="person" color="primary" slot="start"></ion-icon>
           <ion-label position="floating">Full Name</ion-label>
           <ion-input type="text" name="fullname" formControlName="fullname" [(ngModel)]="register.fullname"></ion-input>
         </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('fullname').touched || ionicForm.get('fullname').dirty || formSubmitclicked">
-          <small *ngIf="ionicForm.get('fullname').hasError('required')" class="error">Name is required.</small>
-          <small *ngIf="ionicForm.get('fullname').hasError('minlength')" class="error">Name should be of minimum 3 Character.</small>
+          <small *ngIf="ionicForm.get('fullname').hasError('required')" class="error">Full Name is required.</small>
+          <small *ngIf="ionicForm.get('fullname').hasError('minlength')" class="error">Full Name should be of minimum 3
+            Character.</small>
           <small *ngIf="ionicForm.get('fullname').hasError('pattern')" class="error">Only character allowed.</small>
         </span>
       </div>
 
       <div class="input-wrap">
-        <ion-item>
+        <ion-item style="align-items: flex-end;">  
           <ion-icon name="home" color="primary" slot="start"></ion-icon>
           <ion-label position="floating">Firm Name</ion-label>
           <ion-input type="text" name="username" formControlName="username" [(ngModel)]="register.username"></ion-input>
@@ -51,13 +53,14 @@
         <span class="error-wrap"
           *ngIf="ionicForm.get('username').touched || ionicForm.get('username').dirty || formSubmitclicked">
           <small *ngIf="ionicForm.get('username').hasError('required')" class="error">Firm is required.</small>
-          <small *ngIf="ionicForm.get('username').hasError('minlength')" class="error">Firm Name should be of minimum 3 Character.</small>
+          <small *ngIf="ionicForm.get('username').hasError('minlength')" class="error">Firm Name should be of minimum 3
+            Character.</small>
           <small *ngIf="ionicForm.get('username').hasError('pattern')" class="error">Only character allowed.</small>
         </span>
       </div>
 
       <div class="input-wrap">
-        <ion-item >
+        <ion-item style="align-items: flex-end;">  
           <ion-icon name="mail" color="primary" slot="start"></ion-icon>
           <ion-label position="floating">Email</ion-label>
           <ion-input type="email" name="email" formControlName="email" [(ngModel)]="register.email"></ion-input>
@@ -69,24 +72,27 @@
         </span>
       </div>
       <div class="input-wrap">
-        <ion-item >
+        <ion-item style="align-items: flex-end;">  
           <ion-icon name="call" color="primary" slot="start"></ion-icon>
           <ion-label position="floating">Phone Number</ion-label>
-          <ion-input type="tel" maxlength="10" name="phone" formControlName="phone" [(ngModel)]="register.phone" ></ion-input>
+          <ion-input type="tel" maxlength="10" name="phone" formControlName="phone" [(ngModel)]="register.phone">
+          </ion-input>
         </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('phone').touched || ionicForm.get('phone').dirty || formSubmitclicked">
           <small *ngIf="ionicForm.get('phone').hasError('required')" class="error">Contact details required.</small>
-          <small *ngIf="ionicForm.get('phone').hasError('minlength') || ionicForm.get('phone').hasError('maxlength')" class="error">Contact details should be 10 
+          <small *ngIf="ionicForm.get('phone').hasError('minlength') || ionicForm.get('phone').hasError('maxlength')"
+            class="error">Contact details should be 10
             digits.</small>
-          
-        </span> 
+
+        </span>
       </div>
       <div class="input-wrap">
-        <ion-item >
+        <ion-item style="align-items: flex-end;">  
           <ion-icon name="lock-closed" color="primary" slot="start"></ion-icon>
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" name="password" formControlName="password" [(ngModel)]="register.password" ></ion-input>
+          <ion-input type="password" name="password" formControlName="password" [(ngModel)]="register.password">
+          </ion-input>
         </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('password').touched || ionicForm.get('password').dirty || formSubmitclicked">
@@ -96,11 +102,11 @@
         </span>
       </div>
       <div class="input-wrap">
-        <ion-item >
+        <ion-item style="align-items: flex-end;">  
           <ion-icon name="lock-closed" color="primary" slot="start"></ion-icon>
           <ion-label position="floating">Confirm Password</ion-label>
-          <ion-input type="password" name="confirm_password" formControlName="confirm_password" 
-          [(ngModel)]="register.confirm_password" ></ion-input>
+          <ion-input type="password" name="confirm_password" formControlName="confirm_password"
+            [(ngModel)]="register.confirm_password"></ion-input>
         </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('confirm_password').touched || ionicForm.get('confirm_password').dirty || formSubmitclicked">
@@ -109,14 +115,14 @@
         </span>
       </div>
 
-       <!-------- Address------>
+      <!-------- Address------>
 
-      <!--  <div class="input-wrap">
-        <ion-item >
+      <div class="input-wrap">
+        <ion-item style="align-items: flex-end;">  
           <ion-icon name="location" color="primary" slot="start"></ion-icon>
           <ion-label position="floating">House No.</ion-label>
-          <ion-input type="text" name="houseNo" formControlName="houseNo" 
-          [(ngModel)]="register.houseNo" class="houseNo"></ion-input>
+          <ion-input type="text" name="houseNo" formControlName="houseNo" [(ngModel)]="register.houseNo"
+            class="houseNo"></ion-input>
         </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('houseNo').touched || ionicForm.get('houseNo').dirty || formSubmitclicked">
@@ -125,31 +131,95 @@
         </span>
       </div>
       <div class="input-wrap">
-        <ion-item >
+        <ion-item style="align-items: flex-end;">  
           <ion-icon name="location" color="primary" slot="start"></ion-icon>
-          <ion-label position="floating">Road Name, Area, Colony</ion-label>
-          <ion-input type="text" name="AreaColony" formControlName="AreaColony" 
-          [(ngModel)]="register.AreaColony" class="AreaColony"></ion-input>
+          <ion-label position="floating">Address</ion-label>
+          <ion-input type="text" name="AreaColony" formControlName="AreaColony" [(ngModel)]="register.AreaColony"
+            class="AreaColony"></ion-input>
         </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('AreaColony').touched || ionicForm.get('AreaColony').dirty || formSubmitclicked">
-          <small *ngIf="ionicForm.get('AreaColony').hasError('required')" class="error">Area is
+          <small *ngIf="ionicForm.get('AreaColony').hasError('required')" class="error">Adress is
             required.</small>
         </span>
       </div>
       <div class="input-wrap">
-        <ion-item >
+        <ion-item style="align-items: flex-end;">  
           <ion-icon name="location" color="primary" slot="start"></ion-icon>
           <ion-label position="floating">Landmark</ion-label>
-          <ion-input type="text" name="Landmark" formControlName="Landmark" 
-          [(ngModel)]="register.Landmark" class="Landmark"></ion-input>
+          <ion-input type="text" name="Landmark" formControlName="Landmark" [(ngModel)]="register.Landmark"
+            class="Landmark"></ion-input>
         </ion-item>
         <span class="error-wrap"
           *ngIf="ionicForm.get('Landmark').touched || ionicForm.get('Landmark').dirty || formSubmitclicked">
           <small *ngIf="ionicForm.get('Landmark').hasError('required')" class="error">Landmark is
             required.</small>
         </span>
-      
+      </div>
+      <div class="input-wrap">
+        <ion-item style="align-items: flex-end;">  
+          <ion-icon name="location" color="primary" slot="start"></ion-icon>
+          <ion-label position="floating">City</ion-label>
+          <ion-input type="text" name="City" formControlName="City" [(ngModel)]="register.City" class="City">
+          </ion-input>
+        </ion-item>
+        <span class="error-wrap"
+          *ngIf="ionicForm.get('City').touched || ionicForm.get('City').dirty || formSubmitclicked">
+          <small *ngIf="ionicForm.get('City').hasError('required')" class="error">City is
+            required.</small>
+          <small *ngIf="ionicForm.get('City').hasError('pattern')" class="error">Only character allowed.</small>
+        </span>
+      </div>
+      <div class="input-wrap">
+        <ion-item style="align-items: flex-end;">  
+          <ion-icon name="location" color="primary" slot="start"></ion-icon>
+          <ion-label position="floating">State</ion-label>
+          <ion-input type="text" name="State" formControlName="State" [(ngModel)]="register.State" class="State">
+          </ion-input>
+        </ion-item>
+        <span class="error-wrap"
+          *ngIf="ionicForm.get('State').touched || ionicForm.get('State').dirty || formSubmitclicked">
+          <small *ngIf="ionicForm.get('State').hasError('required')" class="error">State is
+            required.</small>
+          <small *ngIf="ionicForm.get('State').hasError('pattern')" class="error">Only character allowed.</small>
+        </span>
+      </div>
+
+      <div class="input-wrap">
+        <ion-item style="align-items: flex-end;">  
+          <ion-icon name="location" color="primary" slot="start"></ion-icon>
+          <ion-label position="floating">Zipcode</ion-label>
+          <ion-input type="text" name="City" formControlName="Zipcode" [(ngModel)]="register.Zipcode" class="Zipcode">
+          </ion-input>
+        </ion-item>
+        <span class="error-wrap"
+          *ngIf="ionicForm.get('Zipcode').touched || ionicForm.get('Zipcode').dirty || formSubmitclicked">
+          <small *ngIf="ionicForm.get('Zipcode').hasError('required')" class="error">Zipcode is required.</small>
+          <small *ngIf="ionicForm.get('Zipcode').hasError('pattern')" class="error">Enter valid Zipcode.</small>
+          <small
+            *ngIf="ionicForm.get('Zipcode').hasError('minlength') || ionicForm.get('Zipcode').hasError('maxlength')"
+            class="error">Zipcode should be of minimum 6
+            Character.</small>
+        </span>
+      </div>
+
+    </form>
+
+    <!-- <div class="input-wrap">
+      <ion-item>
+        <ion-icon name="document-text" color="primary" slot="start"></ion-icon>
+        <ion-label position="floating">House No. (Optional)</ion-label>
+        <ion-input type="text" name="houseNo" [(ngModel)]="register.houseNo"></ion-input>
+      </ion-item>
+    </div>
+    <div class="input-wrap">
+      <ion-item>
+        <ion-icon name="location" color="primary" slot="start"></ion-icon>
+        <ion-label position="floating">Address. (Optional)</ion-label>
+        <ion-input type="text" name="AreaColony" [(ngModel)]="register.AreaColony" class="AreaColony"></ion-input>
+      </ion-item>
+    </div>
+      <form [formGroup]="ionicForm">
         <div class="input-wrap">
           <ion-item >
             <ion-icon name="location" color="primary" slot="start"></ion-icon>
@@ -161,46 +231,10 @@
             *ngIf="ionicForm.get('City').touched || ionicForm.get('City').dirty || formSubmitclicked">
             <small *ngIf="ionicForm.get('City').hasError('required')" class="error">City is
               required.</small>
-              <small *ngIf="ionicForm.get('City').hasError('pattern')" class="error">Just use alphabet
-                character.</small>
+              <small *ngIf="ionicForm.get('City').hasError('pattern')" class="error">Only character allowed.</small>
           </span>
         </div>
-       </div>
-
-      <div class="input-wrap">
-        <ion-item >
-          <ion-icon name="location" color="primary" slot="start"></ion-icon>
-          <ion-label position="floating">State</ion-label>
-          <ion-input type="text" name="State" formControlName="State" 
-          [(ngModel)]="register.State" class="State"></ion-input>
-        </ion-item>
-        <span class="error-wrap"
-          *ngIf="ionicForm.get('State').touched || ionicForm.get('State').dirty || formSubmitclicked">
-          <small *ngIf="ionicForm.get('State').hasError('required')" class="error">State is
-            required.</small>
-            <small *ngIf="ionicForm.get('State').hasError('pattern')" class="error">Just use alphabet
-              character.</small>
-        </span>
-      </div>
-     
-      <div class="input-wrap">
-        <ion-item >
-          <ion-icon name="location" color="primary" slot="start"></ion-icon>
-          <ion-label position="floating">Zipcode</ion-label>
-          <ion-input type="text" name="City" formControlName="Zipcode" 
-          [(ngModel)]="register.Zipcode" class="Zipcode"></ion-input>
-        </ion-item>
-        <span class="error-wrap"
-          *ngIf="ionicForm.get('Zipcode').touched || ionicForm.get('Zipcode').dirty || formSubmitclicked">
-          <small *ngIf="ionicForm.get('Zipcode').hasError('required')" class="error">Zipcode is required.</small>
-          <small *ngIf="ionicForm.get('Zipcode').hasError('pattern')" class="error">Enter valid Zipcode.</small>
-          <small
-            *ngIf="ionicForm.get('Zipcode').hasError('minlength') || ionicForm.get('Zipcode').hasError('maxlength')"
-            class="error">Zipcode should be 6 digits.</small>
-        </span>
-      </div> -->
-     
-    </form>
+      </form> -->
   </ion-list>
 
   <ion-button small expand="full" (click)="fnLogin()">Register Now</ion-button>

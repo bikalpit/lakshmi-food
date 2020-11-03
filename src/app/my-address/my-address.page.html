@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" >
+      <ion-icon name="arrow-back-outline" class="backarrow1" (click)=" fnBack()"></ion-icon>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button>
+
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="main-title">My Address</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="add_card_shadow" *ngFor="let item of addressList;let i = index">
+    <ion-row style="margin-top: 5px;" >
+      <ion-col size="2">
+        <ion-icon *ngIf="item.address_type == 'Home' || item.address_type == null" name="home-outline" class="icon-address"></ion-icon>
+        <ion-icon *ngIf="item.address_type == 'Office'" name="business-outline" class="icon-address"></ion-icon>
+        <ion-icon *ngIf="item.address_type == 'Other'" name="location-outline" class="icon-address"></ion-icon>
+      </ion-col>
+
+      <ion-col size="8.5">
+
+        <p class="p-name">{{item.name}}</p>
+        <p class="p-address" *ngIf="item.address_house_no && item.address_area!==null && item.address_landmark!==''">{{item.address_house_no}},{{item.address_area}},{{item.address_landmark}}</p>
+        <p class="p-address" *ngIf="item.address_house_no && item.address_area===null && item.address_landmark===''">{{item.address_house_no}}</p>
+        <p class="p-address" *ngIf="item.address_house_no && item.address_area!==null && item.address_landmark===''">{{item.address_house_no}}, {{item.address_area}}</p>
+        <p class="p-address">{{item.address_city}},{{item.address_state}},{{item.address_zipcode}}</p>
+        <p class="p-address">{{item.address_mobile_no}}</p>
+      </ion-col>
+      <ion-col size="1.5" style="text-align: end !important;">
+        <ion-icon name="create-outline" color="danger" class="p-check-icons float-r" (click)="updateAddress(item)">
+        </ion-icon>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-card>
+
+</ion-content>

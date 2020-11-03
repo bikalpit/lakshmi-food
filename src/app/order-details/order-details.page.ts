@@ -4,7 +4,8 @@ import { Location } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
-
+import { CommonService } from '../common.service';
+ 
 
 @Component({
   selector: 'app-order-details',
@@ -26,10 +27,11 @@ export class OrderDetailsPage implements OnInit {
   mainSubTotal: any;
   user_id: any;
   ordersList = [];
+  role:any;
+  url:any;
+  constructor(  private commonService: CommonService, private router: Router, private datePipe: DatePipe, private auth: AuthService, private location: Location, public navCtrl: NavController) {
 
-  constructor(private router: Router, private datePipe: DatePipe, private auth: AuthService, private location: Location, public navCtrl: NavController) {
-
-    const state = this.router.getCurrentNavigation().extras.state
+    const state = this.router.getCurrentNavigation().extras.state 
     if (state) {
       this.id = state;
       console.log("order id-->", this.id);
@@ -37,13 +39,14 @@ export class OrderDetailsPage implements OnInit {
 
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
-
+    this.role=localStorage.getItem("role");
 
   }
 
   ngOnInit() {
     this.getOrderDetails();
     //this.fnGetCustomerDetails();
+    this.url = this.commonService.url();
   }
 
   goBack() {
@@ -95,10 +98,12 @@ export class OrderDetailsPage implements OnInit {
     console.log(status);
     this.requestObject = {
       "order_id" : this.id,
-      "order_status" : status
+      "order_status" : status,
+      "user_id":this.user_id,
+      "user_type":this.role   
     }
     this.auth.showLoader();
-    console.log(this.requestObject);
+    console.log(this.requestObject); 
     this.auth.updateOrderStatus(this.requestObject).subscribe((data: any) => {
       console.log(data);
       this.auth.hideLoader();
@@ -110,6 +115,5 @@ export class OrderDetailsPage implements OnInit {
       this.auth.hideLoader();
     });
   }
-
-
+  
 }

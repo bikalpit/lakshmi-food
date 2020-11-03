@@ -34,4 +34,11 @@
     color: #E4322E;
     font-size: 26px;
 }
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+    .product-name-size{font-size: 38px;}
+    .product-price-size{font-size: 28px;}
+    .card-first{height: auto;}
+}
 

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start" (click)=" fnBackToYourCart()">
-      <ion-icon name="arrow-back-outline" class="backarrow1"></ion-icon>
+    <ion-buttons slot="start" >
+      <ion-icon name="arrow-back-outline" class="backarrow1" (click)=" goBack()"></ion-icon>
     </ion-buttons>
 
     <ion-buttons slot="end">
@@ -57,7 +57,7 @@
         Payable Amount
       </ion-col> 
       <ion-col size="4" class="p-price">
-        ₹{{mainSubTotal}}
+        ₹{{mainSubTotal | number:'1.2-2'}}
       </ion-col>
     </ion-row>
   </ion-card>

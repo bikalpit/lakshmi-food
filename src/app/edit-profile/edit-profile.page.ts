@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { environment } from '../../environments/environment'
 import { GlobalFooServiceService } from '../global-foo-service.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.page.html',
@@ -25,14 +25,15 @@ export class EditProfilePage implements OnInit {
   base64Image: any;
   photos: any;
   selectImage: Boolean = false;
+  rootPage: any;
 
-  constructor(public globalFooService:GlobalFooServiceService,private camera: Camera, private platform: Platform, public actionsheetCtrl: ActionSheetController, public formbulider: FormBuilder, public navCtrl: NavController, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
+  constructor( private location: Location,public globalFooService: GlobalFooServiceService, private camera: Camera, private platform: Platform, public actionsheetCtrl: ActionSheetController, public formbulider: FormBuilder, public navCtrl: NavController, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
     console.log(this.user_id);
 
     this.user_id1 = localStorage.getItem("user_id");
-    console.log(this.user_id1);
+    console.log(this.user_id1); 
 
     this.role = localStorage.getItem("role");
     console.log(this.role);
@@ -61,9 +62,9 @@ export class EditProfilePage implements OnInit {
       this.auth.hideLoader();
       console.log(data);
       this.AllUserArray = data.data;
-      if(this.AllUserArray.photo===null){
+      if (this.AllUserArray.photo === null) {
         this.photos = '';
-      }else{
+      } else {
         this.photos = environment.file_url + "assets/uploads/users/" + this.AllUserArray.photo;
       }
       this.ionicForm.controls.Name.setValue(this.AllUserArray.name);
@@ -101,32 +102,36 @@ export class EditProfilePage implements OnInit {
       console.log(data);
       this.AllUserArray = data;
       if (this.AllUserArray.status == true) {
-       
-        if (this.AllUserArray.data.photo!==null && this.AllUserArray.data.photo!=='') {
+
+        if (this.AllUserArray.data.photo !== null && this.AllUserArray.data.photo !== '') {
           localStorage.setItem("photos", environment.file_url + "assets/uploads/users/" + this.AllUserArray.data.photo);
         } else {
           localStorage.setItem("photos", '');
         }
-        this.auth.showToast('Profile update successfully');
+        this.auth.showToast('Profile Updated Successfully');
         if (this.role == 'Customer') {
-         
-          this.navCtrl.navigateForward('/dashboard');
-         
+
+          this.navCtrl.navigateRoot('/dashboard');
+          this.rootPage = '/dashboard';
 
         } else if (this.role == 'DeliveryBoy') {
-          this.navCtrl.navigateForward('my-account');
-         
-        } 
+          this.navCtrl.navigateRoot('my-account');
+          this.rootPage = '/my-account';
+        } else if (this.role == 'Salesman') {
+          this.rootPage = '/sales-dashboard';
+          this.navCtrl.navigateRoot('sales-dashboard');
+        }
         else {
           this.auth.showToast('Profile Not update ');
         }
         // window.location.reload();
         this.globalFooService.publishSomeData({
+          rootPage: this.rootPage,
           name: this.ionicForm.get('Name').value,
-          role:this.role,
-          email:this.ionicForm.get('Email').value,
-          photo:this.AllUserArray.data.photo!==null && this.AllUserArray.data.photo!==''?environment.file_url + "assets/uploads/users/" +this.AllUserArray.data.photo:''
-      });
+          role: this.role,
+          email: this.ionicForm.get('Email').value,
+          photo: this.AllUserArray.data.photo !== null && this.AllUserArray.data.photo !== '' ? environment.file_url + "assets/uploads/users/" + this.AllUserArray.data.photo : ''
+        });
       } else {
         this.auth.showToast('Profile Not update ');
       }
@@ -139,17 +144,21 @@ export class EditProfilePage implements OnInit {
 
   fnCancelOrder() {
     if (this.role == 'Customer') {
-      this.navCtrl.navigateForward('dashboard');
+      this.navCtrl.navigateRoot('/dashboard');
+    }else if(this.role == 'Salesman'){
+      this.navCtrl.navigateRoot('/sales-dashboard');
     } else {
-      this.navCtrl.navigateForward('my-account');
+      this.navCtrl.navigateRoot('/my-account');
     }
 
   }
   fnBackToYourCart() {
     if (this.role == 'Customer') {
-      this.navCtrl.navigateForward('dashboard');
+      this.navCtrl.navigateRoot('/dashboard');
+    }else if(this.role == 'Salesman'){
+      this.navCtrl.navigateRoot('/sales-dashboard');
     } else {
-      this.navCtrl.navigateForward('my-account');
+      this.navCtrl.navigateRoot('/my-account');
     }
   }
   async presentActionSheet() {
@@ -198,12 +207,14 @@ export class EditProfilePage implements OnInit {
     this.base64Image = `data:image/jpeg;base64,${imageData}`;
     console.log(this.base64Image);
 
-    this.photos = this.base64Image;
+    this.photos = this.base64Image; 
     if (this.base64Image) {
       this.selectImage = true;
     } else {
       this.selectImage = false;
     }
   }
-
+  goBack() {
+    this.location.back();
+  }
 }

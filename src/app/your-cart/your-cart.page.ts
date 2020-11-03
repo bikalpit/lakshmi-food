@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController, LoadingController, ToastController } from '@ionic/angular';
+import { NavController, ModalController, LoadingController, ToastController,AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthService } from '../auth.service';
@@ -28,23 +28,24 @@ export class YourCartPage implements OnInit {
   mainSubTotal: any;
   current_array: any;
   public item_qty = 0;
-  
-  constructor(private commonService: CommonService,private location: Location,
+  public user_id:any;
+
+  constructor(
+    public alertCtrl: AlertController,
+    private commonService: CommonService, private location: Location,
     public loadingCtrl: LoadingController,
     private auth: AuthService, public toast: ToastController,
     public navCtrl: NavController,
-    private route: ActivatedRoute,
-    private router: Router,
     public modalCtrl: ModalController) {
-    
+    this.user_id = localStorage.getItem("id");
     this.url = this.commonService.url();
-    
-    this.modalCtrl.dismiss({ 
+
+    this.modalCtrl.dismiss({
       'dismissed': true
     });
     this.cartData = JSON.parse(localStorage.getItem("cartData"));
     console.log("cart data-->", this.cartData);
-    
+
 
     var total_price = 0;
     this.mainSubTotal = 0;
@@ -66,20 +67,20 @@ export class YourCartPage implements OnInit {
 
   }
 
- 
+
   cancelData(id) {
     console.log(id);
 
 
-  /*  let index = this.cartData.indexOf(id);
-    this.cartData.splice(index, 1);*/
+    /*  let index = this.cartData.indexOf(id);
+      this.cartData.splice(index, 1);*/
 
-     let index = this.cartData.indexOf(id);
+    let index = this.cartData.indexOf(id);
 
-    if(index > -1){
+    if (index > -1) {
       this.cartData.splice(index, 1);
     }
-     
+
     console.log("new array", this.cartData);
 
     localStorage.setItem("cartData", JSON.stringify(this.cartData));
@@ -95,11 +96,12 @@ export class YourCartPage implements OnInit {
       element.subtotal = parseInt(element.qty) * parseInt(element.price);
       console.log("total->", element.subtotal);
 
-      this.mainSubTotal = this.mainSubTotal + total_price;
+      this.mainSubTotal = (this.mainSubTotal + total_price);
+      this.mainSubTotal = parseFloat(this.mainSubTotal).toFixed(2);
       localStorage.setItem("mainsubtotal", this.mainSubTotal);
       console.log(this.mainSubTotal);
 
-    }); 
+    });
 
   }
   ngOnInit() {
@@ -110,12 +112,13 @@ export class YourCartPage implements OnInit {
   }
 
   fnProceedToCheckout() {
-    if (this.mainSubTotal !== 0) {
+   /*  if (this.mainSubTotal !== 0) {
       this.navCtrl.navigateForward('select-address');
     } else {
       this.auth.showToast('Please select atleast one Item!');
-    }
+    } */
 
+    this.fnConfirmOrder();
 
   }
   fnBackToProductList() {
@@ -138,6 +141,64 @@ export class YourCartPage implements OnInit {
     this.item_qty += 1;
     console.log(this.item_qty + 1);
     console.log("hello add function");
+  }
+
+  fnOrderPlace() {
+    var sendcartDate = [];
+    this.cartData.forEach(element => {
+      sendcartDate.push({
+        'productId': element.id,
+        'product_price': element.price,
+        'product_qty': element.qty,
+        'totalPrice': parseInt(element.price) * parseInt(element.qty)
+      });
+    });
+
+    let requestObject = {
+      "userId": this.user_id,
+      "totalAmount": this.mainSubTotal,
+      "addressId": localStorage.getItem("address_id"),
+      "areaMaster":localStorage.getItem("area_master_id"),
+      "cartData": sendcartDate
+    }
+    this.auth.showLoader();
+
+    this.auth.orderPlace(requestObject).subscribe((data: any) => {
+      this.auth.hideLoader();
+      if (data.status == true) {
+        localStorage.removeItem('cartData');
+        localStorage.setItem('OrderNumber', data.data.order_id);
+        this.auth.showToast('Orders Place successfully');
+        this.navCtrl.navigateRoot('success-order');
+      } else {
+        this.auth.showToast(data.message);
+      }
+    }, (err) => {
+      console.log("Error=>", err);
+    });
+  }
+  
+  fnConfirmOrder(){
+    this.alertCtrl.create({
+      header: 'Place Order',
+      message: 'Are you sure you want to place order?',
+      backdropDismiss: false,
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('cancel!');
+        }
+      }, {
+        text: 'Yes',
+        handler: () => {
+          this.fnOrderPlace();
+        }
+      }]
+    })
+      .then(alert => {
+        alert.present();
+      });
   }
 
 }

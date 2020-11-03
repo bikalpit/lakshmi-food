@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable} from 'rxjs';
 
 
-const API_URL = 'http://laxmifoods.bi-team.in/api/';
-const file_url = 'http://laxmifoods.bi-team.in/';
+const API_URL = 'http://laxmiatta.bi-team.in/api/';
+const file_url = 'http://laxmiatta.bi-team.in/';
+
 @Injectable()
 export class CommonService { 
 
-
+    customerOrder=[];
     constructor(private http: HttpClient,) {}
 
     postWithoutToken(url,data): Observable<any> {
@@ -16,6 +17,12 @@ export class CommonService {
         httpHeaders.set('Content-Type', 'application/json');
         return this.http.post<any>(API_URL+url,data,{ headers: httpHeaders });
     }
+    postComplain(data): Observable<any> {
+        const httpHeaders = new HttpHeaders();
+        httpHeaders.set('Content-Type', 'application/json');
+        return this.http.post<any>("https://laxmiatta.bi-team.in/api/users/complainOrders",data,{ headers: httpHeaders });
+    }
+
 
     get(url): Observable<any> {
         const header = new HttpHeaders(

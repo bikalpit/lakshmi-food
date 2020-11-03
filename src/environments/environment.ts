@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL : 'http://laxmifoods.bi-team.in/api/',
-  file_url : 'http://laxmifoods.bi-team.in/'
+  API_URL : 'http://laxmiatta.bi-team.in/api/',
+  file_url : 'http://laxmiatta.bi-team.in/'
 };
 
 /*

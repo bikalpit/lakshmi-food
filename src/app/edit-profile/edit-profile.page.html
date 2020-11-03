@@ -1,7 +1,7 @@
-<ion-header>
+<ion-header> 
   <ion-toolbar>
-    <ion-buttons slot="start" (click)=" fnBackToYourCart()">
-      <ion-icon name="arrow-back-outline" class="backarrow1"></ion-icon>
+    <ion-buttons slot="start" >
+      <ion-icon name="arrow-back-outline" class="backarrow1" (click)=" goBack()"></ion-icon>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button>
@@ -12,7 +12,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content> 
   <div class="avtar">
     <img *ngIf="photos" [src]="photos" class="img">
     <img *ngIf="!photos" src="../../assets/imgs/1945870586Image.png" class="img">
@@ -37,11 +37,11 @@
           </span>
         </div>
 
-        <div class="order-no-bg">
+        <div class="order-no-bg" *ngIf="role==='Customer'">
           <ion-input placeholder="Firm Name" formControlName="UserName" type="text" name="UserName"
           [formControl]="ionicForm.controls['UserName']" class="order_no_txt"></ion-input>
           <span class="error-wrap" *ngIf="ionicForm.get('UserName').touched || ionicForm.get('UserName').dirty">
-            <small *ngIf="ionicForm.get('UserName').hasError('required')" class="error">Username is required.</small>
+            <small *ngIf="ionicForm.get('UserName').hasError('required')" class="error">Firm Name is required.</small>
           </span>
         </div>
       </form>

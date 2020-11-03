@@ -90,6 +90,22 @@ const routes: Routes = [
     path: 'summary',
     loadChildren: () => import('./summary/summary.module').then( m => m.SummaryPageModule)
   },
+  {
+    path: 'my-address',
+    loadChildren: () => import('./my-address/my-address.module').then( m => m.MyAddressPageModule)
+  },
+  {
+    path: 'sales-dashboard',
+    loadChildren: () => import('./sales-dashboard/sales-dashboard.module').then( m => m.SalesDashboardPageModule)
+  },
+  {
+    path: 'sales-order-details',
+    loadChildren: () => import('./sales-order-details/sales-order-details.module').then( m => m.SalesOrderDetailsPageModule)
+  },
+  {
+    path: 'complain-order',
+    loadChildren: () => import('./complain-order/complain-order.module').then( m => m.ComplainOrderPageModule)
+  },
 
 ];
 

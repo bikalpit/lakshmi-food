@@ -15,7 +15,7 @@
     background-color: #fff;
 }
 .card{
-    box-shadow: 5px 7px 10px 5px #e8e8e8;
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
     background-color: #fff;
     height: 13%;
     width: 87%;
@@ -29,13 +29,14 @@
 }
 .Shop-now{
     background-color: #fff;
-    height: 11rem;
+    // height: 11rem;
 }
 .main-card-Shop-now{
     background-color: #fff;
     font-size: 18px;
     color: #E4322E;
     text-align: center;
+    // height: 10rem;
 }
 .row-marginn{
     margin: 12px;
@@ -52,4 +53,12 @@
     margin: auto;
     border: 1px solid #fff;
     margin-top: 15%;
+}
+.shop-btn{
+    background-color: #e53836;
+    height: 70px;
+    border-radius: 8px;
+    /* height: 90%; */
+    align-content: center;
+    margin: 1rem;
 }

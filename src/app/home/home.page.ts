@@ -18,6 +18,9 @@ export class HomePage {
   public myToast: any;
   loading: any;
   isKeyboardHide = true;
+  rootPage:any;
+  showPass=false;
+  deviceToken:any;
   constructor(public navCtrl: NavController,
     public globalFooService:GlobalFooServiceService,
     private auth: AuthService, public toast: ToastController,
@@ -25,12 +28,14 @@ export class HomePage {
     private keyboard: Keyboard
   ) {
 
-
+   
+    
+/* 
     if(localStorage.getItem('id')){
-        this.navCtrl.navigateForward('dashboard');
+        this.navCtrl.navigateRoot('/dashboard');
         return;
-    }
-
+    } */
+/* 
     window.addEventListener('keyboardDidShow', () => {
       console.log("Keyboard is Shown");
       this.isKeyboardHide = false;
@@ -44,17 +49,21 @@ export class HomePage {
       this.keyboard.onKeyboardHide().subscribe((value) => {
         document.body.classList.remove('hide-on-keyboard-open');
       })
-    });
+    }); */
 
   }
 
+  ionViewWillEnter(){
+    this.deviceToken=localStorage.getItem("device_token")
+    console.log(this.deviceToken);
+  }
   fnLogin() {
-
     if (this.login.phone != '') {
       if (this.login.password != '') {
         this.requestObject = {
           "phone": this.login.phone,
-          "password": this.login.password
+          "password": this.login.password,
+          "device_token":this.deviceToken
         }
         this.showLoader();
         this.auth.login(this.requestObject).subscribe((data: any) => {
@@ -67,28 +76,37 @@ export class HomePage {
             localStorage.setItem("name", this.dataResponse.data.name);
             localStorage.setItem("role", this.dataResponse.data.role);
             localStorage.setItem("phone", this.dataResponse.data.phone);
+            localStorage.setItem("address_id", this.dataResponse.data.address_id);
+            localStorage.setItem("area_master_id", this.dataResponse.data.area_master_id);
             if(this.dataResponse.data.photo)
             {
               localStorage.setItem("photos", environment.file_url + "assets/uploads/users/" +this.dataResponse.data.photo);
             }else{
               localStorage.setItem("photos", '');
             }
+         
             if (this.dataResponse.data.role == 'DeliveryBoy') {
-              this.navCtrl.navigateForward('my-account');
-            } else {
-              this.navCtrl.navigateForward('/dashboard');
+              this.rootPage='/my-account';
+              this.navCtrl.navigateRoot('my-account');
+            } else if (this.dataResponse.data.role == 'Salesman') {
+              this.rootPage='/sales-dashboard';
+              this.navCtrl.navigateRoot('sales-dashboard');
+            }else {
+              this.navCtrl.navigateRoot('dashboard');
+              this.rootPage='/dashboard';
             }
             // window.location.reload();
-              this.globalFooService.publishSomeData({
-                  name: this.dataResponse.data.name,
-                  role:this.dataResponse.data.role,
-                  email:this.dataResponse.data.email,
-                  photo:this.dataResponse.data.photo?environment.file_url + "assets/uploads/users/" +this.dataResponse.data.photo:''
-              });
+            this.globalFooService.publishSomeData({
+              rootPage:this.rootPage,
+              name: this.dataResponse.data.name,
+              role:this.dataResponse.data.role,
+              email:this.dataResponse.data.email,
+              photo:this.dataResponse.data.photo?environment.file_url + "assets/uploads/users/" +this.dataResponse.data.photo:''
+          });
 
           } else {
             this.hideLoader();
-            this.auth.showToast(this.dataResponse.message);
+            this.auth.showToastLong(this.dataResponse.message);
           }
         }, (err) => {
           console.log("Error=>", err);
@@ -119,6 +137,9 @@ export class HomePage {
     }).then((res) => {
       res.present();
     });
+  }
+  fnShowPass(){
+      this.showPass=!this.showPass;
   }
 
   hideLoader() {

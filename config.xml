@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.laxmiatta" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Laxmi Atta</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://localhost:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -12,7 +12,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="ScrollEnabled" value="false" />
-    <preference name="android-minSdkVersion" value="19" />
+    <preference name="android-minSdkVersion" value="22" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
@@ -21,6 +21,7 @@
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarBackgroundColor" value="#ffffff" />
+    <preference name="WKWebViewOnly" value="true" />
     <platform name="android">
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:usesCleartextTraffic="true" />
@@ -48,6 +49,12 @@
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <platform name="ios">
+        <config-file overwrite="true" parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
+            <string>Laxmi Atta Camera Usage.</string>
+        </config-file>
+        <config-file overwrite="true" parent="NSPhotoLibraryUsageDescription" platform="ios" target="*-Info.plist">
+            <string>Laxmi Atta Camera Usage.</string>
+        </config-file>
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
@@ -101,6 +108,14 @@
         <splash height="1792" src="resources/ios/splash/Default-1792h~iphone.png" width="828" />
         <splash height="828" src="resources/ios/splash/Default-Landscape-1792h~iphone.png" width="1792" />
     </platform>
+    <platform name="android">
+        <resource-file src="google-services.json" target="app/google-services.json" />
+    </platform>
+    <platform name="ios">
+        <resource-file src="GoogleService-Info.plist" target="resources/GoogleService-Info.plist" />
+        <access origin="http://localhost:8080" />
+        <allow-navigation href="http://localhost:8080/*" />
+    </platform>
     <plugin name="cordova-plugin-whitelist" spec="1.3.3" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
     <plugin name="cordova-plugin-device" spec="2.0.2" />
@@ -108,4 +123,5 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <allow-navigation href="http://localhost:8102" sessionid="7859aee2" />
+    <allow-navigation href="http://localhost:8100" sessionid="5e2911f3" />
 </widget>

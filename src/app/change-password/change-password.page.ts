@@ -3,6 +3,7 @@ import { NavController, ToastController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-change-password',
@@ -19,7 +20,8 @@ export class ChangePasswordPage implements OnInit {
   dataResponse: any;
   role:any;
 
-  constructor(public navCtrl: NavController, public formbulider: FormBuilder, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
+  constructor(
+    private location: Location,public navCtrl: NavController, public formbulider: FormBuilder, public menu: MenuController, private auth: AuthService, public toast: ToastController) {
     this.menu.enable(true);
 
     this.role = localStorage.getItem("role");
@@ -55,11 +57,14 @@ export class ChangePasswordPage implements OnInit {
         this.dataResponse = data;
         if (this.dataResponse.status == true) {
           if (this.role == 'Customer') {
-            this.navCtrl.navigateForward('dashboard');
+            this.navCtrl.navigateRoot('/dashboard');
             this.auth.showToast('Password Successfully Updated ');
 
           } else if(this.role == 'DeliveryBoy'){
-            this.navCtrl.navigateForward('my-account');
+            this.navCtrl.navigateRoot('/my-account');
+            this.auth.showToast('Password Successfully Updated ');
+          } else if(this.role == 'Salesman'){
+            this.navCtrl.navigateRoot('/sales-dashboard');
             this.auth.showToast('Password Successfully Updated ');
           }
           else{
@@ -82,15 +87,20 @@ export class ChangePasswordPage implements OnInit {
     // }
   }else{
     console.log("please enter all fields")
-    this.auth.showToast('Please Enter Old Password & New Password');
+    this.auth.showToast('Please enter old & new password');
   }
   }
 
   fnBackToYourCart() {
     if (this.role == 'Customer') {
-      this.navCtrl.navigateForward('dashboard');
-      }else {
-        this.navCtrl.navigateForward('my-account');
-      }
+      this.navCtrl.navigateRoot('/dashboard');
+    }else if(this.role == 'Salesman'){
+      this.navCtrl.navigateRoot('/sales-dashboard');
+    } else {
+      this.navCtrl.navigateRoot('/my-account');
+    }
+  }
+  goBack() {
+    this.location.back();
   }
 }

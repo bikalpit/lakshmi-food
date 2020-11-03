@@ -1,0 +1,161 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start" class="menu_btn">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <!-- <ion-back-button (click)="goBack()" color="danger"></ion-back-button> -->
+      <ion-icon name="arrow-back-outline" (click)="goBack()" class="backarrow1"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end"> 
+      <ion-button>
+
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="main-title">Order Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="orderInfo">
+
+    <ion-card class="main-card">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h4 class="p-label2">Order # {{orderInfo.order_details.order_number}}</h4>
+          </ion-col>
+
+          <ion-col>
+            <h6 class="p-label">Order Date</h6>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <!-- <h4 class="p-price">{{ordersDetails.status}}</h4> -->
+            <h4 class="p-price" *ngIf="orderInfo.order_details.status == 'New'">Pending</h4>
+            <h4 class="p-price" *ngIf="orderInfo.order_details.status == 'Pickup'">Pickup</h4>
+            <h4 class="p-price" *ngIf="orderInfo.order_details.status == 'Assigned'">Assigned</h4>
+            <h4 class="p-price" *ngIf="orderInfo.order_details.status == 'Approve'">Approved</h4>
+            <h4 class="p-price" *ngIf="orderInfo.order_details.status == 'cancel'">Cancel</h4>
+            <h4 class="p-price" *ngIf="orderInfo.order_details.status == 'Delivered'">Delivered</h4>
+            <h4 class="p-price" *ngIf="orderInfo.order_details.status == 'Reject'">Rejected</h4>
+          </ion-col>
+
+          <ion-col>
+            <h6 class="p-date">{{orderInfo.order_details.create_at | date: 'dd-MM-yyyy'}}</h6>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <ion-card class="cust-profile" *ngIf="orderInfo.customer_details!==null">
+      <p class="profile-txt"><b>Customer Profile</b></p>
+      <ion-row>
+        <ion-col size="4">
+          <h4 class="p-label2">Firm Name</h4>
+        </ion-col>
+
+        <ion-col size="8">
+          <h6 class="p-label-nm">{{orderInfo.customer_details.firm_name}}</h6>
+        </ion-col>
+
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <h4 class="p-label2">Name</h4>
+        </ion-col>
+
+        <ion-col size="8">
+          <h6 class="p-label-nm">{{orderInfo.customer_details.name}}</h6>
+        </ion-col>
+
+      </ion-row>
+      <ion-row>
+        <ion-col size="4" >
+          <h4 class="p-label2">Email</h4>
+        </ion-col>
+
+        <ion-col size="8">
+          <h6 class="p-label-nm">{{orderInfo.customer_details.email}}</h6>
+        </ion-col>
+
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <h4 class="p-label2">Contact </h4>
+        </ion-col>
+
+        <ion-col size="8">
+          <h6 class="p-label-nm">{{orderInfo.customer_details.phone}}</h6>
+        </ion-col>
+
+      </ion-row>
+    </ion-card>
+    <ion-card class="main-card-item" *ngIf="orderInfo.customer_details!==null">
+      <p class="profile-txt"><b>Address</b></p>
+     <!--  <h6 class="add-txt"><img src="../../assets/imgs/location.png"
+          class="img">{{ordersDetails.address_house_no}},{{ordersDetails.address_city}}{{ordersDetails.address_state}}
+      </h6> -->
+      <ion-row style="font-size: 16px; font-weight: bold;">
+        <ion-col size="1">
+          <img src="../../assets/imgs/location.png" class="img">
+        </ion-col>
+        <ion-col size="11" *ngIf="orderInfo.customer_details.address!==null && orderInfo.customer_details.address!=='' " >
+            {{orderInfo.customer_details.address}}
+        </ion-col>
+        <ion-col size="11" *ngIf="orderInfo.customer_details.address ===''">
+         Address not available.
+      </ion-col>
+      </ion-row>
+    </ion-card>
+    <!-- <div *ngFor="let item of orderItem;"> -->
+    <ion-card class="main-card-item">
+      <ion-card-content>
+        <h5 class="p-label3"><b>Items</b></h5>
+        <div *ngFor="let item of orderInfo.order_item;" style="margin-top: 20px;">
+          <h6 class="p-qty">{{item.product_name}} {{item.product_weight}}Kg</h6>
+ 
+          <ion-row>
+            <ion-col>
+              <h6 class="p-qty">Qty {{item.qty}} × ₹{{item.product_price}}</h6>
+            </ion-col>
+
+            <h6 class="p-label4">₹{{item.price}}</h6>
+          </ion-row>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="main-card-item" *ngIf="orderInfo.driver_details && orderInfo.driver_details!==null">
+      <ion-card-header>
+        <ion-card-title>Delivery Boy</ion-card-title>
+      </ion-card-header>
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="../../assets/imgs/avatar1.png">
+        </ion-avatar>
+        <ion-label>
+          <h3>{{orderInfo.driver_details.name}}</h3>
+          <p>{{orderInfo.driver_details.phone}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-card-content>
+
+      </ion-card-content>
+    </ion-card>
+  </div> 
+  <ion-row *ngIf="orderInfo.order_details.status==='Approve'" class="cancel_completed_btn">
+    <!-- <ion-button  (click)="fnSelectDriver()" shape="round" fill="outline">Assign Order</ion-button> -->
+    <ion-col class="center">
+      <button ion-button class="cancelOrder_btn"
+      (click)="fnSelectDriver(orderInfo.order_details.id)">Assign Order</button>
+    </ion-col>
+    
+  </ion-row>
+  
+</ion-content>

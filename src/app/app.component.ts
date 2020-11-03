@@ -8,6 +8,10 @@ import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { GlobalFooServiceService } from './global-foo-service.service';
+import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
+import { AuthService } from './auth.service';
+import {enableProdMode} from '@angular/core';
+
 
 
 @Component({
@@ -26,10 +30,11 @@ export class AppComponent {
 
   photo: any = localStorage.getItem("photos");
   constructor(
+    private auth: AuthService,
+    private push: Push,
     public globalFooService: GlobalFooServiceService,
     public changeDetectorRef: ChangeDetectorRef,
     private _location: Location,
-    private router: Router,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
@@ -44,24 +49,19 @@ export class AppComponent {
       this.photo = '';
     }
     console.log('this.photo  -- ', this.photo);
+ 
     this.initializeApp();
-    this.globalFooService.getObservable().subscribe((data) => {
-      console.log('Data received', data);
-      this.name = data.name;
-      this.email = data.email;
-      this.role = data.role;
-      this.photo = data.photo;
-
-    });
   }
-  ngOnInit() {
-    this.changeDetectorRef.detectChanges();
+  ngOnInit() { 
   }
   initializeApp() {
     this.platform.ready().then(() => {
+      
       this.statusBar.styleDefault();
       this.statusBar.backgroundColorByHexString('#ffffff');
       this.splashScreen.hide();
+      this.initPushNotification();
+
       this.user_id = localStorage.getItem("id");
       this.firm_name = localStorage.getItem("firm_name");
       this.name = localStorage.getItem("name");
@@ -69,40 +69,27 @@ export class AppComponent {
       this.role = localStorage.getItem("role");
       this.photo = localStorage.getItem("photos");
 
-      console.log("this.role-----", this.role);
-      if (localStorage.getItem('role')) {
-        if (localStorage.getItem('role') == 'Customer') {
-          this.rootPage = "/dashboard";
-          this.navCtrl.navigateRoot('dashboard');
-          // this.navCtrl.navigateForward('add-address');
-        } else if (localStorage.getItem('role') == 'DeliveryBoy') {
-          this.rootPage = "/my-account";
-          this.navCtrl.navigateRoot('my-account');
-
-        }
-      }
-      else {
-        this.rootPage = "/home";
-        this.navCtrl.navigateRoot('home');
-      }
-
-
+      this.globalFooService.getObservable().subscribe((data) => {
+        console.log('Data received', data);
+        this.name = data.name;
+        this.email = data.email;
+        this.role = data.role;
+        this.photo = data.photo;
+        this.rootPage = data.rootPage;
+      });
       this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
         console.log('Back press handler!');
+        enableProdMode();
         if (this._location.isCurrentPathEqualTo(this.rootPage)) {
-
           // Show Exit Alert!
           console.log('Show Exit Alert!');
           this.showExitConfirm();
           processNextHandler();
         } else {
-
           // Navigate to back page
           console.log('Navigate to back page');
           this._location.back();
-
         }
-
       });
 
       this.platform.backButton.subscribeWithPriority(5, () => {
@@ -116,8 +103,32 @@ export class AppComponent {
         })
       });
 
+      console.log("this.role-----", this.role);
+      if (!this.role && this.role===null) {
+        this.rootPage = "/home";
+        // this.navCtrl.navigateRoot('home');
+      }
+      else {
+        if (this.role == 'Customer') {
+          this.rootPage = "/dashboard";
+          // this.navCtrl.navigateRoot('dashboard');
+          // this.navCtrl.navigateForward('add-address');
+        } else if (this.role == 'DeliveryBoy') {
+          this.rootPage = "/my-account";
+          // this.navCtrl.navigateRoot('my-account'); 
+
+        } else if (this.role == 'Salesman') {
+          this.rootPage = "/sales-dashboard";
+          // this.navCtrl.navigateRoot('sales-dashboard');
+        } 
+      }
+      this.navCtrl.navigateRoot(this.rootPage);
+
+     
+
 
     });
+   
   }
 
   showExitConfirm() {
@@ -156,9 +167,15 @@ export class AppComponent {
     this.menu.enable(false);
   }
 
-  fnEditProfile() {
+  fnEditProfile() { 
     this.menu.enable(true);
     this.navCtrl.navigateForward('edit-profile');
+    this.menu.enable(false);
+  }
+
+  fnMyAddress() {
+    this.menu.enable(true);
+    this.navCtrl.navigateForward('my-address');
     this.menu.enable(false);
   }
 
@@ -167,13 +184,35 @@ export class AppComponent {
     this.navCtrl.navigateForward('change-password');
     this.menu.enable(false);
   }
-
-  fnLogout() {
-    this.rootPage = "/home";
-    localStorage.clear();
+  fnComplain(){
     this.menu.enable(true);
-    this.navCtrl.navigateRoot('/home');
+    this.navCtrl.navigateForward('complain-order');
     this.menu.enable(false);
+  }
+  fnLogout() {
+
+    let requestObject = {
+      "userId": this.user_id,
+    }
+    this.auth.showLoader();
+    this.auth.logout(requestObject).subscribe((data: any) => {
+      this.auth.hideLoader();
+      if (data.status === true) {
+        // this.auth.showToast(data.message);
+        this.rootPage = "/home";
+        localStorage.setItem('role',null);
+        this.menu.enable(true);
+        this.navCtrl.navigateRoot('/home');
+        this.menu.enable(false);
+      } else {
+        this.auth.showToast(data.message);
+      }
+    }, (err) => {
+      this.auth.hideLoader();
+      console.log("Error=>", err);
+    });
+
+
   }
 
   fnDashboard() {
@@ -207,4 +246,52 @@ export class AppComponent {
     });
     await alert.present();
   }
+
+  // / Push notification /
+  initPushNotification() {
+    if (!this.platform.is('cordova')) {
+      console.warn('Arshad :- Push notifications not initialized. Cordova is not available - Run in physical device');
+      return;
+    }
+    const options: PushOptions = {
+      android: {
+        senderID: '330083022899',
+        sound: 'true',
+        vibrate: true,
+        forceShow: true,
+      },
+      ios: {
+        alert: 'true',
+        badge: true,
+        sound: 'true',
+        clearBadge: 'false',
+      },
+      windows: {}
+    };
+
+    const pushObject: PushObject = this.push.init(options);
+    pushObject.on('registration').subscribe((data: any) => {
+      //alert('device data ->' + JSON.stringify(data));
+      console.log('device token -> ' + JSON.stringify(data.registrationId));
+      localStorage.setItem('device_token', data.registrationId);
+
+    });
+
+    pushObject.on('notification').subscribe((notification: any) => {
+      
+      if (notification.additionalData.foreground) {
+        let item=notification.additionalData;
+        // if application open, show popup
+        alert( JSON.stringify(notification))
+        console.log('in forground ',notification);
+        if(item.user_type=='Customer' && item.status=='Approve'){
+          this.navCtrl.navigateForward('summary', { state: {id:item.id,order_number:item.order_number} });
+        }
+      } else {
+        console.log('n background ',notification);
+      }
+    });
+    pushObject.on('error').subscribe(error => console.error('Error with Push plugin' + error));
+  }
+ 
 }

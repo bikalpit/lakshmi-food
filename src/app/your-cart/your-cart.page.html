@@ -1,20 +1,16 @@
-<ion-toolbar>
-
-  <ion-buttons slot="start" (click)="fnBackToProductList()">
-    <ion-icon name="arrow-back-outline" class="backarrow1"></ion-icon>
-  </ion-buttons>
-
-  <ion-buttons slot="end">
-    <ion-button>
-
-    </ion-button>
-  </ion-buttons>
-  <ion-title class="main-title">Your Cart</ion-title>
-</ion-toolbar>
- 
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back-outline" class="backarrow1"  (click)="goBack()"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="main-title">Your Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-
-
   <ion-grid *ngFor="let item of cartData;">
     <ion-row>
       <ion-col size="4">
@@ -28,9 +24,9 @@
         <ion-card class="card">
           <ion-icon style="float:right;color: #E4322E;font-size: 24px;" (click)="cancelData(item)" name="close-outline">
           </ion-icon>
-          <p class="p-label1"><b>{{item.name}} {{item.weight}}Kg</b></p>
-          <p class="p-qty">Qty:{{item.qty}}</p>
-          <p class="p-label2">₹{{item.price*item.qty}}</p>
+          <p class="p-label1 respo-product-size"><b>{{item.name}} {{item.weight}}Kg</b></p>
+          <p class="p-qty res-common-p">Qty:{{item.qty}}</p>
+          <p class="p-label2 res-common-p" >₹{{item.price*item.qty | number:'1.2-2'}}</p>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -48,15 +44,11 @@
         </ion-col>
 
         <ion-col>
-          <h6 class="p-label3">₹{{mainSubTotal}}</h6>
+          <h6 class="p-label3">₹{{mainSubTotal | number:'1.2-2'}}</h6>
         </ion-col>
 
       </ion-row>
     </ion-grid>
-
-   
-
-
     <ion-grid class="total_price">
       <ion-row>
         <ion-col>
@@ -64,7 +56,7 @@
         </ion-col>
 
         <ion-col>
-          <h5 class="p-price">₹{{mainSubTotal}}</h5>
+          <h5 class="p-price">₹{{mainSubTotal | number:'1.2-2'}}</h5>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -81,7 +73,9 @@
     </ion-card>
 
     <ion-col class="center">
-      <button ion-button class="ProceedToCheckout_btn" (click)="fnProceedToCheckout()">Proceed To Checkout</button>
+      <!-- <button ion-button class="ProceedToCheckout_btn" (click)="fnProceedToCheckout()">Proceed To Checkout</button>
+       -->
+       <button ion-button class="ProceedToCheckout_btn" (click)="fnConfirmOrder()">Place Order</button>
     </ion-col>
   </ion-row>
 </ion-content>

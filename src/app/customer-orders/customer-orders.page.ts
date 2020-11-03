@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, MenuController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
-import { DatePipe } from '@angular/common';
+import { DatePipe,Location } from '@angular/common';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-customer-orders',
@@ -13,7 +14,7 @@ export class CustomerOrdersPage implements OnInit {
   requestObject: any;
   user_id: any;
   create_at: any;
-
+  url:any;
   ordersList = [];
   dataResponse: any;
   status: any;
@@ -22,9 +23,12 @@ export class CustomerOrdersPage implements OnInit {
   };
 
   constructor(private datePipe: DatePipe,
+    private location: Location,
     public menu: MenuController,
     public navCtrl: NavController,
-    private auth: AuthService) {
+    private commonService: CommonService,
+    private auth: AuthService
+    ) {
     this.selecTextStatus.select = "InProcess"; 
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
@@ -33,7 +37,9 @@ export class CustomerOrdersPage implements OnInit {
   ionViewDidEnter(){
     this.fngetOrderList(this.selecTextStatus.select);
   }
-  ngOnInit() { }
+  ngOnInit() {
+    this.url = this.commonService.url();
+   }
   
   fnOrderSummary(id,order_number) {
     this.navCtrl.navigateForward('summary', { state: {id:id,order_number:order_number} });
@@ -60,6 +66,7 @@ export class CustomerOrdersPage implements OnInit {
       this.ordersList = this.dataResponse;
 
       this.ordersList.forEach((element) => {
+        // this.commonService.customerOrder.push();
         element.create_at = this.datePipe.transform(new Date(element.create_at), "dd-MM-yyyy");
       });
 
@@ -71,6 +78,18 @@ export class CustomerOrdersPage implements OnInit {
 
   }
   fnBackToYourCart() {
-    this.navCtrl.navigateForward('dashboard');
+    this.navCtrl.navigateRoot('dashboard');
+  }
+  goBack() {
+    this.location.back(); 
+  }
+  doRefresh(event) {
+    console.log('Begin async operation', event);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      this.fngetOrderList(this.selecTextStatus.select);
+      event.target.complete();
+    }, 2000);
   }
 }

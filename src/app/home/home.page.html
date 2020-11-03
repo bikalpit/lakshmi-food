@@ -5,18 +5,20 @@
       <img src="../../assets/imgs/logo.png" class="logo">
       <h3 class="ion-text-center">Sign in</h3>
       <ion-list no-lines class="form" id="register_form">
-          <ion-item>
+          <ion-item style="align-items: flex-end;">
               <ion-icon color="primary"  name="call-sharp" slot="start"></ion-icon>
               <ion-label position="floating">Phone Number</ion-label>
-              <ion-input [(ngModel)]="login.phone" type="tel" name="phone"></ion-input>
+              <ion-input maxlength="10" [(ngModel)]="login.phone" type="tel" name="phone"></ion-input>
           </ion-item>
-          <ion-item>
+          <ion-item style="align-items: flex-end;">
               <ion-icon color="primary"  name="lock-closed" slot="start"></ion-icon>
               <ion-label position="floating">Password</ion-label>
-              <ion-input [(ngModel)]="login.password" name="password"  type="password"></ion-input>
-              <h6 slot="end" (click)="fnForgotPassword()">Forgot ?</h6> 
+              <ion-input  [(ngModel)]="login.password" name="password"  type="{{showPass==false?'password':'text'}}"></ion-input>
+              <ion-icon  name="{{showPass==false?'eye-off':'eye'}}" slot="end"  (click)="fnShowPass()"></ion-icon>
           </ion-item>
+          <div class="ion-text-end ion-margin-top">Forgot?</div>
       </ion-list>
+      
       <ion-button small expand="full" (click)="fnLogin()">Sign in</ion-button>
       <p class="ion-text-center">Oh! Not Registered yet?</p>
       <ion-button small expand="block" fill="outline" (click)="fnSignUp()">Register Now</ion-button>

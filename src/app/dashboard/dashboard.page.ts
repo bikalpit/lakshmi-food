@@ -16,10 +16,10 @@ export class DashboardPage implements OnInit {
     localStorage.setItem("cartData", '');
     this.name = localStorage.getItem('name');
 
-    if(localStorage.getItem('id')==null){
+    /* if(localStorage.getItem('id')==null){
       this.navCtrl.navigateForward('home');
       return;
-    }
+    } */
 
   }
  

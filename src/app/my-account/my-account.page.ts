@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController, MenuController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { DatePipe } from '@angular/common';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-my-account',
@@ -24,21 +25,25 @@ export class MyAccountPage implements OnInit {
   };
   date: any;
   orderDate: any;
-  userName:any;
+  userName: any;
+  url: any;
+  role:any;
 
-  constructor(public alertCtrl: AlertController, private datePipe: DatePipe, private auth: AuthService, public navCtrl: NavController, public menu: MenuController) {
+  constructor(private commonService: CommonService, public alertCtrl: AlertController, private datePipe: DatePipe, private auth: AuthService, public navCtrl: NavController, public menu: MenuController) {
     this.menu.enable(true);
     this.user_id = localStorage.getItem("id");
-    this.userName=localStorage.getItem("name");
+    this.userName = localStorage.getItem("name");
+    this.role = localStorage.getItem("role");
     console.log(this.user_id);
-    this.selecTextStatus.select = "Shipped";
+    this.selecTextStatus.select = "Assigned";
 
   }
   ionViewDidEnter() {
-    this.fngetDeliveryBoyOrders(this.selecTextStatus.select);
+   
+    this.url = this.commonService.url();
   }
   ngOnInit() {
-
+    this.fngetDeliveryBoyOrders(this.selecTextStatus.select);
   }
   OnChange(value) {
     this.status = value;
@@ -47,13 +52,13 @@ export class MyAccountPage implements OnInit {
   }
 
   fngetDeliveryBoyOrders = value => {
-    this.ordersList=[];
+    this.ordersList = [];
     this.requestObject = {
       "order_status": value,
       "delivery_boy_id": this.user_id
     }
     this.auth.showLoader();
-   console.log(this.requestObject);
+    console.log(this.requestObject);
     this.auth.getDeliveryBoyOrders(this.requestObject).subscribe((data: any) => {
       console.log(data);
       this.auth.hideLoader();
@@ -101,5 +106,36 @@ export class MyAccountPage implements OnInit {
   fnLogout() {
     localStorage.clear();
     this.navCtrl.navigateForward('home');
+  }
+  fnChangeStatus(id,status) {
+    console.log(status);
+    this.requestObject = {
+      "order_id": id,
+      "order_status": status,
+      "user_id": this.user_id,
+      "user_type": this.role
+    }
+    this.auth.showLoader();
+    console.log(this.requestObject);
+    this.auth.updateOrderStatus(this.requestObject).subscribe((data: any) => {
+      console.log(data);
+      this.auth.hideLoader();
+      this.auth.showToast('Order status updated succesfully');
+      this.ngOnInit();
+
+    }, (err) => {
+      console.log("Error=>", err);
+      this.auth.hideLoader();
+    });
+
+  }
+  doRefresh(event) {
+    console.log('Begin async operation', event);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      this.fngetDeliveryBoyOrders(this.selecTextStatus.select);
+      event.target.complete();
+    }, 2000);
   }
 }

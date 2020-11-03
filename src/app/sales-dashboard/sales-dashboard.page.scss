@@ -1,0 +1,122 @@
+.menu_btn{
+    color: #E4322E;
+}
+.main-title{
+    text-align: center;
+    color: #E4322E;
+    margin-right: 43px;
+ }
+ .header-content{
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
+    background-color: #E4322E;
+ }
+ .p-label{
+     color :#fff;
+     margin: 30px 0 30px 10px;
+     font-size: 1.3rem;
+ }
+ .card-content{
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
+    margin-top: 12%;
+    background-color: #fff;
+    height: 17%;
+    margin-bottom: 1px;
+ }
+ .p-order{
+    color: #000;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    font-size: 16px;
+ }
+ .Pending_btn{
+    background-color: #E4322E;
+    float: right;
+    color: #fff;
+    font-size: 16px;
+    height: 33px;
+    width: 80%;
+    border-radius: 8px;
+    display: block;
+    margin: auto;
+    border: 1px solid #fff;
+    margin-right: 6px;
+}
+.p-date{
+    margin-top: 0px;
+    margin-left: 10px;
+    color: #000;
+}
+.card-content-address{
+    // box-shadow: 5px 7px 10px 5px #e8e8e8;
+    margin-top: 0;
+    background-color: #fff;
+}
+.add-txt{
+    text-align: center;
+}
+.img{
+    margin-right: 10px;
+}
+.order-status{
+    color: black;
+    font-size: 18px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+ion-select{
+    max-width: 117px;
+    border: 1px solid #E4322E;
+    border-radius: 9px;
+    padding: 9px;
+}
+.customer-filter{
+    padding: 0;
+    .select-icon{
+        width: 30px !important;
+        height: 30px !important;
+        background-color: red !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+}
+.customer-filter{
+    width: 160px;
+    max-width: 160px;
+    height: 40px;
+}
+.customer-filter::part(text){
+    padding: 0 10px;
+    font-size: 17px;
+    font-family: open sans;
+}
+.customer-filter::part(icon) {
+        width: 45px !important;
+        height: 40px !important;
+        background-color: #E4322E !important;
+        display: flex !important;
+        justify-content: center !important;
+        opacity: 1;
+        align-items: center;
+        *{
+            display: none;
+        }
+    &::after{
+        content: "";
+        background-image: url('/../../assets/imgs/down-arrow.png');
+        width: 35px;
+        height: 18px;
+        background-position: center;
+        background-color: #e4322e;
+        z-index: 1;
+        background-size: 70%;
+        background-repeat: no-repeat;
+    }
+}
+
+.norecord-label{
+    font-family: open sans;
+    color:#E4322E;
+    font-size: 18px;
+    text-align: center;
+}
+

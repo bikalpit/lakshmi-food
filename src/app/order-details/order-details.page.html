@@ -4,7 +4,8 @@
       <ion-menu-button auto-hide="false"></ion-menu-button>
     </ion-buttons> -->
     <ion-buttons slot="start">
-      <ion-back-button (click)="goBack()" color="danger"></ion-back-button>
+      <!-- <ion-back-button (click)="goBack()" color="danger"></ion-back-button> -->
+      <ion-icon name="arrow-back-outline" class="backarrow1" (click)="goBack()"></ion-icon>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button>
@@ -13,10 +14,13 @@
     </ion-buttons>
     <ion-title class="main-title">Order Details</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> 
 
 <ion-content>
-  <div *ngIf="ordersDetails">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list *ngIf="ordersDetails">
 
     <ion-card class="main-card">
       <ion-grid>
@@ -24,11 +28,9 @@
           <ion-col>
             <h4 class="p-label2">Order # {{ordersDetails.order_number}}</h4>
           </ion-col>
-
           <ion-col>
             <h6 class="p-label">Order Date</h6>
           </ion-col>
-
         </ion-row>
       </ion-grid>
       <ion-grid>
@@ -37,7 +39,7 @@
             <!-- <h4 class="p-price">{{ordersDetails.status}}</h4> -->
             <h4 class="p-price" *ngIf="ordersDetails.status == 'New'">Pending</h4>
             <h4 class="p-price" *ngIf="ordersDetails.status == 'Pickup'">Pickup</h4>
-            <h4 class="p-price" *ngIf="ordersDetails.status == 'Shipped'">Shipped</h4>
+            <h4 class="p-price" *ngIf="ordersDetails.status == 'Assigned'">Assigned</h4>
             <h4 class="p-price" *ngIf="ordersDetails.status == 'Approve'">Approve</h4>
             <h4 class="p-price" *ngIf="ordersDetails.status == 'cancel'">Cancel</h4>
             <h4 class="p-price" *ngIf="ordersDetails.status == 'Delivered'">Delivered</h4>
@@ -74,7 +76,7 @@
 
       </ion-row>
       <ion-row>
-        <ion-col size="4" >
+        <ion-col size="4">
           <h4 class="p-label2">Email</h4>
         </ion-col>
 
@@ -96,15 +98,20 @@
     </ion-card>
     <ion-card class="main-card-item">
       <p class="profile-txt"><b>Address</b></p>
-     <!--  <h6 class="add-txt"><img src="../../assets/imgs/location.png"
+      <!--  <h6 class="add-txt"><img src="../../assets/imgs/location.png"
           class="img">{{ordersDetails.address_house_no}},{{ordersDetails.address_city}}{{ordersDetails.address_state}}
       </h6> -->
       <ion-row style="font-size: 16px; font-weight: bold;">
         <ion-col size="1">
           <img src="../../assets/imgs/location.png" class="img">
         </ion-col>
-        <ion-col size="11">
-            {{ordersDetails.address_house_no}}, {{ordersDetails.address_landmark}}, {{ordersDetails.address_city}}, {{ordersDetails.address_state}}, {{ordersDetails.address_zipcode}}
+        <ion-col size="11" *ngIf="ordersDetails.address_house_no!==''">
+          {{ordersDetails.address_house_no}}, {{ordersDetails.address_landmark}}, {{ordersDetails.address_city}},
+          {{ordersDetails.address_state}}, {{ordersDetails.address_zipcode}}
+        </ion-col>
+        <ion-col size="11" *ngIf="ordersDetails.address_house_no===''">
+          {{ordersDetails.address_landmark}}, {{ordersDetails.address_city}},
+          {{ordersDetails.address_state}}, {{ordersDetails.address_zipcode}}
         </ion-col>
       </ion-row>
     </ion-card>
@@ -126,21 +133,41 @@
       </ion-card-content>
     </ion-card>
 
+    <ion-card class="main-card-item" *ngIf="ordersDetails.ApproveUser && ordersDetails.ApproveUser!==null && role==='DeliveryBoy'">
+      <ion-card-header>
+        <ion-card-title>Assigned By</ion-card-title>
+      </ion-card-header>
+      <ion-item>
+        <ion-avatar slot="start" *ngIf="ordersDetails.ApproveUser.photo  && ordersDetails.ApproveUser.photo !==null">
+          <img src="{{url.file_url}}assets/uploads/users/{{ordersDetails.ApproveUser.photo}}">
+        </ion-avatar>
+        <ion-avatar slot="start" *ngIf="ordersDetails.ApproveUser.photo === null || ordersDetails.ApproveUser.photo ===''">
+          <img src="../../assets/imgs/avatar1.png">
+        </ion-avatar>
+        <ion-label>
+          <h3>{{ordersDetails.ApproveUser.name}}</h3>
+          <p>{{ordersDetails.ApproveUser.phone}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-card-content>
+
+      </ion-card-content>
+    </ion-card>
 
     <ion-row class="cancel_completed_btn">
-      <ion-col *ngIf="ordersDetails.status && ordersDetails.status != 'cancel' && ordersDetails.status !='Delivered'">
+      <ion-col  *ngIf="ordersDetails.status && ordersDetails.status =='Assigned'">
         <button ion-button class="cancelOrder_btn"
           (click)="fnCancelOrder(ordersDetails.id,ordersDetails.order_number,'CD')">Cancel</button>
       </ion-col>
 
       <ion-col>
-        <button ion-button *ngIf="ordersDetails.status == 'Shipped'" class="completed_btn"
+        <button ion-button *ngIf="ordersDetails.status == 'Assigned'" class="completed_btn"
           (click)="fnCompleted('Pickup')">Pickup</button>
         <button ion-button *ngIf="ordersDetails.status == 'Pickup'" class="completed_btn"
           (click)="fnCompleted('Delivered')">Deliver</button>
         <!-- <button ion-button *ngIf="ordersDetails.status == 'Delivered'" class="completed_btn" (click)="fnCompleted('Completed')">Completed</button> -->
 
       </ion-col>
-    </ion-row>
-  </div>
+    </ion-row> 
+  </ion-list>
 </ion-content>

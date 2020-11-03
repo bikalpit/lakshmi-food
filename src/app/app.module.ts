@@ -19,6 +19,7 @@ import { File } from "@ionic-native/file/ngx";
 import { FileTransfer } from "@ionic-native/file-transfer/ngx";
 import { FileOpener } from "@ionic-native/file-opener/ngx";
 import { Camera } from '@ionic-native/camera/ngx';
+import { Push} from '@ionic-native/push/ngx';
 
 @NgModule({
   declarations: [AppComponent, ModalPopupPage],
@@ -38,6 +39,7 @@ import { Camera } from '@ionic-native/camera/ngx';
     FileOpener,
     FileTransfer,
     Camera,
+    Push,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

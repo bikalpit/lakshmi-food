@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back-outline" class="backarrow1" (click)="goBack()"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="main-title">Complaints</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div  *ngIf="DeliveredOrder!==0">
+    <div class="ion-margin">
+      <ion-item lines="none" class="item-background-color">
+        <ion-label class="color">Order Id</ion-label>
+        <ion-select #item class="custom-options customer-filter color" [(ngModel)]="orderId"
+          (ionChange)="fnSelectOrderID(item.id)">
+          <ion-select-option value="{{item.id}}" *ngFor="let item of ordersList; let i = index">{{item.order_number}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div class="ion-margin order-no-bg">
+      <ion-input placeholder="Product Name" type="text" [(ngModel)]="productName" name="Name" class="order_no_txt">
+      </ion-input>
+    </div>
+
+    <div class="ion-margin complainArea">
+      <ion-textarea placeholder="Write your complaint" type="text" [(ngModel)]="complain" name="Name"
+        class="order_no_txt">
+      </ion-textarea>
+    </div>
+    <div class="ion-margin" style="text-align: center;">
+      <button ion-button class="download_btn" (click)="fnSendComplaint()">Send</button>
+    </div>
+  </div>
+  <div *ngIf="DeliveredOrder == 0">
+    <p class="norecord-label">There is no Deliverd Data found!</p>
+  </div>
+</ion-content>

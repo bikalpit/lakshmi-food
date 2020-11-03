@@ -3,66 +3,113 @@
     <ion-buttons slot="start" class="menu_btn">
       <ion-menu-button auto-hide="false"></ion-menu-button>
     </ion-buttons>
-    <ion-buttons slot="end">
+    <!--  <ion-buttons slot="end">
       <ion-button>
         <img src="../../assets/imgs/logout.png" (click)=presentAlertConfirm()>
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
     <ion-title class="main-title">My Orders</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-grid class="header-content">
-    <p class="p-label">Welcome {{userName}}</p> 
+    <p class="p-label">Welcome {{userName}}!</p>
   </ion-grid>
 
   <ion-row style="margin-top: 12px;">
     <p class="order-status"><b>Order Status</b></p>
-    
+
     <ion-col>
-      <ion-item lines="none" style="float: right;">   
-        <ion-select  #item class="custom-options customer-filter" [(ngModel)]="selecTextStatus.select" (ionChange)="OnChange(item.value)">
-        
-          <ion-select-option value="Shipped">Shipped</ion-select-option> 
-          <ion-select-option value="Pickup">Pickup</ion-select-option> 
+      <ion-item lines="none" style="float: right;">
+        <ion-select #item class="custom-options customer-filter" [(ngModel)]="selecTextStatus.select"
+          (ionChange)="OnChange(item.value)">
+          <ion-select-option value="Assigned">Assigned</ion-select-option>
+          <ion-select-option value="Pickup">Pickup</ion-select-option>
           <!-- <ion-select-option value="Completed">Completed</ion-select-option>  -->
-          <ion-select-option value="Delivered">Delivered</ion-select-option> 
-          <ion-select-option value="cancel">Cancel</ion-select-option> 
-          
+          <ion-select-option value="Delivered">Delivered</ion-select-option>
+          <ion-select-option value="cancel">Cancel</ion-select-option>
+
         </ion-select>
       </ion-item>
     </ion-col>
   </ion-row>
 
   <div *ngFor="let item of ordersList;">
-  <ion-card class="card-content" (click)="fnOrderDetails(item.id,item.status)">
-    <ion-row style="margin-top: 15px;">
-      <p class="p-order"><b>Order #{{item.order_number}}</b></p>
-      <ion-col>
-        <!-- <button ion-button class="Pending_btn">{{item.status}}</button> -->
-        <button ion-button *ngIf="item.status == 'New'" class="Pending_btn">Pending</button>
-        <button ion-button *ngIf="item.status == 'Shipped'" class="Pending_btn">Shipped</button>
-        <button ion-button *ngIf="item.status == 'Approve'" class="Pending_btn">Approve</button>
-        <button ion-button *ngIf="item.status == 'cancel'" class="Pending_btn">Cancel</button>
-        <button ion-button *ngIf="item.status == 'Pickup'" class="Pending_btn">Pickup</button>
-        <button ion-button *ngIf="item.status == 'Delivered'" class="Pending_btn">Delivered</button>
-        <button ion-button *ngIf="item.status == 'Completed'" class="Pending_btn">Completed</button>
-      </ion-col>
-    </ion-row>
-    <p class="p-date"><b>Date </b>{{item.create_at}}</p>
+    <ion-card class="card-content">
+      <ion-item (click)="fnOrderDetails(item.id,item.status)">
+        <ion-avatar slot="start" *ngIf="item.photo  && item.photo !==null">
+          <img src="{{url.file_url}}assets/uploads/users/{{item.photo}}">
+        </ion-avatar>
+        <ion-avatar slot="start" *ngIf="item.photo===null  && item.photo ===''">
+          <img src="../../assets/imgs/avatar1.png">
+        </ion-avatar>
+        <ion-label>
+          <h3>{{item.name}}</h3>
+          <p>{{item.phone}}</p>
+        </ion-label>
+        <ion-label slot="end" style="text-align: end;color: #E4322E;">
+          <p class="menu_btn" *ngIf="item.status == 'New'">Pending</p>
+          <p class="menu_btn" *ngIf="item.status == 'Assigned'">Assigned</p>
+          <p class="menu_btn" *ngIf="item.status == 'Approve'">Approve</p>
+          <p class="menu_btn" *ngIf="item.status == 'cancel'">Cancel</p>
+          <p class="menu_btn" *ngIf="item.status == 'Pickup'">Pickup</p>
+          <p class="menu_btn" *ngIf="item.status == 'Delivered'">Delivered</p>
+          <p class="menu_btn" *ngIf="item.status == 'Completed'">Completed</p>
 
-  </ion-card>
-  <ion-card class="card-content-address">
-    <ion-row style="font-size: 16px; font-weight: bold;">
-      <ion-col size="1">
-        <img src="../../assets/imgs/location.png" class="img">
-      </ion-col>
-      <ion-col size="11">
-          {{item.address_house_no}}, {{item.address_landmark}}, {{item.address_city}}, {{item.address_state}}, {{item.address_zipcode}}
-      </ion-col>
-    </ion-row>
-   </ion-card>
+        </ion-label>
+      </ion-item>
+      <ion-row style="margin-top: 15px;">
+        <p class="p-order"><b>Order #{{item.order_number}}</b></p>
+        <ion-col>
+          <!-- <button ion-button class="Pending_btn">{{item.status}}</button> -->
+          <button (click)="fnChangeStatus(item.id,'Pickup')" ion-button *ngIf="item.status == 'Assigned'"
+            class="Pending_btn">Pickup</button>
+          <button (click)="fnChangeStatus(item.id,'Delivered')" ion-button *ngIf="item.status == 'Pickup'"
+            class="Pending_btn">Deliver</button>
+          <div *ngIf="item.status == 'Delivered' && item.delivery_date!==null" style="text-align: end;margin-top: 0.5rem;margin-right: .5rem;">
+            <ion-labe>
+               <b>Delivery Date</b><br/>
+              {{item.delivery_date}}
+            </ion-labe>
+          
+          </div>
+        </ion-col>
+      </ion-row>
+      <p class="p-date"><b>Date: </b>{{item.create_at}}</p>
+      <ion-item style="background-color: lightgrey;" (click)="fnOrderDetails(item.id,item.status)">
+        <ion-row style="font-size: 16px; font-weight: bold;">
+          <ion-col size="1">
+            <img src="../../assets/imgs/location.png" class="img">
+          </ion-col>
+          <ion-col size="11" *ngIf="item.address_house_no!=='' ">
+            {{item.address_house_no}}, {{item.address_landmark}}, {{item.address_city}}, {{item.address_state}},
+            {{item.address_zipcode}}
+          </ion-col>
+          <ion-col size="11" *ngIf="item.address_house_no===''">
+            {{item.address_landmark}}, {{item.address_city}}, {{item.address_state}}, {{item.address_zipcode}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+    </ion-card>
+    <!-- <ion-card class="card-content-address">
+      <ion-row style="font-size: 16px; font-weight: bold;">
+        <ion-col size="1">
+          <img src="../../assets/imgs/location.png" class="img">
+        </ion-col>
+        <ion-col size="11" *ngIf="item.address_house_no!=='' ">
+          {{item.address_house_no}}, {{item.address_landmark}}, {{item.address_city}}, {{item.address_state}},
+          {{item.address_zipcode}}
+        </ion-col>
+        <ion-col size="11" *ngIf="item.address_house_no===''">
+          {{item.address_landmark}}, {{item.address_city}}, {{item.address_state}}, {{item.address_zipcode}}
+        </ion-col>
+      </ion-row>
+    </ion-card> -->
   </div>
   <div *ngIf="!ordersList?.length > 0">
     <p class="norecord-label">No Records Found</p>

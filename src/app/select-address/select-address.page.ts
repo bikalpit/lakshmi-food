@@ -1,6 +1,7 @@
 import { Component, OnInit, AbstractType, ChangeDetectorRef } from '@angular/core';
 import { NavController,AlertController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-select-address',
@@ -19,12 +20,12 @@ export class SelectAddressPage implements OnInit {
   address_index:any;
   mycheck = false;
 
-  constructor( public alertCtrl: AlertController,public navCtrl: NavController, private auth: AuthService, private change: ChangeDetectorRef) {
+  constructor(  private location: Location, public alertCtrl: AlertController,public navCtrl: NavController, private auth: AuthService, private change: ChangeDetectorRef) {
     this.user_id = localStorage.getItem("id");
     this.cartData = JSON.parse(localStorage.getItem("cartData"));
     this.mainSubTotal = localStorage.getItem("mainsubtotal");
   }
-
+ 
   ngOnInit() {}
   ionViewDidEnter() {
     this.fngetAddressDetails();
@@ -36,6 +37,10 @@ export class SelectAddressPage implements OnInit {
 
   fnBackToYourCart() {
     this.navCtrl.navigateForward('your-cart');
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   fngetAddressDetails() {
@@ -79,7 +84,7 @@ export class SelectAddressPage implements OnInit {
 
   updateAddress(data) {
     console.log(data);
-    this.navCtrl.navigateForward('edit-address', { state: data });
+    this.navCtrl.navigateForward('edit-address', { state: {data:data,from:'1'} });
   }
 
 
@@ -115,7 +120,8 @@ export class SelectAddressPage implements OnInit {
         localStorage.removeItem('cartData');
         localStorage.setItem('OrderNumber', data.data.order_id);
         this.auth.showToast('Orders Place successfully');
-        this.navCtrl.navigateForward('success-order');
+        this.navCtrl.navigateRoot('success-order');
+        
       } else {
         this.auth.showToast(data.message);
       }

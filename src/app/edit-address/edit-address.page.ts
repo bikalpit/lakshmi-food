@@ -16,6 +16,7 @@ export class EditAddressPage implements OnInit {
   id: any;
   sub: any;
   regex = /^[A-z]+$/;  
+  navigateFrom:any;
 
   constructor(private location: Location,
     public navCtrl: NavController, 
@@ -26,8 +27,10 @@ export class EditAddressPage implements OnInit {
 
     const state = this.router.getCurrentNavigation().extras.state
     if (state) {
-      this.AllAddressArray = state;
+      this.AllAddressArray = state.data;
+      this.navigateFrom = state.from;
       console.log("Address data-->", this.AllAddressArray);
+      console.log("navigateFrom data-->", this.navigateFrom);
     }
   }
 
@@ -42,7 +45,6 @@ export class EditAddressPage implements OnInit {
    
 
     if (this.AllAddressArray.address_house_no != '' && this.AllAddressArray.area !=''
-      && this.AllAddressArray.address_landmark != ''
       && this.AllAddressArray.address_city != ''
       && this.AllAddressArray.address_state != ''
       && this.AllAddressArray.address_zipcode != '' && this.AllAddressArray.address_type != '') {
@@ -63,13 +65,18 @@ export class EditAddressPage implements OnInit {
             "address_type": this.AllAddressArray.address_type,
             "address_id": this.AllAddressArray.id
     
-          };
+          }; 
           this.auth.showLoader();
     
           this.auth.editAddress(this.requestObject).subscribe((data: any) => {
             this.auth.hideLoader();
-            this.auth.showToast('Updated address successfully');
-            this.navCtrl.navigateForward('/select-address');
+            this.auth.showToast('Address Sucessfully Updated');
+            if(this.navigateFrom==='1'){
+              this.navCtrl.navigateForward('/select-address'); 
+            }else{
+              this.navCtrl.navigateForward('/my-address'); 
+            }
+           
           }, (err) => {
             console.log("Error=>", err);
             this.auth.hideLoader();

@@ -1,0 +1,57 @@
+.main-title{
+    text-align: center;
+    color: #E4322E;
+ }
+ .custom-options{
+    font-family: open sans;
+}
+.customer-filter{
+    padding: 0;
+}
+  .item-background-color{
+    --ion-item-background:#f5f0f0;
+    border-radius: 7px;
+}
+.color{
+    color: #999999;
+}
+.order_no_txt{
+    text-align: start;
+    color: #010944;
+    margin-left: 5px;
+ }
+ .order-no-bg{
+    background-color: #f5f0f0;
+    /* width: 90%; */
+    height: 45px;
+    /* margin-left: 20px; */
+    border-radius: 7px;
+    /* margin-top: 20px;*/
+ }
+ .complainArea{
+    background-color: #f5f0f0;
+    /* width: 90%; */
+    height: 150px;
+    /* margin-left: 20px; */
+    border-radius: 7px;
+    padding: 5px;
+    /* margin-top: 20px;*/
+ }
+ .download_btn{
+    background-color: #E4322E;
+    color: #fff;
+    font-size: 20px;
+    height: 45px;
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+    border: 1px solid #fff;
+    margin-top: 3rem;
+  }
+  .norecord-label{
+    font-family: open sans;
+    color:#E4322E;
+    font-size: 18px;
+    text-align: center;
+}

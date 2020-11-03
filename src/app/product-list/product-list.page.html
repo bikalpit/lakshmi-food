@@ -1,17 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" >
+      <ion-icon name="arrow-back-outline" class="backarrow1" (click)="goBack()"></ion-icon>
+    </ion-buttons>
+  
+    <!-- <ion-buttons slot="end">
+      <ion-button>
+        <img src="../../assets/imgs/buy (3).png" class="img" (click)="fnAddToCart()">
+      </ion-button>
+    </ion-buttons> -->
+  
+    <ion-title class="main-title">Select Product</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-<ion-toolbar>
-  <ion-buttons slot="start"  (click)="fnBackToDashboard()">
-    <ion-icon name="arrow-back-outline" class="backarrow1"></ion-icon>
-  </ion-buttons>
-
-  <!-- <ion-buttons slot="end">
-    <ion-button>
-      <img src="../../assets/imgs/buy (3).png" class="img" (click)="fnAddToCart()">
-    </ion-button>
-  </ion-buttons> -->
-
-  <ion-title class="main-title">Select Product</ion-title>
-</ion-toolbar>
 <ion-content>
 
 <div *ngFor="let item of lazyListProduct;">
@@ -19,13 +21,13 @@
     <ion-grid>
       <ion-row >
          <ion-col size="4" *ngIf="item.images">
-          <img *ngIf="item.images.length > 0" src="{{url.file_url}}assets/uploads/products/thumbs/{{item.images[0].product_image}}" style="width:100%; height: 6rem;">
-          <img *ngIf="item.images.length == 0" src="../../assets/imgs/not_found.png" style="width:100%; height: 6rem;"> 
+          <img *ngIf="item.images.length > 0" src="{{url.file_url}}assets/uploads/products/thumbs/{{item.images[0].product_image}}" style="width:100%;">
+          <img *ngIf="item.images.length == 0" src="../../assets/imgs/not_found.png" style="width:100%;"> 
         </ion-col> 
     
         <ion-col>
-          <h5 class="p-label1"><b>{{item.product_name}} {{item.product_weight}}Kg</b></h5>
-          <h6 class="p-label">₹{{item.product_price}}</h6>
+          <h5 class="p-label1 product-name-size"><b>{{item.product_name}} {{item.product_weight}}Kg</b></h5>
+          <h6 class="p-label product-price-size">₹{{item.product_price}}</h6>
         </ion-col>
       </ion-row>
     </ion-grid>
